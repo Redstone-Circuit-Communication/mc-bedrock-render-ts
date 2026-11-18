@@ -1,0 +1,19 @@
+{
+  "generator": "first-generation mesher (dist/index.js.map)",
+  "quads": {
+    "solid": 51325,
+    "translucent": 2204
+  },
+  "solid": {
+    "positions": "b4d41eb5e3ed74684a097261a571faa3",
+    "uvs": "04265594dbe3b4bcfd3836d6324c2829",
+    "colors": "466683868ef2e4ef818766685ae266af",
+    "indices": "b90f20d63ade20b387bac658507ddfc5"
+  },
+  "translucent": {
+    "positions": "8edea9726b19b7facfe94db6cb22a273",
+    "uvs": "743cf7bbc1928af1c0f6016baedfe3eb",
+    "colors": "56d7c20a3d0b9e0c40f4a8a752bec942",
+    "indices": "441889356ff2e16a697cad79ac46c2f4"
+  }
+}
