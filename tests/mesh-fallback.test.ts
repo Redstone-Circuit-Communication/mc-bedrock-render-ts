@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'fs';
+import { officialPacks } from '../scripts/lib/official-pack';
 
 // Since 1.6.0 the package ships no wasm builder (its source is schematic-renderer's, AGPL-3.0; see NOTICE.md). A 'wasm'
 // request is served by the shared TS core without touching WebAssembly at all — so a Content-Security-Policy without
@@ -21,7 +22,7 @@ test('a wasm request meshes on the shared TS core without touching WebAssembly',
     const { ResourceStack } = await import('../src/renderer/resources');
     const { parseMcStructure } = await import('../src/renderer/structure');
     const stack = new ResourceStack();
-    await stack.addBytes(new Uint8Array(readFileSync(new URL('../example/public/packs/bedrock_resources.zip', import.meta.url))));
+    for (const pack of await officialPacks()) stack.push(pack);
     const bytes = new Uint8Array(readFileSync(new URL('../example/public/schematics/redstone-demo.mcstructure', import.meta.url)));
     for (const backend of ['wasm', undefined] as const) {
       const m = await buildStructureMesh(parseMcStructure(bytes), stack, { entities: false, backend });

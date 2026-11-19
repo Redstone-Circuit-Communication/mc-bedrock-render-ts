@@ -2,7 +2,7 @@
   "name": "@rsw/mc-bedrock-render-ts",
   "version": "1.6.1",
   "license": "CC-BY-NC-SA-4.0",
-  "description": "红石阁 mc 基岩版 TypeScript SDK：.mcstructure 渲染、材料、容器、红石、实体与相机（接口和渲染栈与 @rsw/mc-java-render-ts 相同）",
+  "description": "TypeScript SDK for Minecraft: Bedrock Edition .mcstructure files: 3D rendering, materials, containers, redstone, entities and camera (same API and rendering stack as @rsw/mc-java-render-ts)",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -43,13 +43,14 @@
     "test:all": "pnpm run build && pnpm run typecheck:consumer && pnpm test",
     "api:extract-java": "node scripts/extract-java-api.mjs",
     "data:import-holoprint": "node scripts/import-holoprint-data.mjs",
-    "test:e2e": "node tests/e2e/workshop.e2e.mjs && node tests/e2e/example.e2e.mjs",
+    "test:e2e": "tsx tests/gen-integ.ts && node tests/e2e/workshop.e2e.mjs && node tests/e2e/example.e2e.mjs",
     "coverage:blocks": "tsx tests/coverage.ts",
     "bench:mesh": "node --expose-gc node_modules/tsx/dist/cli.mjs tests/bench-mesh.ts",
     "dev:example": "pnpm run build && vite example --config example/vite.config.js",
     "build:example": "vite build example --config example/vite.config.js",
     "pack:resources": "tsx scripts/pack-resources.ts",
-    "schematics:coverage": "tsx scripts/generate-coverage-structures.ts"
+    "schematics:coverage": "tsx scripts/generate-coverage-structures.ts",
+    "pack:list-official": "tsx scripts/list-official-pack.ts"
   },
   "sideEffects": false,
   "devDependencies": {

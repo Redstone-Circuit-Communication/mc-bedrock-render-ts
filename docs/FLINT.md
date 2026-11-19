@@ -1,39 +1,50 @@
-# 参考库 flint 的建模方式
+# How the reference library flint models scenes
 
-`flint.zip` 是 flint v4.4.0，一个 WebGPU 路径追踪渲染库（辐射级联全局光照、FSR3 放大、BVH）。读完之后的结论：
+flint v4.4.0 is a WebGPU path-tracing renderer (radiance cascades global illumination, FSR3 upscaling, BVH). Conclusions
+after reading it:
 
-**它没有方块或实体的形状数据**：没有 NBT、调色板、骨骼，也没有楼梯、栅栏之类的定义，只有渲染一侧的场景表示。把方块和实体转成盒子的代码在使用它的应用里（`flint.js` 的注释提到 redstonifyNBT），不在这个包里。
+**It has no block or entity shape data**: no NBT, palettes or bones, and no definitions for stairs, fences and the like,
+only the rendering side of a scene. The code that turns blocks and entities into boxes lives in the application that uses
+it (a comment in `flint.js` mentions redstonifyNBT), not in the library.
 
-## 它的场景表示
+## Its scene representation
 
-- **盒子**是唯一的几何：轴对齐盒（`pos` + `size`）、四元数旋转盒、任意 3×3 矩阵变换盒。变换是对盒子实例的操作（平移、四元数、矩阵、欧拉角、增减尺寸），烘焙完成后算出包围盒，再进 BVH。
-- 每个盒子 6 个面，每个面是 `{ origin, uAxis, vAxis, layer, materialInstID }`：贴图集里的起点、u 轴和 v 轴（带符号的像素向量，所以翻转、90° 旋转只是换轴）、贴图集分页、材质实例。
-- 面的顺序（来自 `testIntersectionWithBox`）：−X、+X、−Y、+Y、−Z、+Z，也就是 west、east、down、up、north、south。每个面的 UV 取法：
+- **Boxes** are its only geometry: axis-aligned boxes (`pos` + `size`), boxes rotated by a quaternion, and boxes under any
+  3×3 matrix. Transforms are operations on box instances (translate, quaternion, matrix, Euler angles, grow or shrink);
+  once baked, a box's bounds are computed and it goes into the BVH.
+- Each box has 6 faces, each `{ origin, uAxis, vAxis, layer, materialInstID }`: the start in the texture atlas, the u and v
+  axes (signed pixel vectors, so flips and 90° rotations only swap axes), the atlas page and the material instance.
+- Face order (from `testIntersectionWithBox`): −X, +X, −Y, +Y, −Z, +Z, that is west, east, down, up, north, south. The UVs of
+  each face:
 
-  | 面 | u | v（从上往下） |
+  | Face | u | v (top to bottom) |
   |---|---|---|
-  | −X west | z 从小到大 | y 从大到小 |
-  | +X east | z 从大到小 | y 从大到小 |
-  | −Y down | x 从小到大 | z 从大到小 |
-  | +Y up | x 从小到大 | z 从小到大 |
-  | −Z north | x 从大到小 | y 从大到小 |
-  | +Z south | x 从小到大 | y 从大到小 |
+  | −X west | z ascending | y descending |
+  | +X east | z descending | y descending |
+  | −Y down | x ascending | z descending |
+  | +Y up | x ascending | z ascending |
+  | −Z north | x descending | y descending |
+  | +Z south | x ascending | y descending |
 
-  我逐项对过：本包 `face.ts` 里的 `FACE_VERTS` 和 `defaultUv` 和这张表一致，不用改。
+  Checked one by one: `FACE_VERTS` and `defaultUv` in this package's `face.ts` agree with the table, so nothing changes.
 
-## 它的 6 种材质，和本包的对应
+## Its 6 materials and their counterparts here
 
-| flint | 做法 | 本包 |
+| flint | What it does | This package |
 |---|---|---|
-| `Builtin_Basic` | 直接取贴图 | 默认 |
-| `Builtin_ColorMul` | 贴图 × 颜色 | 顶点色（着色 × 色调） |
-| `Builtin_Linear` | 贴图 × a + b | 不需要 |
-| **`Builtin_MaskedColorMul`** | 只在贴图 alpha 标记的区域染色，输出不透明 | **已借用**：`grass_side|mask:grass`，染色在构建贴图集时烘进去 |
-| `Builtin_Sequence` / `SequenceColorMul` | 动画帧（带帧间插值） | 没做：水、岩浆、火、传送门只显示第一帧 |
-| MERS 贴图 | 金属度 / 自发光 / 粗糙度 | 不需要：光栅化只画漫反射，资源包加载时跳过 `_mers` 和 `*_normal.tga` |
+| `Builtin_Basic` | the texture as is | default |
+| `Builtin_ColorMul` | texture × colour | vertex colour (shade × tint) |
+| `Builtin_Linear` | texture × a + b | not needed |
+| **`Builtin_MaskedColorMul`** | tints only where the texture's alpha marks it, output opaque | **borrowed**: `grass_side|mask:grass`, tinted while building the atlas |
+| `Builtin_Sequence` / `SequenceColorMul` | animation frames (interpolated) | not done: water, lava, fire and portals show their first frame |
+| MERS textures | metalness / emissive / roughness | not needed: rasterization draws diffuse only, and loading a pack skips `_mers` and `*_normal.tga` |
 
-## 在真实资源包里验证的
+## Checked against the real resource pack
 
-基岩的 `grass_side` 正是遮罩染色的用法：16×16 里 211 个像素 alpha 为 0，里面存的是泥土色（平均 130, 93, 65）；45 个像素 alpha 为 255，是灰色的草边（155）。游戏里侧面是 `grass_side` 按生物群系染色，而不是 `grass_side_carried`（手持用的、已经上好色的版本）。之前本包用的是后者，所以侧面颜色和绿色的顶面对不上。
+Bedrock's `grass_side` is exactly the masked-tint case: 211 of its 16×16 pixels have alpha 0 and hold the dirt colour
+(average 130, 93, 65); 45 pixels have alpha 255 and are the grey grass edge (155). In the game the side is `grass_side`
+tinted by the biome, not `grass_side_carried` (the pre-coloured version used in hand). This package used the latter before,
+so the sides did not match the green top.
 
-不是所有透明贴图都是遮罩：树叶、蜡烛、藤蔓等透明处的 RGB 是白底，只有 `grass_side` 这一种存了有意义的颜色。所以只对它启用，没有做成通用规则。
+Not every transparent texture is a mask: leaves, candles, vines and others have white RGB where they are transparent; only
+`grass_side` stores meaningful colour there. So the rule is enabled for it alone rather than made general.

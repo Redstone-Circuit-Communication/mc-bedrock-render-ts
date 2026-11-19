@@ -7,7 +7,7 @@ import { MolangEnv, createMolangEnv, evalMolang, molangNumber, molangTruthy } fr
 import { V3 } from './models';
 import { DRAGON_MIRRORED } from './geometry';
 import { NbtCompound } from './nbt';
-import { ResourceStack } from './resources';
+import { ResourceStack, perStack } from './resources';
 import { McStructure, StateValue } from './structure';
 import { BlockRegistry } from './blockutil';
 import { createDefaultRegistry } from './blocks';
@@ -130,13 +130,8 @@ export function legacyControllers(lib: EntityLibrary, def: ClientEntityDef): str
   return out;
 }
 
-const libCache = new WeakMap<ResourceStack, EntityLibrary>();
-/** Entity library for a stack, cached per stack instance. */
-export function entityLibraryFor(stack: ResourceStack): EntityLibrary {
-  let l = libCache.get(stack);
-  if (!l) { l = new EntityLibrary(stack); libCache.set(stack, l); }
-  return l;
-}
+/** Entity library for a stack, cached per stack and rebuilt when its packs change. */
+export const entityLibraryFor = perStack((stack) => new EntityLibrary(stack));
 
 // --------------------------------------------------------------- instances ---
 
@@ -233,8 +228,30 @@ const PROPERTY_DEFAULTS: Record<string, string | number> = {
   'minecraft:sulfur_cube_archetype': 'none',
 };
 
+/**
+ * Entities that the game hides at the start of their life: their render controllers make every part visible only after some
+ * time has passed. A saved entity has been around for a while, so these get a moment of their life where they are visible.
+ *  - evocation fangs show while `variable.animation_progress` is above 0 (it grows from `query.life_span` and
+ *    `query.life_time`): with a 22-tick life and half a second gone, the jaws are half open;
+ *  - wind charges show after flying for 0.2 seconds.
+ */
+/**
+ * Entities whose saved yaw is half a turn from the way their model faces: the ender dragon's yaw points backwards (the
+ * game's dragon renderer leaves out the 180° turn other mobs get), so at yaw 0 it faces south like every other mob, as in
+ * Java Edition.
+ */
+const YAW_OFFSET: Record<string, number> = { 'minecraft:ender_dragon': 180 };
+
+const DEFAULT_RENDER_CONTROLLER = { geometry: 'Geometry.default', materials: [{ '*': 'Material.default' }], textures: ['Texture.default'] };
+
+const VISIBLE_MOMENT: Record<string, Record<string, number>> = {
+  'minecraft:evocation_fang': { life_span: 22, life_time: 0.5 },
+  'minecraft:wind_charge_projectile': { life_time: 0.5 },
+  'minecraft:breeze_wind_charge_projectile': { life_time: 0.5 },
+};
+
 function makeQuery(lib: EntityLibrary, inst: EntityInstance): MolangEnv['query'] {
-  const q: Record<string, number> = { ...QUERY_DEFAULTS };
+  const q: Record<string, number> = { ...QUERY_DEFAULTS, ...VISIBLE_MOMENT[inst.identifier.toLowerCase()] };
   q.health = q.max_health = MAX_HEALTH[inst.identifier.toLowerCase()] ?? 20;
   for (const [k, v] of Object.entries(inst.queries ?? {})) q[k.toLowerCase()] = v;
   return (name, args) => {
@@ -327,7 +344,7 @@ export function planEntity(lib: EntityLibrary, inst: EntityInstance): EntityDraw
   const s = entityScale / 16;
   const world: M = inst.world ?? mulM(
     translateM(px, py, pz),
-    mulM(rotYM(-(inst.yaw ?? 0)), mulM(scaleM(s, s, -s), translateM(off[0], off[1], off[2]))),
+    mulM(rotYM(-((inst.yaw ?? 0) + (YAW_OFFSET[inst.identifier.toLowerCase()] ?? 0))), mulM(scaleM(s, s, -s), translateM(off[0], off[1], off[2]))),
   );
   const hidden = new Set((inst.hideBones ?? []).map((b) => b.toLowerCase()));
   const baseVisible = (b: string) => !hidden.has(b);
@@ -380,8 +397,9 @@ export function planEntity(lib: EntityLibrary, inst: EntityInstance): EntityDraw
   for (const entry of def.renderControllers) {
     const [name, cond] = typeof entry === 'string' ? [entry, undefined] : (Object.entries(entry)[0] ?? ['', undefined]);
     if (cond !== undefined && !molangTruthy(evalMolang(cond, env))) continue;
-    const rc = lib.renderControllers.get(name.toLowerCase());
-    if (!rc) continue;
+    // A controller that no pack defines is the plain default one (default geometry, material and texture). Mojang's published
+    // pack references `controller.render.iron_golem` without defining it; the game's own files define it exactly so.
+    const rc = lib.renderControllers.get(name.toLowerCase()) ?? DEFAULT_RENDER_CONTROLLER;
 
     env.arrays.clear();
     for (const group of Object.values<any>(rc.arrays ?? {})) {

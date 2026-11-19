@@ -28,6 +28,11 @@ const CORRECTIONS = {
   },
   blockShapeGeos(value) {
     value.sulfur_spike ??= [{ copy: 'cross_texture', terrain_texture: 'sulfur_spike_${#block_states.dripstone_thickness}' }];
+    // The hopper's top is a zero-height plane meant to show its up face (the `hopper_top` ring), but a flat cube only keeps
+    // its down face (drawn from both sides) and the data sets that face to `none`, so the top vanished. The kept face takes
+    // the up texture instead.
+    const top = value.hopper?.find((cube) => cube.size?.[1] === 0 && cube.textures?.down === 'none');
+    if (top) top.textures.down = 'up';
   },
   /**
    * `torch_facing_direction` names the side the SUPPORTING block is on (every wall torch of the sample structures has a solid

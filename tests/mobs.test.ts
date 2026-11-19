@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { EntityLibrary, planEntity } from '../src/renderer/entity';
-import { ResourcePack, ResourceStack } from '../src/renderer/resources';
+import { ResourceStack } from '../src/renderer/resources';
+import { officialPacks } from '../scripts/lib/official-pack';
 
 /**
  * Guardian: the spikes are written as absolute positions (`24 - 8 * … - this`); Molang's `this` is the rest value (a child
@@ -10,7 +10,7 @@ import { ResourcePack, ResourceStack } from '../src/renderer/resources';
  * Ender dragon: the neck and tail are drawn by repeating the `neck` bone (neck1…5, tail1…12), every part hangs off `root`,
  * the limb tips are relative to their limb, and the right-hand limbs are mirrors of the left ones.
  */
-const stack = new ResourceStack([await ResourcePack.fromBytes(new Uint8Array(readFileSync('example/public/packs/bedrock_resources.zip')))]);
+const stack = new ResourceStack(await officialPacks());
 const lib = new EntityLibrary(stack);
 const plan = (id: string) => planEntity(lib, { identifier: id, pos: [0, 0, 0], yaw: 0 } as never) as any[];
 

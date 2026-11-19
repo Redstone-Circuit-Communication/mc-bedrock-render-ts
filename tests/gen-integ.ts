@@ -1,9 +1,10 @@
 /** Writes tests/e2e/out/integ.mcstructure (containers, redstone parts, new-era blocks, entities) and fixture.zip. */
-import { readFileSync, writeFileSync } from 'fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { ResourcePack, ResourceStack } from '../src/renderer/resources';
 import { buildMcStructure, StateValue } from '../src/renderer/structure';
 import { T, Tagged } from '../src/renderer/nbt';
 import { buildFixturePack } from './helpers/fixture';
+import { officialPacks } from '../scripts/lib/official-pack';
 import { writeZip } from './helpers/zipwriter';
 
 const OUT = process.env.E2E_OUT ?? new URL('./e2e/out', import.meta.url).pathname;
@@ -46,7 +47,9 @@ const entities = [
   ent('minecraft:item', 14.5, 1, 12.5, 40, { Item: T.compound({ Name: T.string('minecraft:diamond'), Count: T.byte(1), Damage: T.short(0) }) }),
 ];
 (async () => {
-  const base = new ResourceStack([await ResourcePack.fromBytes(new Uint8Array(readFileSync(process.env.BEDROCK_PACK ?? '/mnt/user-data/uploads/animation_controllers.zip')))]);
+  mkdirSync(OUT, { recursive: true });
+  // BEDROCK_PACK=<zip> uses another pack; by default Mojang's official resources (downloaded once into .cache/)
+  const base = new ResourceStack((process.env.BEDROCK_PACK ? [await ResourcePack.fromBytes(new Uint8Array(readFileSync(process.env.BEDROCK_PACK)))] : await officialPacks()));
   const names = [...blocks.values()].map((b) => b.name.replace('minecraft:', ''));
   const { pack } = buildFixturePack(base, names);
   writeFileSync(`${OUT}/fixture.zip`, writeZip(pack.files));

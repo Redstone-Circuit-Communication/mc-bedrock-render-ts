@@ -1,59 +1,77 @@
-# 网格
+# Meshing
 
-> **1.6.0 起没有 wasm 后端了。** 它编自 Java 包的 `mesh_builder_wasm`，那份 Rust 源码和上游 schematic-renderer（AGPL-3.0）的同名文件逐行相似 0.978，
-> 不能放进本库（CC BY-NC-SA 4.0）的包里，见 `NOTICE.md`。下面量过的数说明它本来也不比 TS 核心快，所以默认改成 `ts` 没有速度上的代价。
-> 下文提到 wasm 的段落是 1.5 及以前的记录。
+> **There is no wasm backend since 1.6.0.** It was compiled from the Java package's `mesh_builder_wasm`, whose Rust source is
+> line-by-line similar (0.978) to the file of the same name in upstream schematic-renderer (AGPL-3.0), so it cannot ship in
+> this package (CC BY-NC-SA 4.0); see `NOTICE.md`. The measurements below show it was not faster than the TS core anyway, so
+> defaulting to `ts` costs no speed. Paragraphs below that mention wasm record 1.5 and earlier.
 
-方块的网格有两种后端，选项 `meshBackend`（`RendererOptions`）/ `backend`（`MeshOptions`）：
+Blocks are meshed by one of two backends, chosen with `meshBackend` (`RendererOptions`) / `backend` (`MeshOptions`):
 
-| 后端 | 做法 |
+| Backend | How |
 |---|---|
-| `ts`（默认） | 方块模型 → 调色板 → 16³ 分区块 → 共享的 TypeScript 网格核心（`./mesh`）剔除隐藏面并合并 |
-| `legacy` | 原来的单遍网格器，逐格逐面剔除 |
+| `ts` (default) | block models → palette → 16³ chunks → the shared TypeScript mesh core (`./mesh`) culls hidden faces and merges |
+| `legacy` | the original single-pass mesher, culling face by face per cell |
 
-`wasm` 仍然接受（同一份选项两个渲染库都能用），给的是 `ts`，不碰 WebAssembly，所以页面的 CSP 不需要 `wasm-unsafe-eval`。
-`mesh.stats.meshBackend` 是实际用的后端，`mesh.stats.timings` 是各阶段耗时。
+`wasm` is still accepted (so one set of options works with both renderers) and gives `ts`, without touching WebAssembly, so
+a page's CSP needs no `wasm-unsafe-eval`. `mesh.stats.meshBackend` is the backend actually used and `mesh.stats.timings` the
+time of each stage.
 
-## 流程（`wasm` / `ts`）
+## Pipeline (`wasm` / `ts`)
 
-1. 解析每一格的方块模型（和 `legacy` 共用）、建贴图集。
-2. **调色板**：每个不同的模型一项；每种颜色一个几何。颜色 = 方向着色 × 生物群系色调 × 透明度，放在材质里，构建完成后按材质组写成顶点色，所以查看器和 `legacy` 的输出格式一样。静态模型是共享对象，一次 Map 查找；动态模型（栅栏、楼梯、水位）按结构去重。
-3. **分区块**：16 格一块，每块两趟（实心、半透明）。块外一圈和不透明方块作为"邻居"参与剔除但不输出（半透明水的面会被不透明方块挡住，玻璃和玻璃之间互相剔除）。
-4. 构建器返回每个材质的顶点 / 索引；wasm 的输出不压缩顶点，合并时按索引压缩。
+1. Resolve each cell's block model (shared with `legacy`) and build the texture atlas.
+2. **Palette**: one entry per distinct model, one geometry per colour. Colour = directional shade × biome tint × opacity,
+   kept in the material and written as vertex colour per material group after building, so the viewer gets the same format
+   as from `legacy`. Static models are shared objects (one Map lookup); dynamic ones (fences, stairs, fluid levels) are
+   deduplicated per structure.
+3. **Chunks**: 16 cells per chunk, two passes each (solid, translucent). A ring of cells around the chunk and opaque blocks
+   take part in culling as "neighbours" without being output (the faces of translucent water are hidden by opaque blocks,
+   glass culls glass).
+4. The builder returns vertices / indices per material; the wasm output did not compress vertices, so merging compressed
+   them by index.
 
-wasm 的坐标是 Int16 × 1/1024，所以区块边长不能超过 31 格（现在是 16）。
+wasm coordinates were Int16 × 1/1024, so a chunk could not exceed 31 cells (it is 16).
 
-## 验证过的
+## Verified
 
-- `tests/mesh-backends.test.ts`：全方块、容器、红石、地形四个结构上，`wasm` 和 `ts` 逐个四边形一致；和 `legacy` 的差别只有两类：旧版多画的是玻璃板 / 栏杆端面贴着实心方块、水里面的水（都在方块之间的平面上，看不见）；新版多画的是蜂蜜块、霜冰这类半透明方块下面地板的那一面（旧版把它剔掉了，游戏里能透过去看到）。
-- 另外用 300 个随机区块（方块、台阶、玻璃剔除组、水、十字植物、多几何项、邻居）直接比较 wasm 和 TS 核心：三角形、UV、法线、材质一致，只差量化的 ±1。
-- `tests/mesh-fallback.test.ts`：wasm 被拦截时回退到 `ts`。
-- 在真实浏览器里渲染同一份全方块网格，`wasm` 和 `legacy` 的画面一致。
-- `legacy` 路径的输出和第一代网格器逐字节一致（黄金哈希）。
+- `tests/mesh-backends.test.ts`: on four structures (every block, containers, redstone, terrain) `wasm` and `ts` agreed quad
+  by quad. The differences from `legacy` are of two kinds: the old mesher also drew pane / bar end faces against solid
+  blocks and water faces inside water (all on planes between blocks, never visible); the new one also draws the floor face
+  under translucent blocks such as honey blocks and frosted ice (the old one culled it, but the game lets you see through).
+- 300 random chunks (blocks, slabs, glass cull groups, water, cross plants, multi-geometry entries, neighbours) compared
+  wasm with the TS core directly: identical triangles, UVs, normals and materials, apart from ±1 quantization.
+- `tests/mesh-fallback.test.ts`: when wasm is blocked, `ts` is used.
+- In a real browser the same every-block mesh looked the same with `wasm` and `legacy`.
+- The `legacy` path's output is byte-identical to the first-generation mesher (golden hashes).
 
-## 速度：wasm 没有更快
+## Speed: wasm was not faster
 
-`pnpm bench:mesh`（Node 22，同一台机器，预热后 3 次取中位数；结构是带台阶、栅栏、玻璃板、水、洞穴的地形）：
+`pnpm bench:mesh` (Node 22, same machine, median of 3 runs after warm-up; terrain with slabs, fences, panes, water and
+caves):
 
-| 结构 | legacy | ts | wasm |
+| Structure | legacy | ts | wasm |
 |---|---|---|---|
-| 48×64×48（14.7 万格） | 191 ms | 287 ms | 299 ms |
-| 64×96×64（39 万格） | 328 ms | 270 ms | 323 ms |
-| 64×384×64（157 万格） | 360 ms | 363 ms | 369 ms |
+| 48×64×48 (147 k cells) | 191 ms | 287 ms | 299 ms |
+| 64×96×64 (390 k cells) | 328 ms | 270 ms | 323 ms |
+| 64×384×64 (1.57 M cells) | 360 ms | 363 ms | 369 ms |
 
-三者在同一个量级。时间花在哪（64×96×64，毫秒）：
+All three are in the same range. Where the time goes (64×96×64, milliseconds):
 
-| 阶段 | legacy | ts | wasm |
+| Stage | legacy | ts | wasm |
 |---|---|---|---|
-| 逐格解析方块模型 | 69 | 78 | 80 |
-| 调色板 + 分区块列表 | — | 56 + 49 | 78 + 18 |
-| 构建器（剔除 + 合并） | 在 344 里 | 168 | 176 |
-| 解码 + 合并 | — | 10 + 4 | 26 + 18 |
+| Resolving block models per cell | 69 | 78 | 80 |
+| Palette + chunk lists | — | 56 + 49 | 78 + 18 |
+| Builder (cull + merge) | within 344 | 168 | 176 |
+| Decode + merge | — | 10 + 4 | 26 + 18 |
 
-剔除和合并只占一半左右，wasm 在这一半上比 TS 核心慢一点（JS ↔ wasm 的数据搬运），所以整体不会更快。小结构上 `legacy` 少一道调色板，反而最快。要最快的小结构加载：`meshBackend: 'legacy'`。
+Culling and merging take only about half the time, and on that half wasm was slightly slower than the TS core (moving data
+between JS and wasm), so it could not be faster overall. On small structures `legacy` skips the palette and is the fastest:
+for the quickest small loads use `meshBackend: 'legacy'`.
 
-Java 包也是同样的情况：它的 worker 里跑的是 TS 核心（`LegacyMeshBuilder` 包的 `mesh/core`），`mesh_builder_wasm` 只出现在两个测试里，贪心合并被它自己关掉了（UV 在贴图集里不能重复）。
+The Java package is in the same situation: its worker runs the TS core (`mesh/core` of `LegacyMeshBuilder`),
+`mesh_builder_wasm` only appears in two tests, and greedy merging is switched off there (UVs cannot repeat in an atlas).
 
-## 还能做的
+## What could still be done
 
-最大的成本在每格的模型解析和调色板，不在构建器：模型解析可以并行（Web Worker，Java 包的 `./mesh/worker` 已经带过来了），构建器本身并行也比换 wasm 收益大。这一步没做。
+The largest costs are per-cell model resolution and the palette, not the builder: model resolution can run in parallel (Web
+Workers; the Java package's `./mesh/worker` is already here), and parallelising the builder pays more than wasm would. Not
+done yet.

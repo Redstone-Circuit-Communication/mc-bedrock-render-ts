@@ -219,7 +219,7 @@ test('manager: single-structure mode replaces; remove frees; dispose empties', a
   r.schematicManager.dispose();
   assert.ok(b.isDisposed);
   assert.ok(r.schematicManager.isEmpty());
-  await assert.rejects(r.schematicManager.loadSchematic('c', cube), /关闭/);
+  await assert.rejects(r.schematicManager.loadSchematic('c', cube), /disposed/);
   r.dispose();
 });
 

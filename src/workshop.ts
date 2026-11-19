@@ -3,15 +3,17 @@ import { CameraControls } from './camera-controls.js';
 import { captureScreenshot } from './capture.js';
 import { solidsOf } from './solids.js';
 import { McStructureRenderer, type RendererOptions } from './renderer/renderer.js';
+import { RemoteResourcePack, type RemotePackSource, type ResourcePack } from './renderer/resources.js';
 
 export interface WorkshopOptions {
   canvas: HTMLCanvasElement;
   /**
-   * Resource pack(s) to load before the workshop is returned: a URL, or several URLs in override order
-   * (e.g. the base `vanilla` pack first, then the packs holding newer blocks and mobs, then a texture pack).
-   * Each URL may point to a zip, `.mcpack`, `.brarchive` or a zip that contains several packs.
+   * Resource pack(s) to load before the workshop is returned, in override order: later packs override earlier ones (e.g. the
+   * base `vanilla` pack first, then the packs holding newer blocks and mobs, then a texture pack). A URL may point to a zip,
+   * `.mcpack`, `.brarchive` or a zip that contains several packs; a {@link RemotePackSource} downloads its files on demand
+   * (for example the game's resources as Mojang publishes them).
    */
-  resourcePackUrl: string | string[];
+  resourcePackUrl: string | RemotePackSource | (string | RemotePackSource)[];
   resourcePackName?: string;
   rendererOptions?: RendererOptions;
   /** Initialization timeout, milliseconds. */
@@ -38,17 +40,23 @@ export function createWorkshopRenderer(options: WorkshopOptions): Promise<McStru
       }
     };
     const onError = (event: Event) => finish((event as CustomEvent).detail);
-    const timer = setTimeout(() => finish(new Error('渲染器初始化超时')), options.timeoutMs ?? 120000);
+    const timer = setTimeout(() => finish(new Error('renderer initialization timed out')), options.timeoutMs ?? 120000);
     options.canvas.addEventListener('rendererError', onError);
     try {
       const name = options.resourcePackName ?? 'workshop';
-      const urls = Array.isArray(options.resourcePackUrl) ? options.resourcePackUrl : [options.resourcePackUrl];
+      const sources = Array.isArray(options.resourcePackUrl) ? options.resourcePackUrl : [options.resourcePackUrl];
       // several packs are loaded in the given order (later ones override earlier ones)
-      const packs: Record<string, () => Promise<Blob>> = {};
-      urls.forEach((url, i) => {
+      const packs: Record<string, () => Promise<Blob | ResourcePack>> = {};
+      sources.forEach((source, i) => {
         packs[i === 0 ? name : `${name}-${i + 1}`] = async () => {
-          const response = await fetch(url);
-          if (!response.ok) throw new Error(`资源包请求失败（HTTP ${response.status}）`);
+          if (typeof source !== 'string') {
+            const pack = await RemoteResourcePack.from(source);
+            // definitions (blocks.json, texture tables, entities, geometry, animations) are needed by every structure
+            await pack.prefetch((path) => path.endsWith('.json'));
+            return pack;
+          }
+          const response = await fetch(source);
+          if (!response.ok) throw new Error(`resource pack request failed (HTTP ${response.status})`);
           return response.blob();
         };
       });

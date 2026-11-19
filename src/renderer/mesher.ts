@@ -56,6 +56,11 @@ export interface MeshOptions {
   unknownBlocks?: 'placeholder' | 'skip';
   /** Biome colours (0xRRGGBB). */
   tints?: { grass?: number; foliage?: number; water?: number };
+  /**
+   * Darken the corners of faces next to solid blocks the way the game's smooth lighting does (default true). Only the
+   * palette backends (`ts`, `wasm`) compute it; `legacy` draws without.
+   */
+  ambientOcclusion?: boolean;
   /** Render the second block layer (waterlogging). Default true. */
   liquidLayer?: boolean;
   /** Render entities and block entities (beds, shulker boxes, heads). Default true. */
@@ -323,7 +328,7 @@ export async function buildStructureMesh(
   const onChunk = progress?.onChunk;
   const stream = onChunk ? { onChunk, minChunkMs: progress?.minChunkMs, signal: progress?.signal } : undefined;
   const palette = opts.backend === 'legacy' ? null : await emitPalette({
-    structure, models, liquidModels, atlas, tints, backend: opts.backend ?? 'ts',
+    structure, models, liquidModels, atlas, tints, backend: opts.backend ?? 'ts', ambientOcclusion: opts.ambientOcclusion ?? true,
     nameAt: (x, y, z) => refAt(x, y, z)?.name, stream,
   });
   let emitted: Awaited<ReturnType<typeof emitPalette>> | ReturnType<typeof emitLegacy>;

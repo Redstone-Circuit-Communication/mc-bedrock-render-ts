@@ -1,7 +1,11 @@
 import { Dir, Element, Tint, V3 } from './models';
 
 /** Biome colours (0xRRGGBB) used for tinted faces. */
-export const DEFAULT_TINTS = { grass: 0x79c05a, foliage: 0x48b518, water: 0x44aff5 };
+/**
+ * Biome colours of the plains biome, as the game draws grass and leaves there (and as the Java renderer does). The greener
+ * 0x79c05a / 0x48b518 are the defaults the game uses for item icons, not for blocks in the world.
+ */
+export const DEFAULT_TINTS = { grass: 0x91bd59, foliage: 0x77ab2f, water: 0x44aff5 };
 export type Tints = typeof DEFAULT_TINTS;
 
 // Face geometry shared by the single-pass mesher and the palette mesher (moved verbatim out of mesher.ts).

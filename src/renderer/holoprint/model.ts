@@ -19,7 +19,7 @@ import type { BlockContext, BlockRef } from '../blockutil';
 import type { StateValue } from '../structure';
 import { BlockModel, DIR_VEC, Dir, DIRS, Quad, V3 } from '../models';
 import type { NbtCompound, NbtValue } from '../nbt';
-import type { ResourceStack } from '../resources';
+import { perStack, type ResourceStack } from '../resources';
 import blockEigenvariants from './data/blockEigenvariants.json';
 import blockShapeGeos from './data/blockShapeGeos.json';
 import blockShapes from './data/blockShapes.json';
@@ -339,12 +339,7 @@ export function holoprintModel(ctx: BlockContext, base: BlockModel | null | unde
   return model;
 }
 
-const texturesCache = new WeakMap<ResourceStack, HoloTextures>();
-function texturesFor(stack: ResourceStack): HoloTextures {
-  let t = texturesCache.get(stack);
-  if (!t) texturesCache.set(stack, (t = new HoloTextures(stack)));
-  return t;
-}
+const texturesFor = perStack((stack) => new HoloTextures(stack));
 
 /** Primary handler for `BlockRegistry.primary`. */
 export function holoprintHandler(opts: HoloOptions = {}) {

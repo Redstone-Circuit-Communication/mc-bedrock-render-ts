@@ -1,15 +1,19 @@
 import type { BlockInventory, ContainerDefinition, ContainerInventory, InventoryItem, InventorySchematic, NbtData, Position } from './types.js';
+import { L } from './locale.js';
 
 /** Bedrock port of the Java renderer's inventory helpers: same output types, Bedrock block-entity NBT. */
 
 // name, size, columns, labels. Slot order follows the Java renderer so both editions share one panel layout.
-const DEFINITIONS: Record<string, [string, number, number, string[]?]> = {
-  chest: ['箱子', 27, 9], trapped_chest: ['陷阱箱', 27, 9], barrel: ['木桶', 27, 9], shulker_box: ['潜影盒', 27, 9],
-  hopper: ['漏斗', 5, 5], dispenser: ['发射器', 9, 3], dropper: ['投掷器', 9, 3], crafter: ['合成器', 9, 3],
-  furnace: ['熔炉', 3, 3, ['输入', '燃料', '输出']], blast_furnace: ['高炉', 3, 3, ['输入', '燃料', '输出']],
-  smoker: ['烟熏炉', 3, 3, ['输入', '燃料', '输出']],
-  brewing_stand: ['酿造台', 5, 5, ['药水', '药水', '药水', '原料', '燃料']],
-  chiseled_bookshelf: ['雕纹书架', 6, 3], decorated_pot: ['饰纹陶罐', 1, 1], ender_chest: ['末影箱', 0, 9],
+const FURNACE: [string, string][] = [['Input', '输入'], ['Fuel', '燃料'], ['Output', '输出']];
+const DEFINITIONS: Record<string, [[string, string], number, number, [string, string][]?]> = {
+  chest: [['Chest', '箱子'], 27, 9], trapped_chest: [['Trapped Chest', '陷阱箱'], 27, 9], barrel: [['Barrel', '木桶'], 27, 9],
+  shulker_box: [['Shulker Box', '潜影盒'], 27, 9], hopper: [['Hopper', '漏斗'], 5, 5], dispenser: [['Dispenser', '发射器'], 9, 3],
+  dropper: [['Dropper', '投掷器'], 9, 3], crafter: [['Crafter', '合成器'], 9, 3],
+  furnace: [['Furnace', '熔炉'], 3, 3, FURNACE], blast_furnace: [['Blast Furnace', '高炉'], 3, 3, FURNACE],
+  smoker: [['Smoker', '烟熏炉'], 3, 3, FURNACE],
+  brewing_stand: [['Brewing Stand', '酿造台'], 5, 5, [['Potion', '药水'], ['Potion', '药水'], ['Potion', '药水'], ['Ingredient', '原料'], ['Fuel', '燃料']]],
+  chiseled_bookshelf: [['Chiseled Bookshelf', '雕纹书架'], 6, 3], decorated_pot: [['Decorated Pot', '饰纹陶罐'], 1, 1],
+  ender_chest: [['Ender Chest', '末影箱'], 0, 9],
 };
 const TAG = /^(Compound|List|String|Byte|Short|Int|Long|Float|Double|ByteArray|IntArray|LongArray)$/;
 
@@ -43,7 +47,7 @@ function containerKey(id: string): string {
 export function containerDefinition(id: string): ContainerDefinition | null {
   const name = containerKey(blockState(id).id);
   const d = DEFINITIONS[name];
-  return d ? { name: d[0], size: d[1], columns: d[2], labels: d[3], unavailable: name === 'ender_chest' } : null;
+  return d ? { name: L(...d[0]), size: d[1], columns: d[2], labels: d[3]?.map((label) => L(...label)), unavailable: name === 'ender_chest' } : null;
 }
 
 export function textComponent(value: unknown): string {
@@ -87,10 +91,10 @@ export function readContainer(id: string, raw: unknown): ContainerInventory | nu
   const brewing = containerKey(blockState(id).id) === 'brewing_stand';
   for (const e of entries) {
     const item = normalizeItem(e, definition.size === 1 ? 0 : undefined);
-    if (!item) { warnings.push('无效或超出范围的槽位已保留在原始 NBT 中。'); continue; }
+    if (!item) { warnings.push(L('Invalid or out-of-range slots are kept in the raw NBT.', '无效或超出范围的槽位已保留在原始 NBT 中。')); continue; }
     if (brewing && item.slot < 5) item.slot = BREWING_FROM_BEDROCK[item.slot];
-    if (item.slot >= slots.length) { warnings.push('无效或超出范围的槽位已保留在原始 NBT 中。'); continue; }
-    if (slots[item.slot]) warnings.push(`槽位 ${item.slot} 重复，显示最后一条记录。`);
+    if (item.slot >= slots.length) { warnings.push(L('Invalid or out-of-range slots are kept in the raw NBT.', '无效或超出范围的槽位已保留在原始 NBT 中。')); continue; }
+    if (slots[item.slot]) warnings.push(L(`Slot ${item.slot} appears twice; the last entry is shown.`, `槽位 ${item.slot} 重复，显示最后一条记录。`));
     slots[item.slot] = item;
   }
   let state: ContainerInventory['state'] = 'loaded';
@@ -144,7 +148,7 @@ export function readBlockInventory(schematic: InventorySchematic, position: Posi
       const slots = halves.flatMap((half, i) => half.slots.map((item) => (item ? { ...item, slot: item.slot + i * 27 } : null)));
       inventory = {
         ...inventory,
-        name: inventory.name === containerDefinition(state)?.name ? '大型箱子' : inventory.name,
+        name: inventory.name === containerDefinition(state)?.name ? L('Large Chest', '大型箱子') : inventory.name,
         size: 54, slots, occupied: slots.filter(Boolean).length, total: slots.reduce((n, item) => n + (item?.count ?? 0), 0),
         state: halves.some((h) => h.state !== 'loaded') ? 'partial' : 'loaded',
         nbt: { lead: halves[0].nbt, other: halves[1].nbt }, warnings: halves.flatMap((h) => h.warnings), pairPosition,

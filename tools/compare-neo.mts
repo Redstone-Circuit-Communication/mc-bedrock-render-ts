@@ -1,10 +1,13 @@
 /**
- * 对照 neoHoloprintDB：同一个方块（名字 + 状态）交给 neo 的 NeoBlockGeoMaker.makePolyMeshTemplates（HoloPrint 原来的面级接口）
- * 和本库的 HoloGeometry.faces（它的 TypeScript 移植），逐面比较法线、顶点、贴图引用。
+ * Compares with neoHoloprintDB: the same block (name + states) goes to neo's NeoBlockGeoMaker.makePolyMeshTemplates (HoloPrint's
+ * original per-face interface)
+ * and to this package's HoloGeometry.faces (its TypeScript port); normals, vertices and texture references are compared face
+ * by face.
  *
- *   tsx tools/compare-neo.mts <neoHoloprintDB 目录> [结构文件…]      默认对照 example/public/schematics/*.mcstructure
+ *   tsx tools/compare-neo.mts <neoHoloprintDB folder> [structure files…]      default: example/public/schematics/*.mcstructure
  *
- * 输出：完全一致的方块数，不一致的按原因分组（面数不同、顶点不同、贴图不同）各列几个例子；退出码 1 表示有不一致。
+ * Output: how many blocks match exactly, and the mismatches grouped by cause (face count, vertices, textures) with a few
+ * examples each; exit code 1 means there were mismatches.
  */
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
@@ -14,7 +17,7 @@ import { hpName } from "../src/renderer/holoprint/geo.ts";
 import { parseMcStructure } from "../src/renderer/structure.ts";
 
 const neoDir = process.argv[2];
-if (!neoDir) throw new Error("用法：tsx tools/compare-neo.mts <neoHoloprintDB 目录> [结构文件…]");
+if (!neoDir) throw new Error("usage: tsx tools/compare-neo.mts <neoHoloprintDB folder> [structure files…]");
 const files = process.argv.slice(3).length
 	? process.argv.slice(3)
 	: readdirSync("example/public/schematics").filter((f) => f.endsWith(".mcstructure")).map((f) => join("example/public/schematics", f));
@@ -44,7 +47,7 @@ const neo = new NeoMaker({ SCALE: 1, IGNORED_BLOCKS: [] }, data("blockShapes"), 
 const ours = holoGeometry();
 
 const r = (n: number) => Math.round(n * 1000) / 1000 + 0;
-/** 顶点（排好序）；平面（零厚度的方块）的法线 HoloPrint 会故意翻成朝上，只比实心面的法线 */
+/** Vertices (sorted); HoloPrint deliberately turns the normals of flat (zero-thickness) faces upward, so only solid faces compare normals */
 const key = (f: any, flat: boolean) => {
 	const v = f.vertices.map((x: any) => x.pos.map(r).join(",")).sort().join(" ");
 	return flat ? v : `${f.normal.map(r).join(",")}|${v}`;
@@ -71,16 +74,16 @@ for (const file of files) {
 		seen.add(id);
 		total++;
 		let a: any[], b: any[];
-		try { a = neo.makePolyMeshTemplates([structuredClone(block)])[0] ?? []; } catch (e) { add("neo 抛错", `${id} ${(e as Error).message}`); continue; }
-		try { b = ours.faces(structuredClone(block) as any) ?? []; } catch (e) { add("本库抛错", `${id} ${(e as Error).message}`); continue; }
-		// 平面：本库标 flat；neo 的看顶点是否共面且属于零厚度方块——两边都按「本库是平面的那些面」处理
+		try { a = neo.makePolyMeshTemplates([structuredClone(block)])[0] ?? []; } catch (e) { add("neo threw", `${id} ${(e as Error).message}`); continue; }
+		try { b = ours.faces(structuredClone(block) as any) ?? []; } catch (e) { add("this package threw", `${id} ${(e as Error).message}`); continue; }
+		// flat faces: this package marks them flat; for neo, coplanar vertices of a zero-thickness box. Both sides use this package's flat faces
 		const flatB = new Set(b.filter((f) => f.flat).map((f) => key(f, true)));
 		const k = (f: any) => key(f, flatB.has(key(f, true)));
 		const ka = a.map(k).sort(), kb = b.map(k).sort();
 		if (a.length !== b.length) {
 			const inA = new Set(ka), inB = new Set(kb);
 			const onlyA = ka.filter((x) => !inB.has(x)), onlyB = kb.filter((x) => !inA.has(x));
-			// 本库少的面都被别的面挡住了：同一平面上有一个朝向相反、范围盖住它的面（方块内部两个部件贴在一起的那一面）
+			// faces this package lacks are all hidden by another face: an opposite face on the same plane that covers it (where two parts of a block touch)
 			const hidden = (x: string) => {
 				const f = a.find((g) => k(g) === x)!;
 				const plane = (g: any) => { const n = g.normal.map(r); const d = r(n[0] * g.vertices[0].pos[0] + n[1] * g.vertices[0].pos[1] + n[2] * g.vertices[0].pos[2]); return { n, d }; };
@@ -89,21 +92,21 @@ for (const file of files) {
 				return a.some((g) => g !== f && (() => { const pg = plane(g); const bg = box(g);
 					return pg.n.every((c: number, i: number) => c === -pf.n[i]) && pg.d === -pf.d && bf.every(([lo, hi], i) => bg[i][0] <= lo + 1e-3 && bg[i][1] >= hi - 1e-3); })());
 			};
-			if (!onlyB.length && onlyA.every(hidden)) { add("本库只少画了被挡住的内部面（正常）", `${id}  neo ${a.length} / 本库 ${b.length}`); same++; continue; }
-			if (!onlyA.length) { add("本库多画了面", `${id}  neo ${a.length} / 本库 ${b.length}  多出 ${onlyB[0]}`); continue; }
-			add("面数不同", `${id}  neo ${a.length} / 本库 ${b.length}  neo 有本库没有 ${onlyA.length}（被挡住的 ${onlyA.filter(hidden).length}）；本库有 neo 没有 ${onlyB.length}  例 ${onlyA.find((x) => !hidden(x)) ?? onlyB[0]}`);
+			if (!onlyB.length && onlyA.every(hidden)) { add("this package only skips hidden inner faces (expected)", `${id}  neo ${a.length} / ours ${b.length}`); same++; continue; }
+			if (!onlyA.length) { add("this package draws extra faces", `${id}  neo ${a.length} / ours ${b.length}  extra ${onlyB[0]}`); continue; }
+			add("face count differs", `${id}  neo ${a.length} / ours ${b.length}  only in neo ${onlyA.length} (hidden ${onlyA.filter(hidden).length}); only in ours ${onlyB.length}  e.g. ${onlyA.find((x) => !hidden(x)) ?? onlyB[0]}`);
 			continue;
 		}
-		if (ka.join(";") !== kb.join(";")) { add("顶点不同", `${id}  例：neo ${ka.find((k) => !kb.includes(k))}  本库 ${kb.find((k) => !ka.includes(k))}`); continue; }
+		if (ka.join(";") !== kb.join(";")) { add("vertices differ", `${id}  e.g. neo ${ka.find((k) => !kb.includes(k))}  ours ${kb.find((k) => !ka.includes(k))}`); continue; }
 		const refs = [...neo.textureRefs];
 		const ta = a.map((f) => k(f) + "#" + texOf(f, refs)).sort(), tb = b.map((f) => k(f) + "#" + texOf(f)).sort();
-		if (ta.join(";") !== tb.join(";")) { add("贴图引用不同", `${id}  例：neo ${ta.find((k) => !tb.includes(k))?.split("#")[1]}  本库 ${tb.find((k) => !ta.includes(k))?.split("#")[1]}`); continue; }
+		if (ta.join(";") !== tb.join(";")) { add("texture references differ", `${id}  e.g. neo ${ta.find((k) => !tb.includes(k))?.split("#")[1]}  ours ${tb.find((k) => !ta.includes(k))?.split("#")[1]}`); continue; }
 		same++;
 	}
 }
-console.log(`对照 ${total} 个方块（名字 + 状态），完全一致 ${same}`);
+console.log(`compared ${total} blocks (name + states), ${same} match exactly`);
 for (const [g, l] of groups) {
-	console.log(`\n${g}：${l.length}`);
+	console.log(`\n${g}: ${l.length}`);
 	for (const x of l.slice(0, Number(process.env.SHOW ?? 12))) console.log("   ", x.slice(0, 260));
 }
 process.exit(groups.size ? 1 : 0);

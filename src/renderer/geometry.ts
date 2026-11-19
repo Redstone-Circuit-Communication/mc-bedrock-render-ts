@@ -150,16 +150,23 @@ export class GeometryLibrary {
   private builtins = new Map<string, Geometry>();
 
   constructor(stack: ResourceStack) {
+    const files: any[] = [];
     for (const path of stack.paths('models/')) {
       if (!path.endsWith('.json')) continue;
       for (const bytes of stack.getAll(path)) {   // every pack's version: geometry is merged by identifier
-      let j: any;
-      try { j = stack.parseJson(bytes); } catch { continue; }
-      // A file can hold the same geometry twice: the old `geometry.x` block and a `minecraft:geometry` block with that
-      // identifier (the one that wins). The new block keeps the cubes but dropped `bind_pose_rotation`, the rest pose that
-      // lays a quadruped's upright-modelled body down (polar bear, cat, ocelot, fox, llama, rabbit …) — see `inheritBindPose`.
-      const legacyBones = new Map<string, any[]>();
-      for (const [k, val] of Object.entries<any>(j)) {
+        try { files.push(stack.parseJson(bytes)); } catch { /* unreadable file: skipped */ }
+      }
+    }
+    // The same geometry can exist twice: an old `geometry.x` block and a `minecraft:geometry` block with that identifier
+    // (the one that wins), in one file or in packs of different game versions. The new block keeps the cubes but dropped
+    // `bind_pose_rotation`, the rest pose that lays a quadruped's upright-modelled body down (polar bear, cat, ocelot, fox,
+    // llama, rabbit …) — see `inheritBindPose`. Old blocks are therefore collected from every file and pack first.
+    const legacyBones = new Map<string, any[]>();
+    for (const j of files)
+      for (const [k, val] of Object.entries<any>(j ?? {}))
+        if (k.startsWith('geometry.') && val && typeof val === 'object') legacyBones.set(k.toLowerCase().split(':')[0], val.bones ?? []);
+    for (const j of files) {
+      for (const [k, val] of Object.entries<any>(j ?? {})) {
         if (k.startsWith('geometry.') && val && typeof val === 'object') {
           const [id, parent] = k.toLowerCase().split(':');
           this.raw.set(id, { id, parent, texW: val.texturewidth, texH: val.textureheight, bones: val.bones ?? [] });
@@ -171,7 +178,6 @@ export class GeometryLibrary {
             if (id) this.raw.set(id, { id, texW: d.texture_width, texH: d.texture_height, bones: inheritBindPose(g.bones ?? [], legacyBones.get(id)) });
           }
         }
-      }
       }
     }
   }

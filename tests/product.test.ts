@@ -6,6 +6,10 @@ import { blockString, StructureWrapper, LoadedStructure } from '../src/renderer/
 import { countStructureMaterials } from '../src/materials';
 import { containerDefinition, readBlockInventory, readContainer } from '../src/inventory';
 import { readRedstone } from '../src/redstone';
+import { setLocale } from '../src/locale';
+
+// Most assertions below read the Simplified Chinese text; the English output is checked separately.
+setLocale('zh-CN');
 import { nameFor } from '../src/names';
 import { materialsToCsv, filterMaterials } from '../src/material-export';
 import { FrameStats } from '../src/frame-stats';
@@ -82,6 +86,19 @@ test('names, CSV export, frame stats and settings behave like the Java package',
   assert.match(csv, /"石头","minecraft:stone","70","1","6"/);
   const f = new FrameStats(); for (let i = 0; i < 30; i++) f.record(1000 + i * 16.666); assert.ok(Math.abs(f.snapshot(1000 + 29 * 16.666).fps - 60) < 2);
   assert.deepEqual(normalizeRenderSettings({ maxPixelRatio: 9, targetFPS: -4, ssao: 'x' as never }), { ...RENDER_PRESETS.balanced, maxPixelRatio: 2, targetFPS: 0 });
+});
+
+test('names and readouts follow the locale: English by default', () => {
+  setLocale('en');
+  try {
+    assert.equal(nameFor('minecraft:cherry_stairs'), 'Cherry Stairs');
+    assert.equal(entityName({ id: 'minecraft:villager_v2', nbt: {} }), 'Villager');
+    assert.equal(containerDefinition('minecraft:lit_furnace')!.name, 'Furnace');
+    assert.equal(readRedstone('minecraft:unlit_redstone_torch', {})?.status, 'Unlit');
+    assert.match(materialsToCsv([{ id: 'minecraft:stone', count: 70, stacks: 1, remainder: 6 }]), /"Material","Block ID","Count"/);
+  } finally {
+    setLocale('zh-CN');
+  }
 });
 
 test('item icon names: legacy Bedrock icon files are found through name variants', () => {

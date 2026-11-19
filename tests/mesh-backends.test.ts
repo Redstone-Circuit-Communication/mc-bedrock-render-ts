@@ -5,6 +5,7 @@ import { ResourceStack } from '../src/renderer/resources';
 import { parseMcStructure } from '../src/renderer/structure';
 import { buildStructureMesh, type MeshLayerData } from '../src/renderer/mesher';
 import { benchStructure } from './helpers/bench-structure';
+import { officialPacks } from '../scripts/lib/official-pack';
 
 // Everything below runs on the in-repo example pack and sample structures, so it needs nothing from outside the repo.
 const url = (p: string) => new URL(`../example/public/${p}`, import.meta.url);
@@ -41,10 +42,10 @@ function onCellBoundary(quad: string): boolean {
 
 async function meshes(bytes: Uint8Array) {
   const stack = new ResourceStack();
-  await stack.addBytes(load('packs/bedrock_resources.zip'));
+  for (const pack of await officialPacks()) stack.push(pack);
   // 'wasm' is still accepted (one options object serves both renderers) and since 1.6.0 gives the TS core
   const out = {} as Record<'legacy' | 'ts' | 'wasm', Awaited<ReturnType<typeof buildStructureMesh>>>;
-  for (const backend of ['legacy', 'ts', 'wasm'] as const) out[backend] = await buildStructureMesh(parseMcStructure(bytes), stack, { entities: false, backend });
+  for (const backend of ['legacy', 'ts', 'wasm'] as const) out[backend] = await buildStructureMesh(parseMcStructure(bytes), stack, { entities: false, backend, ambientOcclusion: false }); // the legacy mesher has no occlusion: compare geometry and colours without it
   return out;
 }
 
@@ -78,3 +79,21 @@ for (const [name, bytes] of SAMPLES) {
     assert.equal(m.wasm.stats.unknownBlocks.join(), m.legacy.stats.unknownBlocks.join());
   });
 }
+
+test('ambient occlusion: the floor darkens next to a solid block and keeps its brightness away from it', async () => {
+  const stack = new ResourceStack(await officialPacks());
+  const { buildMcStructure } = await import('../src/renderer/structure');
+  // a 5×1×5 stone floor with one stone block on its centre
+  const bytes = buildMcStructure({ size: [5, 2, 5], blockAt: (x, y, z) => (y === 0 || (x === 2 && y === 1 && z === 2) ? ({ name: 'minecraft:stone', states: {} } as never) : null) });
+  const brightness = async (ao: boolean) => {
+    const mesh = await buildStructureMesh(parseMcStructure(bytes), stack, { entities: false, ambientOcclusion: ao });
+    const s = mesh.solid, out: { x: number; y: number; z: number; c: number }[] = [];
+    for (let v = 0; v < s.positions.length / 3; v++) out.push({ x: s.positions[v * 3], y: s.positions[v * 3 + 1], z: s.positions[v * 3 + 2], c: s.colors[v * 4] });
+    return out.filter((p) => Math.abs(p.y - 1) < 1e-6); // the floor's top face
+  };
+  const lit = await brightness(true), flat = await brightness(false);
+  assert.ok(flat.every((p) => p.c === 1), 'without occlusion every vertex keeps the tint colour');
+  const at = (x: number, z: number) => lit.filter((p) => Math.abs(p.x - x) < 1e-6 && Math.abs(p.z - z) < 1e-6).map((p) => p.c);
+  assert.ok(at(2, 2).every((c) => c < 1), 'the corner under the block is darkened');
+  assert.ok(at(0, 0).every((c) => c === 1), 'a corner two cells away keeps full brightness');
+});

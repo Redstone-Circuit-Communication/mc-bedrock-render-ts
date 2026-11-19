@@ -1,17 +1,17 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { EntityLibrary, buildEntityBatches, planEntity } from '../src/renderer/entity';
-import { ResourcePack, ResourceStack } from '../src/renderer/resources';
+import { ResourceStack } from '../src/renderer/resources';
 import { buildMcStructure, parseMcStructure } from '../src/renderer/structure';
 import { createDefaultRegistry } from '../src/renderer/blocks';
+import { officialPacks } from '../scripts/lib/official-pack';
 
 /**
  * 1.4.3: entity materials (alpha as glow / dye mask), render-controller texture slots, the experience orb, format 1.8 controllers
  * with the root bones' position rest, doors drawn from their lower half, hoppers saved with a string facing, large chests and
  * the brewing stand's arms.
  */
-const stack = new ResourceStack([await ResourcePack.fromBytes(new Uint8Array(readFileSync('example/public/packs/bedrock_resources.zip')))]);
+const stack = new ResourceStack(await officialPacks());
 const lib = new EntityLibrary(stack);
 const plan = (id: string, extra: object = {}) => planEntity(lib, { identifier: id, pos: [0, 0, 0], yaw: 0, ...extra } as never) as any[];
 const empty = parseMcStructure(buildMcStructure({ size: [2, 1, 2], blockAt: () => null }));

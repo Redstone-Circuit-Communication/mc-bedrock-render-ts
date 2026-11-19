@@ -1,7 +1,7 @@
 // this looks interesting: https://github.com/PrismarineJS/minecraft-data/blob/master/data/bedrock/1.20.71/blockCollisionShapes.json (Object.fromEntries(Object.entries(d.blocks).map(([name, indices])=>[name,indices.map(i=>d.shapes[i])])))
 // READ: this also looks pretty comprehensive: https://github.com/MCBE-Development-Wiki/mcbe-dev-home/blob/main/docs/misc/enums/block_shape.md
 // https://github.com/bricktea/MCStructure/blob/main/docs/1.16.201/enums/B.md
-// 原作者Superllama88888的注记，保留下来了
+// The notes above are by the original author, SuperLlama88888, and are kept as they were.
 "use strict";
 
 (function () {
@@ -1071,7 +1071,7 @@
 				// 	this.#neoStateError(`Invalid ${dataObjectName} ${blockStateName} value ${actualBlockState} on block ${block["name"]}`);
 				// 	return true;
 				// }
-				// fail open 模式仅在调试时启用
+				// fail-open mode is only enabled for debugging
 
 				if (blockStateOperator) {
 					let blockStateOperand = Number(blockStateOperandString);

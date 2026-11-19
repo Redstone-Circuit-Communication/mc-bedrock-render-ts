@@ -5,12 +5,14 @@ import { createDefaultRegistry } from '../src/renderer/blocks';
 import { CANDIDATES } from '../scripts/candidate-blocks';
 import { DIRS } from '../src/renderer/models';
 import { buildFixturePack } from './helpers/fixture';
+import { officialPacks } from '../scripts/lib/official-pack';
 
 const args = process.argv.slice(2);
-const packPath = args.find((a) => !a.startsWith('--')) ?? (process.env.BEDROCK_PACK ?? '/mnt/user-data/uploads/animation_controllers.zip');
+// a pack zip as argument or in BEDROCK_PACK; by default Mojang's official resources (downloaded once into .cache/)
+const packPath = args.find((a) => !a.startsWith('--')) ?? process.env.BEDROCK_PACK;
 const withFixture = args.includes('--fixture');
 (async () => {
-  const stack = new ResourceStack([await ResourcePack.fromBytes(new Uint8Array(readFileSync(packPath)))]);
+  const stack = new ResourceStack(packPath ? [await ResourcePack.fromBytes(new Uint8Array(readFileSync(packPath)))] : await officialPacks());
   if (withFixture) { const { pack, refs } = buildFixturePack(stack, CANDIDATES); stack.push(pack); console.log('fixture textures:', refs.length); }
   const reg = createDefaultRegistry();
   const unresolved: string[] = [], missingTex = new Map<string, string[]>(); let ok = 0, nullModels = 0;

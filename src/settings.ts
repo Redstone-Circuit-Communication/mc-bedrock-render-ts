@@ -3,17 +3,17 @@ import type { McStructureRenderer } from './renderer/renderer.js';
 
 export const STORAGE_KEY = 'mc-studio.render-settings.v1';
 export const RENDER_PRESETS: Record<'performance' | 'balanced' | 'quality', RenderSettingsValue> = {
-  performance: { maxChunks: 128, renderDistance: 256, maxPixelRatio: 0.75, targetFPS: 60, ssao: false, frustumCulling: true },
-  balanced: { maxChunks: 512, renderDistance: 0, maxPixelRatio: 1, targetFPS: 60, ssao: false, frustumCulling: true },
-  quality: { maxChunks: 0, renderDistance: 0, maxPixelRatio: 2, targetFPS: 60, ssao: true, frustumCulling: true },
+  performance: { maxChunks: 128, renderDistance: 256, maxPixelRatio: 0.75, targetFPS: 60, ssao: false, frustumCulling: true, shading: false, chunkMs: 400 },
+  balanced: { maxChunks: 512, renderDistance: 0, maxPixelRatio: 1, targetFPS: 60, ssao: false, frustumCulling: true, shading: false, chunkMs: 200 },
+  quality: { maxChunks: 0, renderDistance: 0, maxPixelRatio: 2, targetFPS: 60, ssao: true, frustumCulling: true, shading: true, chunkMs: 5 },
 };
 
 export function normalizeRenderSettings(input: Record<string, unknown> = {}): RenderSettingsValue {
   input = input && typeof input === 'object' ? input : {};
   const defaults = RENDER_PRESETS.balanced;
-  const number = (key: 'maxChunks' | 'renderDistance' | 'maxPixelRatio' | 'targetFPS', min: number, max: number, round = true) => {
+  const number = (key: 'maxChunks' | 'renderDistance' | 'maxPixelRatio' | 'targetFPS' | 'chunkMs', min: number, max: number, round = true) => {
     const n = input[key];
-    if (typeof n !== 'number' || !Number.isFinite(n)) return defaults[key];
+    if (typeof n !== 'number' || !Number.isFinite(n)) return defaults[key] as number;
     const clamped = Math.min(max, Math.max(min, n));
     return round ? Math.floor(clamped) : clamped;
   };
@@ -24,6 +24,8 @@ export function normalizeRenderSettings(input: Record<string, unknown> = {}): Re
     targetFPS: number('targetFPS', 0, 240),
     ssao: typeof input.ssao === 'boolean' ? input.ssao : defaults.ssao,
     frustumCulling: typeof input.frustumCulling === 'boolean' ? input.frustumCulling : defaults.frustumCulling,
+    shading: typeof input.shading === 'boolean' ? input.shading : defaults.shading,
+    chunkMs: number('chunkMs', 0, 2000),
   };
 }
 
@@ -32,8 +34,8 @@ export function readRenderSettings() {
 }
 
 /**
- * Apply rendering settings. The Bedrock viewer has no chunking, culling or post-processing, so `maxPixelRatio` and
- * `targetFPS` take effect and the other fields are accepted, normalised and returned unchanged.
+ * Apply rendering settings: pixel ratio, frame rate limit, ambient occlusion, shading and chunk-by-chunk loading take
+ * effect; the chunk visibility fields are kept on the options (the Bedrock viewer draws every chunk).
  */
 export function applyRenderSettings(renderer: McStructureRenderer, input: Partial<RenderSettingsValue>): RenderSettingsValue {
   const settings = normalizeRenderSettings(input);
@@ -42,7 +44,10 @@ export function applyRenderSettings(renderer: McStructureRenderer, input: Partia
   // SSAO and the lightweight shading live on the three.js viewer (the WebGL2 fallback has neither)
   const v = renderer.viewer as unknown as { ssaoEnabled?: boolean; setShading?(on: boolean, quality?: 'normal' | 'high'): void };
   if (typeof settings.ssao === 'boolean' && 'ssaoEnabled' in v) v.ssaoEnabled = settings.ssao;
-  if (typeof input.shading === 'boolean') v.setShading?.(input.shading, input.shadingQuality === 'high' ? 'high' : 'normal');
+  // optional keys: hosts that never send them keep their own choice. Without an explicit quality, sharp screens (pixel
+  // ratio 2 and up) get the 4096 shadow map; chunk-by-chunk loading is used by the next load
+  if (typeof input.shading === 'boolean') v.setShading?.(input.shading, (input.shadingQuality ?? (settings.maxPixelRatio >= 2 ? 'high' : 'normal')) === 'high' ? 'high' : 'normal');
+  if (typeof input.chunkMs === 'number') renderer.options.chunkLoading = settings.chunkMs ? { minIntervalMs: settings.chunkMs } : undefined;
   renderer.setTargetFPS(settings.targetFPS);
   renderer.invalidate();
   return settings;

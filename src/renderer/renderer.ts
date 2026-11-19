@@ -142,8 +142,8 @@ export class McStructureRenderer {
 
   /** `(canvas, options?)`, or the Java renderer's `(canvas, schematicData?, defaultResourcePacks?, options?)`: packs are loaded first, then the structures, then `onRendererInitialized` fires. */
   constructor(canvas: HTMLCanvasElement, options?: RendererOptions);
-  constructor(canvas: HTMLCanvasElement, schematicData?: Record<string, () => Promise<ArrayBuffer>>, defaultResourcePacks?: Record<string, () => Promise<Blob>>, options?: RendererOptions);
-  constructor(canvas: HTMLCanvasElement, a?: RendererOptions | Record<string, () => Promise<ArrayBuffer>>, b?: Record<string, () => Promise<Blob>>, c?: RendererOptions) {
+  constructor(canvas: HTMLCanvasElement, schematicData?: Record<string, () => Promise<ArrayBuffer>>, defaultResourcePacks?: Record<string, () => Promise<Blob | ResourcePack>>, options?: RendererOptions);
+  constructor(canvas: HTMLCanvasElement, a?: RendererOptions | Record<string, () => Promise<ArrayBuffer>>, b?: Record<string, () => Promise<Blob | ResourcePack>>, c?: RendererOptions) {
     const javaForm = arguments.length >= 3 || (arguments.length === 2 && !!a && Object.keys(a).length > 0 && Object.values(a).every((v) => typeof v === 'function'));
     const opts: RendererOptions = (javaForm ? c : (a as RendererOptions | undefined)) ?? {};
     const schematicData = javaForm ? (a as Record<string, () => Promise<ArrayBuffer>> | undefined) ?? {} : {};
@@ -420,22 +420,23 @@ export class StructureManager {
    * `getSchematic(id)`; this one also returns it, so both ways of writing it work.
    */
   async loadSchematic(id: string, source: BinarySource | McStructure, properties: SchematicLoadProperties = {}, options?: StructureLoadOptions): Promise<LoadedStructure> {
-    if (this.disposed) throw new Error('渲染器已关闭');
+    if (this.disposed) throw new Error('the renderer has been disposed');
     if (this.r.options.singleSchematicMode) await this.removeAllSchematics();
     else if (this.schematics.has(id)) await this.removeSchematic(id);
     const progress = (stage: string, value: number, message: string) => options?.onProgress?.({ stage, progress: value, message });
     this.r.options.callbacks?.onLoadingProgress?.({ name: id }, 0);
     progress('parsing', 0, 'Parsing schematic data...');
     const structure = source instanceof McStructure ? source : await loadMcStructure(await toBytes(source));
-    if (this.disposed) throw new Error('渲染器已关闭');
+    if (this.disposed) throw new Error('the renderer has been disposed');
     if (options?.signal?.aborted) throw abortError();
     progress('parsing', 20, 'Schematic parsed');
     this.r.options.callbacks?.onSchematicLoaded?.(id);
     progress('mesh_building', 20, 'Building meshes...');
     const chunked = this.r.options.chunkLoading;
     if (chunked && typeof chunked === 'object') return this.loadChunked(id, structure, properties, options, Math.max(0, Number(chunked.minIntervalMs) || 0), progress);
+    await this.prepareResources(structure);
     const mesh = await buildStructureMesh(structure, this.r.resources, this.r.meshOptions);
-    if (this.disposed) throw new Error('渲染器已关闭');
+    if (this.disposed) throw new Error('the renderer has been disposed');
     progress('mesh_building', 60, 'Meshes built');
     progress('scene_setup', 60, 'Setting up scene...');
     const loaded = this.register(id, structure, mesh, this.r.viewer.addMesh(mesh), properties);
@@ -446,6 +447,19 @@ export class StructureManager {
     this.eventEmitter.emit('schematicRendered', id);
     this.r.viewer.invalidate();
     return loaded;
+  }
+
+  /**
+   * With a pack that downloads on demand, build the mesh once without keeping it: that records every file the structure reads.
+   * Download those and repeat until nothing new is asked for (definitions first, then the textures they point to).
+   */
+  private async prepareResources(structure: McStructure): Promise<void> {
+    const stack = this.r.resources;
+    if (!stack.hasRemote) return;
+    for (let round = 0; round < 8; round++) {
+      await buildStructureMesh(structure, stack, this.r.meshOptions);
+      if (this.disposed || (await stack.fetchPending()) === 0) return;
+    }
   }
 
   /** Put a structure into the scene: events, rebuild hook, visibility, camera. */
@@ -478,6 +492,8 @@ export class StructureManager {
     else options?.signal?.addEventListener('abort', onAbort, { once: true });
     const gone = () => this.disposed || stop.signal.aborted || (loaded ? loaded.isDisposed || this.schematics.get(id) !== loaded : false);
     try {
+      await this.prepareResources(structure);
+      if (gone()) throw abortError();
       const mesh = await buildStructureMesh(structure, this.r.resources, this.r.meshOptions, {
         minChunkMs,
         signal: stop.signal,
@@ -512,7 +528,7 @@ export class StructureManager {
     } catch (error) {
       if (loaded && this.schematics.get(id) === loaded) await this.removeSchematic(id);
       else if (!loaded) handle?.dispose();
-      throw this.disposed ? new Error('渲染器已关闭') : error;
+      throw this.disposed ? new Error('the renderer has been disposed') : error;
     } finally {
       options?.signal?.removeEventListener('abort', onAbort);
     }
@@ -618,6 +634,7 @@ export class StructureManager {
     const s = this.schematics.get(id);
     if (!s || s.isDisposed) return;
     const version = ++s.buildVersion;
+    await this.prepareResources(s.effectiveStructure());
     const mesh = await buildStructureMesh(s.effectiveStructure(), this.r.resources, this.r.meshOptions);
     if (s.isDisposed || version !== s.buildVersion || this.schematics.get(id) !== s) return; // a newer rebuild or a removal got there first
     s.replace(mesh, this.r.viewer.addMesh(mesh));

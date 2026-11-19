@@ -1,7 +1,7 @@
 import { MeshBuilder as TsCore } from './core/index.js';
 import type { BuildResult, PaletteItem } from './core/types.js';
 
-export interface MeshBuildRequest { blocks: Int32Array; apron?: Int32Array; origin: [number, number, number] }
+export interface MeshBuildRequest { blocks: Int32Array; apron?: Int32Array; origin: [number, number, number]; ao?: boolean }
 
 /** A palette compiler: takes a palette and `[x, y, z, paletteIndex]` block lists. */
 export interface MeshBackend {
@@ -16,7 +16,7 @@ export class TsMeshBackend implements MeshBackend {
 	readonly name = 'ts' as const;
 	private core = new TsCore();
 	updatePalette(items: readonly PaletteItem[]): void { this.core.updatePalette(items); }
-	build(request: MeshBuildRequest): BuildResult { return this.core.build({ blocks: request.blocks, apron: request.apron, origin: request.origin, positions: 'float32' }); }
+	build(request: MeshBuildRequest): BuildResult { return this.core.build({ blocks: request.blocks, apron: request.apron, origin: request.origin, positions: 'float32', ao: request.ao }); }
 	dispose(): void { this.core.dispose(); }
 }
 

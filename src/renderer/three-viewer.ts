@@ -27,6 +27,8 @@ import type { CameraBasis, OverlayLines, ProjectionMode, ViewerOptions } from '.
 
 type V3 = [number, number, number];
 const PITCH_MAX = 1.55;
+/** Orbit pitch limit: like OrbitControls' `makeSafe`, a hair short of straight up / down so the view direction stays defined. */
+const ORBIT_PITCH_MAX = Math.PI / 2 - 1e-6;
 /** The Java package's camera presets (CameraManager) and SSAO presets (RenderManager). */
 // minDistance 0.05: the host can bring the camera right up to a block (it used to stop one block away)
 const PERSPECTIVE_CONTROLS = { enableDamping: true, dampingFactor: 0.08, minDistance: 0.05, maxDistance: 1000, enableZoom: true, enableRotate: true, enablePan: true, panSpeed: 1.0, rotateSpeed: 0.8, zoomSpeed: 1.2 };
@@ -50,13 +52,12 @@ function dataTexture(w: number, h: number, data: Uint8Array, colorSpace: string)
   return t;
 }
 
-const toLinear = (c: number) => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
 
 /**
  * Geometry of a mesh layer. With normals (blocks), every triangle is wound counter-clockwise around its normal, so FrontSide shows
  * the outside, and a triangle with a zero normal (a plane, a face of a box that is not closed: seen from both sides) gets two copies
  * with their own vertices, the back one reversed with the normal negated. Without normals (entities) the layer is drawn DoubleSide
- * with computed normals. Vertex colours are tints, converted to linear the way a THREE.Color made from them would be.
+ * with computed normals. Vertex colours are tints, multiplied with the texture as they are (see below).
  */
 function layerGeometry(l: MeshLayerData): { geo: any; oriented: boolean } | null {
   const idx = l.indices;
@@ -71,7 +72,9 @@ function layerGeometry(l: MeshLayerData): { geo: any; oriented: boolean } | null
   const pos = new Float32Array(nv * 3), nor = new Float32Array(nv * 3), uv = new Float32Array(nv * 2), col = new Float32Array(nv * 4);
   pos.set(P); uv.set(U);
   if (oriented) nor.set(N!);
-  for (let v = 0; v < vcount; v++) { for (let k = 0; k < 3; k++) col[v * 4 + k] = toLinear(C[v * 4 + k]); col[v * 4 + 3] = C[v * 4 + 3]; }
+  // the tints multiply the texture as they are: this pipeline shows texture colours unchanged, so a linear tint would come
+  // out darker and more saturated than in the game and the Java renderer (grass looked far too green)
+  for (let v = 0; v < vcount; v++) for (let k = 0; k < 4; k++) col[v * 4 + k] = C[v * 4 + k];
   const index = new Uint32Array(oriented ? idx.length + twoSided * 3 : idx.length);
   if (!oriented) index.set(idx);
   else {
@@ -259,6 +262,14 @@ export class ThreeStructureViewer {
     this.controls.addEventListener('change', () => { this.dirty = true; this.onCameraChange?.(); });
   }
 
+  /** Polar angle limits of the orbit controls (radians from straight up); a projection change applies its preset again. */
+  get polarLimits(): [number, number] { return [this.controls?.minPolarAngle ?? 0, this.controls?.maxPolarAngle ?? Math.PI]; }
+  setPolarLimits(min: number, max: number): void {
+    if (!this.controls) return;
+    this.controls.minPolarAngle = min;
+    this.controls.maxPolarAngle = max;
+  }
+
   get target(): V3 { const t = this.controls.target; return [t.x, t.y, t.z]; }
   set target(t: V3) { this.setOrbit(t, this.yaw, this.pitch, this.distance); }
   private get offset(): any { return this.camera.position.clone().sub(this.controls.target); }
@@ -273,7 +284,7 @@ export class ThreeStructureViewer {
 
   /** The orbit camera at `distance` from `target`, on the side given by yaw / pitch (the WebGL2 viewer's convention). */
   private setOrbit(target: V3, yaw: number, pitch: number, distance: number): void {
-    const p = Math.max(-PITCH_MAX, Math.min(PITCH_MAX, pitch)), d = Math.max(0.01, distance);
+    const p = Math.max(-ORBIT_PITCH_MAX, Math.min(ORBIT_PITCH_MAX, pitch)), d = Math.max(0.01, distance);
     const cp = Math.cos(p);
     this.controls.target.set(target[0], target[1], target[2]);
     for (const cam of [this.persp, this.ortho]) {
@@ -428,7 +439,7 @@ export class ThreeStructureViewer {
   // ------------------------------------------------------- post-processing ---
 
   /**
-   * Lightweight shading ("光影" on the site): a warm sun with soft shadows fitted to the structure and a sky / ground
+   * Lightweight shading (for capable devices): a warm sun with soft shadows fitted to the structure and a sky / ground
    * hemisphere light in place of most of the flat ambient light. Same numbers as the Java package's src/shading.ts.
    * Off restores the original lights. Refits itself when the structure changes.
    */

@@ -1,5 +1,7 @@
 // End-to-end check in a real browser (Playwright + WebGL2): the Java-shaped workshop API on a Bedrock structure.
-//   npm run build && npm run test:e2e        (BEDROCK_PACK=<vanilla folder zip>, PLAYWRIGHT_MODULE=<path> if playwright is not installed locally)
+//   pnpm run build && pnpm run test:e2e   (PLAYWRIGHT_MODULE=<path> if playwright is not installed locally)
+// The page loads Mojang's official resources like the example does (network access needed); BEDROCK_PACK=<zip> uses a
+// local pack instead.
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { readFile, copyFile } from 'node:fs/promises';
@@ -8,8 +10,12 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const out = join(root, 'tests/e2e/out');
-const pack = process.env.BEDROCK_PACK ?? '/mnt/user-data/uploads/animation_controllers.zip';
-await copyFile(pack, join(out, 'pack.zip'));
+const listings = ['bedrock-samples-v1.21.50.7-entity-models.json', 'bedrock-samples-v1.26.60.5.json'];
+if (process.env.BEDROCK_PACK) await copyFile(process.env.BEDROCK_PACK, join(out, 'pack.zip'));
+else for (const name of listings) await copyFile(join(root, 'example/public/packs', name), join(out, name));
+const packs = process.env.BEDROCK_PACK
+	? `['pack.zip', 'fixture.zip']`
+	: `[...await Promise.all(${JSON.stringify(listings)}.map(async (n) => (await fetch(n)).json())), 'fixture.zip']`;
 await copyFile(join(root, 'dist/mcstructure-renderer.browser.js'), join(out, 'lib.js'));
 const pw = await import(process.env.PLAYWRIGHT_MODULE ?? 'playwright');
 const chromium = pw.chromium ?? pw.default.chromium;
@@ -35,11 +41,11 @@ const run = (code) => page.evaluate(`(async()=>{ const M = window.McStructureRen
 
 try {
 	const init = await run(`
-		window.ws = await M.createWorkshop({ canvas: document.getElementById('c'), resourcePackUrl: ['pack.zip', 'fixture.zip'] });
+		window.ws = await M.createWorkshop({ canvas: document.getElementById('c'), resourcePackUrl: ${packs} });
 		window.res = await ws.loadUrl('integ.mcstructure');
 		await ws.camera.fit();
 		return { keys: Object.keys(ws), dims: res.dimensions, total: res.totalBlocks, stats: res.schematic.mesh.stats };`);
-	assert.deepEqual(init.keys, ['renderer', 'blueprints', 'camera', 'load', 'loadFile', 'loadUrl', 'screenshot', 'dispose'], 'same Workshop keys as the Java package');
+	assert.deepEqual(init.keys, ['renderer', 'blueprints', 'camera', 'load', 'loadFile', 'loadUrl', 'screenshot', 'solids', 'dispose'], 'same Workshop keys as the Java package');
 	assert.deepEqual(init.dims, [16, 2, 16]);
 	assert.equal(init.total, 289);
 	assert.deepEqual(init.stats.unknownBlocks, []);
@@ -47,7 +53,7 @@ try {
 	await page.screenshot({ path: join(out, '1-orbit.png') });
 
 	const inv = await run(`return M.listContainers([res.schematic]).map(c => M.readBlockInventory(res.schematic, c.position).inventory.name);`);
-	assert.deepEqual(inv, ['箱子', '大型箱子', '大型箱子', '熔炉']);
+	assert.deepEqual(inv, ['Chest', 'Large Chest', 'Large Chest', 'Furnace']);
 
 	const cam = await run(`const c = ws.camera; c.setMode('ortho'); c.align([0, 1, 0]); const o = [c.mode, c.camera.isOrthographicCamera, +ws.renderer.viewer.pitch.toFixed(2)];
 		c.setMode('orbit'); await c.fit(); return { o, grid: c.toggleGrid() };`);

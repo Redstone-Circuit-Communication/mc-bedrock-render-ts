@@ -1,7 +1,15 @@
-# 方块工坊示例
+# Block Workshop example
 
-在项目根目录运行 `pnpm install` 和 `pnpm run dev:example`（基岩版示例，资源包是 `pnpm run pack:resources` 生成的 `public/packs/Faithful 32x - 26.3.zip`）。首页展示完整工作台，`/minimal.html` 展示 SDK 的最小接入方式。
+Run `pnpm install --frozen-lockfile` and `pnpm run dev:example` in the repository root. The home page is the full workbench;
+`/minimal.html` shows the smallest SDK integration.
 
-`pnpm run build && pnpm run build:example` 生成 `example/dist/`。使用 HTTP 服务提供整个目录，保留相对路径。开发源码、示例资源包与蓝图分别位于 `example/src/`、`example/public/packs/` 和 `example/public/schematics/`。
+`pnpm run build && pnpm run build:example` writes `example/dist/`. Serve the whole folder over HTTP so relative paths keep
+working. Sources, the official pack listings and structures live in `example/src/`, `example/public/packs/` and
+`example/public/schematics/`. The example downloads Mojang's official Bedrock resources in the browser, file by file as a
+structure needs them; nothing from Minecraft is bundled.
 
-蓝图下拉里的“全方块”和“全实体”用于逐个排查渲染；`pnpm run schematics:coverage` 重新生成它们（以及对应的 CSV 索引）。
+The "Every block" and "Every entity" structures in the drop-down are for checking the rendering one item at a time;
+`pnpm run schematics:coverage` regenerates them (and their CSV indexes).
+
+The page is in English by default and follows a Chinese browser language; the button in the header switches between
+English and Simplified Chinese. The strings live in `example/src/i18n.js`.

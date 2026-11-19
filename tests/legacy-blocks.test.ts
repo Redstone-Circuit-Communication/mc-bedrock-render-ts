@@ -3,8 +3,8 @@ import test from 'node:test';
 import { holoBlock, modernBlock, upperHalfStates } from '../src/renderer/holoprint/model';
 import { buildStructureMesh } from '../src/renderer/mesher';
 import { buildMcStructure, parseMcStructure } from '../src/renderer/structure';
-import { readFileSync } from 'node:fs';
-import { ResourcePack, ResourceStack } from '../src/renderer/resources';
+import { ResourceStack } from '../src/renderer/resources';
+import { officialPacks } from '../scripts/lib/official-pack';
 
 /**
  * Old Bedrock ids (`yellow_flower`, `red_flower` + `flower_type`, `double_plant` + `double_plant_type`, `tallgrass`,
@@ -52,7 +52,7 @@ test('states read through interpolation get defaults: the brewing stand keeps it
 });
 
 test('meshing: old sprite ids are crosses (two planes), not cubes; new blocks have shapes; nothing unknown', async () => {
-  const stack = new ResourceStack([await ResourcePack.fromBytes(new Uint8Array(readFileSync('example/public/packs/bedrock_resources.zip')))]);
+  const stack = new ResourceStack(await officialPacks());
   const faces = async (name: string, states: Record<string, unknown> = {}) => {
     const s = parseMcStructure(buildMcStructure({ size: [1, 1, 1], blockAt: () => ({ name, states }) as never }));
     const m = await buildStructureMesh(s, stack, { backend: 'ts', entities: false });

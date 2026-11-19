@@ -1,87 +1,137 @@
-# 方块形状：HoloPrint 的数据
+# Block shapes: HoloPrint's data
 
-方块的形状（盒子、按状态的朝向、贴图变体、每个面的贴图坐标）来自 HoloPrint 的方块几何数据，用的是 neoHoloprintDB 0.2.4 整理的版本。
-以前这些形状是手写的，覆盖不全，很多不准；现在 205 个形状由数据描述，库里原有的手写处理只留下数据表达不了的那一部分。
+Block shapes (boxes, facing per state, texture variants, per-face texture coordinates) come from HoloPrint's block
+geometry data, in the version curated by neoHoloprintDB 0.2.4. Shapes used to be hand-written, incomplete and often
+inaccurate; now 205 shapes are described by data, and only what the data cannot express is still handled by hand.
 
-数据的来源、署名和许可（**CC BY-NC-SA 4.0：禁止商用，要署名，改编要同样许可共享**）见 `src/renderer/holoprint/data/NOTICE.md`。
+Source, attribution and licence of the data (**CC BY-NC-SA 4.0: non-commercial, attribution required, adaptations shared
+alike**) are in `src/renderer/holoprint/data/NOTICE.md`.
 
-## 一个方块怎么变成模型
+## How a block becomes a model
 
 ```
-方块名 + 状态 ──shapeOf──▶ 形状名 ──geo.ts──▶ 面（顶点、贴图角、贴图引用）──textures.ts──▶ 贴图 ──model.ts──▶ BlockModel（自由四边形）
+block name + states ──shapeOf──▶ shape name ──geo.ts──▶ faces (vertices, texture corners, texture references) ──textures.ts──▶ textures ──model.ts──▶ BlockModel (free quads)
 ```
 
-- `src/renderer/holoprint/geo.ts`：HoloPrint `BlockGeoMaker.js` 的移植。条件（`if`）、复制（`copy`、`copy_block`）、按状态覆盖（`block_states`）、`${…}` 插值、盒子合并和内部面剔除、贴图坐标（`uv_rot`、`flip_textures_*`、`box_uv`、顶面和底面转 180°）、盒子自己的旋转、按状态的整块旋转和贴图变体，都照原版一步一步来。
-- `src/renderer/holoprint/textures.ts`：贴图引用 → 渲染器的贴图。按 `blocks.json` 找到 `terrain_texture.json` 的键，再取变体；叠在上面的材质包仍然优先。
-- `src/renderer/holoprint/model.ts`：把面变成 `BlockModel.quads`，作为 `BlockRegistry.primary` 处理器接进去。
-- 网格：两种网格构建（`legacy` 单遍和调色板）都认 `quads`，点选也认。
+- `src/renderer/holoprint/geo.ts`: a port of HoloPrint's `BlockGeoMaker.js`. Conditions (`if`), copies (`copy`,
+  `copy_block`), per-state overrides (`block_states`), `${…}` interpolation, box merging and inner face culling, texture
+  coordinates (`uv_rot`, `flip_textures_*`, `box_uv`, top and bottom turned 180°), per-box rotation, whole-block rotation per
+  state and texture variants all follow the original step by step.
+- `src/renderer/holoprint/textures.ts`: texture reference → renderer texture. `blocks.json` gives the `terrain_texture.json`
+  key, then the variant is picked; texture packs layered on top still take priority.
+- `src/renderer/holoprint/model.ts`: turns faces into `BlockModel.quads` and plugs in as the `BlockRegistry.primary`
+  handler.
+- Meshing: both mesh builders (`legacy` single pass and the palette one) read `quads`, and so does picking.
 
-## 坐标：x 轴是镜像的
+## Coordinates: the x axis is mirrored
 
-HoloPrint 的几何坐标是像素（一格 0–16），**+x 指向西**：叫 `west` 的面在 x = 16。渲染器的世界坐标 +x 是东，所以 `model.ts` 把每个顶点的 x 换成 `16 - x`，法线的 x 取反。
-不翻的话所有方块东西颠倒。依据有两条：朝东的楼梯（`weirdo_direction=0`）旋转后台阶落在数据 x 较小的一侧；各面的贴图坐标也只有镜像之后才和游戏一致。
-neoHoloprintDB 自带的说明里对这一点的描述和实测不符，以原版 HoloPrint 的代码为准。
+HoloPrint's geometry is in pixels (0–16 per block) with **+x pointing west**: the face called `west` is at x = 16. The
+renderer's world has +x east, so `model.ts` replaces each vertex's x with `16 - x` and negates the normal's x. Without the
+flip every block is mirrored east–west. Two facts settle it: an east-facing stair (`weirdo_direction=0`) ends up with its
+step on the side of smaller data x after rotation, and the per-face texture coordinates only match the game once mirrored.
+neoHoloprintDB's own notes describe this differently from what was measured; the original HoloPrint code is taken as
+authoritative.
 
-## 和库里原有处理怎么分工
+## How the work is split with the library's own handling
 
-HoloPrint 的数据只看单个方块，所以这些仍由库自己处理（`KEEP_SHAPES` / `KEEP_BLOCKS`）：
+HoloPrint's data looks at one block at a time, so the library still handles these itself (`KEEP_SHAPES` / `KEEP_BLOCKS`):
 
-- 要看邻居的：栅栏、竹栅栏、玻璃板、铁栏杆的连接，红石线的四向连接，水和岩浆（水面高度、同种水之间的面），大箱子的配对。
-- 库里本来就不画成方块模型的：空气、光源方块这类不画的方块，以及床、头颅、潜影盒、移动中的方块（走实体渲染，按资源包里的定义画）。
+- Anything that depends on neighbours: connections of fences, bamboo fences, panes and iron bars, the four directions of
+  redstone wire, water and lava (surface height, faces between the same fluid), pairing of large chests.
+- Blocks the library never draws as block models: air and other invisible blocks such as light blocks, plus beds, heads,
+  shulker boxes and moving blocks (drawn as entities, from the resource pack's definitions).
 
-另外，渲染层（染色玻璃、冰）、半透明、同种相邻面剔除（`cullSame`）、自发光这些材质属性，HoloPrint 的数据里没有，取自库里原有的同一个方块的模型；`opaque` 只有在 HoloPrint 的形状正好是一个完整方块时才保留。
-一个方块所有的面都找不到贴图（资源包的 `blocks.json` 没列它）时，整个方块回退到库里原有的模型；只有部分面找不到时，只画找到的面。
+Material properties that HoloPrint's data lacks (render layer for stained glass and ice, translucency, culling between
+identical neighbours `cullSame`, emissive light) come from the library's own model of the same block; `opaque` is kept only
+when HoloPrint's shape is exactly one full block. When none of a block's faces finds a texture (the pack's `blocks.json`
+does not list it), the whole block falls back to the library's own model; when only some faces miss, only the found faces
+are drawn.
 
-`createDefaultRegistry({ holoprint: false })` 可以整个关掉，退回 1.2 的手写形状。
+`createDefaultRegistry({ holoprint: false })` turns all of it off and falls back to the hand-written shapes of 1.2.
 
-## 贴图
+## Textures
 
-- 草、蕨、树叶、藤蔓、睡莲、甘蔗等按生物群系染色的贴图，继续用渲染器的染色（`MeshOptions.tints` 可调），不用 HoloPrint 那种预先染好色的物品栏贴图；草方块侧面的 alpha 当染色遮罩（见 `docs/FLINT.md`）。
-- `bush`、`firefly_bush`、`open_eyeblossom`、`light_block*` 用 `blocks.json` 里的 `carried_textures`，和 HoloPrint 一致。
-- `blocks.json` 里没有的几个名字用一张补丁表（`BLOCKS_DOT_JSON_PATCHES`，`grass_block`、橡木板等）。
-- 蜡烛火苗要 `textures/particle/particles`，所以资源包的保留目录里加了 `textures/particle/`（`DEFAULT_ROOTS`）；示例资源包里补了这一张。
-- 告示牌贴图名用 Bedrock 的真实方块 id：橡木墙牌是 `wall_sign`（贴图 `textures/entity/sign`），其他木材是 `spruce_wall_sign` 这一类。没有 `oak_wall_sign` 这个方块。
+- Grass, ferns, leaves, vines, lily pads, sugar cane and other biome-tinted textures keep the renderer's tinting
+  (`MeshOptions.tints` adjusts it) rather than HoloPrint's pre-tinted inventory textures; the alpha of the grass block's
+  side is used as a tint mask (see `docs/FLINT.md`).
+- `bush`, `firefly_bush`, `open_eyeblossom` and `light_block*` use the `carried_textures` from `blocks.json`, as HoloPrint
+  does.
+- A few names missing from `blocks.json` come from a patch table (`BLOCKS_DOT_JSON_PATCHES`: `grass_block`, oak planks …).
+- Candle flames need `textures/particle/particles`, so `textures/particle/` is among the pack folders kept
+  (`DEFAULT_ROOTS`); the official pack listing includes it.
+- Sign texture names use Bedrock's real block ids: the oak wall sign is `wall_sign` (texture `textures/entity/sign`), other
+  woods are `spruce_wall_sign` and so on. There is no `oak_wall_sign` block.
 
-## 和原版移植的差异
+## Differences from the original port
 
-- 没有 HoloPrint 的"全息投影缩放"（`config.SCALE`），也没有它的贴图集：面里只留贴图引用。
-- 多层嵌套旋转（`extra_rots`）按最内层先转的顺序对每个顶点应用（原版对每个顶点把数组反转一次，只有两层以上嵌套才有区别）。
-- 错误不打日志，收集在 `HoloGeometry.warnings` 里。
-- 顶点坐标对齐到 1/64 像素（1/1024 方块），和网格核心的量化精度一致：旋转留下的 28.999999 这类浮点噪声，wasm 构建器和 TypeScript 核心会各取到不同的格子。
+- No hologram scaling (`config.SCALE`) and no texture atlas of HoloPrint's own: faces keep texture references only.
+- Nested rotations (`extra_rots`) are applied to each vertex innermost first (the original reverses the array once per
+  vertex, which only matters for two or more levels).
+- Errors are not logged but collected in `HoloGeometry.warnings`.
+- Vertex coordinates snap to 1/64 pixel (1/1024 block), the quantization of the mesh core: floating-point noise such as
+  28.999999 left by rotations would otherwise land in different cells in different builders.
 
-## neoHoloprintDB 里和原版 HoloPrint 不一样的一处
+## One place where neoHoloprintDB differs from the original HoloPrint
 
-neoHoloprintDB 的 `core/NeoBlockGeoMaker.js` 里内联的 `conditionallyGroup` 返回的两组，和原版 HoloPrint 的 `utils.js` 正好相反。
-`#optimizeGeometry` 用第一组当"不能合并的盒子"（带 `rot` 的），所以按随包的顺序，被合并、被剔除面的是**带旋转的**盒子，不带旋转的反而不动。
-实际后果：交叉植物的两片面是两个旋转的零厚度盒子，其中一片被合并掉（`tall_grass` 比原版少一片）。
-移植版按原版的顺序来。比对测试用的参考副本（`tests/holoprint/NeoBlockGeoMaker.reference.js`）只改了这一行，文件里有标注。建议告知 neoHoloprintDB 的维护者。
+The `conditionallyGroup` inlined in neoHoloprintDB's `core/NeoBlockGeoMaker.js` returns its two groups in the opposite order
+from the original HoloPrint's `utils.js`. `#optimizeGeometry` treats the first group as "boxes that must not be merged"
+(those with `rot`), so with the order as shipped it is the **rotated** boxes that get merged and lose faces, while unrotated
+ones stay. In practice the two planes of a cross plant are two rotated zero-thickness boxes, and one of them is merged away
+(`tall_grass` has one plane fewer than in the original). The port follows the original order. The reference copy used by
+the comparison test (`tests/holoprint/NeoBlockGeoMaker.reference.js`) changes only that line, which is marked in the file.
+This is worth reporting to the neoHoloprintDB maintainers.
 
-## 验证
+## Verification
 
-- `tests/holoprint-equivalence.test.ts`：在 Node 里把原版核心（参考副本）和移植版各跑一遍，示例结构里的全部方块状态（1368 个）逐个比对：每个面的顶点位置、贴图角和贴图引用都要一致。把任何一处旋转符号取反，56 个状态立刻出现差异。
-- 在 Chromium 里用示例资源包渲染过两样东西：一个约 50 种有朝向或状态的方块的对照场景，和"全方块"示例。看的是整体轮廓和有没有缺贴图（对照场景现在一张都不缺），**没有逐个方块和游戏实物对照**。
+- `tests/holoprint-equivalence.test.ts`: runs the original core (the reference copy) and the port in Node and compares all
+  block states of the example structures (1368) one by one: every face's vertex positions, texture corners and texture
+  references must agree. Negating any single rotation sign makes 56 states differ at once.
+- Rendered in Chromium: a comparison scene of about 50 blocks with facings or states, and the "every block" example. Overall
+  outlines and missing textures were checked (the comparison scene misses none); **blocks were not compared one by one
+  with the game**.
 
-## 已知局限
+## Known limitations
 
-- 没有拿游戏里的实物逐个方块对过，只对了上面那一批。
-- 示例结构里的墙（`*_wall`）没有存方块状态，HoloPrint 会把所有分支都画出来，看起来像十字；真实结构里有状态，不受影响。
-- 形状只对示例资源包验证过；换了资源包，贴图文件名不一样的方块会回退到库里原有的模型。
-- 依赖方块实体数据的形状（讲台的书、花盆里的植物、炼药锅的颜色、旗帜、陶罐）需要结构里保存了对应的方块实体；没有就用数据里写的默认值，条件里缺了字段按"成立"处理（会多画一些几何）。
+- Not compared with the game block by block, beyond the set above.
+- The walls (`*_wall`) in the example structures saved no block states, so HoloPrint draws every branch and they look like
+  crosses; real structures save the states and are not affected.
+- Shapes were verified against one resource pack; with another pack, blocks whose texture file names differ fall back to
+  the library's own model.
+- Shapes that depend on block entity data (a lectern's book, a potted plant, a cauldron's colour, banners, pots) need the
+  block entity saved in the structure; without it the data's defaults apply, and a condition on a missing field counts as
+  true (some extra geometry is drawn).
 
-## 对数据的改动
+## Changes to the data
 
-数据本身（`src/renderer/holoprint/data/*.json`）只改了两处，其余和 neoHoloprintDB 一致（许可要求标明改动，另见该目录的 `NOTICE.md`）：
+The data itself (`src/renderer/holoprint/data/*.json`) has three changes; the rest matches neoHoloprintDB (the licence asks
+for changes to be stated; see also `NOTICE.md` in that folder):
 
-- **火把的旋转表**：`blockStateDefinitions.json` 的 `rotations.block_shapes` 里加了 `torch,redstone_torch`，`torch_facing_direction` 的四个水平方向各转 180°（`west:[0,180,0]`、`east:[0,0,0]`、`north:[0,-90,0]`、`south:[0,90,0]`）。依据：Bedrock 的这个状态写的是支撑方块所在的一侧，真实结构里每根墙火把在命名那一侧都有实心方块；而数据里的火把模板把底座放在对面。这一条由 `scripts/import-holoprint-data.mjs` 的 `CORRECTIONS` 在每次导入后重新应用，`tests/orientation.test.ts` 检查。
+- **Torch rotation table**: `rotations.block_shapes` in `blockStateDefinitions.json` gains `torch,redstone_torch`, with the
+  four horizontal directions of `torch_facing_direction` each turned 180° (`west:[0,180,0]`, `east:[0,0,0]`,
+  `north:[0,-90,0]`, `south:[0,90,0]`). Reason: Bedrock's state names the side of the supporting block, and in real
+  structures every wall torch has a solid block on the named side, while the data's torch template puts its base on the
+  opposite side. `CORRECTIONS` in `scripts/import-holoprint-data.mjs` reapplies this after every import, and
+  `tests/orientation.test.ts` checks it.
+- **Hopper top**: the top of `hopper` in `blockShapeGeos.json` is a zero-height plane meant to show its up face (the
+  `hopper_top` ring), but a flat cube only keeps its down face (drawn from both sides) and the data set that face to `none`,
+  so the hopper had no top, in HoloPrint as well. The kept face takes the up texture (`textures.down: "up"`); also
+  reapplied by `CORRECTIONS`.
+- **Shape of `golden_dandelion`**: `individual_blocks` in `blockShapes.json` gains `golden_dandelion: cross_texture` (the data
+  lacked it, so it became a cube named after its texture). Also reapplied by `CORRECTIONS`.
 
-- **`golden_dandelion` 的形状**：`blockShapes.json` 的 `individual_blocks` 里加了 `golden_dandelion: cross_texture`（数据里没有它，原来是按贴图名生成的立方体）。同样由 `CORRECTIONS` 重新应用。
+Facings checked and found **correct** (no change): the `minecraft:cardinal_direction` of repeaters and comparators is the
+input side, with the output opposite (the data already has a 180° override). Evidence: the `OutputSignal` of four comparators
+in a structure matches exactly how full the container on their `cardinal_direction` side is, and in the original Java model
+the input end carries the double / adjustable torches while the arrow on top points to the output. Pistons'
+`facing_direction` (0 down, 1 up, 2 south, 3 north, 4 east, 5 west, which differs from the standard mapping of other blocks)
+is also right.
 
-核对过**没有问题**的朝向（不用改）：中继器和比较器的 `minecraft:cardinal_direction` 是输入侧，输出在反面（数据里已有 180° 的覆盖项）——依据是结构里 4 个比较器的 `OutputSignal` 与其 `cardinal_direction` 一侧容器的装满程度精确吻合，原版 Java 模型里输入端放双火把 / 可调火把，顶面箭头尖端在输出端；活塞的 `facing_direction`（0 下、1 上、2 南、3 北、4 东、5 西，和其他方块的标准映射不同）。
-
-## 更新数据
+## Updating the data
 
 ```bash
-pnpm data:import-holoprint <neoHoloprintDB 文件夹>   # 去掉注释，写进 src/renderer/holoprint/data/
-pnpm test                                            # holoprint-equivalence 会用原版核心比对新数据
+pnpm data:import-holoprint <neoHoloprintDB folder>   # strips comments, writes src/renderer/holoprint/data/
+pnpm test                                            # holoprint-equivalence compares the new data with the original core
 ```
-新版本的核心 JS 换进 `tests/holoprint/NeoBlockGeoMaker.reference.js` 之前，先看 `conditionallyGroup` 那一行是不是还和原版相反。
+
+Before swapping a new version's core JS into `tests/holoprint/NeoBlockGeoMaker.reference.js`, check whether the
+`conditionallyGroup` line is still reversed from the original.

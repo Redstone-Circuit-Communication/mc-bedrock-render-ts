@@ -2,7 +2,7 @@ import { Geometry, GeoCube, M, emitGeometry, mulM, rotYM } from './geometry';
 import { LayerBuilder } from './layer';
 import type { BlockContext } from './blockutil';
 import type { BlockModel, Quad, V3 } from './models';
-import type { ResourceStack } from './resources';
+import { perStack, type ResourceStack } from './resources';
 
 /**
  * Blocks the pack describes with their own geometry (`models/blocks/<id>.geo.json`, format 1.2x: per-face uv, cube rotation with
@@ -14,11 +14,10 @@ import type { ResourceStack } from './resources';
 const MIRROR_X: M = [-1, 0, 0, 8, 0, 1, 0, 0, 0, 0, 1, 8];
 
 const v3 = (a: unknown, d: V3 = [0, 0, 0]): V3 => (Array.isArray(a) && a.length >= 3 ? [Number(a[0]) || 0, Number(a[1]) || 0, Number(a[2]) || 0] : d);
-const cache = new WeakMap<ResourceStack, Map<string, Geometry | null>>();
+const geometriesOf = perStack((): Map<string, Geometry | null> => new Map());
 
 function loadGeometry(stack: ResourceStack, id: string): Geometry | null {
-  let per = cache.get(stack);
-  if (!per) cache.set(stack, (per = new Map()));
+  const per = geometriesOf(stack);
   if (per.has(id)) return per.get(id)!;
   let geo: Geometry | null = null;
   const bytes = stack.get(`models/blocks/${id}.geo.json`);

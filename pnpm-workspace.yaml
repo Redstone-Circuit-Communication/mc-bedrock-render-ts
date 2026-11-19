@@ -1,6 +1,7 @@
-# 单个包的仓库：这个文件只用来放 pnpm 的设置（和 Java 渲染库一样）
+# A single-package repository: this file only holds pnpm settings (as in the Java renderer).
 packages: []
-# pnpm 10 起默认不跑依赖的安装脚本，pnpm 12 遇到没批准的直接报错（ERR_PNPM_IGNORED_BUILDS）。
-# esbuild（构建脚本和 Vite 都用它）的安装脚本只是核对、补齐当前平台的二进制，放行
+# Since pnpm 10, install scripts of dependencies do not run by default, and pnpm 12 fails on unapproved ones
+# (ERR_PNPM_IGNORED_BUILDS). esbuild's install script (used by the build script and by Vite) only checks for and fetches
+# the binary for the current platform, so it is allowed.
 allowBuilds:
   esbuild: true

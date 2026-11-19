@@ -1,4 +1,5 @@
-import { createWorkshopRenderer, countMcstructureMaterials, BlueprintLoader, ItemAssets, nameFor, filterMaterials, materialsToCsv, materialsToTsv, captureScreenshot, readRenderSettings } from "@rsw/mc-bedrock-render-ts";
+import { createWorkshopRenderer, countMcstructureMaterials, BlueprintLoader, ItemAssets, nameFor, filterMaterials, materialsToCsv, materialsToTsv, captureScreenshot, readRenderSettings, setLocale } from "@rsw/mc-bedrock-render-ts";
+import { t, applyI18n, setLang, lang, onLangChange } from "./i18n.js";
 import { ViewControls } from "./view-controls.js";
 import { BlockInspector } from "./block-inspector.js";
 import { RenderSettings } from "./render-settings.js";
@@ -7,8 +8,11 @@ const $ = (id) => document.getElementById(id),
   canvas = $("canvas");
 let blueprints;
 let previewReason = "";
+/** What the status line and the material summary show, kept so they can be redrawn in another language. */
+let statusKey = "status.starting",
+  summary = null;
 const DEFAULT_SCHEMATIC = "./schematics/inspection-demo.mcstructure",
-  PACK_VERSION = "bedrock-resources-20261111";
+  PACK_VERSION = "bedrock-samples-v1.26.60.5";
 let renderer,
   views,
   inspector,
@@ -54,15 +58,26 @@ for (const tab of ["materials", "inspect"]) {
     }
   });
 }
-function setBusy(value, message = "生成方块模型与贴图…") {
+function setStatus(key) {
+  statusKey = key;
+  $("scene-status").textContent = t(key);
+}
+function renderSummary() {
+  if (!summary) return;
+  $("materials-status").textContent = t("materials.summary", { regions: summary.regions });
+  $("scene-dimensions").textContent = summary.dims ? t("scene.dimensions", { dims: summary.dims }) : t("status.preview");
+  $("total-blocks").textContent = summary.blocks.toLocaleString(lang());
+  $("total-types").textContent = summary.kinds.toLocaleString(lang());
+}
+function setBusy(value, message = t("busy.building")) {
   busy = value;
   performanceHUD?.setLoading(value);
   canvas.setAttribute("aria-busy", String(value));
   $("loading-card").hidden = !value;
   $("loading-card").classList.remove("error");
-  $("loading-title").textContent = "正在打开蓝图";
+  $("loading-title").textContent = t("loading.title");
   $("loading-message").textContent = message;
-  $("scene-status").textContent = value ? "加载中" : previewReason ? "材料预览" : "蓝图已就绪";
+  setStatus(value ? "status.loading" : previewReason ? "status.preview" : "status.ready");
   for (const b of document.querySelectorAll(
     "[data-view],#open-file,#fit-view,#toggle-grid,#take-screenshot,#demo-select,#axis-buttons button",
   ))
@@ -74,14 +89,14 @@ function setBusy(value, message = "生成方块模型与贴图…") {
 function showError(error) {
   console.error(error);
   setBusy(false);
-  $("scene-status").textContent = "加载失败";
+  setStatus("status.failed");
   if (renderer?.schematicManager?.getAllSchematics().length) {
-    toast(`加载失败：${error.message}`);
+    toast(t("toast.loadFailed", { message: error.message }));
     return;
   }
   $("loading-card").hidden = false;
   $("loading-card").classList.add("error");
-  $("loading-title").textContent = "暂时无法打开蓝图";
+  $("loading-title").textContent = t("loading.failedTitle");
   $("loading-message").textContent = error.message;
   if (!views && !previewReason)
     for (const b of document.querySelectorAll(
@@ -96,13 +111,13 @@ function renderMaterials() {
   const list = $("material-list");
   list.replaceChildren();
   const items = visibleMaterials();
-  $("filtered-count").textContent = `${items.length} 种`;
+  $("filtered-count").textContent = t("materials.kinds", { count: items.length });
   if (!items.length) {
     const empty = document.createElement("div");
     empty.className = "empty";
     empty.textContent = allMaterials.length
-      ? "没有找到匹配的材料"
-      : "蓝图中没有非空气方块";
+      ? t("materials.noMatch")
+      : t("materials.empty");
     list.append(empty);
     return;
   }
@@ -123,10 +138,10 @@ function renderMaterials() {
     id.textContent = item.id;
     const quantity = document.createElement("div");
     quantity.className = "material-count";
-    quantity.textContent = item.count.toLocaleString("zh-CN");
+    quantity.textContent = item.count.toLocaleString(lang());
     const stacks = document.createElement("div");
     stacks.className = "material-stacks";
-    stacks.textContent = `${Math.floor(item.count / 64)} 组 + ${item.count % 64}`;
+    stacks.textContent = t("materials.stacks", { stacks: Math.floor(item.count / 64), rest: item.count % 64 });
     label.append(name, id);
     quantity.append(stacks);
     row.append(icon, label, quantity);
@@ -153,9 +168,9 @@ $("copy-materials").addEventListener("click", async () => {
     await navigator.clipboard.writeText(
       materialsToTsv(visibleMaterials()),
     );
-    toast("材料清单已复制");
+    toast(t("toast.copied"));
   } catch {
-    toast("复制失败，请使用导出 CSV。");
+    toast(t("toast.copyFailed"));
   }
 });
 function download(blob, filename) {
@@ -174,22 +189,22 @@ $("export-materials").addEventListener("click", () => {
       [materialsToCsv(visibleMaterials())],
       { type: "text/csv;charset=utf-8" },
     ),
-    basename(currentFilename) + "-材料清单.csv",
+    `${basename(currentFilename)}-${t("file.materials")}.csv`,
   );
-  toast("已导出当前筛选的材料清单");
+  toast(t("toast.exported"));
 });
 $("take-screenshot").addEventListener("click", async () => {
   try {
-    download(await captureScreenshot(renderer), basename(currentFilename) + "-预览.png");
-    toast("截图已导出");
-  } catch (error) { toast(`截图失败：${error.message}`); }
+    download(await captureScreenshot(renderer), `${basename(currentFilename)}-${t("file.preview")}.png`);
+    toast(t("toast.shot"));
+  } catch (error) { toast(t("toast.shotFailed", { message: error.message })); }
 });
 async function readMaterialPreview(buffer, filename) {
-  if (!/\.mcstructure$/i.test(filename)) throw new Error("材料预览支持 .mcstructure 文件");
+  if (!/\.mcstructure$/i.test(filename)) throw new Error(t("error.previewFormat"));
   return countMcstructureMaterials(buffer);
 }
 async function loadBlueprint(buffer, filename) {
-  setBusy(true, "读取蓝图与容器 NBT…");
+  setBusy(true, t("busy.reading"));
   if (views?.locked) views.manager.flyControls.unlock();
   try {
     const result = previewReason
@@ -203,23 +218,22 @@ async function loadBlueprint(buffer, filename) {
     document.querySelector(".file-extension").textContent =
       "." + filename.split(".").at(-1);
     $("material-search").value = "";
-    $("total-blocks").textContent = allMaterials
-      .reduce((n, m) => n + m.count, 0)
-      .toLocaleString("zh-CN");
-    $("total-types").textContent = allMaterials.length.toLocaleString("zh-CN");
     $("material-count-badge").textContent = allMaterials.length;
-    $("materials-status").textContent =
-      `完整蓝图 · ${result.regionCount} 个区域 · 已合并同类方块`;
-    $("scene-dimensions").textContent =
-      schematic ? schematic.getTightDimensions().join(" × ") + " 格" : "材料预览";
+    summary = {
+      regions: result.regionCount,
+      dims: schematic ? schematic.getTightDimensions().join(" × ") : null,
+      blocks: allMaterials.reduce((n, m) => n + m.count, 0),
+      kinds: allMaterials.length,
+    };
+    renderSummary();
     renderMaterials();
     inspector?.indexContainers();
     await views?.fit();
     setBusy(false);
     if (previewReason) {
       $("loading-card").hidden = false;
-      $("loading-title").textContent = "3D 视图暂不可用";
-      $("loading-message").textContent = previewReason + "。已读取材料，可继续打开或导出。";
+      $("loading-title").textContent = t("loading.no3d");
+      $("loading-message").textContent = t("loading.no3dMessage", { reason: previewReason });
     } else {
       renderer.invalidate();
     }
@@ -229,11 +243,11 @@ async function loadBlueprint(buffer, filename) {
   }
 }
 async function loadUrl(url) {
-  setBusy(true, "获取蓝图文件…");
+  setBusy(true, t("busy.fetching"));
   try {
     const response = await fetch(url);
     if (!response.ok)
-      throw new Error(`蓝图请求失败（HTTP ${response.status}）`);
+      throw new Error(t("error.request", { status: response.status }));
     await loadBlueprint(
       await response.arrayBuffer(),
       decodeURIComponent(url.split(/[?#]/)[0].split("/").at(-1)),
@@ -247,10 +261,10 @@ $("open-file").addEventListener("click", () => $("file-input").click());
 async function openFile(file) {
   if (busy || !file) return;
   if (!/\.mcstructure$/i.test(file.name)) {
-    toast("请选择 .mcstructure 蓝图文件");
+    toast(t("toast.pickFile"));
     return;
   }
-  setBusy(true, "读取本地文件…");
+  setBusy(true, t("busy.local"));
   try {
     await loadBlueprint(await file.arrayBuffer(), file.name);
     $("demo-select").selectedIndex = -1;
@@ -292,9 +306,9 @@ function deleteIndexedDB(name) {
   return new Promise((resolve, reject) => {
     const r = indexedDB.deleteDatabase(name);
     r.onsuccess = () => resolve();
-    r.onerror = () => reject(r.error ?? new Error(`无法清理 ${name}`));
+    r.onerror = () => reject(r.error ?? new Error(t("error.clear", { name })));
     r.onblocked = () =>
-      reject(new Error("请关闭此站点的其他标签页，再重试清理缓存"));
+      reject(new Error(t("error.blocked")));
   });
 }
 async function clearSavedResourcePacksIfRequested() {
@@ -313,15 +327,24 @@ async function clearSavedResourcePacksIfRequested() {
     location.pathname + (params.size ? "?" + params : "") + location.hash,
   );
 }
+/**
+ * File lists of Mojang's official resources (generated by `pnpm pack:list-official`), in override order: the entity geometry
+ * of an older release, whose legacy models lay quadrupeds down, then the current release.
+ */
+const OFFICIAL_LISTINGS = ["bedrock-samples-v1.21.50.7-entity-models.json", "bedrock-samples-v1.26.60.5.json"];
+let OFFICIAL_PACKS;
 async function start() {
   await clearSavedResourcePacksIfRequested();
-  setBusy(true, "准备原版资源包…");
+  OFFICIAL_PACKS = await Promise.all(OFFICIAL_LISTINGS.map(async (name) => (await fetch(`./packs/${name}`)).json()));
+  setBusy(true, t("busy.assets"));
   const performanceSettings = readRenderSettings();
   try {
     renderer = await createWorkshopRenderer({
       canvas,
-      resourcePackUrl: `./packs/bedrock_resources.zip?v=${PACK_VERSION}`,
-      resourcePackName: "bedrock_resources",
+      // The game's own resources as Mojang publishes them (github.com/Mojang/bedrock-samples), downloaded file by file
+      // from a CDN as a structure needs them. Nothing from Minecraft is bundled with the example.
+      resourcePackUrl: OFFICIAL_PACKS,
+      resourcePackName: PACK_VERSION,
       rendererOptions: {
         maxPixelRatio: performanceSettings.maxPixelRatio,
         targetFPS: performanceSettings.targetFPS,
@@ -341,7 +364,7 @@ async function start() {
     return;
   }
   blueprints = new BlueprintLoader(renderer, { beforeReplace: () => inspector?.clear() });
-  assets = new ItemAssets(renderer.cubane.getAssetLoader(), { iconBaseUrl: "./ui" });
+  assets = new ItemAssets(renderer.cubane.getAssetLoader(), { iconBaseUrl: "./ui", renderer });
   views = new ViewControls(renderer, toast);
   inspector = new BlockInspector(renderer, views, assets, showTab, toast);
   renderSettings = new RenderSettings(renderer, performanceSettings);
@@ -360,5 +383,19 @@ window.addEventListener("pagehide", (e) => {
   assets?.dispose();
   if (stopped) stopped.finally(() => renderer?.dispose());
   else renderer?.dispose();
+});
+// Language: English unless the browser or the visitor prefers Chinese. The library's own text (block names, container
+// titles, redstone readouts) follows the same choice.
+setLocale(lang());
+applyI18n();
+$("lang-toggle").addEventListener("click", () => setLang(lang() === "en" ? "zh-CN" : "en"));
+onLangChange((next) => {
+  setLocale(next);
+  setStatus(statusKey);
+  renderSummary();
+  renderMaterials();
+  views?.syncFlightUI();
+  inspector?.refresh();
+  renderSettings?.refresh?.();
 });
 start().catch(showError);

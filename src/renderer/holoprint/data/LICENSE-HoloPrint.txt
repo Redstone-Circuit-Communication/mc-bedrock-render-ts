@@ -1,5 +1,5 @@
-// 原项目地址：github.com/SuperLlama88888/holoprint
-// 如下为Holoprint项目的许可证：
+Original project: https://github.com/SuperLlama88888/holoprint
+The license of the HoloPrint project follows.
 
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
 Public License

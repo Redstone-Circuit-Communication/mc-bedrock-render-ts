@@ -14,8 +14,10 @@ import { buildMcStructure, StateValue } from '../src/renderer/structure';
 import { T, Tagged } from '../src/renderer/nbt';
 import { nameFor } from '../src/names';
 import { entityName } from '../src/entities';
+import { officialPacks } from './lib/official-pack';
 
-const packPath = process.argv[2] ?? 'example/public/packs/bedrock_resources.zip';
+// optional: a pack zip to read the block and entity lists from; by default the official pack (downloaded once into .cache/)
+const packPath = process.argv[2];
 const outDir = process.argv[3] ?? 'example/public/schematics';
 mkdirSync(outDir, { recursive: true });
 
@@ -47,7 +49,8 @@ const csv = (rows: (string | number)[][]) => rows.map((r) => r.map((c) => (/[",\
 
 (async () => {
   const stack = new ResourceStack();
-  await stack.addBytes(new Uint8Array(readFileSync(packPath)));
+  if (packPath) await stack.addBytes(new Uint8Array(readFileSync(packPath)));
+  else for (const pack of await officialPacks()) stack.push(pack);
   const lib = new EntityLibrary(stack);
 
   // ---------------------------------------------------------------- all blocks
@@ -80,15 +83,26 @@ const csv = (rows: (string | number)[][]) => rows.map((r) => r.map((c) => (/[",\
 
   // -------------------------------------------------------------- all entities
   {
-    const ids = [...lib.defs.keys()].sort();
-    const cols = 12, sp = 5;
+    // Client definitions that only lend textures to a block: no actor with these ids exists in the game.
+    const NOT_ACTORS = new Set(['minecraft:decorated_pot', 'minecraft:trial_spawner']);
+    // Mobs far wider than the grid spacing get their own row past the grid, so they hide nothing.
+    const LARGE = new Set(['minecraft:ender_dragon', 'minecraft:ghast', 'minecraft:happy_ghast']);
+    const all = [...lib.defs.keys()].sort().filter((id) => !NOT_ACTORS.has(id));
+    const ids = all.filter((id) => !LARGE.has(id)), large = all.filter((id) => LARGE.has(id));
+    const cols = 12, sp = 5, largeSp = 22;
+    const gridDepth = Math.ceil(ids.length / cols) * sp;
     const rows: (string | number)[][] = [['index', 'name', 'id', 'x', 'y', 'z', 'status', 'note']];
-    const s = new Scene([cols * sp + 2, 8, Math.ceil(ids.length / cols) * sp + 2]);
+    const s = new Scene([Math.max(cols * sp, large.length * largeSp) + 2, 8, gridDepth + largeSp + 2]);
     s.floor = { name: 'minecraft:grass_block' };
     ids.forEach((id, i) => {
       const x = (i % cols) * sp + 2.5, z = Math.floor(i / cols) * sp + 2.5;
       s.entity(id, x, 1, z, 0);
       rows.push([i + 1, entityName({ id, nbt: {} }), id, x, 1, z, '', '']);
+    });
+    large.forEach((id, i) => {
+      const x = i * largeSp + largeSp / 2 + 1, z = gridDepth + largeSp / 2 + 1;
+      s.entity(id, x, 1, z, 0);
+      rows.push([ids.length + i + 1, entityName({ id, nbt: {} }), id, x, 1, z, '', 'large: own row past the grid']);
     });
     writeFileSync(join(outDir, 'all-entities.mcstructure'), s.bytes());
     writeFileSync(join(outDir, 'all-entities.csv'), csv(rows));

@@ -14,8 +14,13 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm run typecheck
-      # 构建（含类型声明）；后面的「消费者检查」读的就是这一步的产物
+      # build, including the type declarations that the consumer check below reads
       - run: pnpm run build
-      # 用一份只依赖公开声明的文件，按 strict 编译一遍，确认对外的类型没有漏、没有依赖内部文件
+      # compile a file that only uses the public declarations, in strict mode: nothing public may be missing or internal
       - run: pnpm run typecheck:consumer
+      # the tests render with Mojang's official resources, downloaded into .cache/ once per listed release
+      - uses: actions/cache@v4
+        with:
+          path: .cache
+          key: bedrock-samples-${{ hashFiles('example/public/packs/bedrock-samples-*.json') }}
       - run: pnpm test

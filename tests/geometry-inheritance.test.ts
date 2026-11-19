@@ -1,12 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'fs';
 import { GeometryLibrary, IDENT, emitGeometry, inheritBindPose, mergeBone, type Geometry } from '../src/renderer/geometry';
 import { LayerBuilder } from '../src/renderer/layer';
 import { ResourceStack } from '../src/renderer/resources';
+import { officialPacks } from '../scripts/lib/official-pack';
 
 const stack = new ResourceStack();
-await stack.addBytes(new Uint8Array(readFileSync(new URL('../example/public/packs/bedrock_resources.zip', import.meta.url))));
+for (const pack of await officialPacks()) stack.push(pack);
 const lib = new GeometryLibrary(stack);
 const geo = (id: string): Geometry => { const g = lib.get(id); assert.ok(g, id); return g!; };
 const bone = (id: string, name: string) => { const b = geo(id).bones.find((x) => x.name === name.toLowerCase()); assert.ok(b, `${id}.${name}`); return b!; };

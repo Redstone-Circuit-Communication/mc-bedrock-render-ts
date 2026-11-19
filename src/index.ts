@@ -4,6 +4,7 @@ export * from './materials-client.js';
 export * from './blueprint-loader.js';
 export * from './capture.js';
 export * from './item-assets.js';
+export * from './item-icons.js';
 export * from './camera-controls.js';
 export * from './workshop.js';
 export * from './picking.js';

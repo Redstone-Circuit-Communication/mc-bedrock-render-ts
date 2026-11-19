@@ -34,7 +34,7 @@ const pickMime = (codec: RecordingOptions['codec'], transparent: boolean): strin
     ? ['video/webm;codecs=vp9', 'video/webm']
     : ['video/mp4;codecs=avc1.42E01E', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'];
   const found = prefer.find((m) => typeof MediaRecorder !== 'undefined' && MediaRecorder.isTypeSupported(m));
-  if (!found) throw new Error('这个浏览器不支持录制视频');
+  if (!found) throw new Error('this browser cannot record video');
   return found;
 };
 
@@ -52,8 +52,8 @@ export class RecordingManager {
 
   /** Record `duration` seconds; resolves when the file is complete (the Blob goes to `onComplete`). */
   async startRecording(duration: number, o: RecordingOptions = {}): Promise<void> {
-    if (this.active) throw new Error('已经在录制');
-    if (o.codec && !['h264', 'vp9_alpha'].includes(o.codec)) throw new Error(`录制格式 ${o.codec} 在这个渲染器里不可用，请用 h264 或 vp9_alpha`);
+    if (this.active) throw new Error('already recording');
+    if (o.codec && !['h264', 'vp9_alpha'].includes(o.codec)) throw new Error(`recording format ${o.codec} is not available in this renderer; use h264 or vp9_alpha`);
     const v = this.viewer, canvas = v.canvas;
     const mime = pickMime(o.codec, !!o.transparent);
     const fps = o.frameRate ?? 30;

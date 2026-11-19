@@ -1,3 +1,6 @@
+import { englishName, getLocale } from "./locale.js";
+
+// Simplified Chinese names; English names follow from the ids (see `englishName`).
 // Mirrors @rsw/mc-java-render-ts src/names.ts and adds a Bedrock id alias layer. Keep the tables in sync.
 const names: Record<string, string> = {
 	chest: "箱子",
@@ -174,8 +177,10 @@ const BEDROCK_ALIASES: Record<string, string> = {
 	deadbush: "dead_bush", yellow_flower: "dandelion", red_flower: "poppy", double_plant: "tall_grass", leaves: "oak_leaves",
 	planks: "oak_planks", log: "oak_log", wool: "white_wool", stained_glass: "white_stained_glass", carpet: "white_carpet",
 };
+/** Display name of a block or item id in the current locale (`setLocale`): English, or Simplified Chinese. */
 export function nameFor(id: string): string {
 	const short = BEDROCK_ALIASES[id.replace(/^minecraft:/, "")] ?? id.replace(/^minecraft:/, "");
+	if (getLocale() === "en") return englishName(short);
 	if (names[short]) return names[short];
 	for (const [c, label] of Object.entries(colors))
 		for (const [s, n] of Object.entries({

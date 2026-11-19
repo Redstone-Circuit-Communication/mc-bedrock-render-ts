@@ -22,6 +22,8 @@ export interface PaletteEmitContext {
   nameAt: (x: number, y: number, z: number) => string | undefined;
   atlas: Atlas;
   tints: Tints;
+  /** Smooth-lighting ambient occlusion from the mesh core. */
+  ambientOcclusion?: boolean;
   backend: MeshBackendName;
   chunk?: number;
   /** Hand every chunk out as soon as it is meshed (progressive loading). Without it the chunks are only merged. */
@@ -44,7 +46,7 @@ export interface ChunkStream {
 
 /** The `AbortError` both libraries throw when a load is cancelled (a newer load, `dispose`, an aborted signal). */
 export function abortError(): Error {
-  return typeof DOMException === 'function' ? new DOMException('结构加载已取消', 'AbortError') : Object.assign(new Error('结构加载已取消'), { name: 'AbortError' });
+  return typeof DOMException === 'function' ? new DOMException('structure loading was aborted', 'AbortError') : Object.assign(new Error('structure loading was aborted'), { name: 'AbortError' });
 }
 export const isAbortError = (e: unknown): boolean => !!e && typeof e === 'object' && (e as { name?: unknown }).name === 'AbortError';
 function throwIfAborted(signal?: AbortSignal): void { if (signal?.aborted) throw abortError(); }
@@ -333,7 +335,8 @@ async function build(ctx: PaletteEmitContext, backend: MeshBackend): Promise<Pal
       const c = materials[g.materialIndex], both = twoSidedMaterial.has(g.materialIndex);
       for (let k = g.start; k < g.start + g.count; k++) {
         const nv = indices[k];
-        colors[nv * 4] = c[0]; colors[nv * 4 + 1] = c[1]; colors[nv * 4 + 2] = c[2]; colors[nv * 4 + 3] = c[3];
+        const light = mesh.ao ? mesh.ao[nv] / 255 : 1;
+        colors[nv * 4] = c[0] * light; colors[nv * 4 + 1] = c[1] * light; colors[nv * 4 + 2] = c[2] * light; colors[nv * 4 + 3] = c[3];
         if (both) normals[nv * 3] = normals[nv * 3 + 1] = normals[nv * 3 + 2] = 0;
       }
     }
@@ -391,7 +394,7 @@ async function build(ctx: PaletteEmitContext, backend: MeshBackend): Promise<Pal
     lap('listsMs');
     for (const [blocks, apron, category] of [[sBlocks, sApron, 'solid'], [tBlocks, tApron, 'translucent']] as const) {
       if (!blocks.length) continue;
-      const r = backend.build({ blocks: Int32Array.from(blocks), apron: Int32Array.from(apron), origin: [cx, cy, cz] });
+      const r = backend.build({ blocks: Int32Array.from(blocks), apron: Int32Array.from(apron), origin: [cx, cy, cz], ao: ctx.ambientOcclusion });
       lap('backendMs');
       for (const mesh of r.meshes) {
         const part = decode(mesh, cx, cy, cz), cat = mesh.category === 'translucent' ? 'translucent' : category;

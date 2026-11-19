@@ -1,6 +1,6 @@
 // Runs the (Java-identical) example app against the Bedrock engine in a real browser.
-// `three` is replaced by a minimal stand-in (tests/e2e/three-stub.js); the real example resolves it from node_modules.
-//   BEDROCK_EXAMPLE_PACK=<zip> overrides example/public/packs/bedrock_resources.zip
+// The example is bundled with the library sources and the real three.js from node_modules.
+// The example downloads Mojang's official resource pack at runtime, so this test needs network access.
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { cp, mkdir, readFile, rm } from 'node:fs/promises';
@@ -15,7 +15,7 @@ const { build } = await import(process.env.ESBUILD_PATH ?? 'esbuild');
 await build({
 	entryPoints: { 'src/main': join(root, 'example/src/main.js'), 'src/minimal': join(root, 'example/src/minimal.js') },
 	outdir: out, bundle: true, format: 'esm', target: 'es2022', logLevel: 'warning',
-	alias: { '@rsw/mc-bedrock-render-ts': join(root, 'src/index.ts'), three: join(root, 'tests/e2e/three-stub.js') },
+	alias: { '@rsw/mc-bedrock-render-ts': join(root, 'src/index.ts') },
 });
 await cp(join(root, 'example/index.html'), join(out, 'index.html'));
 await cp(join(root, 'example/minimal.html'), join(out, 'minimal.html'));
@@ -55,7 +55,7 @@ try {
 
 	// view modes and shortcuts of the example
 	await page.keyboard.press('Digit3'); await page.waitForTimeout(300);
-	assert.match(await text('#view-label'), /正交/);
+	assert.match(await text('#view-label'), /Orthographic/);
 	await shot('2-ortho');
 	await page.keyboard.press('Digit1'); await page.keyboard.press('KeyG'); await page.keyboard.press('KeyF');
 	await page.locator('#axis-buttons button').nth(2).click(); await page.waitForTimeout(300);   // look from +Y
@@ -68,12 +68,12 @@ try {
 	await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
 	await page.waitForTimeout(400);
 	const inspect = await text('#inspect-content');
-	assert.match(inspect, /箱子/); assert.match(inspect, /minecraft:chest/);
+	assert.match(inspect, /Chest/); assert.match(inspect, /minecraft:chest/);
 	await shot('4-picked-chest');
 
 	// double chest through the container list
 	await page.selectOption('#container-select', { index: 3 }); await page.waitForTimeout(400);
-	assert.match(await text('#inspect-content'), /大型箱子|箱子|陷阱箱|木桶|潜影盒|漏斗|发射器|投掷器/);
+	assert.match(await text('#inspect-content'), /Large Chest|Chest|Trapped Chest|Barrel|Shulker Box|Hopper|Dispenser|Dropper/);
 
 	// every entity of the pack
 	await page.selectOption('#demo-select', './schematics/all-entities.mcstructure');

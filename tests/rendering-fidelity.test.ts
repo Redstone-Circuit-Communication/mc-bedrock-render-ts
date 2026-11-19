@@ -1,16 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'fs';
 import { createDefaultRegistry } from '../src/renderer/blocks';
 import { EntityLibrary, planEntity } from '../src/renderer/entity';
 import { buildStructureMesh } from '../src/renderer/mesher';
 import { ResourcePack, ResourceStack } from '../src/renderer/resources';
 import { buildMcStructure, parseMcStructure } from '../src/renderer/structure';
+import { officialPacks } from '../scripts/lib/official-pack';
 
 // Everything here runs on the example resource pack that ships in the repo (all packs of the game, merged and trimmed).
 async function examplePack(): Promise<ResourceStack> {
   const stack = new ResourceStack();
-  await stack.addBytes(new Uint8Array(readFileSync(new URL('../example/public/packs/bedrock_resources.zip', import.meta.url))));
+  for (const pack of await officialPacks()) stack.push(pack);
   return stack;
 }
 const enc = (o: unknown) => new TextEncoder().encode(JSON.stringify(o));

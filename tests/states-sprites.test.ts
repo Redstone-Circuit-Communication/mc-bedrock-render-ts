@@ -1,6 +1,5 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'fs';
 import { ResourceStack } from '../src/renderer/resources';
 import { createDefaultRegistry } from '../src/renderer/blocks';
 import { stateDefault } from '../src/renderer/holoprint/model';
@@ -11,9 +10,10 @@ import { entityLibraryFor, planEntity } from '../src/renderer/entity';
 import { emitGeometry, IDENT } from '../src/renderer/geometry';
 import { LayerBuilder } from '../src/renderer/layer';
 import type { BlockModel } from '../src/renderer/models';
+import { officialPacks } from '../scripts/lib/official-pack';
 
 const stack = new ResourceStack();
-await stack.addBytes(new Uint8Array(readFileSync(new URL('../example/public/packs/bedrock_resources.zip', import.meta.url))));
+for (const pack of await officialPacks()) stack.push(pack);
 const reg = createDefaultRegistry();
 const model = (name: string, states: Record<string, string | number> = {}, blockEntity?: Record<string, unknown>) =>
   reg.resolve({ name, states, x: 0, y: 0, z: 0, neighbor: () => null, isOpaque: () => false, blockEntity: blockEntity as never, resources: stack }) as BlockModel;

@@ -1,5 +1,14 @@
 import type { EntityObject, EntitySummary } from './types.js';
 import { textComponent } from './inventory.js';
+import { englishName, getLocale } from './locale.js';
+
+/** English names of Bedrock ids that do not read well as words. */
+const ENGLISH: Record<string, string> = {
+  villager_v2: 'Villager', zombie_villager_v2: 'Zombie Villager', ender_crystal: 'End Crystal', xp_orb: 'Experience Orb',
+  tnt: 'Primed TNT', item: 'Item', tnt_minecart: 'Minecart with TNT', chest_minecart: 'Minecart with Chest',
+  hopper_minecart: 'Minecart with Hopper', command_block_minecart: 'Minecart with Command Block', chest_boat: 'Boat with Chest',
+};
+// Simplified Chinese names of common entities.
 
 const NAMES: Record<string, string> = {
   allay: '悦灵', zombie: '僵尸', skeleton: '骷髅', creeper: '苦力怕', pig: '猪', cow: '牛', armor_stand: '盔甲架',
@@ -11,8 +20,10 @@ const NAMES: Record<string, string> = {
 };
 
 /** Display name of an entity record: custom name, else the Chinese name for its id, else the id. */
+/** An entity's custom name, or its display name in the current locale (`setLocale`). */
 export function entityName(record: EntitySummary): string {
-  return textComponent(record.nbt?.CustomName) || NAMES[record.id.replace(/^minecraft:/, '')] || record.id;
+  const short = record.id.replace(/^minecraft:/, '');
+  return textComponent(record.nbt?.CustomName) || (getLocale() === 'en' ? ENGLISH[short] ?? englishName(short) : NAMES[short] || record.id);
 }
 
 /** Walks up from a picked object to the entity it belongs to. */

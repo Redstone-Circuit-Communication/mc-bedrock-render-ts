@@ -5,6 +5,7 @@ import { DIRS } from '../src/renderer/models';
 import { CANDIDATES } from '../scripts/candidate-blocks';
 import { buildFixturePack } from './helpers/fixture';
 import { hasPack, loadBasePack } from './helpers/pack';
+import { officialPacks } from '../scripts/lib/official-pack';
 
 function coverage(stack: Awaited<ReturnType<typeof loadBasePack>>) {
   const reg = createDefaultRegistry();
@@ -43,7 +44,7 @@ test('every block id of the real packs (blocks.json) resolves with real textures
   const { readFileSync } = await import('fs');
   const { ResourceStack } = await import('../src/renderer/resources');
   const stack = new ResourceStack();
-  await stack.addBytes(new Uint8Array(readFileSync(new URL('../example/public/packs/bedrock_resources.zip', import.meta.url))));
+  for (const pack of await officialPacks()) stack.push(pack);
   const reg = createDefaultRegistry();
   const unresolved: string[] = [], missing: string[] = [];
   for (const id of stack.blocksJson.keys()) {

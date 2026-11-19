@@ -83,6 +83,8 @@ export class ResourcePack {
   name = '';
 
   add(path: string, data: Uint8Array): void { this.files.set(norm(path), data); }
+  /** Every file path in the pack, whether or not its contents are in memory yet. */
+  keys(): Iterable<string> { return this.files.keys(); }
   has(path: string): boolean { return this.files.has(norm(path)); }
   get(path: string): Uint8Array | undefined { return this.files.get(norm(path)); }
   json(path: string): any | undefined {
@@ -201,6 +203,142 @@ export function packOrder(name: string, pack: ResourcePack): number[] {
   return [1000, 0, 0];
 }
 
+/** Where to find a pack whose files are downloaded on demand, see {@link RemoteResourcePack}. */
+export interface RemotePackSource {
+  /** URL that each listed path is appended to, or several mirrors tried in order. */
+  baseUrl: string | string[];
+  /** The pack's file paths, or the URL of a JSON file holding them (an array, or an object with a `files` array). */
+  files: string[] | string;
+}
+
+/**
+ * A resource pack whose file list is known up front but whose contents are downloaded on demand, for example the game's own
+ * resources as Mojang publishes them (`https://cdn.jsdelivr.net/gh/Mojang/bedrock-samples@<tag>/resource_pack/`).
+ *
+ * Reading a listed file that has not been downloaded yet returns `undefined` and queues the file; {@link fetchPending}
+ * downloads the queue. The renderer runs that loop before it builds a mesh, so a structure only downloads the files it
+ * actually uses.
+ */
+export class RemoteResourcePack extends ResourcePack {
+  private readonly listing: Set<string>;
+  private readonly pending = new Set<string>();
+  /** Files no mirror has (404), or that kept failing: never asked for again. */
+  private readonly failed = new Set<string>();
+  /** How many downloads of a file failed for a passing reason (rate limits, network): it is retried by a later fetch. */
+  private readonly attempts = new Map<string, number>();
+  /** Downloads under way, so a caller that needs a file another caller is already fetching waits for it. */
+  private readonly inflight = new Map<string, Promise<boolean>>();
+  /** Mirrors, each ending in `/`, tried in order for every file. */
+  readonly baseUrls: string[];
+  /** Called while files download: how many of the current batch have finished. */
+  onProgress?: (done: number, total: number) => void;
+
+  constructor(
+    baseUrl: string | string[],
+    paths: Iterable<string>,
+    private readonly fetcher: (url: string) => Promise<Response> = (url) => fetch(url),
+  ) {
+    super();
+    this.baseUrls = (Array.isArray(baseUrl) ? baseUrl : [baseUrl]).map((u) => (u.endsWith('/') ? u : u + '/'));
+    this.listing = new Set([...paths].map(norm).filter((p) => !PBR_EXTRAS.test(p)));
+    this.name = this.baseUrls[0] ?? '';
+  }
+
+  /** Reads the file list from `source.files` (an array, or the URL of a JSON listing). */
+  static async from(source: RemotePackSource, fetcher?: (url: string) => Promise<Response>): Promise<RemoteResourcePack> {
+    const get = fetcher ?? ((url: string) => fetch(url));
+    let files = source.files;
+    if (typeof files === 'string') {
+      const response = await get(files);
+      if (!response.ok) throw new Error(`resource pack listing request failed (HTTP ${response.status}): ${files}`);
+      const listing = await response.json();
+      files = Array.isArray(listing) ? listing : listing?.files;
+      if (!Array.isArray(files)) throw new Error(`resource pack listing has no file list: ${source.files}`);
+    }
+    return new RemoteResourcePack(source.baseUrl, files as string[], get);
+  }
+
+  override keys(): Iterable<string> { return this.listing; }
+  override has(path: string): boolean { return this.listing.has(norm(path)); }
+  override get(path: string): Uint8Array | undefined {
+    const p = norm(path);
+    const bytes = this.files.get(p);
+    if (!bytes && this.listing.has(p) && !this.failed.has(p)) this.pending.add(p);
+    return bytes;
+  }
+
+  /** Files asked for and not downloaded yet. */
+  get pendingCount(): number { return this.pending.size; }
+
+  /** Queues every listed file that `filter` accepts and downloads the queue (e.g. all definition files up front). */
+  async prefetch(filter: (path: string) => boolean, concurrency?: number): Promise<number> {
+    for (const p of this.listing) if (!this.files.has(p) && !this.failed.has(p) && filter(p)) this.pending.add(p);
+    return this.fetchPending(concurrency);
+  }
+
+  /**
+   * Downloads the queued files, `concurrency` at a time, trying each mirror in turn (a CDN can refuse a request now and then,
+   * so the first mirror gets a second attempt), and waits for downloads that other callers started. Returns how many files
+   * arrived meanwhile; a file no mirror could deliver is not retried.
+   */
+  async fetchPending(concurrency = 16): Promise<number> {
+    const others = [...this.inflight.values()];
+    const queue = [...this.pending].filter((p) => !this.inflight.has(p));
+    this.pending.clear();
+    const total = queue.length;
+    let arrived = 0;
+    let done = 0;
+    // CDNs refuse requests now and then (403 / 429 when many arrive at once): every mirror is tried, and the whole round is
+    // repeated after a growing pause. A 404 means no mirror has the file.
+    const PAUSES = [0, 400, 1200, 3000];
+    const download = async (path: string): Promise<Uint8Array> => {
+      const rel = path.split('/').map(encodeURIComponent).join('/');
+      let last: unknown;
+      for (const pause of PAUSES) {
+        if (pause) await new Promise((resolve) => setTimeout(resolve, pause));
+        for (const base of this.baseUrls) {
+          try {
+            const response = await this.fetcher(base + rel);
+            if (response.ok) return new Uint8Array(await response.arrayBuffer());
+            last = new Error(`HTTP ${response.status}`);
+            if (response.status === 404) throw Object.assign(last as Error, { missing: true });
+          } catch (err) {
+            if ((err as { missing?: boolean }).missing) throw err;
+            last = err;
+          }
+        }
+      }
+      throw last;
+    };
+    // every queued file counts as under way from now on, including those still waiting for a free worker
+    const settle = new Map<string, (ok: boolean) => void>();
+    for (const path of queue) this.inflight.set(path, new Promise<boolean>((resolve) => settle.set(path, resolve)));
+    const worker = async () => {
+      for (let path = queue.shift(); path !== undefined; path = queue.shift()) {
+        let ok = false;
+        try {
+          this.files.set(path, await download(path));
+          ok = true;
+          arrived++;
+        } catch (err) {
+          // a missing file is never asked for again; a passing failure gets two more chances in later fetches
+          const tries = (this.attempts.get(path) ?? 0) + 1;
+          this.attempts.set(path, tries);
+          if ((err as { missing?: boolean }).missing || tries >= 3) this.failed.add(path);
+          console.warn(`mcstructure-renderer: cannot download ${path}:`, err);
+        } finally {
+          this.inflight.delete(path);
+          settle.get(path)!(ok);
+        }
+        this.onProgress?.(++done, total);
+      }
+    };
+    await Promise.all(Array.from({ length: Math.min(concurrency, queue.length) }, worker));
+    for (const ok of await Promise.all(others)) if (ok) arrived++;
+    return arrived;
+  }
+}
+
 function rootsOf(o: LoadOptions): string[] | null {
   return o.roots === null ? null : o.roots ?? DEFAULT_ROOTS;
 }
@@ -213,6 +351,21 @@ export interface TerrainEntry {
 }
 
 export type BlocksJsonEntry = { textures?: string | Record<string, string> } & Record<string, unknown>;
+
+/**
+ * Memoizes a value derived from a stack. The value is rebuilt whenever the stack's packs change (its `version`), for example
+ * after a pack is added or after a remote pack downloads more files.
+ */
+export function perStack<T>(build: (stack: ResourceStack) => T): (stack: ResourceStack) => T {
+  const cache = new WeakMap<ResourceStack, { version: number; value: T }>();
+  return (stack) => {
+    const hit = cache.get(stack);
+    if (hit && hit.version === stack.version) return hit.value;
+    const value = build(stack);
+    cache.set(stack, { version: stack.version, value });
+    return value;
+  };
+}
 
 /** An ordered list of packs; later packs override earlier ones. */
 export class ResourceStack {
@@ -254,12 +407,28 @@ export class ResourceStack {
     this.invalidate();
   }
 
+  /** Whether any pack downloads its files on demand. */
+  get hasRemote(): boolean {
+    return this.packs.some((p) => p instanceof RemoteResourcePack);
+  }
+
+  /**
+   * Downloads every file that a remote pack was asked for but did not have yet. Returns how many files arrived; when any did,
+   * everything derived from the packs is recomputed.
+   */
+  async fetchPending(): Promise<number> {
+    let arrived = 0;
+    for (const p of this.packs) if (p instanceof RemoteResourcePack) arrived += await p.fetchPending();
+    if (arrived) this.invalidate();
+    return arrived;
+  }
+
   /** File name (no extension) → extension-less path for every image below `textures/blocks/` (`deepslate/deepslate_top` …). */
   private get nestedBlockTextures(): Map<string, string> {
     if (this.nestedCache) return this.nestedCache;
     const out = new Map<string, string>();
     for (const pack of this.packs) {
-      for (const k of pack.files.keys()) {
+      for (const k of pack.keys()) {
         if (!k.startsWith('textures/blocks/') || !/\.(png|tga)$/.test(k)) continue;
         const noExt = k.replace(/\.(png|tga)$/, '');
         const base = noExt.slice(noExt.lastIndexOf('/') + 1);
@@ -272,7 +441,7 @@ export class ResourceStack {
   /** All file paths starting with `prefix`, across every pack. */
   paths(prefix: string): string[] {
     const out = new Set<string>();
-    for (const p of this.packs) for (const k of p.files.keys()) if (k.startsWith(prefix)) out.add(k);
+    for (const p of this.packs) for (const k of p.keys()) if (k.startsWith(prefix)) out.add(k);
     return [...out];
   }
 
@@ -322,7 +491,9 @@ export class ResourceStack {
       if (!j) continue;
       for (const [k, v] of Object.entries<any>(j)) {
         if (k === 'format_version' || typeof v !== 'object' || v === null) continue;
-        out.set(k.replace(/^minecraft:/, ''), v);
+        // merged field by field, as the game does: a pack on top that only sets `isotropic` keeps the textures from below
+        const id = k.replace(/^minecraft:/, '');
+        out.set(id, { ...out.get(id), ...v });
       }
     }
     return (this.blocksCache = out);

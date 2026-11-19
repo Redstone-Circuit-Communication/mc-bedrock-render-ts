@@ -10,10 +10,10 @@ export class MaterialsCounter {
   private disposed = false;
   constructor(_createWorker?: unknown, private timeoutMs = 120000) {}
   async count(buffer: ArrayBuffer): Promise<MaterialsResult> {
-    if (this.disposed) throw new Error('材料统计已关闭');
+    if (this.disposed) throw new Error('the material counter has been disposed');
     const copy = buffer.slice(0);
     let timer: ReturnType<typeof setTimeout> | undefined;
-    const timeout = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error('材料统计超时，请重试')), this.timeoutMs); });
+    const timeout = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error('material counting timed out; try again')), this.timeoutMs); });
     try { return await Promise.race([countMcstructureMaterials(copy), timeout]); } finally { clearTimeout(timer); }
   }
   reset(_error?: unknown): void { /* no worker to restart */ }

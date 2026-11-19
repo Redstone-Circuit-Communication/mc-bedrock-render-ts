@@ -58,8 +58,8 @@ export class BlueprintLoader {
   }
 
   load(buffer: ArrayBuffer, filename: string, hooks: LoadHooks = {}): Promise<BlueprintResult> {
-    if (this.disposed) return Promise.reject(new Error('蓝图加载器已关闭'));
-    if (!isBlueprintFile(filename)) return Promise.reject(new Error('不支持的蓝图格式'));
+    if (this.disposed) return Promise.reject(new Error('the blueprint loader has been disposed'));
+    if (!isBlueprintFile(filename)) return Promise.reject(new Error('unsupported structure format'));
     // Snapshot before queuing so caller mutations cannot corrupt an upcoming load.
     const copy = buffer.slice(0);
     const stop = new AbortController();
@@ -81,13 +81,13 @@ export class BlueprintLoader {
 
   async loadUrl(url: string | URL, init?: RequestInit): Promise<BlueprintResult> {
     const response = await fetch(url, init);
-    if (!response.ok) throw new Error(`蓝图请求失败（HTTP ${response.status}）`);
+    if (!response.ok) throw new Error(`structure request failed (HTTP ${response.status})`);
     const pathname = String(url).split(/[?#]/)[0];
     const filename = decodeURIComponent(pathname.split('/').pop() || 'blueprint.mcstructure');
     return this.load(await response.arrayBuffer(), filename);
   }
 
-  private assertOpen(): void { if (this.disposed) throw new Error('蓝图加载器已关闭'); }
+  private assertOpen(): void { if (this.disposed) throw new Error('the blueprint loader has been disposed'); }
 
   private async loadOne(buffer: ArrayBuffer, filename: string, hooks: LoadHooks, signal: AbortSignal): Promise<BlueprintResult> {
     this.assertOpen();
@@ -111,7 +111,7 @@ export class BlueprintLoader {
       this.assertOpen();
       if (signal.aborted) throw abortError();
       const schematic = manager.getAllSchematics().find((s) => s.id === id);
-      if (!schematic) throw new Error('蓝图加载后未找到场景');
+      if (!schematic) throw new Error('the structure loaded but is missing from the scene');
       if (!chunked) {
         schematic.group.visible = false;
         await schematic.getMeshes();

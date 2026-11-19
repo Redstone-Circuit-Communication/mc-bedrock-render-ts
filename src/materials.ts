@@ -31,7 +31,7 @@ export async function countMcstructureMaterials(input: ArrayBuffer | Uint8Array)
  * `countMcstructureMaterials`. Here only `.mcstructure` files are blueprints.
  */
 export async function countMaterials(input: ArrayBuffer | Uint8Array, filename: string): Promise<MaterialsResult> {
-  if (!/\.mcstructure$/i.test(filename)) throw new Error('材料预览支持 .mcstructure 文件');
+  if (!/\.mcstructure$/i.test(filename)) throw new Error('the material preview supports .mcstructure files');
   return countMcstructureMaterials(input);
 }
 

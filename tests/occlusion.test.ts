@@ -1,14 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'fs';
 import { ResourceStack } from '../src/renderer/resources';
 import { buildMcStructure, parseMcStructure } from '../src/renderer/structure';
 import { buildStructureMesh } from '../src/renderer/mesher';
+import { officialPacks } from '../scripts/lib/official-pack';
 
-const pack = readFileSync(new URL('../example/public/packs/bedrock_resources.zip', import.meta.url));
 async function faces(blocks: Record<string, { name: string; states?: Record<string, string | number> }>, size: [number, number, number], backend: 'ts' | 'wasm' = 'ts') {
   const stack = new ResourceStack();
-  await stack.addBytes(new Uint8Array(pack));
+  for (const pack of await officialPacks()) stack.push(pack);
   const bytes = buildMcStructure({ size, blockAt: (x, y, z) => blocks[`${x},${y},${z}`] });
   const mesh = await buildStructureMesh(parseMcStructure(bytes), stack, { entities: false, backend });
   return { solid: mesh.solid.indices.length / 6, translucent: mesh.translucent.indices.length / 6, mesh };

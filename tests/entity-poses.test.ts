@@ -1,14 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'fs';
 import { ResourceStack } from '../src/renderer/resources';
 import { entityLibraryFor, legacyControllers, planEntity } from '../src/renderer/entity';
 import { emitGeometry, IDENT } from '../src/renderer/geometry';
 import { LayerBuilder } from '../src/renderer/layer';
 import { StructureViewer } from '../src/renderer/viewer';
+import { officialPacks } from '../scripts/lib/official-pack';
 
 const stack = new ResourceStack();
-await stack.addBytes(new Uint8Array(readFileSync(new URL('../example/public/packs/bedrock_resources.zip', import.meta.url))));
+for (const pack of await officialPacks()) stack.push(pack);
 const lib = entityLibraryFor(stack);
 /** Vertical extent in blocks of an entity at rest, standing at y = 0. */
 function extent(id: string): { min: number; max: number } {

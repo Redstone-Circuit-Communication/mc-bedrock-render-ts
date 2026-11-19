@@ -82,10 +82,20 @@ export class CameraView {
 }
 
 /** Orbit-controls facade: `target`, polar limits and `update()` like three's OrbitControls. */
+type PolarViewer = { polarLimits?: [number, number]; setPolarLimits?(min: number, max: number): void };
+const polarLimits = (v: StructureViewer): [number, number] => (v as unknown as PolarViewer).polarLimits ?? [0, Math.PI];
+const setPolarLimits = (v: StructureViewer, min: number, max: number): void => (v as unknown as PolarViewer).setPolarLimits?.(min, max);
+
 export class OrbitFacade {
-  minPolarAngle = 0;
-  maxPolarAngle = Math.PI;
   constructor(private v: StructureViewer) {}
+  /**
+   * Polar angle limits (radians from straight up), forwarded to the three.js viewer's OrbitControls; `align` relaxes them
+   * so a view straight down or up is possible. The fallback viewer has no limits.
+   */
+  get minPolarAngle(): number { return polarLimits(this.v)[0]; }
+  set minPolarAngle(a: number) { setPolarLimits(this.v, a, polarLimits(this.v)[1]); }
+  get maxPolarAngle(): number { return polarLimits(this.v)[1]; }
+  set maxPolarAngle(a: number) { setPolarLimits(this.v, polarLimits(this.v)[0], a); }
   get target(): Vec3 {
     const self = this, t = this.v.target;
     // writes to the returned vector (copy / set …) are applied on the next update()

@@ -2,7 +2,7 @@ import { BlockRegistry } from './blockutil';
 import { M, GeoBone, GeoCube, Geometry, GeometryLibrary, IDENT, mulM, rotYM, scaleM, translateM } from './geometry';
 import { Dir, V3 } from './models';
 import { NbtCompound } from './nbt';
-import { ResourceStack } from './resources';
+import { ResourceStack, perStack } from './resources';
 import type { EntityDraw, EntityInstance } from './entity';
 
 /**
@@ -141,11 +141,8 @@ export function itemTexturePath(stack: ResourceStack, name: string): string | nu
   return null;
 }
 
-const itemTables = new WeakMap<ResourceStack, Map<string, string>>();
-function itemTable(stack: ResourceStack): Map<string, string> {
-  let t = itemTables.get(stack);
-  if (t) return t;
-  t = new Map();
+const itemTable = perStack((stack): Map<string, string> => {
+  const t = new Map<string, string>();
   for (const p of stack.packs) {
     let j: any;
     try { j = p.json('textures/item_texture.json'); } catch { continue; }
@@ -155,9 +152,8 @@ function itemTable(stack: ResourceStack): Map<string, string> {
       if (typeof path === 'string') t.set(k.toLowerCase(), path);
     }
   }
-  itemTables.set(stack, t);
   return t;
-}
+});
 
 // ------------------------------------------------------ block-shaped bodies ---
 
@@ -243,6 +239,16 @@ export function builtinDraws(inst: EntityInstance, stack: ResourceStack, registr
     const states = isObj(fb.states) ? (fb.states as Record<string, any>) : {};
     return blockBodies(stack, registry, name, states, 15.6).map((b) => base(b.geometry, b.path, mulM(translateM(px, py + 0.49, pz), scaleM(s, s, -s)), { uvUnit16: true }));
   }
+
+  // Reached only when the entity's own definition drew nothing. Some client definitions have no geometry at all and only lend
+  // textures to a block (`decorated_pot`, `trial_spawner`); no actor with such an id exists in the game, so draw that block,
+  // as long as its shape is made of the boxes `blockBodies` converts (a shape built from HoloPrint geometry, like the
+  // decorated pot's, would come out wrong).
+  const ctx = { name: id.replace(/^minecraft:/, ''), states: {}, x: 0, y: 0, z: 0, neighbor: () => null, isOpaque: () => false, resources: stack };
+  let shape: { quads?: unknown[] } | null | undefined;
+  try { shape = registry.resolve(ctx as never); } catch { shape = undefined; }
+  const asBlock = shape?.quads?.length ? [] : blockBodies(stack, registry, id, {}, 16);
+  if (asBlock.length) return asBlock.map((b) => base(b.geometry, b.path, mulM(translateM(px, py + 0.5, pz), scaleM(s, s, -s)), { uvUnit16: true }));
 
   return null;
 }

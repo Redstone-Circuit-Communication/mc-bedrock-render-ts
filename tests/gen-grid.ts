@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import { ResourcePack, ResourceStack } from '../src/renderer/resources';
 import { buildMcStructure } from '../src/renderer/structure';
 import { buildFixturePack } from './helpers/fixture';
+import { officialPacks } from '../scripts/lib/official-pack';
 import { writeZip } from './helpers/zipwriter';
 import { CANDIDATES } from '../scripts/candidate-blocks';
 
@@ -23,7 +24,8 @@ PRESETS.shapes = PRESETS.shapes.map((s) => ({ ...s, states: { 'minecraft:cardina
 (async () => {
   const preset = process.argv[2] ?? 'shapes';
   const cols = Number(process.argv[3] ?? 10);
-  const base = new ResourceStack([await ResourcePack.fromBytes(new Uint8Array(readFileSync(process.env.BEDROCK_PACK ?? '/mnt/user-data/uploads/animation_controllers.zip')))]);
+  // BEDROCK_PACK=<zip> uses another pack; by default Mojang's official resources (downloaded once into .cache/)
+  const base = new ResourceStack((process.env.BEDROCK_PACK ? [await ResourcePack.fromBytes(new Uint8Array(readFileSync(process.env.BEDROCK_PACK)))] : await officialPacks()));
   const list: Spec[] = preset === 'all' ? CANDIDATES.map((name) => ({ name })) : PRESETS[preset];
   const { pack } = buildFixturePack(base, list.map((s) => s.name));
   writeFileSync(`${OUT}/fixture.zip`, writeZip(pack.files));
