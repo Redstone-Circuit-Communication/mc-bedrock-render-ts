@@ -92,18 +92,24 @@ const csv = (rows: (string | number)[][]) => rows.map((r) => r.map((c) => (/[",\
     const cols = 12, sp = 5, largeSp = 22;
     const gridDepth = Math.ceil(ids.length / cols) * sp;
     const rows: (string | number)[][] = [['index', 'name', 'id', 'x', 'y', 'z', 'status', 'note']];
-    const s = new Scene([Math.max(cols * sp, large.length * largeSp) + 2, 8, gridDepth + largeSp + 2]);
-    s.floor = { name: 'minecraft:grass_block' };
+    const s = new Scene([Math.max(cols * sp, (large.length + 1) * largeSp) + 2, 8, gridDepth + largeSp + 2]);
+    // no floor: a ground layer hid the feet of small mobs and got in the way; the entities stand on the viewer's grid
     ids.forEach((id, i) => {
       const x = (i % cols) * sp + 2.5, z = Math.floor(i / cols) * sp + 2.5;
-      s.entity(id, x, 1, z, 0);
-      rows.push([i + 1, entityName({ id, nbt: {} }), id, x, 1, z, '', '']);
+      s.entity(id, x, 0, z, 0);
+      rows.push([i + 1, entityName({ id, nbt: {} }), id, x, 0, z, '', '']);
     });
     large.forEach((id, i) => {
       const x = i * largeSp + largeSp / 2 + 1, z = gridDepth + largeSp / 2 + 1;
-      s.entity(id, x, 1, z, 0);
-      rows.push([ids.length + i + 1, entityName({ id, nbt: {} }), id, x, 1, z, '', 'large: own row past the grid']);
+      s.entity(id, x, 0, z, 0);
+      rows.push([ids.length + i + 1, entityName({ id, nbt: {} }), id, x, 0, z, '', 'large: own row past the grid']);
     });
+    // a baby happy ghast (a ghastling) next to the large row
+    {
+      const id = 'minecraft:happy_ghast', x = large.length * largeSp + largeSp / 2 + 1, z = gridDepth + largeSp / 2 + 1;
+      s.entity(id, x, 0, z, 0, { IsBaby: T.byte(1) });
+      rows.push([ids.length + large.length + 1, `${entityName({ id, nbt: {} })} (baby)`, id, x, 0, z, '', 'baby (IsBaby)']);
+    }
     writeFileSync(join(outDir, 'all-entities.mcstructure'), s.bytes());
     writeFileSync(join(outDir, 'all-entities.csv'), csv(rows));
     console.log('all-entities:', ids.length, 'ids');

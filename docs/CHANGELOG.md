@@ -24,8 +24,27 @@
   Error messages are in English.
 - The example page is English by default with a Chinese switch; comments and documentation are in English.
 - **Smooth-lighting ambient occlusion**, as the game shades corners: the shared mesh core darkens each vertex of an
-  axis-aligned face by the full opaque cubes next to its corner (two sides and the diagonal; brightness 1, 0.8, 0.65,
-  0.5). On by default; `MeshOptions.ambientOcclusion: false` turns it off (the `legacy` backend draws without it).
+  axis-aligned face by the full opaque cubes next to its corner (two sides and the diagonal; brightness 1, 0.8, 0.6 and
+  0.4, the game's values), and each quad is split along its brighter diagonal so the shading does not streak across the
+  face (as in prismarine-viewer and other voxel renderers). On by default; `MeshOptions.ambientOcclusion: false` turns it
+  off (the `legacy` backend draws without it).
+- **Molang numbers may end in `f`** (`3.975f / 4.0f`): they evaluated to 0, which scaled the happy ghast to nothing and
+  zeroed expressions of zombies, drowned, husks, piglins, ravagers, bats, striders and creakings.
+- **Ghastlings**: a baby happy ghast is drawn at 0.2375 of the adult (the size lives in the behaviour pack); the
+  every-entity example shows one next to the adult.
+- **Shading on another structure**: meshes added while shading is on (another structure, chunks streaming in) now cast
+  and receive shadows; before, only the meshes present when shading was switched on did.
+- `pistonParts(schematic, position)`: an extended piston's base and arm, which the game treats as one piston; the example
+  selects the piston from either part and boxes both, like a large chest. Picking hits a piston arm from any side (the arm
+  cell has no model of its own; the base's shape is tested there).
+- **Entities were dark with shading on**: the entity transform mirrors z, which reversed the winding of every entity quad,
+  so normals computed from it pointed into the body and the shadow lookup, pushed along them, landed inside the entity.
+  Quads are now wound around their outward normal.
+- Screen-space AO is a light touch now (radius 1, intensity 2; orthographic 0.6 / 1.5): the corners are darkened by the
+  mesh's smooth-lighting occlusion, and the old numbers turned a whole structure seen from afar into dark smudges.
+- The every-entity example has no grass floor; the entities stand on the viewer's grid.
+- The example's Vite base comes from `EXAMPLE_BASE` (relative by default), and the example looks up its structures, packs
+  and icons under it.
 - **Hoppers had no top**: HoloPrint's hopper top is a zero-height plane, of which only the down face is kept, and the data
   set that face to `none`. A data correction gives it the top texture (see `docs/HOLOPRINT.md`).
 - **The ender dragon faced backwards**: its saved yaw points half a turn from the way its model faces; it now faces like

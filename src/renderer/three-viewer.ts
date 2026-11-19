@@ -183,7 +183,11 @@ export class ThreeStructureViewer {
   readonly frameTimes: number[] = [];
   readonly stats = { triangles: 0, drawCalls: 0, visibleObjects: 0 };
   // stronger than before (1 / 0.4 / 5 and 0.3 / 0.1 / 0.8): the occlusion was barely visible, same change as the Java RenderManager
-  readonly ssaoPresets = { perspective: { aoRadius: 2, distanceFalloff: 1, intensity: 6 }, isometric: { aoRadius: 1.2, distanceFalloff: 0.6, intensity: 3 } };
+  /**
+   * Screen-space AO only adds a light touch: corners are darkened by the mesh's smooth-lighting occlusion already, and the
+   * stronger numbers of the Java package turned a structure seen as a whole into dark smudges.
+   */
+  readonly ssaoPresets = { perspective: { aoRadius: 1, distanceFalloff: 1, intensity: 2 }, isometric: { aoRadius: 0.6, distanceFalloff: 0.6, intensity: 1.5 } };
   onFrame?: (t: number) => void;
   onIdle?: () => void;
   onCameraChange?: () => void;
@@ -462,13 +466,7 @@ export class ThreeStructureViewer {
       if (sun.shadow.mapSize.x !== size) { sun.shadow.mapSize.set(size, size); sun.shadow.map?.dispose(); sun.shadow.map = null; }
       sun.shadow.bias = -0.0005; sun.shadow.normalBias = 0.06; sun.shadow.radius = 2;
       gl.shadowMap.enabled = true; gl.shadowMap.type = THREE.PCFShadowMap; gl.shadowMap.needsUpdate = true;
-      // every mesh casts and receives shadows — glass, leaves and plants too (only part of the scene did before); both faces go
-      // into the shadow map, or a one-sided surface with no back face towards the sun (slab, carpet, plant quad) lets the light through
-      this.scene.traverse((o: any) => {
-        if (!o.isMesh) return;
-        o.castShadow = true; o.receiveShadow = true;
-        for (const m of Array.isArray(o.material) ? o.material : [o.material]) if (m) m.shadowSide = THREE.DoubleSide;
-      });
+      this.markShadows();
     } else {
       if (this.hemiLight) { this.hemiLight.removeFromParent(); this.hemiLight = null; }
       sun.color.setHex(0xffffff); sun.intensity = 1; sun.position.set(20, 20, -20); sun.castShadow = false;
@@ -690,8 +688,31 @@ export class ThreeStructureViewer {
     this.ortho.left = -hh * aspect; this.ortho.right = hh * aspect; this.ortho.top = hh; this.ortho.bottom = -hh; this.ortho.updateProjectionMatrix();
   }
 
+  /**
+   * Every mesh casts and receives shadows — glass, leaves and plants too; both faces go into the shadow map, or a one-sided
+   * surface with no back face towards the sun (slab, carpet, plant quad) lets the light through. Returns the mesh count.
+   */
+  private markShadows(): number {
+    let n = 0;
+    this.scene.traverse((o: any) => {
+      if (!o.isMesh) return;
+      n++;
+      o.castShadow = true; o.receiveShadow = true;
+      for (const m of Array.isArray(o.material) ? o.material : [o.material]) if (m) m.shadowSide = THREE.DoubleSide;
+    });
+    return n;
+  }
+  /** Meshes counted when the shadows were last set up: a new structure or a streamed chunk changes it. */
+  private shadowMeshes = -1;
+
   /** Draw one frame now (the Java RenderManager's `composer.render()`). */
   render(): void {
+    // with shading on, meshes added since (another structure, chunks streaming in) cast and receive shadows too
+    if (this.shading) {
+      let n = 0;
+      this.scene.traverse((o: any) => { if (o.isMesh) n++; });
+      if (n !== this.shadowMeshes) { this.shadowMeshes = this.markShadows(); this.renderer.shadowMap.needsUpdate = true; }
+    }
     this.resize();
     this.updateHelpers();
     const cam = this.fly.enabled ? this.persp : this.camera;

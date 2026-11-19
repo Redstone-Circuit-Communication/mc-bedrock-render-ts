@@ -42,7 +42,8 @@ type Tok = { k: 'num' | 'str' | 'id' | 'op'; v: string };
 
 function lex(src: string): Tok[] {
   const out: Tok[] = [];
-  const re = /\s*(?:(\d+\.?\d*(?:[eE][+-]?\d+)?|\.\d+)|'([^']*)'|([A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*)|(<=|>=|==|!=|&&|\|\||\?\?|[-+*/%<>!?:=;,()\[\]{}]))/y;
+  // a number may end in `f` (`3.975f`), as Molang allows; the suffix is not part of the value
+  const re = /\s*(?:(\d+\.?\d*(?:[eE][+-]?\d+)?|\.\d+)[fF]?(?![A-Za-z0-9_])|'([^']*)'|([A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*)|(<=|>=|==|!=|&&|\|\||\?\?|[-+*/%<>!?:=;,()\[\]{}]))/y;
   let pos = 0;
   while (pos < src.length) {
     re.lastIndex = pos;

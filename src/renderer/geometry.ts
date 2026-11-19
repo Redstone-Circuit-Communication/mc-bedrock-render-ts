@@ -399,6 +399,13 @@ function emitCube(c: GeoCube, m: M, geo: Geometry, o: EmitOptions, sink: LayerBu
       pts.push(lift ? [p[0] + nrm[0] * lift, p[1] + nrm[1] * lift, p[2] + nrm[2] * lift] : p);
       uvs.push([(us ? u1 : u0) / o.texW, (vs ? v1 : v0) / o.texH]);
     }
+    // Wind the quad around its outward normal. The entity transform mirrors z (model space has z pointing back), which
+    // reverses the face table's winding: normals computed from it pointed into the body, and with shading on the shadow
+    // lookup was pushed inside the entity along them, so every face sat in its own shadow and entities came out dark.
+    const e1 = [pts[1][0] - pts[0][0], pts[1][1] - pts[0][1], pts[1][2] - pts[0][2]];
+    const e2 = [pts[2][0] - pts[0][0], pts[2][1] - pts[0][1], pts[2][2] - pts[0][2]];
+    const facing = (e1[1] * e2[2] - e1[2] * e2[1]) * nrm[0] + (e1[2] * e2[0] - e1[0] * e2[2]) * nrm[1] + (e1[0] * e2[1] - e1[1] * e2[0]) * nrm[2];
+    if (facing < 0) { [pts[1], pts[3]] = [pts[3], pts[1]]; [uvs[1], uvs[3]] = [uvs[3], uvs[1]]; }
     o.onQuad?.(pts, uvs, nrm, flat);
     const shade = o.emissive || o.billboard ? 1 : shadeOf(nrm);
     const rgba: [number, number, number, number] = [shade * o.color[0], shade * o.color[1], shade * o.color[2], o.alpha];

@@ -65,6 +65,16 @@ function resolveModel(renderer: McStructureRenderer, s: LoadedStructure, x: numb
   try { return reg.resolve(ctx); } catch { return undefined; }
 }
 
+/** Bedrock's `facing_direction` of pistons: 0 down, 1 up, 2 south, 3 north, 4 east, 5 west. */
+const PISTON_STEP: V3[] = [[0, -1, 0], [0, 1, 0], [0, 0, 1], [0, 0, -1], [1, 0, 0], [-1, 0, 0]];
+/** For a piston arm block, the offset from its base to it; undefined for anything else. */
+function pistonBaseOf(e: { name: string; states?: Record<string, unknown> }): V3 | undefined {
+  if (!/(^|:)(sticky_)?piston_arm_collision$/.test(e.name)) return undefined;
+  const raw = e.states?.facing_direction ?? e.states?.['minecraft:facing_direction'];
+  const named = ['down', 'up', 'south', 'north', 'east', 'west'].indexOf(String(raw));
+  return PISTON_STEP[named >= 0 ? named : Number(raw)];
+}
+
 /** First visible block along a ray (cell walk, then the model's boxes inside each cell). */
 function pickBlock(renderer: McStructureRenderer, s: LoadedStructure, o: V3, d: V3): { t: number; pos: Position } | null {
   const [sx, sy, sz] = s.structure.size;
@@ -84,10 +94,20 @@ function pickBlock(renderer: McStructureRenderer, s: LoadedStructure, o: V3, d: 
     const [cx, cy, cz] = cell;
     const e = s.structure.blockAt(cx, cy, cz);
     if (e && !isAirName(e.name)) {
-      const boxes = modelBoxes(resolveModel(renderer, s, cx, cy, cz));
+      // A piston arm has no model of its own: the base draws the arm into this cell, so test the base's shape here (a ray
+      // from the side passes through the arm cell without ever reaching the base cell).
+      const arm = pistonBaseOf(e);
+      const base = arm ?? [0, 0, 0];
+      const boxes = modelBoxes(resolveModel(renderer, s, cx - base[0], cy - base[1], cz - base[2]));
       let best: number | null = null;
       for (const b of boxes) {
-        const t = rayBox(o, d, [[cx + b[0][0], cy + b[0][1], cz + b[0][2]], [cx + b[1][0], cy + b[1][1], cz + b[1][2]]]);
+        const lo: V3 = [cx - base[0] + b[0][0], cy - base[1] + b[0][1], cz - base[2] + b[0][2]];
+        const hi: V3 = [cx - base[0] + b[1][0], cy - base[1] + b[1][1], cz - base[2] + b[1][2]];
+        // for an arm, only the part of the base's shape inside this cell; other models are tested whole (a door's lower half
+        // draws the upper one, a large chest's leading half draws both)
+        const box: [V3, V3] = arm ? [lo.map((v, i) => Math.max(v, [cx, cy, cz][i])) as V3, hi.map((v, i) => Math.min(v, [cx, cy, cz][i] + 1)) as V3] : [lo, hi];
+        if (box[0].some((v, i) => v > box[1][i])) continue;
+        const t = rayBox(o, d, box);
         if (t !== null && (best === null || t < best)) best = t;
       }
       if (best !== null) return { t: best, pos: [cx, cy, cz] };

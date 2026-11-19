@@ -16,6 +16,8 @@ await build({
 	entryPoints: { 'src/main': join(root, 'example/src/main.js'), 'src/minimal': join(root, 'example/src/minimal.js') },
 	outdir: out, bundle: true, format: 'esm', target: 'es2022', logLevel: 'warning',
 	alias: { '@rsw/mc-bedrock-render-ts': join(root, 'src/index.ts') },
+	// what Vite gives the example as `import.meta.env.BASE_URL` with its default base
+	define: { 'import.meta.env.BASE_URL': '"./"' },
 });
 await cp(join(root, 'example/index.html'), join(out, 'index.html'));
 await cp(join(root, 'example/minimal.html'), join(out, 'minimal.html'));

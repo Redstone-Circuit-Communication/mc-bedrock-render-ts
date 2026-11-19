@@ -35,9 +35,9 @@ $('export').onclick = () => {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
 try {
-  workshop = await createWorkshop({ canvas: $('canvas'), resourcePackUrl: await Promise.all(['bedrock-samples-v1.21.50.7-entity-models.json', 'bedrock-samples-v1.26.60.5.json'].map(async (n) => (await fetch(`./packs/${n}`)).json())),
+  workshop = await createWorkshop({ canvas: $('canvas'), resourcePackUrl: await Promise.all(['bedrock-samples-v1.21.50.7-entity-models.json', 'bedrock-samples-v1.26.60.5.json'].map(async (n) => (await fetch(`${import.meta.env.BASE_URL}packs/${n}`)).json())),
     rendererOptions: { backgroundColor: '#dfe6d7', maxPixelRatio: 1, cameraOptions: { position: [20, 20, 20], preserveCameraOnUpdate: true } } });
   window.workshop = workshop;
-  await load(() => workshop.loadUrl('./schematics/inspection-demo.mcstructure'));
+  await load(() => workshop.loadUrl(`${import.meta.env.BASE_URL}schematics/inspection-demo.mcstructure`));
 } catch (error) { $('status').textContent = `Initialization failed: ${error.message}`; }
 window.addEventListener('pagehide', event => { if (!event.persisted) workshop?.dispose(); });

@@ -11,6 +11,12 @@ let previewReason = "";
 /** What the status line and the material summary show, kept so they can be redrawn in another language. */
 let statusKey = "status.starting",
   summary = null;
+/**
+ * Where the example's own files live: Vite's `base` (`EXAMPLE_BASE` when building, `./` otherwise). Paths written as
+ * `./…` (the demo list, the default structure) are looked up under it.
+ */
+const BASE = import.meta.env.BASE_URL;
+const assetUrl = (path) => (path.startsWith("./") ? BASE + path.slice(2) : path);
 const DEFAULT_SCHEMATIC = "./schematics/inspection-demo.mcstructure",
   PACK_VERSION = "bedrock-samples-v1.26.60.5";
 let renderer,
@@ -245,7 +251,7 @@ async function loadBlueprint(buffer, filename) {
 async function loadUrl(url) {
   setBusy(true, t("busy.fetching"));
   try {
-    const response = await fetch(url);
+    const response = await fetch(assetUrl(url));
     if (!response.ok)
       throw new Error(t("error.request", { status: response.status }));
     await loadBlueprint(
@@ -335,7 +341,7 @@ const OFFICIAL_LISTINGS = ["bedrock-samples-v1.21.50.7-entity-models.json", "bed
 let OFFICIAL_PACKS;
 async function start() {
   await clearSavedResourcePacksIfRequested();
-  OFFICIAL_PACKS = await Promise.all(OFFICIAL_LISTINGS.map(async (name) => (await fetch(`./packs/${name}`)).json()));
+  OFFICIAL_PACKS = await Promise.all(OFFICIAL_LISTINGS.map(async (name) => (await fetch(assetUrl(`./packs/${name}`))).json()));
   setBusy(true, t("busy.assets"));
   const performanceSettings = readRenderSettings();
   try {
@@ -364,7 +370,7 @@ async function start() {
     return;
   }
   blueprints = new BlueprintLoader(renderer, { beforeReplace: () => inspector?.clear() });
-  assets = new ItemAssets(renderer.cubane.getAssetLoader(), { iconBaseUrl: "./ui", renderer });
+  assets = new ItemAssets(renderer.cubane.getAssetLoader(), { iconBaseUrl: assetUrl("./ui"), renderer });
   views = new ViewControls(renderer, toast);
   inspector = new BlockInspector(renderer, views, assets, showTab, toast);
   renderSettings = new RenderSettings(renderer, performanceSettings);

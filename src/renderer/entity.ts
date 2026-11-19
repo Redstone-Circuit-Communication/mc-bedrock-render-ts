@@ -242,6 +242,12 @@ const PROPERTY_DEFAULTS: Record<string, string | number> = {
  */
 const YAW_OFFSET: Record<string, number> = { 'minecraft:ender_dragon': 180 };
 
+/**
+ * Babies whose size lives in the behaviour pack (`minecraft:scale` of the baby component group), which a resource pack does
+ * not carry: a ghastling is 0.2375 of a happy ghast.
+ */
+const BABY_SCALE: Record<string, number> = { 'minecraft:happy_ghast': 0.2375 };
+
 const DEFAULT_RENDER_CONTROLLER = { geometry: 'Geometry.default', materials: [{ '*': 'Material.default' }], textures: ['Texture.default'] };
 
 const VISIBLE_MOMENT: Record<string, Record<string, number>> = {
@@ -308,7 +314,8 @@ export function planEntity(lib: EntityLibrary, inst: EntityInstance): EntityDraw
   const env = createMolangEnv(makeQuery(lib, inst));
   for (const s of def.initialize) evalMolang(s, env);
   for (const s of def.preAnimation) evalMolang(s, env);
-  const entityScale = (def.scale != null ? molangNumber(evalMolang(def.scale, env)) || 1 : 1) * (inst.scale ?? 1);
+  const baby = molangNumber(evalMolang('query.is_baby', env)) ? BABY_SCALE[inst.identifier.toLowerCase()] ?? 1 : 1;
+  const entityScale = (def.scale != null ? molangNumber(evalMolang(def.scale, env)) || 1 : 1) * (inst.scale ?? 1) * baby;
 
   const poses = new Map<string, BonePose>();
   const ctx: AnimContext = { lib: lib.animations, shortNames: new Map(def.animations), env, poses, rest: restPose(lib, def) };
