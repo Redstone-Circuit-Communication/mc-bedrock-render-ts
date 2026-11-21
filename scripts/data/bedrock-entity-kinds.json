@@ -1,0 +1,517 @@
+{
+ "entities": {
+  "minecraft:allay": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:area_effect_cloud": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:armadillo": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:armor_stand": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:arrow": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:axolotl": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:bat": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:bee": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:blaze": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:boat": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:bogged": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:breeze": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:breeze_wind_charge_projectile": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:camel": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:camel_husk": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:cat": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:cave_spider": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:chest_boat": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:chest_minecart": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:chicken": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:cod": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:command_block_minecart": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:copper_golem": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:cow": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:creaking": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:creeper": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:cushion": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:dolphin": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:donkey": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:dragon_fireball": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:drowned": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:egg": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:elder_guardian": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:ender_crystal": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:ender_dragon": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:ender_pearl": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:enderman": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:endermite": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:evocation_illager": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:eye_of_ender_signal": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:fireball": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:fireworks_rocket": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:fishing_hook": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:fox": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:frog": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:ghast": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:glow_squid": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:goat": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:guardian": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:happy_ghast": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:hoglin": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:hopper_minecart": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:horse": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:husk": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:iron_golem": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:lightning_bolt": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:lingering_potion": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:llama": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:llama_spit": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:magma_cube": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:minecart": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:mooshroom": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:mule": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:nautilus": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:npc": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:ocelot": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:ominous_item_spawner": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:panda": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:parched": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:parrot": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:phantom": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:pig": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:piglin": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:piglin_brute": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:pillager": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:player": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:polar_bear": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:pufferfish": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:rabbit": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:ravager": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:salmon": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:sheep": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:shulker": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:shulker_bullet": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:silverfish": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:skeleton": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:skeleton_horse": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:slime": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:small_fireball": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:sniffer": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:snow_golem": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:snowball": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:spider": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:splash_potion": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:squid": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:stray": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:strider": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:sulfur_cube": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:tadpole": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:thrown_trident": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:tnt": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:tnt_minecart": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:trader_llama": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:tripod_camera": {
+   "living": true,
+   "summonable": false
+  },
+  "minecraft:tropicalfish": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:turtle": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:vex": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:villager": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:villager_v2": {
+   "living": true,
+   "summonable": false
+  },
+  "minecraft:vindicator": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:wandering_trader": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:warden": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:wind_charge_projectile": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:witch": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:wither": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:wither_skeleton": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:wither_skull": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:wither_skull_dangerous": {
+   "living": false,
+   "summonable": false
+  },
+  "minecraft:wolf": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:xp_bottle": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:xp_orb": {
+   "living": false,
+   "summonable": true
+  },
+  "minecraft:zoglin": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:zombie": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:zombie_horse": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:zombie_nautilus": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:zombie_pigman": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:zombie_villager": {
+   "living": true,
+   "summonable": true
+  },
+  "minecraft:zombie_villager_v2": {
+   "living": true,
+   "summonable": false
+  }
+ },
+ "source": "Mojang/bedrock-samples v1.26.60.5 behavior_pack/entities: is_summonable from the description; living = has minecraft:health (xp_orb and ender_crystal have health but are not mobs)"
+}

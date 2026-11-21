@@ -1,6 +1,11 @@
 import { NbtCompound, NbtValue, T, Tagged, readNbtLE, writeNbtLE } from './nbt';
 
 export type StateValue = string | number;
+/**
+ * A state value to write with `buildMcStructure`, typed as the game stores it: a boolean becomes a byte (`open_bit`,
+ * `upper_block_bit` …), a whole number an int (`facing_direction`, `redstone_signal` …), a string a string.
+ */
+export type StateInput = StateValue | boolean;
 
 export interface PaletteEntry {
   /** Full identifier, e.g. `minecraft:observer` */
@@ -149,22 +154,27 @@ export async function loadMcStructure(data: ArrayBuffer | Uint8Array): Promise<M
 export interface BuildOptions {
   size: [number, number, number];
   origin?: [number, number, number];
-  /** Block for each cell; return `null`/`undefined` for air. */
-  blockAt: (x: number, y: number, z: number) => { name: string; states?: Record<string, StateValue> } | null | undefined;
+  /** Block for each cell; return `null`/`undefined` for air. States are written with the game's tag types (see `StateInput`). */
+  blockAt: (x: number, y: number, z: number) => { name: string; states?: Record<string, StateInput> } | null | undefined;
   /** Optional block entity data (stored under `block_position_data`). */
   blockEntityAt?: (x: number, y: number, z: number) => Record<string, Tagged> | null | undefined;
   /** Optional entity compounds (`identifier`, `Pos`, `Rotation`, …). */
   entities?: Record<string, Tagged>[];
   /** Optional liquid layer (e.g. waterlogging). */
-  liquidAt?: (x: number, y: number, z: number) => { name: string; states?: Record<string, StateValue> } | null | undefined;
+  liquidAt?: (x: number, y: number, z: number) => { name: string; states?: Record<string, StateInput> } | null | undefined;
+  /**
+   * 1 (default): `block_indices` as two lists of ints (blocks, liquids), the long-standing layout. 2: the layout the game
+   * writes since 1.26 — each layer an IntArray, and no liquid layer when there is no liquid. The game loads both.
+   */
+  formatVersion?: 1 | 2;
 }
 
 /** Create the bytes of a valid `.mcstructure` file. Handy for tests and demos. */
 export function buildMcStructure(opts: BuildOptions): Uint8Array {
   const [sx, sy, sz] = opts.size;
-  const palette: { name: string; states: Record<string, StateValue> }[] = [];
+  const palette: { name: string; states: Record<string, StateInput> }[] = [];
   const lookup = new Map<string, number>();
-  const intern = (b: { name: string; states?: Record<string, StateValue> }) => {
+  const intern = (b: { name: string; states?: Record<string, StateInput> }) => {
     const states = b.states ?? {};
     const key = b.name + JSON.stringify(Object.entries(states).sort());
     let i = lookup.get(key);
@@ -185,22 +195,23 @@ export function buildMcStructure(opts: BuildOptions): Uint8Array {
         const w = opts.liquidAt?.(x, y, z);
         l1.push(w ? intern(w) : -1);
       }
-  const stateTag = (v: StateValue): Tagged =>
-    typeof v === 'string' ? T.string(v) : T.byte(v);
+  const stateTag = (v: StateInput): Tagged =>
+    typeof v === 'string' ? T.string(v) : typeof v === 'boolean' ? T.byte(v ? 1 : 0) : T.int(v);
   const paletteTag = T.list('compound', palette.map((p) =>
     T.compound({
       name: T.string(p.name),
       states: T.compound(Object.fromEntries(Object.entries(p.states).map(([k, v]) => [k, stateTag(v)]))),
       version: T.int(18168865),
     })));
+  const v2 = opts.formatVersion === 2;
+  const blockIndices = v2
+    ? T.list('intarray', l1.some((n) => n >= 0) ? [T.intArray(l0), T.intArray(l1)] : [T.intArray(l0)])
+    : T.list('list', [T.list('int', l0.map((n) => T.int(n))), T.list('int', l1.map((n) => T.int(n)))]);
   return writeNbtLE({
-    format_version: T.int(1),
+    format_version: T.int(v2 ? 2 : 1),
     size: T.list('int', opts.size.map((n) => T.int(n))),
     structure: T.compound({
-      block_indices: T.list('list', [
-        T.list('int', l0.map((n) => T.int(n))),
-        T.list('int', l1.map((n) => T.int(n))),
-      ]),
+      block_indices: blockIndices,
       entities: T.list('compound', (opts.entities ?? []).map((e) => T.compound(e))),
       palette: T.compound({
         default: T.compound({

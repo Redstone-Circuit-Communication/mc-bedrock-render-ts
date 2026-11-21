@@ -1,0 +1,3493 @@
+{
+ "source": "Mojang/bedrock-samples v1.26.60.5 behavior_pack/entities, by scripts/extract-entity-data.ts: the state right after the spawn event (randomize: largest weight; ranges: the middle; filters: normal difficulty, plains, day)",
+ "official": true,
+ "entities": {
+  "minecraft:allay": {
+   "definitions": [
+    "+minecraft:allay",
+    "+pickup_item"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.1,
+    "follow_range": [
+     1024,
+     2048
+    ]
+   },
+   "families": [
+    "allay",
+    "mob"
+   ]
+  },
+  "minecraft:armadillo": {
+   "definitions": [
+    "+minecraft:armadillo",
+    "+minecraft:adult",
+    "+minecraft:adult_unrolled",
+    "+minecraft:unrolled"
+   ],
+   "attributes": {
+    "health": [
+     12,
+     12
+    ],
+    "movement": 0.14
+   },
+   "properties": {
+    "minecraft:armadillo_state": {
+     "type": "enum",
+     "value": "unrolled"
+    }
+   },
+   "spawn_entries": [
+    {
+     "timer": 9000,
+     "stopped": false
+    }
+   ],
+   "families": [
+    "armadillo",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:armadillo",
+     "+minecraft:baby",
+     "+minecraft:baby_unrolled",
+     "+minecraft:unrolled"
+    ],
+    "attributes": {
+     "health": [
+      12,
+      12
+     ],
+     "movement": 0.14
+    },
+    "properties": {
+     "minecraft:armadillo_state": {
+      "type": "enum",
+      "value": "unrolled"
+     }
+    },
+    "baby": true,
+    "families": [
+     "armadillo",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:armor_stand": {
+   "definitions": [
+    "+minecraft:armor_stand"
+   ],
+   "attributes": {
+    "health": [
+     6,
+     6
+    ],
+    "movement": 0,
+    "knockback_resistance": [
+     1,
+     1
+    ]
+   },
+   "families": [
+    "armor_stand",
+    "inanimate",
+    "mob"
+   ]
+  },
+  "minecraft:arrow": {
+   "definitions": [
+    "+minecraft:arrow"
+   ],
+   "families": [
+    "projectile",
+    "arrow"
+   ]
+  },
+  "minecraft:axolotl": {
+   "definitions": [
+    "+minecraft:axolotl",
+    "+axolotl_adult",
+    "+axolotl_in_water",
+    "+axolotl_cyan"
+   ],
+   "attributes": {
+    "health": [
+     14,
+     14
+    ],
+    "movement": 0.1,
+    "underwater_movement": 0.2,
+    "attack_damage": [
+     2,
+     2
+    ]
+   },
+   "variant": 1,
+   "families": [
+    "aquatic",
+    "axolotl",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ]
+  },
+  "minecraft:bat": {
+   "definitions": [
+    "+minecraft:bat"
+   ],
+   "attributes": {
+    "health": [
+     6,
+     6
+    ],
+    "movement": 0.1
+   },
+   "families": [
+    "bat",
+    "mob"
+   ]
+  },
+  "minecraft:bee": {
+   "definitions": [
+    "+minecraft:bee",
+    "+bee_adult",
+    "+track_attacker",
+    "+shelter_detection",
+    "+look_for_food"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.3,
+    "follow_range": [
+     1024,
+     2048
+    ]
+   },
+   "properties": {
+    "minecraft:has_nectar": {
+     "type": "bool",
+     "value": false
+    }
+   },
+   "families": [
+    "bee",
+    "mob",
+    "arthropod"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:bee",
+     "+bee_baby",
+     "+track_attacker",
+     "+shelter_detection",
+     "+look_for_food"
+    ],
+    "attributes": {
+     "health": [
+      10,
+      10
+     ],
+     "movement": 0.3,
+     "follow_range": [
+      1024,
+      2048
+     ]
+    },
+    "properties": {
+     "minecraft:has_nectar": {
+      "type": "bool",
+      "value": false
+     }
+    },
+    "baby": true,
+    "families": [
+     "bee",
+     "mob",
+     "arthropod"
+    ]
+   }
+  },
+  "minecraft:blaze": {
+   "definitions": [
+    "+minecraft:blaze",
+    "+mode_switcher"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.23,
+    "follow_range": [
+     48,
+     48
+    ]
+   },
+   "families": [
+    "blaze",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:boat": {
+   "definitions": [
+    "+minecraft:boat",
+    "+minecraft:can_ride_default"
+   ],
+   "families": [
+    "boat",
+    "inanimate"
+   ]
+  },
+  "minecraft:bogged": {
+   "definitions": [
+    "+minecraft:bogged",
+    "+minecraft:ranged_attack"
+   ],
+   "attributes": {
+    "health": [
+     16,
+     16
+    ],
+    "movement": 0.25
+   },
+   "families": [
+    "bogged",
+    "skeleton",
+    "monster",
+    "mob",
+    "undead"
+   ]
+  },
+  "minecraft:breeze": {
+   "definitions": [
+    "+minecraft:breeze"
+   ],
+   "attributes": {
+    "health": [
+     30,
+     30
+    ],
+    "movement": 0.4,
+    "follow_range": [
+     32,
+     2048
+    ],
+    "knockback_resistance": [
+     0,
+     1
+    ]
+   },
+   "properties": {
+    "minecraft:is_playing_idle_ground_sound": {
+     "type": "bool",
+     "value": false
+    }
+   },
+   "families": [
+    "breeze",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:camel": {
+   "definitions": [
+    "+minecraft:camel",
+    "+minecraft:camel_adult",
+    "+minecraft:camel_standing"
+   ],
+   "attributes": {
+    "health": [
+     32,
+     32
+    ],
+    "movement": 0.09
+   },
+   "families": [
+    "camel",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable",
+    "minecraft:is_tamed",
+    "minecraft:equippable"
+   ]
+  },
+  "minecraft:camel_husk": {
+   "definitions": [
+    "+minecraft:camel_husk",
+    "+minecraft:camel_husk_standing",
+    "+minecraft:camel_husk_with_no_hostile_rider"
+   ],
+   "attributes": {
+    "health": [
+     32,
+     32
+    ],
+    "movement": 0.09
+   },
+   "properties": {
+    "minecraft:has_rider_mounted": {
+     "type": "bool",
+     "value": false
+    }
+   },
+   "families": [
+    "camel_husk",
+    "mob",
+    "undead"
+   ],
+   "components": [
+    "minecraft:is_tamed",
+    "minecraft:equippable"
+   ]
+  },
+  "minecraft:cat": {
+   "definitions": [
+    "+minecraft:cat",
+    "+minecraft:cat_adult",
+    "+minecraft:cat_wild",
+    "+minecraft:cat_white"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.3
+   },
+   "properties": {
+    "minecraft:sound_variant": {
+     "type": "enum",
+     "value": "default"
+    }
+   },
+   "variant": 0,
+   "families": [
+    "cat",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:cat",
+     "+minecraft:cat_baby",
+     "+minecraft:cat_wild",
+     "+minecraft:cat_white"
+    ],
+    "attributes": {
+     "health": [
+      10,
+      10
+     ],
+     "movement": 0.3
+    },
+    "properties": {
+     "minecraft:sound_variant": {
+      "type": "enum",
+      "value": "default"
+     }
+    },
+    "variant": 0,
+    "baby": true,
+    "families": [
+     "cat",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:cave_spider": {
+   "definitions": [
+    "+minecraft:cave_spider",
+    "+minecraft:spider_neutral"
+   ],
+   "attributes": {
+    "health": [
+     12,
+     12
+    ],
+    "movement": 0.3
+   },
+   "families": [
+    "cavespider",
+    "monster",
+    "arthropod",
+    "mob"
+   ]
+  },
+  "minecraft:chest_boat": {
+   "definitions": [
+    "+minecraft:chest_boat",
+    "+minecraft:can_ride_default"
+   ],
+   "families": [
+    "boat",
+    "inanimate"
+   ]
+  },
+  "minecraft:chest_minecart": {
+   "definitions": [
+    "+minecraft:chest_minecart"
+   ],
+   "families": [
+    "minecart",
+    "inanimate"
+   ]
+  },
+  "minecraft:chicken": {
+   "definitions": [
+    "+minecraft:chicken",
+    "+minecraft:chicken_adult"
+   ],
+   "attributes": {
+    "health": [
+     4,
+     4
+    ],
+    "movement": 0.25
+   },
+   "properties": {
+    "minecraft:climate_variant": {
+     "type": "enum",
+     "value": "temperate"
+    },
+    "minecraft:sound_variant": {
+     "type": "enum",
+     "value": "default"
+    }
+   },
+   "spawn_entries": [
+    {
+     "timer": 9000,
+     "stopped": false
+    },
+    {
+     "timer": 9000,
+     "stopped": false
+    },
+    {
+     "timer": 9000,
+     "stopped": false
+    }
+   ],
+   "families": [
+    "chicken",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:chicken",
+     "+minecraft:chicken_baby"
+    ],
+    "attributes": {
+     "health": [
+      4,
+      4
+     ],
+     "movement": 0.25
+    },
+    "properties": {
+     "minecraft:climate_variant": {
+      "type": "enum",
+      "value": "temperate"
+     },
+     "minecraft:sound_variant": {
+      "type": "enum",
+      "value": "default"
+     }
+    },
+    "baby": true,
+    "families": [
+     "chicken",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:cod": {
+   "definitions": [
+    "+minecraft:cod"
+   ],
+   "attributes": {
+    "health": [
+     3,
+     3
+    ],
+    "movement": 0.1,
+    "underwater_movement": 0.1
+   },
+   "families": [
+    "aquatic",
+    "cod",
+    "fish"
+   ]
+  },
+  "minecraft:command_block_minecart": {
+   "definitions": [
+    "+minecraft:command_block_minecart",
+    "+minecraft:command_block_inactive"
+   ],
+   "families": [
+    "minecart",
+    "inanimate"
+   ]
+  },
+  "minecraft:copper_golem": {
+   "definitions": [
+    "+minecraft:copper_golem",
+    "+minecraft:copper_oxidizing"
+   ],
+   "attributes": {
+    "health": [
+     12,
+     12
+    ],
+    "movement": 0.2,
+    "attack_damage": [
+     2,
+     2
+    ]
+   },
+   "properties": {
+    "minecraft:oxidation_level": {
+     "type": "enum",
+     "value": "unoxidized"
+    },
+    "minecraft:is_waxed": {
+     "type": "bool",
+     "value": false
+    },
+    "minecraft:chest_interaction": {
+     "type": "enum",
+     "value": "none"
+    },
+    "minecraft:has_flower": {
+     "type": "bool",
+     "value": false
+    },
+    "minecraft:is_becoming_statue": {
+     "type": "bool",
+     "value": false
+    }
+   },
+   "families": [
+    "copper_golem",
+    "mob"
+   ]
+  },
+  "minecraft:cow": {
+   "definitions": [
+    "+minecraft:cow",
+    "+minecraft:cow_adult"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.25
+   },
+   "properties": {
+    "minecraft:climate_variant": {
+     "type": "enum",
+     "value": "temperate"
+    },
+    "minecraft:sound_variant": {
+     "type": "enum",
+     "value": "default"
+    }
+   },
+   "families": [
+    "cow",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:cow",
+     "+minecraft:cow_baby"
+    ],
+    "attributes": {
+     "health": [
+      10,
+      10
+     ],
+     "movement": 0.25
+    },
+    "properties": {
+     "minecraft:climate_variant": {
+      "type": "enum",
+      "value": "temperate"
+     },
+     "minecraft:sound_variant": {
+      "type": "enum",
+      "value": "default"
+     }
+    },
+    "baby": true,
+    "families": [
+     "cow",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:creaking": {
+   "definitions": [
+    "+minecraft:creaking",
+    "+minecraft:spawned_by_player",
+    "+minecraft:neutral",
+    "+minecraft:mobile"
+   ],
+   "attributes": {
+    "health": [
+     1,
+     1
+    ],
+    "movement": 0.4,
+    "follow_range": [
+     32,
+     32
+    ],
+    "knockback_resistance": [
+     0,
+     1
+    ],
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "properties": {
+    "minecraft:creaking_swaying_ticks": {
+     "type": "int",
+     "value": 0
+    },
+    "minecraft:creaking_state": {
+     "type": "enum",
+     "value": "neutral"
+    }
+   },
+   "families": [
+    "creaking",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:creeper": {
+   "definitions": [
+    "+minecraft:creeper"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.2,
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "families": [
+    "creeper",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:cushion": {
+   "definitions": [
+    "+minecraft:cushion"
+   ],
+   "variant": 15,
+   "families": [
+    "cushion",
+    "inanimate",
+    "actor"
+   ]
+  },
+  "minecraft:dolphin": {
+   "definitions": [
+    "+minecraft:dolphin",
+    "+dolphin_adult",
+    "+dolphin_swimming_navigation"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.1,
+    "underwater_movement": 0.15,
+    "follow_range": [
+     48,
+     48
+    ],
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "families": [
+    "aquatic",
+    "dolphin",
+    "mob"
+   ]
+  },
+  "minecraft:donkey": {
+   "definitions": [
+    "+minecraft:donkey",
+    "+minecraft:donkey_adult",
+    "+minecraft:donkey_wild"
+   ],
+   "attributes": {
+    "health": [
+     23,
+     23
+    ],
+    "movement": 0.175,
+    "jump_strength": 0.5
+   },
+   "families": [
+    "donkey",
+    "mob"
+   ],
+   "components": [
+    "minecraft:tamemount"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:donkey",
+     "+minecraft:donkey_baby"
+    ],
+    "attributes": {
+     "health": [
+      23,
+      23
+     ],
+     "movement": 0.175,
+     "jump_strength": 0.5
+    },
+    "baby": true,
+    "families": [
+     "donkey",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:drowned": {
+   "definitions": [
+    "+minecraft:drowned",
+    "+minecraft:melee_equipment",
+    "+minecraft:melee_mode",
+    "+minecraft:adult_drowned",
+    "+minecraft:wander_mode"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.23,
+    "underwater_movement": 0.06,
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "families": [
+    "drowned",
+    "zombie",
+    "undead",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:egg": {
+   "definitions": [
+    "+minecraft:egg"
+   ],
+   "properties": {
+    "minecraft:climate_variant": {
+     "type": "enum",
+     "value": "temperate"
+    }
+   },
+   "families": [
+    "projectile",
+    "egg"
+   ]
+  },
+  "minecraft:elder_guardian": {
+   "definitions": [
+    "+minecraft:elder_guardian"
+   ],
+   "attributes": {
+    "health": [
+     80,
+     80
+    ],
+    "movement": 0.3,
+    "underwater_movement": 0.3,
+    "follow_range": [
+     16,
+     16
+    ],
+    "attack_damage": [
+     5,
+     5
+    ]
+   },
+   "families": [
+    "aquatic",
+    "guardian_elder",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:ender_crystal": {
+   "definitions": [
+    "+minecraft:ender_crystal"
+   ]
+  },
+  "minecraft:ender_dragon": {
+   "definitions": [
+    "+minecraft:ender_dragon",
+    "+dragon_flying"
+   ],
+   "attributes": {
+    "health": [
+     200,
+     200
+    ],
+    "movement": 0.3,
+    "knockback_resistance": [
+     100,
+     100
+    ],
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "families": [
+    "dragon",
+    "mob"
+   ]
+  },
+  "minecraft:enderman": {
+   "definitions": [
+    "+minecraft:enderman",
+    "+minecraft:enderman_calm",
+    "+minecraft:not_riding"
+   ],
+   "attributes": {
+    "health": [
+     40,
+     40
+    ],
+    "movement": 0.3,
+    "follow_range": [
+     64,
+     64
+    ],
+    "attack_damage": [
+     7,
+     7
+    ]
+   },
+   "families": [
+    "enderman",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:endermite": {
+   "definitions": [
+    "+minecraft:endermite"
+   ],
+   "attributes": {
+    "health": [
+     8,
+     8
+    ],
+    "movement": 0.25,
+    "attack_damage": [
+     2,
+     2
+    ]
+   },
+   "families": [
+    "endermite",
+    "arthropod",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:evocation_illager": {
+   "definitions": [
+    "+minecraft:evocation_illager"
+   ],
+   "attributes": {
+    "health": [
+     24,
+     24
+    ],
+    "movement": 0.5,
+    "follow_range": [
+     64,
+     2048
+    ]
+   },
+   "families": [
+    "evocation_illager",
+    "monster",
+    "illager",
+    "mob"
+   ]
+  },
+  "minecraft:fireworks_rocket": {
+   "definitions": [
+    "+minecraft:fireworks_rocket"
+   ],
+   "families": [
+    "projectile",
+    "fireworks_rocket"
+   ]
+  },
+  "minecraft:fox": {
+   "definitions": [
+    "+minecraft:fox",
+    "+minecraft:fox_adult",
+    "+minecraft:fox_with_item",
+    "+minecraft:docile_fox",
+    "+minecraft:fox_red"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.3,
+    "attack_damage": [
+     2,
+     2
+    ]
+   },
+   "variant": 0,
+   "families": [
+    "fox",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:fox",
+     "+minecraft:fox_baby",
+     "+minecraft:docile_fox",
+     "+minecraft:fox_red"
+    ],
+    "attributes": {
+     "health": [
+      10,
+      10
+     ],
+     "movement": 0.3,
+     "attack_damage": [
+      2,
+      2
+     ]
+    },
+    "variant": 0,
+    "baby": true,
+    "families": [
+     "fox",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:frog": {
+   "definitions": [
+    "+minecraft:frog",
+    "+temperate_frog"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.1,
+    "underwater_movement": 0.15
+   },
+   "variant": 0,
+   "families": [
+    "frog",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ]
+  },
+  "minecraft:ghast": {
+   "definitions": [
+    "+minecraft:ghast"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.03,
+    "follow_range": [
+     64,
+     64
+    ]
+   },
+   "families": [
+    "ghast",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:glow_squid": {
+   "definitions": [
+    "+minecraft:glow_squid",
+    "+minecraft:squid_adult"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.2
+   },
+   "families": [
+    "aquatic",
+    "squid",
+    "mob"
+   ]
+  },
+  "minecraft:goat": {
+   "definitions": [
+    "+minecraft:goat",
+    "+goat_adult"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.4,
+    "attack_damage": [
+     2,
+     2
+    ]
+   },
+   "families": [
+    "goat",
+    "animal"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:goat",
+     "+goat_baby"
+    ],
+    "attributes": {
+     "health": [
+      10,
+      10
+     ],
+     "movement": 0.4,
+     "attack_damage": [
+      1,
+      1
+     ]
+    },
+    "baby": true,
+    "families": [
+     "goat",
+     "animal"
+    ]
+   }
+  },
+  "minecraft:guardian": {
+   "definitions": [
+    "+minecraft:guardian"
+   ],
+   "attributes": {
+    "health": [
+     30,
+     30
+    ],
+    "movement": 0.12,
+    "underwater_movement": 0.12,
+    "follow_range": [
+     16,
+     16
+    ],
+    "attack_damage": [
+     5,
+     5
+    ]
+   },
+   "families": [
+    "aquatic",
+    "guardian",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:happy_ghast": {
+   "definitions": [
+    "+minecraft:happy_ghast",
+    "+minecraft:adult",
+    "+minecraft:adult_mobile",
+    "+minecraft:adult_unharnessed",
+    "+minecraft:adult_without_passengers"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.016,
+    "follow_range": [
+     16,
+     16
+    ],
+    "knockback_resistance": [
+     0,
+     1
+    ]
+   },
+   "properties": {
+    "minecraft:can_move": {
+     "type": "bool",
+     "value": true
+    }
+   },
+   "families": [
+    "happy_ghast",
+    "mob"
+   ],
+   "components": [
+    "minecraft:is_tamed"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:happy_ghast",
+     "+minecraft:baby"
+    ],
+    "attributes": {
+     "health": [
+      20,
+      20
+     ],
+     "movement": 0.3,
+     "follow_range": [
+      16,
+      16
+     ]
+    },
+    "properties": {
+     "minecraft:can_move": {
+      "type": "bool",
+      "value": true
+     }
+    },
+    "baby": true,
+    "families": [
+     "happy_ghast",
+     "mob"
+    ],
+    "components": [
+     "minecraft:is_tamed"
+    ]
+   }
+  },
+  "minecraft:hoglin": {
+   "definitions": [
+    "+minecraft:hoglin",
+    "+minecraft:hoglin_adult",
+    "+huntable_adult",
+    "+zombification_sensor"
+   ],
+   "attributes": {
+    "health": [
+     40,
+     40
+    ],
+    "movement": 0.3,
+    "knockback_resistance": [
+     0.6,
+     1
+    ],
+    "attack_damage": [
+     3,
+     9
+    ]
+   },
+   "families": [
+    "hoglin",
+    "hoglin_adult",
+    "hoglin_huntable",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:hoglin",
+     "+minecraft:hoglin_baby",
+     "+zombification_sensor"
+    ],
+    "attributes": {
+     "health": [
+      40,
+      40
+     ],
+     "movement": 0.36,
+     "knockback_resistance": [
+      0.6,
+      1
+     ],
+     "attack_damage": [
+      1,
+      1
+     ]
+    },
+    "baby": true,
+    "families": [
+     "hoglin",
+     "hoglin_baby",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:hopper_minecart": {
+   "definitions": [
+    "+minecraft:hopper_minecart",
+    "+minecraft:hopper_active"
+   ],
+   "families": [
+    "minecart",
+    "inanimate"
+   ]
+  },
+  "minecraft:horse": {
+   "definitions": [
+    "+minecraft:horse",
+    "+minecraft:horse_adult",
+    "+minecraft:horse_wild",
+    "+minecraft:base_white",
+    "+minecraft:markings_none"
+   ],
+   "attributes": {
+    "health": [
+     23,
+     23
+    ],
+    "movement": 0.225,
+    "jump_strength": 0.7
+   },
+   "variant": 0,
+   "mark_variant": 0,
+   "families": [
+    "horse",
+    "mob"
+   ],
+   "components": [
+    "minecraft:tamemount",
+    "minecraft:equippable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:horse",
+     "+minecraft:horse_baby",
+     "+minecraft:base_white",
+     "+minecraft:markings_none"
+    ],
+    "attributes": {
+     "health": [
+      23,
+      23
+     ],
+     "movement": 0.225,
+     "jump_strength": 0.7
+    },
+    "variant": 0,
+    "mark_variant": 0,
+    "baby": true,
+    "families": [
+     "horse",
+     "mob"
+    ],
+    "components": [
+     "minecraft:equippable"
+    ]
+   }
+  },
+  "minecraft:husk": {
+   "definitions": [
+    "+minecraft:husk",
+    "+minecraft:zombie_husk_adult",
+    "+minecraft:not_on_camel_husk"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.23,
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "properties": {
+    "minecraft:is_riding_camel_husk": {
+     "type": "bool",
+     "value": false
+    }
+   },
+   "variant": 2,
+   "families": [
+    "husk",
+    "zombie",
+    "undead",
+    "monster",
+    "mob"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:husk",
+     "+minecraft:zombie_husk_baby",
+     "+minecraft:not_on_camel_husk"
+    ],
+    "attributes": {
+     "health": [
+      20,
+      20
+     ],
+     "movement": 0.35,
+     "attack_damage": [
+      3,
+      3
+     ]
+    },
+    "properties": {
+     "minecraft:is_riding_camel_husk": {
+      "type": "bool",
+      "value": false
+     }
+    },
+    "variant": 2,
+    "baby": true,
+    "families": [
+     "baby_undead",
+     "husk",
+     "zombie",
+     "undead",
+     "monster",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:iron_golem": {
+   "definitions": [
+    "+minecraft:iron_golem"
+   ],
+   "attributes": {
+    "health": [
+     100,
+     100
+    ],
+    "movement": 0.25,
+    "follow_range": [
+     64,
+     2048
+    ],
+    "knockback_resistance": [
+     1,
+     1
+    ],
+    "attack_damage": [
+     7,
+     21
+    ]
+   },
+   "families": [
+    "irongolem",
+    "mob"
+   ]
+  },
+  "minecraft:lightning_bolt": {
+   "definitions": [
+    "+minecraft:lightning_bolt"
+   ],
+   "families": [
+    "lightning"
+   ]
+  },
+  "minecraft:llama": {
+   "definitions": [
+    "+minecraft:llama",
+    "+minecraft:llama_adult",
+    "+minecraft:llama_wild",
+    "+minecraft:llama_unleashed",
+    "+minecraft:strength_1",
+    "+minecraft:llama_creamy"
+   ],
+   "attributes": {
+    "health": [
+     23,
+     23
+    ],
+    "movement": 0.25,
+    "follow_range": [
+     40,
+     40
+    ]
+   },
+   "variant": 0,
+   "mark_variant": 0,
+   "strength": [
+    1,
+    5
+   ],
+   "families": [
+    "llama",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable",
+    "minecraft:tamemount"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:llama",
+     "+minecraft:llama_baby",
+     "+minecraft:llama_unleashed",
+     "+minecraft:strength_1",
+     "+minecraft:llama_creamy"
+    ],
+    "attributes": {
+     "health": [
+      23,
+      23
+     ],
+     "movement": 0.25,
+     "follow_range": [
+      40,
+      40
+     ]
+    },
+    "variant": 0,
+    "mark_variant": 0,
+    "baby": true,
+    "strength": [
+     1,
+     5
+    ],
+    "families": [
+     "llama",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:magma_cube": {
+   "definitions": [
+    "+minecraft:magma_cube",
+    "+minecraft:slime_small",
+    "+minecraft:slime_calm"
+   ],
+   "attributes": {
+    "health": [
+     1,
+     1
+    ],
+    "movement": 0.6,
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "variant": 1,
+   "families": [
+    "magmacube",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:minecart": {
+   "definitions": [
+    "+minecraft:minecart"
+   ],
+   "families": [
+    "minecart",
+    "inanimate"
+   ]
+  },
+  "minecraft:mooshroom": {
+   "definitions": [
+    "+minecraft:mooshroom",
+    "+minecraft:cow_adult",
+    "+minecraft:mooshroom_red"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.25
+   },
+   "variant": 0,
+   "mark_variant": -1,
+   "families": [
+    "mushroomcow",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:mooshroom",
+     "+minecraft:cow_baby",
+     "+minecraft:mooshroom_red"
+    ],
+    "attributes": {
+     "health": [
+      10,
+      10
+     ],
+     "movement": 0.25
+    },
+    "variant": 0,
+    "mark_variant": -1,
+    "baby": true,
+    "families": [
+     "mushroomcow",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:mule": {
+   "definitions": [
+    "+minecraft:mule",
+    "+minecraft:mule_adult",
+    "+minecraft:mule_wild"
+   ],
+   "attributes": {
+    "health": [
+     23,
+     23
+    ],
+    "movement": 0.175,
+    "jump_strength": 0.5
+   },
+   "families": [
+    "mule",
+    "mob"
+   ],
+   "components": [
+    "minecraft:tamemount"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:mule",
+     "+minecraft:mule_baby"
+    ],
+    "attributes": {
+     "health": [
+      23,
+      23
+     ],
+     "movement": 0.175,
+     "jump_strength": 0.5
+    },
+    "baby": true,
+    "families": [
+     "mule",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:nautilus": {
+   "definitions": [
+    "+minecraft:nautilus",
+    "+minecraft:nautilus_adult",
+    "+minecraft:nautilus_wild_adult_calm",
+    "+minecraft:nautilus_ai_controlled",
+    "+minecraft:nautilus_leashable"
+   ],
+   "attributes": {
+    "health": [
+     15,
+     15
+    ],
+    "movement": 0.15,
+    "underwater_movement": 0.07,
+    "knockback_resistance": [
+     0.3,
+     1
+    ],
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "families": [
+    "aquatic",
+    "nautilus",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:nautilus",
+     "+minecraft:nautilus_baby",
+     "+minecraft:nautilus_leashable"
+    ],
+    "attributes": {
+     "health": [
+      15,
+      15
+     ],
+     "movement": 0.15,
+     "underwater_movement": 0.15,
+     "knockback_resistance": [
+      0.3,
+      1
+     ],
+     "attack_damage": [
+      3,
+      3
+     ]
+    },
+    "baby": true,
+    "families": [
+     "aquatic",
+     "nautilus",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:npc": {
+   "definitions": [
+    "+minecraft:npc"
+   ],
+   "families": [
+    "npc",
+    "mob"
+   ]
+  },
+  "minecraft:ocelot": {
+   "definitions": [
+    "+minecraft:ocelot",
+    "+minecraft:ocelot_adult",
+    "+minecraft:ocelot_wild",
+    "+minecraft:wild_child_ocelot_spawn"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.3
+   },
+   "spawn_entries": [
+    {
+     "timer": 0,
+     "stopped": true
+    }
+   ],
+   "families": [
+    "ocelot",
+    "mob"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:ocelot",
+     "+minecraft:ocelot_baby",
+     "+minecraft:ocelot_wild"
+    ],
+    "attributes": {
+     "health": [
+      10,
+      10
+     ],
+     "movement": 0.3
+    },
+    "baby": true,
+    "families": [
+     "ocelot",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:panda": {
+   "definitions": [
+    "+minecraft:panda",
+    "+minecraft:panda_adult"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.15,
+    "attack_damage": [
+     2,
+     2
+    ]
+   },
+   "variant": 0,
+   "families": [
+    "panda"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:panda",
+     "+minecraft:panda_baby"
+    ],
+    "attributes": {
+     "health": [
+      20,
+      20
+     ],
+     "movement": 0.15
+    },
+    "variant": 0,
+    "baby": true,
+    "families": [
+     "panda"
+    ]
+   }
+  },
+  "minecraft:parched": {
+   "definitions": [
+    "+minecraft:parched",
+    "+minecraft:ranged_attack"
+   ],
+   "attributes": {
+    "health": [
+     16,
+     16
+    ],
+    "movement": 0.25
+   },
+   "families": [
+    "parched",
+    "skeleton",
+    "monster",
+    "mob",
+    "undead"
+   ]
+  },
+  "minecraft:parrot": {
+   "definitions": [
+    "+minecraft:parrot",
+    "+minecraft:parrot_red",
+    "+minecraft:parrot_adult",
+    "+minecraft:parrot_wild",
+    "+minecraft:parrot_not_riding_player"
+   ],
+   "attributes": {
+    "health": [
+     6,
+     6
+    ],
+    "movement": 0.4
+   },
+   "variant": 0,
+   "families": [
+    "parrot_wild",
+    "mob"
+   ]
+  },
+  "minecraft:phantom": {
+   "definitions": [
+    "+minecraft:phantom"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 1.8,
+    "follow_range": [
+     64,
+     64
+    ],
+    "attack_damage": [
+     6,
+     6
+    ]
+   },
+   "families": [
+    "phantom",
+    "undead",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:pig": {
+   "definitions": [
+    "+minecraft:pig",
+    "+minecraft:pig_adult",
+    "+minecraft:pig_unsaddled"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.25
+   },
+   "properties": {
+    "minecraft:climate_variant": {
+     "type": "enum",
+     "value": "temperate"
+    },
+    "minecraft:sound_variant": {
+     "type": "enum",
+     "value": "default"
+    }
+   },
+   "families": [
+    "pig",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:pig",
+     "+minecraft:pig_baby"
+    ],
+    "attributes": {
+     "health": [
+      10,
+      10
+     ],
+     "movement": 0.25
+    },
+    "properties": {
+     "minecraft:climate_variant": {
+      "type": "enum",
+      "value": "temperate"
+     },
+     "minecraft:sound_variant": {
+      "type": "enum",
+      "value": "default"
+     }
+    },
+    "baby": true,
+    "families": [
+     "pig",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:piglin": {
+   "definitions": [
+    "+minecraft:piglin",
+    "+piglin_adult",
+    "+zombification_sensor",
+    "+alert_for_attack_targets",
+    "+ranged_unit",
+    "+attack_cooldown",
+    "+hunter",
+    "+interactable_piglin"
+   ],
+   "attributes": {
+    "health": [
+     16,
+     16
+    ],
+    "movement": 0.35,
+    "follow_range": [
+     64,
+     2048
+    ]
+   },
+   "variant": 0,
+   "families": [
+    "piglin",
+    "piglin_hunter",
+    "monster",
+    "mob"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:piglin",
+     "+piglin_baby",
+     "+zombification_sensor"
+    ],
+    "attributes": {
+     "health": [
+      16,
+      16
+     ],
+     "movement": 0.42,
+     "follow_range": [
+      64,
+      2048
+     ]
+    },
+    "baby": true,
+    "families": [
+     "piglin",
+     "baby_piglin",
+     "monster",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:piglin_brute": {
+   "definitions": [
+    "+minecraft:piglin_brute",
+    "+zombification_sensor",
+    "+alert_for_attack_targets",
+    "+melee_unit",
+    "+go_back_to_spawn"
+   ],
+   "attributes": {
+    "health": [
+     50,
+     50
+    ],
+    "movement": 0.35,
+    "follow_range": [
+     64,
+     2048
+    ],
+    "attack_damage": [
+     7,
+     7
+    ]
+   },
+   "variant": 1,
+   "families": [
+    "piglin",
+    "adult_piglin",
+    "piglin_brute",
+    "monster"
+   ]
+  },
+  "minecraft:pillager": {
+   "definitions": [
+    "+minecraft:pillager",
+    "+minecraft:ranged_attack"
+   ],
+   "attributes": {
+    "health": [
+     24,
+     24
+    ],
+    "movement": 0.35,
+    "follow_range": [
+     64,
+     2048
+    ]
+   },
+   "variant": 0,
+   "families": [
+    "pillager",
+    "monster",
+    "illager",
+    "mob"
+   ]
+  },
+  "minecraft:polar_bear": {
+   "definitions": [
+    "+minecraft:polar_bear",
+    "+minecraft:adult",
+    "+minecraft:adult_wild"
+   ],
+   "attributes": {
+    "health": [
+     30,
+     30
+    ],
+    "movement": 0.25,
+    "follow_range": [
+     48,
+     2048
+    ]
+   },
+   "families": [
+    "polarbear",
+    "mob"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:polar_bear",
+     "+minecraft:baby",
+     "+minecraft:baby_wild"
+    ],
+    "attributes": {
+     "health": [
+      30,
+      30
+     ],
+     "movement": 0.25,
+     "follow_range": [
+      48,
+      2048
+     ]
+    },
+    "baby": true,
+    "families": [
+     "polarbear",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:pufferfish": {
+   "definitions": [
+    "+minecraft:pufferfish",
+    "+minecraft:normal_puff"
+   ],
+   "attributes": {
+    "health": [
+     3,
+     3
+    ],
+    "movement": 0.13,
+    "underwater_movement": 0.13
+   },
+   "variant": 0,
+   "families": [
+    "aquatic",
+    "pufferfish",
+    "fish"
+   ]
+  },
+  "minecraft:rabbit": {
+   "definitions": [
+    "+minecraft:rabbit",
+    "+adult",
+    "+coat_brown"
+   ],
+   "attributes": {
+    "health": [
+     3,
+     3
+    ],
+    "movement": 0.3
+   },
+   "variant": 0,
+   "families": [
+    "rabbit",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:rabbit",
+     "+baby",
+     "+coat_brown"
+    ],
+    "attributes": {
+     "health": [
+      3,
+      3
+     ],
+     "movement": 0.3
+    },
+    "variant": 0,
+    "baby": true,
+    "families": [
+     "rabbit",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:ravager": {
+   "definitions": [
+    "+minecraft:ravager",
+    "+minecraft:hostile"
+   ],
+   "attributes": {
+    "health": [
+     100,
+     100
+    ],
+    "movement": 0.4,
+    "follow_range": [
+     64,
+     2048
+    ],
+    "knockback_resistance": [
+     0.75,
+     1
+    ],
+    "attack_damage": [
+     12,
+     12
+    ]
+   },
+   "families": [
+    "monster",
+    "ravager",
+    "mob"
+   ]
+  },
+  "minecraft:salmon": {
+   "definitions": [
+    "+minecraft:salmon",
+    "+scale_normal"
+   ],
+   "attributes": {
+    "health": [
+     3,
+     3
+    ],
+    "movement": 0.12,
+    "underwater_movement": 0.12
+   },
+   "families": [
+    "aquatic",
+    "salmon",
+    "fish"
+   ]
+  },
+  "minecraft:sheep": {
+   "definitions": [
+    "+minecraft:sheep",
+    "+minecraft:sheep_adult",
+    "+minecraft:sheep_dyeable",
+    "+minecraft:rideable_wooly",
+    "+minecraft:loot_wooly",
+    "+minecraft:sheep_white"
+   ],
+   "attributes": {
+    "health": [
+     8,
+     8
+    ],
+    "movement": 0.25
+   },
+   "color": 0,
+   "families": [
+    "sheep",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:sheep",
+     "+minecraft:sheep_baby",
+     "+minecraft:sheep_dyeable",
+     "+minecraft:sheep_white"
+    ],
+    "attributes": {
+     "health": [
+      8,
+      8
+     ],
+     "movement": 0.25
+    },
+    "color": 0,
+    "baby": true,
+    "families": [
+     "sheep",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:shulker": {
+   "definitions": [
+    "+minecraft:shulker",
+    "+minecraft:shulker_undyed"
+   ],
+   "attributes": {
+    "health": [
+     30,
+     30
+    ],
+    "movement": 0
+   },
+   "variant": 16,
+   "families": [
+    "shulker",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:silverfish": {
+   "definitions": [
+    "+minecraft:silverfish",
+    "+minecraft:silverfish_calm"
+   ],
+   "attributes": {
+    "health": [
+     8,
+     8
+    ],
+    "movement": 0.25,
+    "attack_damage": [
+     1,
+     1
+    ]
+   },
+   "families": [
+    "silverfish",
+    "monster",
+    "mob",
+    "arthropod"
+   ]
+  },
+  "minecraft:skeleton": {
+   "definitions": [
+    "+minecraft:skeleton",
+    "+minecraft:ranged_attack"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.25
+   },
+   "families": [
+    "skeleton",
+    "undead",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:skeleton_horse": {
+   "definitions": [
+    "+minecraft:skeleton_horse",
+    "+minecraft:skeleton_horse_adult"
+   ],
+   "attributes": {
+    "health": [
+     15,
+     15
+    ],
+    "movement": 0.2,
+    "underwater_movement": 0.08,
+    "jump_strength": 0.7
+   },
+   "families": [
+    "skeletonhorse",
+    "undead",
+    "mob"
+   ],
+   "components": [
+    "minecraft:is_tamed"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:skeleton_horse",
+     "-minecraft:skeleton_horse_r5_upgrade",
+     "+minecraft:skeleton_horse_baby"
+    ],
+    "attributes": {
+     "health": [
+      15,
+      15
+     ],
+     "movement": 0.2,
+     "underwater_movement": 0.08,
+     "jump_strength": 0.7
+    },
+    "baby": true,
+    "families": [
+     "skeletonhorse",
+     "undead",
+     "mob"
+    ],
+    "components": [
+     "minecraft:is_tamed"
+    ]
+   }
+  },
+  "minecraft:slime": {
+   "definitions": [
+    "+minecraft:slime",
+    "+minecraft:slime_small",
+    "+minecraft:slime_calm"
+   ],
+   "attributes": {
+    "health": [
+     1,
+     1
+    ],
+    "movement": 0.3,
+    "attack_damage": [
+     0,
+     0
+    ]
+   },
+   "variant": 1,
+   "families": [
+    "slime",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:sniffer": {
+   "definitions": [
+    "+minecraft:sniffer",
+    "+sniffer_adult",
+    "+pushable"
+   ],
+   "attributes": {
+    "health": [
+     14,
+     14
+    ],
+    "movement": 0.09,
+    "follow_range": [
+     64,
+     2048
+    ]
+   },
+   "families": [
+    "sniffer",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ]
+  },
+  "minecraft:snow_golem": {
+   "definitions": [
+    "+minecraft:snow_golem"
+   ],
+   "attributes": {
+    "health": [
+     4,
+     4
+    ],
+    "movement": 0.2,
+    "attack_damage": [
+     2,
+     2
+    ]
+   },
+   "families": [
+    "snowgolem",
+    "mob"
+   ]
+  },
+  "minecraft:snowball": {
+   "definitions": [
+    "+minecraft:snowball"
+   ],
+   "families": [
+    "projectile",
+    "snowball"
+   ]
+  },
+  "minecraft:spider": {
+   "definitions": [
+    "+minecraft:spider",
+    "+minecraft:spider_neutral"
+   ],
+   "attributes": {
+    "health": [
+     16,
+     16
+    ],
+    "movement": 0.3,
+    "attack_damage": [
+     2,
+     2
+    ]
+   },
+   "families": [
+    "spider",
+    "monster",
+    "mob",
+    "arthropod"
+   ]
+  },
+  "minecraft:splash_potion": {
+   "definitions": [
+    "+minecraft:splash_potion"
+   ],
+   "families": [
+    "projectile",
+    "splash_potion"
+   ]
+  },
+  "minecraft:squid": {
+   "definitions": [
+    "+minecraft:squid",
+    "+minecraft:squid_adult"
+   ],
+   "attributes": {
+    "health": [
+     10,
+     10
+    ],
+    "movement": 0.2
+   },
+   "families": [
+    "aquatic",
+    "squid",
+    "mob"
+   ]
+  },
+  "minecraft:stray": {
+   "definitions": [
+    "+minecraft:stray",
+    "+minecraft:ranged_attack"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.25
+   },
+   "families": [
+    "stray",
+    "skeleton",
+    "monster",
+    "mob",
+    "undead"
+   ]
+  },
+  "minecraft:strider": {
+   "definitions": [
+    "+minecraft:strider",
+    "+minecraft:strider_adult",
+    "+minecraft:strider_unsaddled",
+    "+minecraft:detect_suffocating",
+    "+minecraft:strider_pathing_behaviors"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.16,
+    "lava_movement": 0.32
+   },
+   "families": [
+    "strider",
+    "strider_adult",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:strider",
+     "+minecraft:strider_baby",
+     "+minecraft:detect_suffocating",
+     "+minecraft:strider_pathing_behaviors"
+    ],
+    "attributes": {
+     "health": [
+      20,
+      20
+     ],
+     "movement": 0.16,
+     "lava_movement": 0.32
+    },
+    "baby": true,
+    "families": [
+     "strider",
+     "strider_baby",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:sulfur_cube": {
+   "definitions": [
+    "+minecraft:sulfur_cube",
+    "+minecraft:sulfur_cube_ai",
+    "+minecraft:sulfur_cube_medium",
+    "+minecraft:sulfur_cube_medium_without_block",
+    "+minecraft:sulfur_cube_medium_without_block_can_pickup",
+    "+minecraft:sulfur_cube_without_target"
+   ],
+   "attributes": {
+    "health": [
+     8,
+     8
+    ],
+    "movement": 0.4,
+    "knockback_resistance": [
+     0,
+     1
+    ]
+   },
+   "properties": {
+    "minecraft:sulfur_cube_archetype": {
+     "type": "enum",
+     "value": "none"
+    }
+   },
+   "variant": 2,
+   "families": [
+    "sulfur_cube",
+    "animal",
+    "mob"
+   ]
+  },
+  "minecraft:tadpole": {
+   "definitions": [
+    "+minecraft:tadpole"
+   ],
+   "attributes": {
+    "health": [
+     6,
+     6
+    ],
+    "movement": 0.1,
+    "underwater_movement": 0.1
+   },
+   "baby": true,
+   "families": [
+    "aquatic",
+    "tadpole",
+    "mob"
+   ]
+  },
+  "minecraft:tnt": {
+   "definitions": [
+    "+minecraft:tnt"
+   ],
+   "families": [
+    "tnt",
+    "inanimate"
+   ]
+  },
+  "minecraft:tnt_minecart": {
+   "definitions": [
+    "+minecraft:tnt_minecart",
+    "+minecraft:inactive"
+   ],
+   "families": [
+    "minecart",
+    "inanimate"
+   ]
+  },
+  "minecraft:trader_llama": {
+   "definitions": [
+    "+minecraft:trader_llama",
+    "+minecraft:llama_adult",
+    "+minecraft:llama_wild",
+    "+minecraft:llama_unleashed",
+    "+minecraft:strength_1",
+    "+minecraft:llama_creamy"
+   ],
+   "attributes": {
+    "health": [
+     23,
+     23
+    ],
+    "movement": 0.25,
+    "follow_range": [
+     40,
+     40
+    ]
+   },
+   "variant": 0,
+   "mark_variant": 1,
+   "strength": [
+    1,
+    5
+   ],
+   "families": [
+    "trader_llama",
+    "llama",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable",
+    "minecraft:tamemount"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:trader_llama",
+     "+minecraft:llama_baby",
+     "+minecraft:llama_unleashed",
+     "+minecraft:strength_1",
+     "+minecraft:llama_creamy"
+    ],
+    "attributes": {
+     "health": [
+      23,
+      23
+     ],
+     "movement": 0.25,
+     "follow_range": [
+      40,
+      40
+     ]
+    },
+    "variant": 0,
+    "mark_variant": 1,
+    "baby": true,
+    "strength": [
+     1,
+     5
+    ],
+    "families": [
+     "trader_llama",
+     "llama",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:tropicalfish": {
+   "definitions": [
+    "+minecraft:tropicalfish",
+    "+minecraft:tropicalfish_variant_a",
+    "+minecraft:tropicalfish_variant_pattern_1",
+    "+minecraft:tropicalfish_base_white",
+    "+minecraft:tropicalfish_pattern_white"
+   ],
+   "attributes": {
+    "health": [
+     3,
+     3
+    ],
+    "movement": 0.12,
+    "underwater_movement": 0.12
+   },
+   "variant": 0,
+   "mark_variant": 0,
+   "color": 0,
+   "color2": 0,
+   "families": [
+    "aquatic",
+    "tropicalfish",
+    "fish"
+   ]
+  },
+  "minecraft:turtle": {
+   "definitions": [
+    "+minecraft:turtle",
+    "+minecraft:adult"
+   ],
+   "attributes": {
+    "health": [
+     30,
+     30
+    ],
+    "movement": 0.1,
+    "underwater_movement": 0.12,
+    "follow_range": [
+     1024,
+     2048
+    ]
+   },
+   "families": [
+    "aquatic",
+    "turtle",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:turtle",
+     "+minecraft:baby"
+    ],
+    "attributes": {
+     "health": [
+      30,
+      30
+     ],
+     "movement": 0.1,
+     "underwater_movement": 0.06,
+     "follow_range": [
+      1024,
+      2048
+     ]
+    },
+    "baby": true,
+    "families": [
+     "aquatic",
+     "turtle",
+     "baby_turtle",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:vex": {
+   "definitions": [
+    "+minecraft:vex"
+   ],
+   "attributes": {
+    "health": [
+     14,
+     14
+    ],
+    "movement": 1,
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "families": [
+    "vex",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:villager": {
+   "definitions": [
+    "+minecraft:villager",
+    "+adult",
+    "+librarian",
+    "+behavior_non_peasant"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.5
+   },
+   "variant": 1,
+   "families": [
+    "villager",
+    "librarian",
+    "mob"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:villager",
+     "+baby",
+     "+librarian",
+     "+behavior_non_peasant"
+    ],
+    "attributes": {
+     "health": [
+      20,
+      20
+     ],
+     "movement": 0.5
+    },
+    "variant": 1,
+    "baby": true,
+    "families": [
+     "villager",
+     "librarian",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:villager_v2": {
+   "definitions": [
+    "+minecraft:villager_v2",
+    "+villager_skin_0",
+    "+adult",
+    "+make_and_receive_love",
+    "+farmer",
+    "+behavior_peasant",
+    "+basic_schedule"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.5,
+    "follow_range": [
+     128,
+     2048
+    ]
+   },
+   "variant": 1,
+   "mark_variant": 0,
+   "skin_id": 0,
+   "families": [
+    "villager",
+    "peasant",
+    "farmer",
+    "mob"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:villager_v2",
+     "+villager_skin_0",
+     "+baby",
+     "+child_schedule"
+    ],
+    "attributes": {
+     "health": [
+      20,
+      20
+     ],
+     "movement": 0.5,
+     "follow_range": [
+      128,
+      2048
+     ]
+    },
+    "mark_variant": 0,
+    "skin_id": 0,
+    "baby": true,
+    "families": [
+     "villager",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:vindicator": {
+   "definitions": [
+    "+minecraft:vindicator",
+    "+minecraft:default_targeting"
+   ],
+   "attributes": {
+    "health": [
+     24,
+     24
+    ],
+    "movement": 0.35,
+    "follow_range": [
+     64,
+     2048
+    ],
+    "attack_damage": [
+     8,
+     8
+    ]
+   },
+   "variant": 0,
+   "families": [
+    "vindicator",
+    "monster",
+    "illager",
+    "mob"
+   ]
+  },
+  "minecraft:wandering_trader": {
+   "definitions": [
+    "+minecraft:wandering_trader"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.5
+   },
+   "spawn_entries": [
+    {
+     "timer": 0,
+     "stopped": true
+    }
+   ],
+   "families": [
+    "wandering_trader",
+    "mob"
+   ]
+  },
+  "minecraft:warden": {
+   "definitions": [
+    "+minecraft:warden",
+    "+pushable"
+   ],
+   "attributes": {
+    "health": [
+     500,
+     500
+    ],
+    "movement": 0.3,
+    "follow_range": [
+     30,
+     2048
+    ],
+    "knockback_resistance": [
+     1,
+     1
+    ],
+    "attack_damage": [
+     30,
+     30
+    ]
+   },
+   "families": [
+    "warden",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:wind_charge_projectile": {
+   "definitions": [
+    "+minecraft:wind_charge_projectile"
+   ],
+   "families": [
+    "projectile",
+    "wind_charge",
+    "wind_charge_projectile"
+   ]
+  },
+  "minecraft:witch": {
+   "definitions": [
+    "+minecraft:witch"
+   ],
+   "attributes": {
+    "health": [
+     26,
+     26
+    ],
+    "movement": 0.25,
+    "follow_range": [
+     64,
+     2048
+    ]
+   },
+   "families": [
+    "witch",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:wither": {
+   "definitions": [
+    "+minecraft:wither"
+   ],
+   "attributes": {
+    "health": [
+     600,
+     600
+    ],
+    "movement": 0.25
+   },
+   "families": [
+    "wither",
+    "skeleton",
+    "monster",
+    "undead",
+    "mob"
+   ]
+  },
+  "minecraft:wither_skeleton": {
+   "definitions": [
+    "+minecraft:wither_skeleton"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.25,
+    "attack_damage": [
+     4,
+     4
+    ]
+   },
+   "families": [
+    "wither",
+    "monster",
+    "undead",
+    "skeleton",
+    "mob"
+   ]
+  },
+  "minecraft:wolf": {
+   "definitions": [
+    "+minecraft:wolf",
+    "+minecraft:wolf_adult",
+    "+minecraft:wolf_wild",
+    "+minecraft:wolf_leashable"
+   ],
+   "attributes": {
+    "health": [
+     8,
+     8
+    ],
+    "movement": 0.3,
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "properties": {
+    "minecraft:is_armorable": {
+     "type": "bool",
+     "value": false
+    },
+    "minecraft:has_increased_max_health": {
+     "type": "bool",
+     "value": false
+    },
+    "minecraft:sound_variant": {
+     "type": "enum",
+     "value": "default"
+    },
+    "minecraft:was_upgraded_to_1_21_100": {
+     "type": "bool",
+     "value": true
+    }
+   },
+   "families": [
+    "wolf",
+    "mob"
+   ],
+   "components": [
+    "minecraft:breedable"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:wolf",
+     "+minecraft:wolf_baby",
+     "+minecraft:wolf_wild",
+     "+minecraft:wolf_leashable"
+    ],
+    "attributes": {
+     "health": [
+      8,
+      8
+     ],
+     "movement": 0.3,
+     "attack_damage": [
+      3,
+      3
+     ]
+    },
+    "properties": {
+     "minecraft:is_armorable": {
+      "type": "bool",
+      "value": false
+     },
+     "minecraft:has_increased_max_health": {
+      "type": "bool",
+      "value": false
+     },
+     "minecraft:sound_variant": {
+      "type": "enum",
+      "value": "default"
+     },
+     "minecraft:was_upgraded_to_1_21_100": {
+      "type": "bool",
+      "value": true
+     }
+    },
+    "baby": true,
+    "families": [
+     "wolf",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:xp_bottle": {
+   "definitions": [
+    "+minecraft:xp_bottle"
+   ],
+   "families": [
+    "projectile",
+    "xp_bottle"
+   ]
+  },
+  "minecraft:xp_orb": {
+   "definitions": [
+    "+minecraft:xp_orb"
+   ],
+   "families": [
+    "inanimate"
+   ]
+  },
+  "minecraft:zoglin": {
+   "definitions": [
+    "+minecraft:zoglin",
+    "+zoglin_adult"
+   ],
+   "attributes": {
+    "health": [
+     40,
+     40
+    ],
+    "movement": 0.25,
+    "knockback_resistance": [
+     0.6,
+     1
+    ],
+    "attack_damage": [
+     3,
+     8
+    ]
+   },
+   "families": [
+    "zoglin",
+    "zoglin_adult",
+    "undead",
+    "monster",
+    "mob"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:zoglin",
+     "+zoglin_baby"
+    ],
+    "attributes": {
+     "health": [
+      40,
+      40
+     ],
+     "movement": 0.25,
+     "knockback_resistance": [
+      0.6,
+      1
+     ],
+     "attack_damage": [
+      0.5,
+      0.5
+     ]
+    },
+    "baby": true,
+    "families": [
+     "zoglin",
+     "zoglin_baby",
+     "undead",
+     "monster",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:zombie": {
+   "definitions": [
+    "+minecraft:zombie",
+    "+minecraft:zombie_default",
+    "+minecraft:zombie_adult",
+    "+minecraft:not_on_zombie_horse",
+    "+minecraft:can_have_equipment"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.23,
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "properties": {
+    "minecraft:is_riding_zombie_horse": {
+     "type": "bool",
+     "value": false
+    }
+   },
+   "families": [
+    "zombie",
+    "undead",
+    "monster",
+    "mob"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:zombie",
+     "+minecraft:zombie_default",
+     "+minecraft:zombie_baby",
+     "+minecraft:not_on_zombie_horse",
+     "+minecraft:can_have_equipment"
+    ],
+    "attributes": {
+     "health": [
+      20,
+      20
+     ],
+     "movement": 0.35,
+     "attack_damage": [
+      3,
+      3
+     ]
+    },
+    "properties": {
+     "minecraft:is_riding_zombie_horse": {
+      "type": "bool",
+      "value": false
+     }
+    },
+    "baby": true,
+    "families": [
+     "baby_undead",
+     "zombie",
+     "undead",
+     "monster",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:zombie_horse": {
+   "definitions": [
+    "+minecraft:zombie_horse",
+    "+minecraft:horse_adult",
+    "+minecraft:horse_wild",
+    "+minecraft:horse_can_be_leashed"
+   ],
+   "attributes": {
+    "health": [
+     25,
+     25
+    ],
+    "movement": 0.24,
+    "jump_strength": 0.6
+   },
+   "properties": {
+    "minecraft:was_upgraded_to_1_21_130": {
+     "type": "bool",
+     "value": false
+    }
+   },
+   "families": [
+    "zombiehorse",
+    "undead",
+    "mob"
+   ],
+   "components": [
+    "minecraft:tamemount",
+    "minecraft:equippable"
+   ]
+  },
+  "minecraft:zombie_nautilus": {
+   "definitions": [
+    "+minecraft:zombie_nautilus",
+    "+minecraft:zombie_nautilus_wild",
+    "+minecraft:zombie_nautilus_wild_unmounted",
+    "+minecraft:zombie_nautilus_wild_calm",
+    "+minecraft:zombie_nautilus_leashable",
+    "+minecraft:zombie_nautilus_tameable",
+    "+minecraft:zombie_nautilus_ai_controlled"
+   ],
+   "attributes": {
+    "health": [
+     15,
+     15
+    ],
+    "movement": 0.15,
+    "underwater_movement": 0.1,
+    "knockback_resistance": [
+     0.3,
+     1
+    ],
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "properties": {
+    "minecraft:variant": {
+     "type": "enum",
+     "value": "default"
+    }
+   },
+   "families": [
+    "aquatic",
+    "zombie_nautilus",
+    "undead",
+    "monster",
+    "mob"
+   ]
+  },
+  "minecraft:zombie_pigman": {
+   "definitions": [
+    "+minecraft:zombie_pigman",
+    "+minecraft:pig_zombie_adult",
+    "+minecraft:pig_zombie_calm"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.23,
+    "attack_damage": [
+     5,
+     5
+    ]
+   },
+   "families": [
+    "zombie_pigman",
+    "undead",
+    "monster",
+    "mob"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:zombie_pigman",
+     "+minecraft:pig_zombie_baby",
+     "+minecraft:pig_zombie_calm"
+    ],
+    "attributes": {
+     "health": [
+      20,
+      20
+     ],
+     "movement": 0.23,
+     "attack_damage": [
+      5,
+      5
+     ]
+    },
+    "baby": true,
+    "families": [
+     "baby_undead",
+     "baby_zombie_pigman",
+     "undead",
+     "monster",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:zombie_villager": {
+   "definitions": [
+    "+minecraft:zombie_villager",
+    "+adult",
+    "+librarian"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.23,
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "variant": 1,
+   "families": [
+    "librarian",
+    "zombie_villager",
+    "zombie",
+    "undead",
+    "monster",
+    "mob"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:zombie_villager",
+     "+baby",
+     "+librarian"
+    ],
+    "attributes": {
+     "health": [
+      20,
+      20
+     ],
+     "movement": 0.35,
+     "attack_damage": [
+      3,
+      3
+     ]
+    },
+    "variant": 1,
+    "baby": true,
+    "families": [
+     "librarian",
+     "zombie_villager",
+     "zombie",
+     "undead",
+     "monster",
+     "mob"
+    ]
+   }
+  },
+  "minecraft:zombie_villager_v2": {
+   "definitions": [
+    "+minecraft:zombie_villager_v2",
+    "+adult",
+    "+unskilled",
+    "+villager_skin_0"
+   ],
+   "attributes": {
+    "health": [
+     20,
+     20
+    ],
+    "movement": 0.23,
+    "attack_damage": [
+     3,
+     3
+    ]
+   },
+   "variant": 0,
+   "skin_id": 0,
+   "families": [
+    "unskilled",
+    "zombie",
+    "zombie_villager",
+    "undead",
+    "monster",
+    "mob"
+   ],
+   "young": {
+    "definitions": [
+     "+minecraft:zombie_villager_v2",
+     "+baby",
+     "+villager_skin_0"
+    ],
+    "attributes": {
+     "health": [
+      20,
+      20
+     ],
+     "movement": 0.35,
+     "attack_damage": [
+      3,
+      3
+     ]
+    },
+    "skin_id": 0,
+    "baby": true,
+    "families": [
+     "baby_undead",
+     "zombie",
+     "zombie_villager",
+     "undead",
+     "monster",
+     "mob"
+    ]
+   }
+  }
+ }
+}

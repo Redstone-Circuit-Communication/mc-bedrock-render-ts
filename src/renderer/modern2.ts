@@ -427,26 +427,6 @@ function copperGolemStatue(c: BlockContext): BlockModel {
 
 // ------------------------------------------------------------ copper chests ---
 
-function copperChest(c: BlockContext): BlockModel {
-  const facing = cardinal(c.states) ?? 'south';
-  const age = /(exposed|weathered|oxidized)/.exec(c.name)?.[1] ?? '';
-  const entityTex = `@textures/entity/chest/${['copper', age].filter(Boolean).join('_')}`;
-  const alt = `@textures/entity/chest/copper${age ? '_' + age : ''}`;
-  const tex = c.resources.hasTexture(entityTex) ? entityTex : c.resources.hasTexture(alt) ? alt : '';
-  const block = tx(c, age ? `${age}_copper` : 'copper_block', 'copper_block');
-  const rot = (yawOf(facing) + 180) % 360;
-  if (!tex) return { elements: [box([1, 0, 1], [15, 14, 15], six(block))], rotY: rot, static: true };
-  const rect = (x: number, y: number, rw: number, rh: number): FaceSpec => ({ tex, uv: [x * 16 / 64, y * 16 / 64, (x + rw) * 16 / 64, (y + rh) * 16 / 64], cull: false });
-  const eb = (u: number, v: number, from: V3, to: V3, grow = 0): Element => {
-    const w = to[0] - from[0], h = to[1] - from[1], d = to[2] - from[2];
-    return box([from[0] - grow, from[1] - grow, from[2] - grow], [to[0] + grow, to[1] + grow, to[2] + grow], {
-      south: rect(u + d, v + d, w, h), north: rect(u + 2 * d + w, v + d, w, h), east: rect(u + d + w, v + d, d, h), west: rect(u, v + d, d, h),
-      up: rect(u + d, v, w, d), down: rect(u + d + w, v, w, d),
-    });
-  };
-  return { elements: [eb(0, 19, [1, 0, 1], [15, 10, 15]), eb(0, 0, [1, 9, 1], [15, 14, 15], 0.01), eb(0, 0, [7, 7, 15], [9, 11, 16])], rotY: rot, static: true };
-}
-
 function frogSpawn(c: BlockContext): BlockModel {
   const t = tx(c, 'frogspawn', 'frog_spawn');
   return { elements: [box([0, 0.2, 0], [16, 0.2, 16], { up: { tex: t, uv: [0, 0, 16, 16], cull: false }, down: { tex: t, uv: [0, 0, 16, 16], cull: false } }, { shade: false })], static: true };
@@ -577,7 +557,6 @@ export function registerModern2(reg: BlockRegistry): void {
     return { ...cubeModel({ up: top, down: bottom, north: front, south: side, west: side, east: side }, { static: true }), rotY: yawOf(dir) };
   });
   reg.register('noteblock', (c) => cubeModel(tx(c, 'noteblock', 'note_block'), { static: true }));
-  reg.registerPattern(/^(waxed_)?(exposed_|weathered_|oxidized_)?copper_chest$/, copperChest);
   reg.register('frog_spawn', frogSpawn);
   reg.register('frogspawn', frogSpawn);
   reg.registerPattern(/^(double_)?stone_block_slab[234]?$/, legacySlab);

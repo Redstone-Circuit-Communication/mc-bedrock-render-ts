@@ -259,14 +259,20 @@ function chestHalf(c: BlockContext, facing: Dir): 'lead' | 'rest' | null {
   return same(rx, rz) ? 'lead' : null;
 }
 
+/** Copper chests (waxed or not, any oxidation): the chest model with the copper textures of their oxidation stage. */
+const COPPER_CHEST = /^(?:waxed_)?(?:(exposed|weathered|oxidized)_)?copper_chest$/;
+
 function chest(c: BlockContext): BlockModel {
   const facing = chestFacing(c.states as Record<string, unknown>);
-  const kind = c.name.startsWith('ender') ? 'ender' : c.name.startsWith('trapped') ? 'trapped' : 'normal';
-  const tex = `@textures/entity/chest/${kind}`;
+  const copper = COPPER_CHEST.exec(c.name);
+  const kind = copper ? 'copper' : c.name.startsWith('ender') ? 'ender' : c.name.startsWith('trapped') ? 'trapped' : 'normal';
+  // Bedrock names the unoxidised copper chest `copper_default` (Java packs: `copper`); the others `copper_<stage>`
+  const copperTex = copper && (copper[1] ? `copper_${copper[1]}` : ['copper_default', 'copper'].find((n) => c.resources.hasTexture(`@textures/entity/chest/${n}`)) ?? 'copper_default');
+  const tex = `@textures/entity/chest/${copperTex || kind}`;
   // a chest's model depends on its neighbours and block entity (which half of a large chest it is): never cached per palette entry
   const half = chestHalf(c, facing);
   if (half === 'rest') return { elements: [], static: false };
-  const doubleTex = `@textures/entity/chest/${kind === 'trapped' ? 'trapped_double' : 'double_normal'}`;
+  const doubleTex = `@textures/entity/chest/${copperTex ? `${copperTex}_double` : kind === 'trapped' ? 'trapped_double' : 'double_normal'}`;
   if (half === 'lead' && c.resources.hasTexture(doubleTex)) {
     // the large chest (128×64 texture, the classic model): body 30×10×14, lid 30×5×14, latch in the middle of the front
     return {
@@ -280,7 +286,7 @@ function chest(c: BlockContext): BlockModel {
   }
   if (!c.resources.hasTexture(tex)) {
     // no entity texture in the pack: use the block-style textures that the inventory icon uses
-    const p = kind === 'ender' ? 'ender_chest' : 'chest';
+    const p = copper ? `${copper[1] ? copper[1] + '_' : ''}copper_chest` : kind === 'ender' ? 'ender_chest' : 'chest';
     const front = kind === 'trapped' ? 'trapped_chest_inventory_front' : `${p}_inventory_front`;
     const t = (key: string) => firstTexture(c.resources, key);
     return {
@@ -312,5 +318,6 @@ export function registerSpecial(reg: BlockRegistry): void {
   reg.register('scaffolding', scaffolding);
   reg.register('lectern', lectern);
   reg.registerPattern(/^(trapped_|ender_)?chest$/, chest);
+  reg.registerPattern(COPPER_CHEST, chest);
 }
 

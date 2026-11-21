@@ -172,6 +172,7 @@ pnpm build:example      # example/dist, as deployed to GitHub Pages
 pnpm build:sdk          # sdk/mc-bedrock-render/<version>/ for runtime loading
 pnpm pack:resources <resource_packs folder or zip> <out.zip>
 pnpm data:import-holoprint <neoHoloprintDB folder>
+pnpm data:entities         # entity spawn data from Mojang's behaviour pack (scripts/data/bedrock-entity-spawn.json)
 pnpm schematics:coverage   # regenerate the every-block / every-entity example structures
 ```
 

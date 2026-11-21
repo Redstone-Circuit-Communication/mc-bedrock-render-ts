@@ -467,6 +467,15 @@ function healthOf(e: NbtCompound): Record<string, number> {
  * other tools often store them relative to the structure instead; when more entities fall inside the structure's box
  * without the subtraction than with it, the positions are taken as they are.
  */
+/**
+ * How far above the surface it stands on the game saves an entity's position: 0.35 for a minecart (68 game-saved minecarts
+ * agree). The model is drawn from the surface; drawn from the saved position, minecarts floated over their rails.
+ */
+const SAVED_Y_OFFSET: Record<string, number> = {
+  'minecraft:minecart': 0.35, 'minecraft:chest_minecart': 0.35, 'minecraft:hopper_minecart': 0.35, 'minecraft:tnt_minecart': 0.35,
+  'minecraft:command_block_minecart': 0.35,
+};
+
 export function entityInstancesFromStructure(structure: McStructure): EntityInstance[] {
   type Raw = { e: NbtCompound; id: string; pos: V3 };
   const raws: Raw[] = [];
@@ -474,7 +483,7 @@ export function entityInstancesFromStructure(structure: McStructure): EntityInst
     const id = String(e.identifier ?? e.id ?? '');
     const pos = e.Pos;
     if (!id || !Array.isArray(pos) || pos.length < 3) continue;
-    raws.push({ e, id, pos: [num(pos[0]), num(pos[1]), num(pos[2])] });
+    raws.push({ e, id, pos: [num(pos[0]), num(pos[1]) - (SAVED_Y_OFFSET[id.toLowerCase()] ?? 0), num(pos[2])] });
   }
   const inside = (p: V3) => p.every((v, a) => v >= -2 && v <= structure.size[a] + 2);
   const shifted = (r: Raw): V3 => [r.pos[0] - structure.origin[0], r.pos[1] - structure.origin[1], r.pos[2] - structure.origin[2]];

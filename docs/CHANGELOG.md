@@ -2,6 +2,51 @@
 
 ## Open-source release (unreleased)
 
+- **Mobs of the sample structures ran several times too fast and all had the same health in the game**: a structure is
+  loaded without running the spawn event, and a mob's attributes are read only from its saved `Attributes` list, which
+  the samples did not write; the engine's defaults were used instead. Every entity is now written in the state its spawn
+  event leaves it in, taken from Mojang's behaviour pack of the same release by `pnpm data:entities`
+  (`scripts/extract-entity-data.ts` → `scripts/data/bedrock-entity-spawn.json`): the attribute list (health, movement,
+  swimming and lava speed, follow range, knockback resistance, attack damage, horse jump strength) in the game's order
+  and bounds, the component groups the spawn event adds (`zombie_adult`, `chicken_adult`, `can_ride_default` …; without
+  them breeding, loot and attacks were missing), entity properties, variants and spawner timers. The event is resolved
+  the same way every time: the likeliest branch (adults preferred), filters for normal difficulty in a plains biome by
+  day, ranges at their middle. Skeletons, pillagers, vindicators, piglins and the like hold their usual weapon.
+  `tests/entity-nbt.test.ts` compares the result with a structure the game saved (1.26.51): the same fields and tag
+  types, the same attributes, bounds and base values for all eight mob types in it, the same component groups.
+- **Extended pistons** are saved by the game with `isMovable` 0; the sample structures wrote 1. Checked against
+  game-saved pistons facing all six ways, retracted and extended (same fields, types and values).
+- The every-entity example's ghastling is written in the state its spawn event gives a baby.
+- `tools/entity-test-structures.ts` writes structures for checking entities in the game: every entity of the every-entity
+  example, by kind, in closed glass pens (water mobs in water), so daylight and wandering do not get in the way.
+- `BuildOptions.blockAt` / `liquidAt` take `StateInput` states (booleans included), as `buildMcStructure` already wrote
+  them; the type only allowed `StateValue`.
+- **Copper chests were drawn as plain copper cubes**: the renderer looked for the texture `entity/chest/copper`, which
+  Bedrock's pack names `copper_default` (the oxidised ones, `copper_exposed` …, were found). Copper chests now use the
+  chest model of other chests — body, lid and latch, and two side by side drawn as one large chest with the `_double`
+  texture — and, without the entity texture, their own `copper_chest_inventory_*` textures rather than copper blocks.
+  `tests/copper-chest.test.ts`.
+- **The examples stay as drawn once the game loads them.** The game updates blocks as it places a structure; the renderer
+  draws them as written. The every-block example now places each block with what it needs
+  (`scripts/lib/block-survival.ts`): plants on grass, crops on farmland, cacti and dead bushes on sand, mushrooms on
+  mycelium, fungi on nylium, nether wart and bubble columns on soul sand, chorus on end stone, sugar cane on sand next
+  to water, hanging plants and hanging signs under a block, wall signs, banners and ladders against one, tripwire hooks
+  and cocoa between two; corals, kelp, seagrass and sea pickles stand in water; water, lava, fire and frosted ice are
+  walled in with stone; leaves are persistent; buttons, torches, heads, frames and lichens sit on the floor; the nether
+  portal is a whole 2 × 3 portal in its frame; lit furnaces have burn time; powered repeaters and comparators, the lit
+  lamp, the unlit redstone torch and redstone dust have redstone blocks to power them (the structure is one block taller
+  for the portal). The redstone and inspection examples power what they show powered, write momentary states (a pressed
+  button, a pressure plate, an observer's pulse) at rest, keep furnaces and the brewing stand from starting on their own,
+  and give the tripwire hook a block to hang on. The entity example's paintings hang on a wall. `tests/block-survival.test.ts`
+  checks the every-block example. What the game still changes on its own: lit redstone ore goes dark, eggs hatch,
+  budding amethyst grows, copper oxidises, undead burn in daylight.
+- Scenes can put water into a block's liquid layer (`Scene.water`), as the game stores a waterlogged block.
+- **The redstone example's extended pistons are powered**: each stands on a redstone block, as a game-saved upward piston
+  does. Unpowered, the game retracted them as soon as the structure was loaded, while the renderer drew them extended.
+  Scenes can now put blocks into the floor layer (`scripts/lib/scene.ts`).
+- `BuildOptions.formatVersion: 2` writes the layout the game writes since 1.26 (each layer of `block_indices` an
+  IntArray, no liquid layer when there is no liquid; checked against a game-saved structure). The default stays 1; the
+  parser reads both.
 - **Official resources only**: the example, the tests and the development scripts load Mojang's official resource pack
   (github.com/Mojang/bedrock-samples) instead of a pack kept in the repository. `RemoteResourcePack` downloads the files a
   structure needs from a CDN, with mirrors and retries, and waits for downloads that another caller already started.
@@ -42,9 +87,38 @@
   Quads are now wound around their outward normal.
 - Screen-space AO is a light touch now (radius 1, intensity 2; orthographic 0.6 / 1.5): the corners are darkened by the
   mesh's smooth-lighting occlusion, and the old numbers turned a whole structure seen from afar into dark smudges.
-- The every-entity example has no grass floor; the entities stand on the viewer's grid.
+- The every-entity example has a stone floor and its entities stand on it (y = 1). Loaded in the game without a floor
+  they fell into whatever was below; for a while they were written at y = 0, inside the floor, and suffocated.
 - The example's Vite base comes from `EXAMPLE_BASE` (relative by default), and the example looks up its structures, packs
   and icons under it.
+- **The every-block and every-entity examples had no block states**: a block written without states drew several of its
+  variants at once. Every block of the sample structures now carries all of its states, at the game's defaults from
+  Mojang's block metadata for the same release (`metadata/vanilladata_modules/mojang-blocks.json`, the first value of
+  each state), with the scenes' own states on top; directions written in words are stored the way each block keeps
+  them. The redstone and inspection examples look exactly as before.
+- `buildMcStructure` writes state values with the game's tag types: a boolean as a byte, a whole number as an int, a
+  word as a string (every number was a byte, which the game misreads for `facing_direction`, `redstone_signal` and
+  the like). `StateInput` is the type of a value to write.
+- **The every-entity example crashed the game when loaded**: it held entities the game cannot create from saved data (the
+  player, the education agent and camera, projectiles, the `bed` / `skull` / `decorated_pot` client renderers), each
+  written with nothing but its id, position, rotation and a small unique id. The sample structures now hold only
+  entities the game can load (summonable per Mojang's behaviour pack of the same release, kept in
+  `scripts/data/bedrock-entity-kinds.json`, plus v2 villagers, paintings, dropped items and falling blocks), written
+  with the fields and defaults of game-saved structures: `definitions`, `internalComponents`, the flags, equipment slots
+  for mobs, full container inventories and unique ids in the game's negative range. Compared with the entities of 32
+  game-saved structures, no field has a different type. The generator refuses an entity the game cannot load.
+- **Pistons, dispensers and droppers of the sample structures faced down in the game**: the game writes a block entity
+  for every such block (and for hoppers, comparators, chests, furnaces …), and a block saved without one was reset to its
+  default state when loaded. The sample scenes now write those block entities with the game's fields (an extended piston
+  with State 2 and Progress 1); compared with the block entities of 215 game-saved structures, the fields and types are
+  the same. The previously published files also stored those directions under the wrong state names.
+- **Minecarts**: the game saves a minecart's position 0.35 above the surface it stands on. The sample structures now do
+  (their minecarts sank into the floor and fell through), and the renderer draws minecarts from the surface (minecarts
+  of game-saved structures floated over their rails).
+- The code that writes the sample structures the game's way is in `scripts/lib/scene.ts`, shared by the generator and
+  tools that write test structures.
+- Checked against 215 structures from redstonearchive.top (every Bedrock work, closed and open): all parse and mesh with
+  no unknown block, missing texture or undrawn entity.
 - **Hoppers had no top**: HoloPrint's hopper top is a zero-height plane, of which only the down face is kept, and the data
   set that face to `none`. A data correction gives it the top texture (see `docs/HOLOPRINT.md`).
 - **The ender dragon faced backwards**: its saved yaw points half a turn from the way its model faces; it now faces like

@@ -160,6 +160,7 @@ pnpm build:example      # example/dist，和部署到 GitHub Pages 的相同
 pnpm build:sdk          # sdk/mc-bedrock-render/<版本>/，供运行时加载
 pnpm pack:resources <resource_packs 文件夹或 zip> <out.zip>
 pnpm data:import-holoprint <neoHoloprintDB 文件夹>
+pnpm data:entities         # 从 Mojang 行为包生成实体的生成状态数据（scripts/data/bedrock-entity-spawn.json）
 pnpm schematics:coverage   # 重新生成「全方块」「全实体」两个示例结构
 ```
 

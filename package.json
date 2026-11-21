@@ -50,6 +50,7 @@
     "build:example": "vite build example --config example/vite.config.js",
     "pack:resources": "tsx scripts/pack-resources.ts",
     "schematics:coverage": "tsx scripts/generate-coverage-structures.ts",
+    "data:entities": "tsx scripts/extract-entity-data.ts",
     "pack:list-official": "tsx scripts/list-official-pack.ts"
   },
   "sideEffects": false,

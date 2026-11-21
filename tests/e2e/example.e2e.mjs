@@ -81,9 +81,10 @@ try {
 	await page.selectOption('#demo-select', './schematics/all-entities.mcstructure');
 	await waitScene('all-entities');
 	const ents = await page.locator('#entity-select option').count();
-	assert.ok(ents > 120, `all-entities lists ${ents} entities`);
+	// only entities the game can load from a structure (no player, projectile or client-only definition)
+	assert.ok(ents > 100, `all-entities lists ${ents} entities`);
 	const status = await page.evaluate(() => { const m = window.mcStudio.renderer.schematicManager.getAllSchematics()[0].mesh; return { drawn: m.stats.entities, undrawn: m.stats.undrawnEntities, missing: m.stats.missingEntityTextures.length }; });
-	assert.ok(status.drawn >= 120 && status.missing === 0, JSON.stringify(status));
+	assert.ok(status.drawn >= 100 && status.undrawn.length === 0 && status.missing === 0, JSON.stringify(status));
 	await page.evaluate(() => window.mcStudio.views.align([0, 1, 0]));
 	await shot('5-all-entities');
 

@@ -1,215 +1,215 @@
 index,name,id,x,y,z,state,note
-1,Acacia Button,minecraft:acacia_button,1,1,1,,
-2,Acacia Door,minecraft:acacia_door,3,1,1,,upper half at y=2
-3,Acacia Double Slab,minecraft:acacia_double_slab,5,1,1,,
-4,Acacia Fence,minecraft:acacia_fence,7,1,1,,
-5,Acacia Fence Gate,minecraft:acacia_fence_gate,9,1,1,,
-6,Acacia Hanging Sign,minecraft:acacia_hanging_sign,11,1,1,,
-7,Acacia Leaves,minecraft:acacia_leaves,13,1,1,,
-8,Acacia Log,minecraft:acacia_log,15,1,1,,
+1,Acacia Button,minecraft:acacia_button,1,1,1,"button_pressed_bit=false,facing_direction=1",default test state
+2,Acacia Door,minecraft:acacia_door,3,1,1,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+3,Acacia Double Slab,minecraft:acacia_double_slab,5,1,1,minecraft:vertical_half=bottom,
+4,Acacia Fence,minecraft:acacia_fence,7,1,1,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+5,Acacia Fence Gate,minecraft:acacia_fence_gate,9,1,1,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+6,Acacia Hanging Sign,minecraft:acacia_hanging_sign,11,1,1,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
+7,Acacia Leaves,minecraft:acacia_leaves,13,1,1,"persistent_bit=true,update_bit=false",default test state
+8,Acacia Log,minecraft:acacia_log,15,1,1,pillar_axis=y,
 9,Acacia Planks,minecraft:acacia_planks,17,1,1,,
-10,Acacia Pressure Plate,minecraft:acacia_pressure_plate,19,1,1,,
-11,Acacia Sapling,minecraft:acacia_sapling,21,1,1,,
-12,Acacia Shelf,minecraft:acacia_shelf,23,1,1,,
-13,Acacia Slab,minecraft:acacia_slab,25,1,1,,
-14,Acacia Stairs,minecraft:acacia_stairs,27,1,1,"weirdo_direction=0,upside_down_bit=0",default test state
-15,Acacia Standing Sign,minecraft:acacia_standing_sign,29,1,1,,
-16,Acacia Trapdoor,minecraft:acacia_trapdoor,31,1,1,,
-17,Acacia Wall Sign,minecraft:acacia_wall_sign,33,1,1,,
-18,Acacia Wood,minecraft:acacia_wood,35,1,1,,
-19,Activator Rail,minecraft:activator_rail,37,1,1,,
-20,Allium,minecraft:allium,39,1,1,,
+10,Acacia Pressure Plate,minecraft:acacia_pressure_plate,19,1,1,redstone_signal=0,
+11,Acacia Sapling,minecraft:acacia_sapling,21,1,1,age_bit=false,on grass_block
+12,Acacia Shelf,minecraft:acacia_shelf,23,1,1,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+13,Acacia Slab,minecraft:acacia_slab,25,1,1,minecraft:vertical_half=bottom,
+14,Acacia Stairs,minecraft:acacia_stairs,27,1,1,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+15,Acacia Standing Sign,minecraft:acacia_standing_sign,29,1,1,ground_sign_direction=0,
+16,Acacia Trapdoor,minecraft:acacia_trapdoor,31,1,1,"direction=0,open_bit=false,upside_down_bit=false",
+17,Acacia Wall Sign,minecraft:acacia_wall_sign,33,1,1,facing_direction=2,"facing north, on the block to the south"
+18,Acacia Wood,minecraft:acacia_wood,35,1,1,pillar_axis=y,
+19,Activator Rail,minecraft:activator_rail,37,1,1,"rail_data_bit=false,rail_direction=0",
+20,Allium,minecraft:allium,39,1,1,,on grass_block
 21,Allow,minecraft:allow,41,1,1,,
 22,Amethyst Block,minecraft:amethyst_block,43,1,1,,
-23,Amethyst Cluster,minecraft:amethyst_cluster,45,1,1,,
+23,Amethyst Cluster,minecraft:amethyst_cluster,45,1,1,minecraft:block_face=down,
 24,Ancient Debris,minecraft:ancient_debris,47,1,1,,
 25,Andesite,minecraft:andesite,49,1,1,,
-26,Andesite Double Slab,minecraft:andesite_double_slab,51,1,1,,
-27,Andesite Slab,minecraft:andesite_slab,53,1,1,,
-28,Andesite Stairs,minecraft:andesite_stairs,55,1,1,"weirdo_direction=0,upside_down_bit=0",default test state
-29,Andesite Wall,minecraft:andesite_wall,57,1,1,,
-30,Anvil,minecraft:anvil,59,1,1,,
-31,Azalea,minecraft:azalea,61,1,1,,
-32,Azalea Leaves,minecraft:azalea_leaves,63,1,1,,
-33,Azalea Leaves Flowered,minecraft:azalea_leaves_flowered,65,1,1,,
-34,Azure Bluet,minecraft:azure_bluet,67,1,1,,
-35,Bamboo,minecraft:bamboo,69,1,1,,
-36,Bamboo Block,minecraft:bamboo_block,71,1,1,,
-37,Bamboo Button,minecraft:bamboo_button,73,1,1,,
-38,Bamboo Door,minecraft:bamboo_door,75,1,1,,upper half at y=2
-39,Bamboo Double Slab,minecraft:bamboo_double_slab,77,1,1,,
-40,Bamboo Fence,minecraft:bamboo_fence,79,1,1,,
-41,Bamboo Fence Gate,minecraft:bamboo_fence_gate,81,1,1,,
-42,Bamboo Hanging Sign,minecraft:bamboo_hanging_sign,83,1,1,,
+26,Andesite Double Slab,minecraft:andesite_double_slab,51,1,1,minecraft:vertical_half=bottom,
+27,Andesite Slab,minecraft:andesite_slab,53,1,1,minecraft:vertical_half=bottom,
+28,Andesite Stairs,minecraft:andesite_stairs,55,1,1,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+29,Andesite Wall,minecraft:andesite_wall,57,1,1,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+30,Anvil,minecraft:anvil,59,1,1,minecraft:cardinal_direction=south,
+31,Azalea,minecraft:azalea,61,1,1,,on grass_block
+32,Azalea Leaves,minecraft:azalea_leaves,63,1,1,"persistent_bit=true,update_bit=false",default test state
+33,Azalea Leaves Flowered,minecraft:azalea_leaves_flowered,65,1,1,"persistent_bit=true,update_bit=false",default test state
+34,Azure Bluet,minecraft:azure_bluet,67,1,1,,on grass_block
+35,Bamboo,minecraft:bamboo,69,1,1,"age_bit=false,bamboo_leaf_size=no_leaves,bamboo_stalk_thickness=thin",on grass_block
+36,Bamboo Block,minecraft:bamboo_block,71,1,1,pillar_axis=y,
+37,Bamboo Button,minecraft:bamboo_button,73,1,1,"button_pressed_bit=false,facing_direction=1",default test state
+38,Bamboo Door,minecraft:bamboo_door,75,1,1,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+39,Bamboo Double Slab,minecraft:bamboo_double_slab,77,1,1,minecraft:vertical_half=bottom,
+40,Bamboo Fence,minecraft:bamboo_fence,79,1,1,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+41,Bamboo Fence Gate,minecraft:bamboo_fence_gate,81,1,1,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+42,Bamboo Hanging Sign,minecraft:bamboo_hanging_sign,83,1,1,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
 43,Bamboo Mosaic,minecraft:bamboo_mosaic,85,1,1,,
-44,Bamboo Mosaic Double Slab,minecraft:bamboo_mosaic_double_slab,87,1,1,,
-45,Bamboo Mosaic Slab,minecraft:bamboo_mosaic_slab,1,1,4,,
-46,Bamboo Mosaic Stairs,minecraft:bamboo_mosaic_stairs,3,1,4,"weirdo_direction=0,upside_down_bit=0",default test state
+44,Bamboo Mosaic Double Slab,minecraft:bamboo_mosaic_double_slab,87,1,1,minecraft:vertical_half=bottom,
+45,Bamboo Mosaic Slab,minecraft:bamboo_mosaic_slab,1,1,4,minecraft:vertical_half=bottom,
+46,Bamboo Mosaic Stairs,minecraft:bamboo_mosaic_stairs,3,1,4,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 47,Bamboo Planks,minecraft:bamboo_planks,5,1,4,,
-48,Bamboo Pressure Plate,minecraft:bamboo_pressure_plate,7,1,4,,
-49,Bamboo Sapling,minecraft:bamboo_sapling,9,1,4,,
-50,Bamboo Shelf,minecraft:bamboo_shelf,11,1,4,,
-51,Bamboo Slab,minecraft:bamboo_slab,13,1,4,,
-52,Bamboo Stairs,minecraft:bamboo_stairs,15,1,4,"weirdo_direction=0,upside_down_bit=0",default test state
-53,Bamboo Standing Sign,minecraft:bamboo_standing_sign,17,1,4,,
-54,Bamboo Trapdoor,minecraft:bamboo_trapdoor,19,1,4,,
-55,Bamboo Wall Sign,minecraft:bamboo_wall_sign,21,1,4,,
-56,Barrel,minecraft:barrel,23,1,4,,
+48,Bamboo Pressure Plate,minecraft:bamboo_pressure_plate,7,1,4,redstone_signal=0,
+49,Bamboo Sapling,minecraft:bamboo_sapling,9,1,4,age_bit=false,on grass_block
+50,Bamboo Shelf,minecraft:bamboo_shelf,11,1,4,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+51,Bamboo Slab,minecraft:bamboo_slab,13,1,4,minecraft:vertical_half=bottom,
+52,Bamboo Stairs,minecraft:bamboo_stairs,15,1,4,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+53,Bamboo Standing Sign,minecraft:bamboo_standing_sign,17,1,4,ground_sign_direction=0,
+54,Bamboo Trapdoor,minecraft:bamboo_trapdoor,19,1,4,"direction=0,open_bit=false,upside_down_bit=false",
+55,Bamboo Wall Sign,minecraft:bamboo_wall_sign,21,1,4,facing_direction=2,"facing north, on the block to the south"
+56,Barrel,minecraft:barrel,23,1,4,"facing_direction=0,open_bit=false",
 57,Barrier,minecraft:barrier,25,1,4,,
-58,Basalt,minecraft:basalt,27,1,4,,
+58,Basalt,minecraft:basalt,27,1,4,pillar_axis=y,
 59,Beacon,minecraft:beacon,29,1,4,,
-60,Bed,minecraft:bed,31,1,4,,
-61,Bedrock,minecraft:bedrock,33,1,4,,
-62,Bee Nest,minecraft:bee_nest,35,1,4,,
-63,Beehive,minecraft:beehive,37,1,4,,
-64,Beetroot,minecraft:beetroot,39,1,4,,
-65,Bell,minecraft:bell,41,1,4,,
-66,Big Dripleaf,minecraft:big_dripleaf,43,1,4,,
-67,Birch Button,minecraft:birch_button,45,1,4,,
-68,Birch Door,minecraft:birch_door,47,1,4,,upper half at y=2
-69,Birch Double Slab,minecraft:birch_double_slab,49,1,4,,
-70,Birch Fence,minecraft:birch_fence,51,1,4,,
-71,Birch Fence Gate,minecraft:birch_fence_gate,53,1,4,,
-72,Birch Hanging Sign,minecraft:birch_hanging_sign,55,1,4,,
-73,Birch Leaves,minecraft:birch_leaves,57,1,4,,
-74,Birch Log,minecraft:birch_log,59,1,4,,
+60,Bed,minecraft:bed,31,1,4,"direction=0,head_piece_bit=false,occupied_bit=false",
+61,Bedrock,minecraft:bedrock,33,1,4,infiniburn_bit=false,
+62,Bee Nest,minecraft:bee_nest,35,1,4,"direction=0,honey_level=0",
+63,Beehive,minecraft:beehive,37,1,4,"direction=0,honey_level=0",
+64,Beetroot,minecraft:beetroot,39,1,4,growth=0,on farmland
+65,Bell,minecraft:bell,41,1,4,"attachment=standing,direction=0,toggle_bit=false",
+66,Big Dripleaf,minecraft:big_dripleaf,43,1,4,"big_dripleaf_head=true,big_dripleaf_tilt=none,minecraft:cardinal_direction=south",default test state; on grass_block
+67,Birch Button,minecraft:birch_button,45,1,4,"button_pressed_bit=false,facing_direction=1",default test state
+68,Birch Door,minecraft:birch_door,47,1,4,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+69,Birch Double Slab,minecraft:birch_double_slab,49,1,4,minecraft:vertical_half=bottom,
+70,Birch Fence,minecraft:birch_fence,51,1,4,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+71,Birch Fence Gate,minecraft:birch_fence_gate,53,1,4,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+72,Birch Hanging Sign,minecraft:birch_hanging_sign,55,1,4,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
+73,Birch Leaves,minecraft:birch_leaves,57,1,4,"persistent_bit=true,update_bit=false",default test state
+74,Birch Log,minecraft:birch_log,59,1,4,pillar_axis=y,
 75,Birch Planks,minecraft:birch_planks,61,1,4,,
-76,Birch Pressure Plate,minecraft:birch_pressure_plate,63,1,4,,
-77,Birch Sapling,minecraft:birch_sapling,65,1,4,,
-78,Birch Shelf,minecraft:birch_shelf,67,1,4,,
-79,Birch Slab,minecraft:birch_slab,69,1,4,,
-80,Birch Stairs,minecraft:birch_stairs,71,1,4,"weirdo_direction=0,upside_down_bit=0",default test state
-81,Birch Standing Sign,minecraft:birch_standing_sign,73,1,4,,
-82,Birch Trapdoor,minecraft:birch_trapdoor,75,1,4,,
-83,Birch Wall Sign,minecraft:birch_wall_sign,77,1,4,,
-84,Birch Wood,minecraft:birch_wood,79,1,4,,
-85,Black Candle,minecraft:black_candle,81,1,4,,
-86,Black Candle Cake,minecraft:black_candle_cake,83,1,4,,
+76,Birch Pressure Plate,minecraft:birch_pressure_plate,63,1,4,redstone_signal=0,
+77,Birch Sapling,minecraft:birch_sapling,65,1,4,age_bit=false,on grass_block
+78,Birch Shelf,minecraft:birch_shelf,67,1,4,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+79,Birch Slab,minecraft:birch_slab,69,1,4,minecraft:vertical_half=bottom,
+80,Birch Stairs,minecraft:birch_stairs,71,1,4,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+81,Birch Standing Sign,minecraft:birch_standing_sign,73,1,4,ground_sign_direction=0,
+82,Birch Trapdoor,minecraft:birch_trapdoor,75,1,4,"direction=0,open_bit=false,upside_down_bit=false",
+83,Birch Wall Sign,minecraft:birch_wall_sign,77,1,4,facing_direction=2,"facing north, on the block to the south"
+84,Birch Wood,minecraft:birch_wood,79,1,4,pillar_axis=y,
+85,Black Candle,minecraft:black_candle,81,1,4,"candles=0,lit=false",
+86,Black Candle Cake,minecraft:black_candle_cake,83,1,4,lit=false,
 87,Black Carpet,minecraft:black_carpet,85,1,4,,
 88,Black Concrete,minecraft:black_concrete,87,1,4,,
-89,Black Concrete Double Slab,minecraft:black_concrete_double_slab,1,1,7,,
+89,Black Concrete Double Slab,minecraft:black_concrete_double_slab,1,1,7,minecraft:vertical_half=bottom,
 90,Black Concrete Powder,minecraft:black_concrete_powder,3,1,7,,
-91,Black Concrete Slab,minecraft:black_concrete_slab,5,1,7,,
-92,Black Concrete Stairs,minecraft:black_concrete_stairs,7,1,7,"weirdo_direction=0,upside_down_bit=0",default test state
-93,Black Glazed Terracotta,minecraft:black_glazed_terracotta,9,1,7,,
+91,Black Concrete Slab,minecraft:black_concrete_slab,5,1,7,minecraft:vertical_half=bottom,
+92,Black Concrete Stairs,minecraft:black_concrete_stairs,7,1,7,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+93,Black Glazed Terracotta,minecraft:black_glazed_terracotta,9,1,7,facing_direction=0,
 94,Black Shulker Box,minecraft:black_shulker_box,11,1,7,,
 95,Black Stained Glass,minecraft:black_stained_glass,13,1,7,,
-96,Black Stained Glass Pane,minecraft:black_stained_glass_pane,15,1,7,,
+96,Black Stained Glass Pane,minecraft:black_stained_glass_pane,15,1,7,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 97,Black Terracotta,minecraft:black_terracotta,17,1,7,,
 98,Black Wool,minecraft:black_wool,19,1,7,,
-99,Black Wool Double Slab,minecraft:black_wool_double_slab,21,1,7,,
-100,Black Wool Slab,minecraft:black_wool_slab,23,1,7,,
-101,Black Wool Stairs,minecraft:black_wool_stairs,25,1,7,"weirdo_direction=0,upside_down_bit=0",default test state
+99,Black Wool Double Slab,minecraft:black_wool_double_slab,21,1,7,minecraft:vertical_half=bottom,
+100,Black Wool Slab,minecraft:black_wool_slab,23,1,7,minecraft:vertical_half=bottom,
+101,Black Wool Stairs,minecraft:black_wool_stairs,25,1,7,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 102,Blackstone,minecraft:blackstone,27,1,7,,
-103,Blackstone Double Slab,minecraft:blackstone_double_slab,29,1,7,,
-104,Blackstone Slab,minecraft:blackstone_slab,31,1,7,,
-105,Blackstone Stairs,minecraft:blackstone_stairs,33,1,7,"weirdo_direction=0,upside_down_bit=0",default test state
-106,Blackstone Wall,minecraft:blackstone_wall,35,1,7,,
-107,Blast Furnace,minecraft:blast_furnace,37,1,7,,
-108,Blue Candle,minecraft:blue_candle,39,1,7,,
-109,Blue Candle Cake,minecraft:blue_candle_cake,41,1,7,,
+103,Blackstone Double Slab,minecraft:blackstone_double_slab,29,1,7,minecraft:vertical_half=bottom,
+104,Blackstone Slab,minecraft:blackstone_slab,31,1,7,minecraft:vertical_half=bottom,
+105,Blackstone Stairs,minecraft:blackstone_stairs,33,1,7,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+106,Blackstone Wall,minecraft:blackstone_wall,35,1,7,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+107,Blast Furnace,minecraft:blast_furnace,37,1,7,minecraft:cardinal_direction=south,
+108,Blue Candle,minecraft:blue_candle,39,1,7,"candles=0,lit=false",
+109,Blue Candle Cake,minecraft:blue_candle_cake,41,1,7,lit=false,
 110,Blue Carpet,minecraft:blue_carpet,43,1,7,,
 111,Blue Concrete,minecraft:blue_concrete,45,1,7,,
-112,Blue Concrete Double Slab,minecraft:blue_concrete_double_slab,47,1,7,,
+112,Blue Concrete Double Slab,minecraft:blue_concrete_double_slab,47,1,7,minecraft:vertical_half=bottom,
 113,Blue Concrete Powder,minecraft:blue_concrete_powder,49,1,7,,
-114,Blue Concrete Slab,minecraft:blue_concrete_slab,51,1,7,,
-115,Blue Concrete Stairs,minecraft:blue_concrete_stairs,53,1,7,"weirdo_direction=0,upside_down_bit=0",default test state
-116,Blue Glazed Terracotta,minecraft:blue_glazed_terracotta,55,1,7,,
+114,Blue Concrete Slab,minecraft:blue_concrete_slab,51,1,7,minecraft:vertical_half=bottom,
+115,Blue Concrete Stairs,minecraft:blue_concrete_stairs,53,1,7,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+116,Blue Glazed Terracotta,minecraft:blue_glazed_terracotta,55,1,7,facing_direction=0,
 117,Blue Ice,minecraft:blue_ice,57,1,7,,
-118,Blue Orchid,minecraft:blue_orchid,59,1,7,,
+118,Blue Orchid,minecraft:blue_orchid,59,1,7,,on grass_block
 119,Blue Shulker Box,minecraft:blue_shulker_box,61,1,7,,
 120,Blue Stained Glass,minecraft:blue_stained_glass,63,1,7,,
-121,Blue Stained Glass Pane,minecraft:blue_stained_glass_pane,65,1,7,,
+121,Blue Stained Glass Pane,minecraft:blue_stained_glass_pane,65,1,7,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 122,Blue Terracotta,minecraft:blue_terracotta,67,1,7,,
 123,Blue Wool,minecraft:blue_wool,69,1,7,,
-124,Blue Wool Double Slab,minecraft:blue_wool_double_slab,71,1,7,,
-125,Blue Wool Slab,minecraft:blue_wool_slab,73,1,7,,
-126,Blue Wool Stairs,minecraft:blue_wool_stairs,75,1,7,"weirdo_direction=0,upside_down_bit=0",default test state
-127,Bone Block,minecraft:bone_block,77,1,7,,
+124,Blue Wool Double Slab,minecraft:blue_wool_double_slab,71,1,7,minecraft:vertical_half=bottom,
+125,Blue Wool Slab,minecraft:blue_wool_slab,73,1,7,minecraft:vertical_half=bottom,
+126,Blue Wool Stairs,minecraft:blue_wool_stairs,75,1,7,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+127,Bone Block,minecraft:bone_block,77,1,7,"deprecated=0,pillar_axis=y",
 128,Bookshelf,minecraft:bookshelf,79,1,7,,
-129,Border Block,minecraft:border_block,81,1,7,,
-130,Brain Coral,minecraft:brain_coral,83,1,7,,
-131,Brain Coral Block,minecraft:brain_coral_block,85,1,7,,
-132,Brain Coral Fan,minecraft:brain_coral_fan,87,1,7,,
-133,Brain Coral Wall Fan,minecraft:brain_coral_wall_fan,1,1,10,,
-134,Brewing Stand,minecraft:brewing_stand,3,1,10,,
+129,Border Block,minecraft:border_block,81,1,7,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+130,Brain Coral,minecraft:brain_coral,83,1,7,,"in water, stone around it"
+131,Brain Coral Block,minecraft:brain_coral_block,85,1,7,,"water on top, stone around the water"
+132,Brain Coral Fan,minecraft:brain_coral_fan,87,1,7,coral_fan_direction=0,"in water, stone around it"
+133,Brain Coral Wall Fan,minecraft:brain_coral_wall_fan,1,1,10,coral_direction=0,"in water, stone around it"
+134,Brewing Stand,minecraft:brewing_stand,3,1,10,"brewing_stand_slot_a_bit=false,brewing_stand_slot_b_bit=false,brewing_stand_slot_c_bit=false",
 135,Bricks,minecraft:brick_block,5,1,10,,
-136,Brick Double Slab,minecraft:brick_double_slab,7,1,10,,
-137,Brick Slab,minecraft:brick_slab,9,1,10,,
-138,Brick Stairs,minecraft:brick_stairs,11,1,10,"weirdo_direction=0,upside_down_bit=0",default test state
-139,Brick Wall,minecraft:brick_wall,13,1,10,,
-140,Brown Candle,minecraft:brown_candle,15,1,10,,
-141,Brown Candle Cake,minecraft:brown_candle_cake,17,1,10,,
+136,Brick Double Slab,minecraft:brick_double_slab,7,1,10,minecraft:vertical_half=bottom,
+137,Brick Slab,minecraft:brick_slab,9,1,10,minecraft:vertical_half=bottom,
+138,Brick Stairs,minecraft:brick_stairs,11,1,10,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+139,Brick Wall,minecraft:brick_wall,13,1,10,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+140,Brown Candle,minecraft:brown_candle,15,1,10,"candles=0,lit=false",
+141,Brown Candle Cake,minecraft:brown_candle_cake,17,1,10,lit=false,
 142,Brown Carpet,minecraft:brown_carpet,19,1,10,,
 143,Brown Concrete,minecraft:brown_concrete,21,1,10,,
-144,Brown Concrete Double Slab,minecraft:brown_concrete_double_slab,23,1,10,,
+144,Brown Concrete Double Slab,minecraft:brown_concrete_double_slab,23,1,10,minecraft:vertical_half=bottom,
 145,Brown Concrete Powder,minecraft:brown_concrete_powder,25,1,10,,
-146,Brown Concrete Slab,minecraft:brown_concrete_slab,27,1,10,,
-147,Brown Concrete Stairs,minecraft:brown_concrete_stairs,29,1,10,"weirdo_direction=0,upside_down_bit=0",default test state
-148,Brown Glazed Terracotta,minecraft:brown_glazed_terracotta,31,1,10,,
-149,Brown Mushroom,minecraft:brown_mushroom,33,1,10,,
-150,Brown Mushroom Block,minecraft:brown_mushroom_block,35,1,10,,
+146,Brown Concrete Slab,minecraft:brown_concrete_slab,27,1,10,minecraft:vertical_half=bottom,
+147,Brown Concrete Stairs,minecraft:brown_concrete_stairs,29,1,10,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+148,Brown Glazed Terracotta,minecraft:brown_glazed_terracotta,31,1,10,facing_direction=0,
+149,Brown Mushroom,minecraft:brown_mushroom,33,1,10,,on mycelium
+150,Brown Mushroom Block,minecraft:brown_mushroom_block,35,1,10,huge_mushroom_bits=0,
 151,Brown Shulker Box,minecraft:brown_shulker_box,37,1,10,,
 152,Brown Stained Glass,minecraft:brown_stained_glass,39,1,10,,
-153,Brown Stained Glass Pane,minecraft:brown_stained_glass_pane,41,1,10,,
+153,Brown Stained Glass Pane,minecraft:brown_stained_glass_pane,41,1,10,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 154,Brown Terracotta,minecraft:brown_terracotta,43,1,10,,
 155,Brown Wool,minecraft:brown_wool,45,1,10,,
-156,Brown Wool Double Slab,minecraft:brown_wool_double_slab,47,1,10,,
-157,Brown Wool Slab,minecraft:brown_wool_slab,49,1,10,,
-158,Brown Wool Stairs,minecraft:brown_wool_stairs,51,1,10,"weirdo_direction=0,upside_down_bit=0",default test state
-159,Bubble Column,minecraft:bubble_column,53,1,10,,
-160,Bubble Coral,minecraft:bubble_coral,55,1,10,,
-161,Bubble Coral Block,minecraft:bubble_coral_block,57,1,10,,
-162,Bubble Coral Fan,minecraft:bubble_coral_fan,59,1,10,,
-163,Bubble Coral Wall Fan,minecraft:bubble_coral_wall_fan,61,1,10,,
+156,Brown Wool Double Slab,minecraft:brown_wool_double_slab,47,1,10,minecraft:vertical_half=bottom,
+157,Brown Wool Slab,minecraft:brown_wool_slab,49,1,10,minecraft:vertical_half=bottom,
+158,Brown Wool Stairs,minecraft:brown_wool_stairs,51,1,10,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+159,Bubble Column,minecraft:bubble_column,53,1,10,drag_down=false,"on soul sand, stone around it"
+160,Bubble Coral,minecraft:bubble_coral,55,1,10,,"in water, stone around it"
+161,Bubble Coral Block,minecraft:bubble_coral_block,57,1,10,,"water on top, stone around the water"
+162,Bubble Coral Fan,minecraft:bubble_coral_fan,59,1,10,coral_fan_direction=0,"in water, stone around it"
+163,Bubble Coral Wall Fan,minecraft:bubble_coral_wall_fan,61,1,10,coral_direction=0,"in water, stone around it"
 164,Budding Amethyst,minecraft:budding_amethyst,63,1,10,,
-165,Bush,minecraft:bush,65,1,10,,
-166,Cactus,minecraft:cactus,67,1,10,,
+165,Bush,minecraft:bush,65,1,10,,on grass_block
+166,Cactus,minecraft:cactus,67,1,10,age=0,on sand
 167,Cactus Flower,minecraft:cactus_flower,69,1,10,,
-168,Cake,minecraft:cake,71,1,10,,
+168,Cake,minecraft:cake,71,1,10,bite_counter=0,
 169,Calcite,minecraft:calcite,73,1,10,,
-170,Calibrated Sculk Sensor,minecraft:calibrated_sculk_sensor,75,1,10,,
+170,Calibrated Sculk Sensor,minecraft:calibrated_sculk_sensor,75,1,10,"minecraft:cardinal_direction=south,sculk_sensor_phase=0",
 171,Camera,minecraft:camera,77,1,10,,
-172,Campfire,minecraft:campfire,79,1,10,,
-173,Candle,minecraft:candle,81,1,10,,
-174,Candle Cake,minecraft:candle_cake,83,1,10,,
+172,Campfire,minecraft:campfire,79,1,10,"extinguished=false,minecraft:cardinal_direction=south",
+173,Candle,minecraft:candle,81,1,10,"candles=0,lit=false",
+174,Candle Cake,minecraft:candle_cake,83,1,10,lit=false,
 175,White Carpet,minecraft:carpet,85,1,10,,
-176,Carrots,minecraft:carrots,87,1,10,,
+176,Carrots,minecraft:carrots,87,1,10,growth=0,on farmland
 177,Cartography Table,minecraft:cartography_table,1,1,13,,
-178,Carved Pumpkin,minecraft:carved_pumpkin,3,1,13,,
-179,Cauldron,minecraft:cauldron,5,1,13,,
-180,Cave Vines,minecraft:cave_vines,7,1,13,,
-181,Cave Vines Body With Berries,minecraft:cave_vines_body_with_berries,9,1,13,,
-182,Cave Vines Head With Berries,minecraft:cave_vines_head_with_berries,11,1,13,,
+178,Carved Pumpkin,minecraft:carved_pumpkin,3,1,13,minecraft:cardinal_direction=south,
+179,Cauldron,minecraft:cauldron,5,1,13,"cauldron_liquid=water,fill_level=0",
+180,Cave Vines,minecraft:cave_vines,7,2,13,growing_plant_age=0,hanging from the block above
+181,Cave Vines Body With Berries,minecraft:cave_vines_body_with_berries,9,2,13,growing_plant_age=0,hanging from the block above
+182,Cave Vines Head With Berries,minecraft:cave_vines_head_with_berries,11,2,13,growing_plant_age=0,hanging from the block above
 183,Chain,minecraft:chain,13,1,13,,
-184,Chain Command Block,minecraft:chain_command_block,15,1,13,,
-185,Cherry Button,minecraft:cherry_button,17,1,13,,
-186,Cherry Door,minecraft:cherry_door,19,1,13,,upper half at y=2
-187,Cherry Double Slab,minecraft:cherry_double_slab,21,1,13,,
-188,Cherry Fence,minecraft:cherry_fence,23,1,13,,
-189,Cherry Fence Gate,minecraft:cherry_fence_gate,25,1,13,,
-190,Cherry Hanging Sign,minecraft:cherry_hanging_sign,27,1,13,,
-191,Cherry Leaves,minecraft:cherry_leaves,29,1,13,,
-192,Cherry Log,minecraft:cherry_log,31,1,13,,
+184,Chain Command Block,minecraft:chain_command_block,15,1,13,"conditional_bit=false,facing_direction=0",
+185,Cherry Button,minecraft:cherry_button,17,1,13,"button_pressed_bit=false,facing_direction=1",default test state
+186,Cherry Door,minecraft:cherry_door,19,1,13,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+187,Cherry Double Slab,minecraft:cherry_double_slab,21,1,13,minecraft:vertical_half=bottom,
+188,Cherry Fence,minecraft:cherry_fence,23,1,13,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+189,Cherry Fence Gate,minecraft:cherry_fence_gate,25,1,13,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+190,Cherry Hanging Sign,minecraft:cherry_hanging_sign,27,1,13,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
+191,Cherry Leaves,minecraft:cherry_leaves,29,1,13,"persistent_bit=true,update_bit=false",default test state
+192,Cherry Log,minecraft:cherry_log,31,1,13,pillar_axis=y,
 193,Cherry Planks,minecraft:cherry_planks,33,1,13,,
-194,Cherry Pressure Plate,minecraft:cherry_pressure_plate,35,1,13,,
-195,Cherry Sapling,minecraft:cherry_sapling,37,1,13,,
-196,Cherry Shelf,minecraft:cherry_shelf,39,1,13,,
-197,Cherry Slab,minecraft:cherry_slab,41,1,13,,
-198,Cherry Stairs,minecraft:cherry_stairs,43,1,13,"weirdo_direction=0,upside_down_bit=0",default test state
-199,Cherry Standing Sign,minecraft:cherry_standing_sign,45,1,13,,
-200,Cherry Trapdoor,minecraft:cherry_trapdoor,47,1,13,,
-201,Cherry Wall Sign,minecraft:cherry_wall_sign,49,1,13,,
-202,Cherry Wood,minecraft:cherry_wood,51,1,13,,
-203,Chest,minecraft:chest,53,1,13,,
-204,Chipped Anvil,minecraft:chipped_anvil,55,1,13,,
-205,Chiseled Bookshelf,minecraft:chiseled_bookshelf,57,1,13,,
+194,Cherry Pressure Plate,minecraft:cherry_pressure_plate,35,1,13,redstone_signal=0,
+195,Cherry Sapling,minecraft:cherry_sapling,37,1,13,age_bit=false,on grass_block
+196,Cherry Shelf,minecraft:cherry_shelf,39,1,13,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+197,Cherry Slab,minecraft:cherry_slab,41,1,13,minecraft:vertical_half=bottom,
+198,Cherry Stairs,minecraft:cherry_stairs,43,1,13,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+199,Cherry Standing Sign,minecraft:cherry_standing_sign,45,1,13,ground_sign_direction=0,
+200,Cherry Trapdoor,minecraft:cherry_trapdoor,47,1,13,"direction=0,open_bit=false,upside_down_bit=false",
+201,Cherry Wall Sign,minecraft:cherry_wall_sign,49,1,13,facing_direction=2,"facing north, on the block to the south"
+202,Cherry Wood,minecraft:cherry_wood,51,1,13,pillar_axis=y,
+203,Chest,minecraft:chest,53,1,13,minecraft:cardinal_direction=south,
+204,Chipped Anvil,minecraft:chipped_anvil,55,1,13,minecraft:cardinal_direction=south,
+205,Chiseled Bookshelf,minecraft:chiseled_bookshelf,57,1,13,"books_stored=0,direction=0",
 206,Chiseled Cinnabar,minecraft:chiseled_cinnabar,59,1,13,,
 207,Chiseled Copper,minecraft:chiseled_copper,61,1,13,,
 208,Chiseled Deepslate,minecraft:chiseled_deepslate,63,1,13,,
 209,Chiseled Nether Bricks,minecraft:chiseled_nether_bricks,65,1,13,,
 210,Chiseled Polished Blackstone,minecraft:chiseled_polished_blackstone,67,1,13,,
-211,Chiseled Quartz Block,minecraft:chiseled_quartz_block,69,1,13,,
+211,Chiseled Quartz Block,minecraft:chiseled_quartz_block,69,1,13,pillar_axis=y,
 212,Chiseled Red Sandstone,minecraft:chiseled_red_sandstone,71,1,13,,
 213,Chiseled Resin Bricks,minecraft:chiseled_resin_bricks,73,1,13,,
 214,Chiseled Sandstone,minecraft:chiseled_sandstone,75,1,13,,
@@ -217,50 +217,50 @@ index,name,id,x,y,z,state,note
 216,Chiseled Sulfur,minecraft:chiseled_sulfur,79,1,13,,
 217,Chiseled Tuff,minecraft:chiseled_tuff,81,1,13,,
 218,Chiseled Tuff Bricks,minecraft:chiseled_tuff_bricks,83,1,13,,
-219,Chorus Flower,minecraft:chorus_flower,85,1,13,,
-220,Chorus Plant,minecraft:chorus_plant,87,1,13,,
+219,Chorus Flower,minecraft:chorus_flower,85,1,13,age=0,on end_stone
+220,Chorus Plant,minecraft:chorus_plant,87,1,13,"minecraft:connection_down=false,minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_up=false,minecraft:connection_west=false",on end_stone
 221,Cinnabar,minecraft:cinnabar,1,1,16,,
-222,Cinnabar Brick Double Slab,minecraft:cinnabar_brick_double_slab,3,1,16,,
-223,Cinnabar Brick Slab,minecraft:cinnabar_brick_slab,5,1,16,,
-224,Cinnabar Brick Stairs,minecraft:cinnabar_brick_stairs,7,1,16,"weirdo_direction=0,upside_down_bit=0",default test state
-225,Cinnabar Brick Wall,minecraft:cinnabar_brick_wall,9,1,16,,
+222,Cinnabar Brick Double Slab,minecraft:cinnabar_brick_double_slab,3,1,16,minecraft:vertical_half=bottom,
+223,Cinnabar Brick Slab,minecraft:cinnabar_brick_slab,5,1,16,minecraft:vertical_half=bottom,
+224,Cinnabar Brick Stairs,minecraft:cinnabar_brick_stairs,7,1,16,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+225,Cinnabar Brick Wall,minecraft:cinnabar_brick_wall,9,1,16,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 226,Cinnabar Bricks,minecraft:cinnabar_bricks,11,1,16,,
-227,Cinnabar Double Slab,minecraft:cinnabar_double_slab,13,1,16,,
-228,Cinnabar Slab,minecraft:cinnabar_slab,15,1,16,,
-229,Cinnabar Stairs,minecraft:cinnabar_stairs,17,1,16,"weirdo_direction=0,upside_down_bit=0",default test state
-230,Cinnabar Wall,minecraft:cinnabar_wall,19,1,16,,
+227,Cinnabar Double Slab,minecraft:cinnabar_double_slab,13,1,16,minecraft:vertical_half=bottom,
+228,Cinnabar Slab,minecraft:cinnabar_slab,15,1,16,minecraft:vertical_half=bottom,
+229,Cinnabar Stairs,minecraft:cinnabar_stairs,17,1,16,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+230,Cinnabar Wall,minecraft:cinnabar_wall,19,1,16,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 231,Clay,minecraft:clay,21,1,16,,
-232,Closed Eyeblossom,minecraft:closed_eyeblossom,23,1,16,,
+232,Closed Eyeblossom,minecraft:closed_eyeblossom,23,1,16,,on grass_block
 233,Coal Block,minecraft:coal_block,25,1,16,,
 234,Coal Ore,minecraft:coal_ore,27,1,16,,
 235,Coarse Dirt,minecraft:coarse_dirt,29,1,16,,
 236,Cobbled Deepslate,minecraft:cobbled_deepslate,31,1,16,,
-237,Cobbled Deepslate Double Slab,minecraft:cobbled_deepslate_double_slab,33,1,16,,
-238,Cobbled Deepslate Slab,minecraft:cobbled_deepslate_slab,35,1,16,,
-239,Cobbled Deepslate Stairs,minecraft:cobbled_deepslate_stairs,37,1,16,"weirdo_direction=0,upside_down_bit=0",default test state
-240,Cobbled Deepslate Wall,minecraft:cobbled_deepslate_wall,39,1,16,,
+237,Cobbled Deepslate Double Slab,minecraft:cobbled_deepslate_double_slab,33,1,16,minecraft:vertical_half=bottom,
+238,Cobbled Deepslate Slab,minecraft:cobbled_deepslate_slab,35,1,16,minecraft:vertical_half=bottom,
+239,Cobbled Deepslate Stairs,minecraft:cobbled_deepslate_stairs,37,1,16,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+240,Cobbled Deepslate Wall,minecraft:cobbled_deepslate_wall,39,1,16,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 241,Cobblestone,minecraft:cobblestone,41,1,16,,
-242,Cobblestone Double Slab,minecraft:cobblestone_double_slab,43,1,16,,
-243,Cobblestone Slab,minecraft:cobblestone_slab,45,1,16,,
-244,Cobblestone Wall,minecraft:cobblestone_wall,47,1,16,,
-245,Cocoa,minecraft:cocoa,49,1,16,,
-246,Command Block,minecraft:command_block,51,1,16,,
-247,Composter,minecraft:composter,53,1,16,,
+242,Cobblestone Double Slab,minecraft:cobblestone_double_slab,43,1,16,minecraft:vertical_half=bottom,
+243,Cobblestone Slab,minecraft:cobblestone_slab,45,1,16,minecraft:vertical_half=bottom,
+244,Cobblestone Wall,minecraft:cobblestone_wall,47,1,16,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+245,Cocoa,minecraft:cocoa,49,1,16,"age=0,direction=0",a jungle log on either side
+246,Command Block,minecraft:command_block,51,1,16,"conditional_bit=false,facing_direction=0",
+247,Composter,minecraft:composter,53,1,16,composter_fill_level=0,
 248,Concrete,minecraft:concrete,55,1,16,,
 249,ConcretePowder,minecraft:concretePowder,57,1,16,,
 250,Conduit,minecraft:conduit,59,1,16,,
-251,Copper Bars,minecraft:copper_bars,61,1,16,,
+251,Copper Bars,minecraft:copper_bars,61,1,16,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 252,Copper Block,minecraft:copper_block,63,1,16,,
-253,Copper Bulb,minecraft:copper_bulb,65,1,16,,
-254,Copper Chain,minecraft:copper_chain,67,1,16,,
-255,Copper Chest,minecraft:copper_chest,69,1,16,,
-256,Copper Door,minecraft:copper_door,71,1,16,,upper half at y=2
-257,Copper Golem Statue,minecraft:copper_golem_statue,73,1,16,,
+253,Copper Bulb,minecraft:copper_bulb,65,1,16,"lit=false,powered_bit=false",
+254,Copper Chain,minecraft:copper_chain,67,1,16,pillar_axis=y,
+255,Copper Chest,minecraft:copper_chest,69,1,16,minecraft:cardinal_direction=south,
+256,Copper Door,minecraft:copper_door,71,1,16,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+257,Copper Golem Statue,minecraft:copper_golem_statue,73,1,16,minecraft:cardinal_direction=south,
 258,Copper Grate,minecraft:copper_grate,75,1,16,,
-259,Copper Lantern,minecraft:copper_lantern,77,1,16,,
+259,Copper Lantern,minecraft:copper_lantern,77,1,16,hanging=false,
 260,Copper Ore,minecraft:copper_ore,79,1,16,,
-261,Copper Torch,minecraft:copper_torch,81,1,16,,
-262,Copper Trapdoor,minecraft:copper_trapdoor,83,1,16,,
+261,Copper Torch,minecraft:copper_torch,81,1,16,torch_facing_direction=top,default test state
+262,Copper Trapdoor,minecraft:copper_trapdoor,83,1,16,"direction=0,open_bit=false,upside_down_bit=false",
 263,Coral,minecraft:coral,85,1,16,,
 264,Coral Block,minecraft:coral_block,87,1,16,,
 265,Coral Fan,minecraft:coral_fan,1,1,19,,
@@ -268,115 +268,115 @@ index,name,id,x,y,z,state,note
 267,Coral Fan Hang,minecraft:coral_fan_hang,5,1,19,,
 268,Coral Fan Hang2,minecraft:coral_fan_hang2,7,1,19,,
 269,Coral Fan Hang3,minecraft:coral_fan_hang3,9,1,19,,
-270,Cornflower,minecraft:cornflower,11,1,19,,
+270,Cornflower,minecraft:cornflower,11,1,19,,on grass_block
 271,Cracked Deepslate Bricks,minecraft:cracked_deepslate_bricks,13,1,19,,
 272,Cracked Deepslate Tiles,minecraft:cracked_deepslate_tiles,15,1,19,,
 273,Cracked Nether Bricks,minecraft:cracked_nether_bricks,17,1,19,,
 274,Cracked Polished Blackstone Bricks,minecraft:cracked_polished_blackstone_bricks,19,1,19,,
 275,Cracked Stone Bricks,minecraft:cracked_stone_bricks,21,1,19,,
-276,Crafter,minecraft:crafter,23,1,19,,
+276,Crafter,minecraft:crafter,23,1,19,"crafting=false,orientation=down_east,triggered_bit=false",
 277,Crafting Table,minecraft:crafting_table,25,1,19,,
-278,Creaking Heart,minecraft:creaking_heart,27,1,19,,
-279,Creeper Head,minecraft:creeper_head,29,1,19,,
-280,Crimson Button,minecraft:crimson_button,31,1,19,,
-281,Crimson Door,minecraft:crimson_door,33,1,19,,upper half at y=2
-282,Crimson Double Slab,minecraft:crimson_double_slab,35,1,19,,
-283,Crimson Fence,minecraft:crimson_fence,37,1,19,,
-284,Crimson Fence Gate,minecraft:crimson_fence_gate,39,1,19,,
-285,Crimson Fungus,minecraft:crimson_fungus,41,1,19,,
-286,Crimson Hanging Sign,minecraft:crimson_hanging_sign,43,1,19,,
-287,Crimson Hyphae,minecraft:crimson_hyphae,45,1,19,,
+278,Creaking Heart,minecraft:creaking_heart,27,1,19,"creaking_heart_state=uprooted,natural=false,pillar_axis=y",
+279,Creeper Head,minecraft:creeper_head,29,1,19,facing_direction=1,default test state
+280,Crimson Button,minecraft:crimson_button,31,1,19,"button_pressed_bit=false,facing_direction=1",default test state
+281,Crimson Door,minecraft:crimson_door,33,1,19,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+282,Crimson Double Slab,minecraft:crimson_double_slab,35,1,19,minecraft:vertical_half=bottom,
+283,Crimson Fence,minecraft:crimson_fence,37,1,19,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+284,Crimson Fence Gate,minecraft:crimson_fence_gate,39,1,19,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+285,Crimson Fungus,minecraft:crimson_fungus,41,1,19,,on crimson_nylium
+286,Crimson Hanging Sign,minecraft:crimson_hanging_sign,43,1,19,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
+287,Crimson Hyphae,minecraft:crimson_hyphae,45,1,19,pillar_axis=y,
 288,Crimson Nylium,minecraft:crimson_nylium,47,1,19,,
 289,Crimson Planks,minecraft:crimson_planks,49,1,19,,
-290,Crimson Pressure Plate,minecraft:crimson_pressure_plate,51,1,19,,
-291,Crimson Roots,minecraft:crimson_roots,53,1,19,,
-292,Crimson Shelf,minecraft:crimson_shelf,55,1,19,,
-293,Crimson Slab,minecraft:crimson_slab,57,1,19,,
-294,Crimson Stairs,minecraft:crimson_stairs,59,1,19,"weirdo_direction=0,upside_down_bit=0",default test state
-295,Crimson Standing Sign,minecraft:crimson_standing_sign,61,1,19,,
-296,Crimson Stem,minecraft:crimson_stem,63,1,19,,
-297,Crimson Trapdoor,minecraft:crimson_trapdoor,65,1,19,,
-298,Crimson Wall Sign,minecraft:crimson_wall_sign,67,1,19,,
+290,Crimson Pressure Plate,minecraft:crimson_pressure_plate,51,1,19,redstone_signal=0,
+291,Crimson Roots,minecraft:crimson_roots,53,1,19,,on crimson_nylium
+292,Crimson Shelf,minecraft:crimson_shelf,55,1,19,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+293,Crimson Slab,minecraft:crimson_slab,57,1,19,minecraft:vertical_half=bottom,
+294,Crimson Stairs,minecraft:crimson_stairs,59,1,19,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+295,Crimson Standing Sign,minecraft:crimson_standing_sign,61,1,19,ground_sign_direction=0,
+296,Crimson Stem,minecraft:crimson_stem,63,1,19,pillar_axis=y,
+297,Crimson Trapdoor,minecraft:crimson_trapdoor,65,1,19,"direction=0,open_bit=false,upside_down_bit=false",
+298,Crimson Wall Sign,minecraft:crimson_wall_sign,67,1,19,facing_direction=2,"facing north, on the block to the south"
 299,Crying Obsidian,minecraft:crying_obsidian,69,1,19,,
 300,Cut Copper,minecraft:cut_copper,71,1,19,,
-301,Cut Copper Slab,minecraft:cut_copper_slab,73,1,19,,
-302,Cut Copper Stairs,minecraft:cut_copper_stairs,75,1,19,"weirdo_direction=0,upside_down_bit=0",default test state
+301,Cut Copper Slab,minecraft:cut_copper_slab,73,1,19,minecraft:vertical_half=bottom,
+302,Cut Copper Stairs,minecraft:cut_copper_stairs,75,1,19,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 303,Cut Red Sandstone,minecraft:cut_red_sandstone,77,1,19,,
-304,Cut Red Sandstone Double Slab,minecraft:cut_red_sandstone_double_slab,79,1,19,,
-305,Cut Red Sandstone Slab,minecraft:cut_red_sandstone_slab,81,1,19,,
+304,Cut Red Sandstone Double Slab,minecraft:cut_red_sandstone_double_slab,79,1,19,minecraft:vertical_half=bottom,
+305,Cut Red Sandstone Slab,minecraft:cut_red_sandstone_slab,81,1,19,minecraft:vertical_half=bottom,
 306,Cut Sandstone,minecraft:cut_sandstone,83,1,19,,
-307,Cut Sandstone Double Slab,minecraft:cut_sandstone_double_slab,85,1,19,,
-308,Cut Sandstone Slab,minecraft:cut_sandstone_slab,87,1,19,,
-309,Cyan Candle,minecraft:cyan_candle,1,1,22,,
-310,Cyan Candle Cake,minecraft:cyan_candle_cake,3,1,22,,
+307,Cut Sandstone Double Slab,minecraft:cut_sandstone_double_slab,85,1,19,minecraft:vertical_half=bottom,
+308,Cut Sandstone Slab,minecraft:cut_sandstone_slab,87,1,19,minecraft:vertical_half=bottom,
+309,Cyan Candle,minecraft:cyan_candle,1,1,22,"candles=0,lit=false",
+310,Cyan Candle Cake,minecraft:cyan_candle_cake,3,1,22,lit=false,
 311,Cyan Carpet,minecraft:cyan_carpet,5,1,22,,
 312,Cyan Concrete,minecraft:cyan_concrete,7,1,22,,
-313,Cyan Concrete Double Slab,minecraft:cyan_concrete_double_slab,9,1,22,,
+313,Cyan Concrete Double Slab,minecraft:cyan_concrete_double_slab,9,1,22,minecraft:vertical_half=bottom,
 314,Cyan Concrete Powder,minecraft:cyan_concrete_powder,11,1,22,,
-315,Cyan Concrete Slab,minecraft:cyan_concrete_slab,13,1,22,,
-316,Cyan Concrete Stairs,minecraft:cyan_concrete_stairs,15,1,22,"weirdo_direction=0,upside_down_bit=0",default test state
-317,Cyan Glazed Terracotta,minecraft:cyan_glazed_terracotta,17,1,22,,
+315,Cyan Concrete Slab,minecraft:cyan_concrete_slab,13,1,22,minecraft:vertical_half=bottom,
+316,Cyan Concrete Stairs,minecraft:cyan_concrete_stairs,15,1,22,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+317,Cyan Glazed Terracotta,minecraft:cyan_glazed_terracotta,17,1,22,facing_direction=0,
 318,Cyan Shulker Box,minecraft:cyan_shulker_box,19,1,22,,
 319,Cyan Stained Glass,minecraft:cyan_stained_glass,21,1,22,,
-320,Cyan Stained Glass Pane,minecraft:cyan_stained_glass_pane,23,1,22,,
+320,Cyan Stained Glass Pane,minecraft:cyan_stained_glass_pane,23,1,22,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 321,Cyan Terracotta,minecraft:cyan_terracotta,25,1,22,,
 322,Cyan Wool,minecraft:cyan_wool,27,1,22,,
-323,Cyan Wool Double Slab,minecraft:cyan_wool_double_slab,29,1,22,,
-324,Cyan Wool Slab,minecraft:cyan_wool_slab,31,1,22,,
-325,Cyan Wool Stairs,minecraft:cyan_wool_stairs,33,1,22,"weirdo_direction=0,upside_down_bit=0",default test state
-326,Damaged Anvil,minecraft:damaged_anvil,35,1,22,,
-327,Dandelion,minecraft:dandelion,37,1,22,,
-328,Dark Oak Button,minecraft:dark_oak_button,39,1,22,,
-329,Dark Oak Door,minecraft:dark_oak_door,41,1,22,,upper half at y=2
-330,Dark Oak Double Slab,minecraft:dark_oak_double_slab,43,1,22,,
-331,Dark Oak Fence,minecraft:dark_oak_fence,45,1,22,,
-332,Dark Oak Fence Gate,minecraft:dark_oak_fence_gate,47,1,22,,
-333,Dark Oak Hanging Sign,minecraft:dark_oak_hanging_sign,49,1,22,,
-334,Dark Oak Leaves,minecraft:dark_oak_leaves,51,1,22,,
-335,Dark Oak Log,minecraft:dark_oak_log,53,1,22,,
+323,Cyan Wool Double Slab,minecraft:cyan_wool_double_slab,29,1,22,minecraft:vertical_half=bottom,
+324,Cyan Wool Slab,minecraft:cyan_wool_slab,31,1,22,minecraft:vertical_half=bottom,
+325,Cyan Wool Stairs,minecraft:cyan_wool_stairs,33,1,22,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+326,Damaged Anvil,minecraft:damaged_anvil,35,1,22,minecraft:cardinal_direction=south,
+327,Dandelion,minecraft:dandelion,37,1,22,,on grass_block
+328,Dark Oak Button,minecraft:dark_oak_button,39,1,22,"button_pressed_bit=false,facing_direction=1",default test state
+329,Dark Oak Door,minecraft:dark_oak_door,41,1,22,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+330,Dark Oak Double Slab,minecraft:dark_oak_double_slab,43,1,22,minecraft:vertical_half=bottom,
+331,Dark Oak Fence,minecraft:dark_oak_fence,45,1,22,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+332,Dark Oak Fence Gate,minecraft:dark_oak_fence_gate,47,1,22,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+333,Dark Oak Hanging Sign,minecraft:dark_oak_hanging_sign,49,1,22,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
+334,Dark Oak Leaves,minecraft:dark_oak_leaves,51,1,22,"persistent_bit=true,update_bit=false",default test state
+335,Dark Oak Log,minecraft:dark_oak_log,53,1,22,pillar_axis=y,
 336,Dark Oak Planks,minecraft:dark_oak_planks,55,1,22,,
-337,Dark Oak Pressure Plate,minecraft:dark_oak_pressure_plate,57,1,22,,
-338,Dark Oak Sapling,minecraft:dark_oak_sapling,59,1,22,,
-339,Dark Oak Shelf,minecraft:dark_oak_shelf,61,1,22,,
-340,Dark Oak Slab,minecraft:dark_oak_slab,63,1,22,,
-341,Dark Oak Stairs,minecraft:dark_oak_stairs,65,1,22,"weirdo_direction=0,upside_down_bit=0",default test state
-342,Dark Oak Trapdoor,minecraft:dark_oak_trapdoor,67,1,22,,
-343,Dark Oak Wood,minecraft:dark_oak_wood,69,1,22,,
+337,Dark Oak Pressure Plate,minecraft:dark_oak_pressure_plate,57,1,22,redstone_signal=0,
+338,Dark Oak Sapling,minecraft:dark_oak_sapling,59,1,22,age_bit=false,on grass_block
+339,Dark Oak Shelf,minecraft:dark_oak_shelf,61,1,22,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+340,Dark Oak Slab,minecraft:dark_oak_slab,63,1,22,minecraft:vertical_half=bottom,
+341,Dark Oak Stairs,minecraft:dark_oak_stairs,65,1,22,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+342,Dark Oak Trapdoor,minecraft:dark_oak_trapdoor,67,1,22,"direction=0,open_bit=false,upside_down_bit=false",
+343,Dark Oak Wood,minecraft:dark_oak_wood,69,1,22,pillar_axis=y,
 344,Dark Prismarine,minecraft:dark_prismarine,71,1,22,,
-345,Dark Prismarine Double Slab,minecraft:dark_prismarine_double_slab,73,1,22,,
-346,Dark Prismarine Slab,minecraft:dark_prismarine_slab,75,1,22,,
-347,Dark Prismarine Stairs,minecraft:dark_prismarine_stairs,77,1,22,"weirdo_direction=0,upside_down_bit=0",default test state
-348,Dark Oak Sign,minecraft:darkoak_standing_sign,79,1,22,,
-349,Darkoak Wall Sign,minecraft:darkoak_wall_sign,81,1,22,,
-350,Daylight Detector,minecraft:daylight_detector,83,1,22,,
-351,Daylight Detector Inverted,minecraft:daylight_detector_inverted,85,1,22,,
+345,Dark Prismarine Double Slab,minecraft:dark_prismarine_double_slab,73,1,22,minecraft:vertical_half=bottom,
+346,Dark Prismarine Slab,minecraft:dark_prismarine_slab,75,1,22,minecraft:vertical_half=bottom,
+347,Dark Prismarine Stairs,minecraft:dark_prismarine_stairs,77,1,22,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+348,Dark Oak Sign,minecraft:darkoak_standing_sign,79,1,22,ground_sign_direction=0,
+349,Darkoak Wall Sign,minecraft:darkoak_wall_sign,81,1,22,facing_direction=2,"facing north, on the block to the south"
+350,Daylight Detector,minecraft:daylight_detector,83,1,22,redstone_signal=0,
+351,Daylight Detector Inverted,minecraft:daylight_detector_inverted,85,1,22,redstone_signal=0,
 352,Dead Brain Coral,minecraft:dead_brain_coral,87,1,22,,
 353,Dead Brain Coral Block,minecraft:dead_brain_coral_block,1,1,25,,
-354,Dead Brain Coral Fan,minecraft:dead_brain_coral_fan,3,1,25,,
-355,Dead Brain Coral Wall Fan,minecraft:dead_brain_coral_wall_fan,5,1,25,,
+354,Dead Brain Coral Fan,minecraft:dead_brain_coral_fan,3,1,25,coral_fan_direction=0,
+355,Dead Brain Coral Wall Fan,minecraft:dead_brain_coral_wall_fan,5,1,25,coral_direction=0,stone around it to hang on
 356,Dead Bubble Coral,minecraft:dead_bubble_coral,7,1,25,,
 357,Dead Bubble Coral Block,minecraft:dead_bubble_coral_block,9,1,25,,
-358,Dead Bubble Coral Fan,minecraft:dead_bubble_coral_fan,11,1,25,,
-359,Dead Bubble Coral Wall Fan,minecraft:dead_bubble_coral_wall_fan,13,1,25,,
+358,Dead Bubble Coral Fan,minecraft:dead_bubble_coral_fan,11,1,25,coral_fan_direction=0,
+359,Dead Bubble Coral Wall Fan,minecraft:dead_bubble_coral_wall_fan,13,1,25,coral_direction=0,stone around it to hang on
 360,Dead Fire Coral,minecraft:dead_fire_coral,15,1,25,,
 361,Dead Fire Coral Block,minecraft:dead_fire_coral_block,17,1,25,,
-362,Dead Fire Coral Fan,minecraft:dead_fire_coral_fan,19,1,25,,
-363,Dead Fire Coral Wall Fan,minecraft:dead_fire_coral_wall_fan,21,1,25,,
+362,Dead Fire Coral Fan,minecraft:dead_fire_coral_fan,19,1,25,coral_fan_direction=0,
+363,Dead Fire Coral Wall Fan,minecraft:dead_fire_coral_wall_fan,21,1,25,coral_direction=0,stone around it to hang on
 364,Dead Horn Coral,minecraft:dead_horn_coral,23,1,25,,
 365,Dead Horn Coral Block,minecraft:dead_horn_coral_block,25,1,25,,
-366,Dead Horn Coral Fan,minecraft:dead_horn_coral_fan,27,1,25,,
-367,Dead Horn Coral Wall Fan,minecraft:dead_horn_coral_wall_fan,29,1,25,,
+366,Dead Horn Coral Fan,minecraft:dead_horn_coral_fan,27,1,25,coral_fan_direction=0,
+367,Dead Horn Coral Wall Fan,minecraft:dead_horn_coral_wall_fan,29,1,25,coral_direction=0,stone around it to hang on
 368,Dead Tube Coral,minecraft:dead_tube_coral,31,1,25,,
 369,Dead Tube Coral Block,minecraft:dead_tube_coral_block,33,1,25,,
-370,Dead Tube Coral Fan,minecraft:dead_tube_coral_fan,35,1,25,,
-371,Dead Tube Coral Wall Fan,minecraft:dead_tube_coral_wall_fan,37,1,25,,
-372,Dead Bush,minecraft:deadbush,39,1,25,,
-373,Decorated Pot,minecraft:decorated_pot,41,1,25,,
-374,Deepslate,minecraft:deepslate,43,1,25,,
-375,Deepslate Brick Double Slab,minecraft:deepslate_brick_double_slab,45,1,25,,
-376,Deepslate Brick Slab,minecraft:deepslate_brick_slab,47,1,25,,
-377,Deepslate Brick Stairs,minecraft:deepslate_brick_stairs,49,1,25,"weirdo_direction=0,upside_down_bit=0",default test state
-378,Deepslate Brick Wall,minecraft:deepslate_brick_wall,51,1,25,,
+370,Dead Tube Coral Fan,minecraft:dead_tube_coral_fan,35,1,25,coral_fan_direction=0,
+371,Dead Tube Coral Wall Fan,minecraft:dead_tube_coral_wall_fan,37,1,25,coral_direction=0,stone around it to hang on
+372,Dead Bush,minecraft:deadbush,39,1,25,,on sand
+373,Decorated Pot,minecraft:decorated_pot,41,1,25,direction=0,
+374,Deepslate,minecraft:deepslate,43,1,25,pillar_axis=y,
+375,Deepslate Brick Double Slab,minecraft:deepslate_brick_double_slab,45,1,25,minecraft:vertical_half=bottom,
+376,Deepslate Brick Slab,minecraft:deepslate_brick_slab,47,1,25,minecraft:vertical_half=bottom,
+377,Deepslate Brick Stairs,minecraft:deepslate_brick_stairs,49,1,25,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+378,Deepslate Brick Wall,minecraft:deepslate_brick_wall,51,1,25,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 379,Deepslate Bricks,minecraft:deepslate_bricks,53,1,25,,
 380,Deepslate Coal Ore,minecraft:deepslate_coal_ore,55,1,25,,
 381,Deepslate Copper Ore,minecraft:deepslate_copper_ore,57,1,25,,
@@ -386,951 +386,951 @@ index,name,id,x,y,z,state,note
 385,Deepslate Iron Ore,minecraft:deepslate_iron_ore,65,1,25,,
 386,Deepslate Lapis Ore,minecraft:deepslate_lapis_ore,67,1,25,,
 387,Deepslate Redstone Ore,minecraft:deepslate_redstone_ore,69,1,25,,
-388,Deepslate Tile Double Slab,minecraft:deepslate_tile_double_slab,71,1,25,,
-389,Deepslate Tile Slab,minecraft:deepslate_tile_slab,73,1,25,,
-390,Deepslate Tile Stairs,minecraft:deepslate_tile_stairs,75,1,25,"weirdo_direction=0,upside_down_bit=0",default test state
-391,Deepslate Tile Wall,minecraft:deepslate_tile_wall,77,1,25,,
+388,Deepslate Tile Double Slab,minecraft:deepslate_tile_double_slab,71,1,25,minecraft:vertical_half=bottom,
+389,Deepslate Tile Slab,minecraft:deepslate_tile_slab,73,1,25,minecraft:vertical_half=bottom,
+390,Deepslate Tile Stairs,minecraft:deepslate_tile_stairs,75,1,25,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+391,Deepslate Tile Wall,minecraft:deepslate_tile_wall,77,1,25,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 392,Deepslate Tiles,minecraft:deepslate_tiles,79,1,25,,
 393,Deny,minecraft:deny,81,1,25,,
 394,Deprecated Anvil,minecraft:deprecated_anvil,83,1,25,,
 395,Deprecated Purpur Block 1,minecraft:deprecated_purpur_block_1,85,1,25,,
 396,Deprecated Purpur Block 2,minecraft:deprecated_purpur_block_2,87,1,25,,
-397,Detector Rail,minecraft:detector_rail,1,1,28,,
+397,Detector Rail,minecraft:detector_rail,1,1,28,"rail_data_bit=false,rail_direction=0",
 398,Diamond Block,minecraft:diamond_block,3,1,28,,
 399,Diamond Ore,minecraft:diamond_ore,5,1,28,,
 400,Diorite,minecraft:diorite,7,1,28,,
-401,Diorite Double Slab,minecraft:diorite_double_slab,9,1,28,,
-402,Diorite Slab,minecraft:diorite_slab,11,1,28,,
-403,Diorite Stairs,minecraft:diorite_stairs,13,1,28,"weirdo_direction=0,upside_down_bit=0",default test state
-404,Diorite Wall,minecraft:diorite_wall,15,1,28,,
+401,Diorite Double Slab,minecraft:diorite_double_slab,9,1,28,minecraft:vertical_half=bottom,
+402,Diorite Slab,minecraft:diorite_slab,11,1,28,minecraft:vertical_half=bottom,
+403,Diorite Stairs,minecraft:diorite_stairs,13,1,28,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+404,Diorite Wall,minecraft:diorite_wall,15,1,28,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 405,Dirt,minecraft:dirt,17,1,28,,
 406,Dirt With Roots,minecraft:dirt_with_roots,19,1,28,,
-407,Dispenser,minecraft:dispenser,21,1,28,,
-408,Double Cut Copper Slab,minecraft:double_cut_copper_slab,23,1,28,,
-409,Tall Grass,minecraft:double_plant,25,1,28,,upper half at y=2
+407,Dispenser,minecraft:dispenser,21,1,28,"facing_direction=0,triggered_bit=false",
+408,Double Cut Copper Slab,minecraft:double_cut_copper_slab,23,1,28,minecraft:vertical_half=bottom,
+409,Tall Grass,minecraft:double_plant,25,1,28,upper_block_bit=0,upper half at y=2; on grass_block
 410,Double Stone Slab,minecraft:double_stone_slab,27,1,28,,
 411,Double Stone Slab2,minecraft:double_stone_slab2,29,1,28,,
 412,Double Stone Slab3,minecraft:double_stone_slab3,31,1,28,,
 413,Double Stone Slab4,minecraft:double_stone_slab4,33,1,28,,
 414,Double Wooden Slab,minecraft:double_wooden_slab,35,1,28,,
 415,Dragon Egg,minecraft:dragon_egg,37,1,28,,
-416,Dragon Head,minecraft:dragon_head,39,1,28,,
-417,Dried Ghast,minecraft:dried_ghast,41,1,28,,
+416,Dragon Head,minecraft:dragon_head,39,1,28,facing_direction=1,default test state
+417,Dried Ghast,minecraft:dried_ghast,41,1,28,"minecraft:cardinal_direction=south,rehydration_level=0",
 418,Dried Kelp Block,minecraft:dried_kelp_block,43,1,28,,
 419,Dripstone Block,minecraft:dripstone_block,45,1,28,,
-420,Dropper,minecraft:dropper,47,1,28,,
+420,Dropper,minecraft:dropper,47,1,28,"facing_direction=0,triggered_bit=false",
 421,Emerald Block,minecraft:emerald_block,49,1,28,,
 422,Emerald Ore,minecraft:emerald_ore,51,1,28,,
 423,Enchanting Table,minecraft:enchanting_table,53,1,28,,
-424,End Brick Stairs,minecraft:end_brick_stairs,55,1,28,"weirdo_direction=0,upside_down_bit=0",default test state
+424,End Brick Stairs,minecraft:end_brick_stairs,55,1,28,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 425,End Stone Bricks,minecraft:end_bricks,57,1,28,,
 426,End Gateway,minecraft:end_gateway,59,1,28,,
 427,End Portal,minecraft:end_portal,61,1,28,,
-428,End Portal Frame,minecraft:end_portal_frame,63,1,28,,
-429,End Rod,minecraft:end_rod,65,1,28,,
+428,End Portal Frame,minecraft:end_portal_frame,63,1,28,"end_portal_eye_bit=false,minecraft:cardinal_direction=south",
+429,End Rod,minecraft:end_rod,65,1,28,facing_direction=0,
 430,End Stone,minecraft:end_stone,67,1,28,,
-431,End Stone Brick Double Slab,minecraft:end_stone_brick_double_slab,69,1,28,,
-432,End Stone Brick Slab,minecraft:end_stone_brick_slab,71,1,28,,
-433,End Stone Brick Wall,minecraft:end_stone_brick_wall,73,1,28,,
-434,Ender Chest,minecraft:ender_chest,75,1,28,,
+431,End Stone Brick Double Slab,minecraft:end_stone_brick_double_slab,69,1,28,minecraft:vertical_half=bottom,
+432,End Stone Brick Slab,minecraft:end_stone_brick_slab,71,1,28,minecraft:vertical_half=bottom,
+433,End Stone Brick Wall,minecraft:end_stone_brick_wall,73,1,28,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+434,Ender Chest,minecraft:ender_chest,75,1,28,minecraft:cardinal_direction=south,
 435,Exposed Chiseled Copper,minecraft:exposed_chiseled_copper,77,1,28,,
 436,Exposed Copper,minecraft:exposed_copper,79,1,28,,
-437,Exposed Copper Bars,minecraft:exposed_copper_bars,81,1,28,,
-438,Exposed Copper Bulb,minecraft:exposed_copper_bulb,83,1,28,,
-439,Exposed Copper Chain,minecraft:exposed_copper_chain,85,1,28,,
-440,Exposed Copper Chest,minecraft:exposed_copper_chest,87,1,28,,
-441,Exposed Copper Door,minecraft:exposed_copper_door,1,1,31,,upper half at y=2
-442,Exposed Copper Golem Statue,minecraft:exposed_copper_golem_statue,3,1,31,,
+437,Exposed Copper Bars,minecraft:exposed_copper_bars,81,1,28,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+438,Exposed Copper Bulb,minecraft:exposed_copper_bulb,83,1,28,"lit=false,powered_bit=false",
+439,Exposed Copper Chain,minecraft:exposed_copper_chain,85,1,28,pillar_axis=y,
+440,Exposed Copper Chest,minecraft:exposed_copper_chest,87,1,28,minecraft:cardinal_direction=south,
+441,Exposed Copper Door,minecraft:exposed_copper_door,1,1,31,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+442,Exposed Copper Golem Statue,minecraft:exposed_copper_golem_statue,3,1,31,minecraft:cardinal_direction=south,
 443,Exposed Copper Grate,minecraft:exposed_copper_grate,5,1,31,,
-444,Exposed Copper Lantern,minecraft:exposed_copper_lantern,7,1,31,,
-445,Exposed Copper Trapdoor,minecraft:exposed_copper_trapdoor,9,1,31,,
+444,Exposed Copper Lantern,minecraft:exposed_copper_lantern,7,1,31,hanging=false,
+445,Exposed Copper Trapdoor,minecraft:exposed_copper_trapdoor,9,1,31,"direction=0,open_bit=false,upside_down_bit=false",
 446,Exposed Cut Copper,minecraft:exposed_cut_copper,11,1,31,,
-447,Exposed Cut Copper Slab,minecraft:exposed_cut_copper_slab,13,1,31,,
-448,Exposed Cut Copper Stairs,minecraft:exposed_cut_copper_stairs,15,1,31,"weirdo_direction=0,upside_down_bit=0",default test state
-449,Exposed Double Cut Copper Slab,minecraft:exposed_double_cut_copper_slab,17,1,31,,
-450,Exposed Lightning Rod,minecraft:exposed_lightning_rod,19,1,31,,
-451,Farmland,minecraft:farmland,21,1,31,,
+447,Exposed Cut Copper Slab,minecraft:exposed_cut_copper_slab,13,1,31,minecraft:vertical_half=bottom,
+448,Exposed Cut Copper Stairs,minecraft:exposed_cut_copper_stairs,15,1,31,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+449,Exposed Double Cut Copper Slab,minecraft:exposed_double_cut_copper_slab,17,1,31,minecraft:vertical_half=bottom,
+450,Exposed Lightning Rod,minecraft:exposed_lightning_rod,19,1,31,"facing_direction=0,powered_bit=false",
+451,Farmland,minecraft:farmland,21,1,31,moisturized_amount=7,"water next to it, so it stays farmland"
 452,Oak Fence,minecraft:fence,23,1,31,,
-453,Oak Fence Gate,minecraft:fence_gate,25,1,31,,
-454,Fern,minecraft:fern,27,1,31,,
-455,Fire,minecraft:fire,29,1,31,,
-456,Fire Coral,minecraft:fire_coral,31,1,31,,
-457,Fire Coral Block,minecraft:fire_coral_block,33,1,31,,
-458,Fire Coral Fan,minecraft:fire_coral_fan,35,1,31,,
-459,Fire Coral Wall Fan,minecraft:fire_coral_wall_fan,37,1,31,,
-460,Firefly Bush,minecraft:firefly_bush,39,1,31,,
+453,Oak Fence Gate,minecraft:fence_gate,25,1,31,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+454,Fern,minecraft:fern,27,1,31,,on grass_block
+455,Fire,minecraft:fire,29,1,31,"age=0,minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_up=false,minecraft:connection_west=false","on netherrack, stone around it"
+456,Fire Coral,minecraft:fire_coral,31,1,31,,"in water, stone around it"
+457,Fire Coral Block,minecraft:fire_coral_block,33,1,31,,"water on top, stone around the water"
+458,Fire Coral Fan,minecraft:fire_coral_fan,35,1,31,coral_fan_direction=0,"in water, stone around it"
+459,Fire Coral Wall Fan,minecraft:fire_coral_wall_fan,37,1,31,coral_direction=0,"in water, stone around it"
+460,Firefly Bush,minecraft:firefly_bush,39,1,31,,on grass_block
 461,Fletching Table,minecraft:fletching_table,41,1,31,,
-462,Flower Pot,minecraft:flower_pot,43,1,31,,
-463,Flowering Azalea,minecraft:flowering_azalea,45,1,31,,
-464,Lava,minecraft:flowing_lava,47,1,31,liquid_depth=0,default test state
-465,Water,minecraft:flowing_water,49,1,31,liquid_depth=0,default test state
-466,Item Frame,minecraft:frame,51,1,31,,
-467,Frog Spawn,minecraft:frog_spawn,53,1,31,,
-468,Frosted Ice,minecraft:frosted_ice,55,1,31,,
-469,Furnace,minecraft:furnace,57,1,31,,
+462,Flower Pot,minecraft:flower_pot,43,1,31,update_bit=false,
+463,Flowering Azalea,minecraft:flowering_azalea,45,1,31,,on grass_block
+464,Lava,minecraft:flowing_lava,47,1,31,liquid_depth=0,"stone around it, so it does not flow (frosted ice melts into water)"
+465,Water,minecraft:flowing_water,49,1,31,liquid_depth=0,"stone around it, so it does not flow (frosted ice melts into water)"
+466,Item Frame,minecraft:frame,51,1,31,"facing_direction=1,item_frame_map_bit=false,item_frame_photo_bit=false",default test state
+467,Frog Spawn,minecraft:frog_spawn,53,2,31,,"on water, stone around the water"
+468,Frosted Ice,minecraft:frosted_ice,55,1,31,age=0,"stone around it, so it does not flow (frosted ice melts into water)"
+469,Furnace,minecraft:furnace,57,1,31,minecraft:cardinal_direction=south,
 470,Gilded Blackstone,minecraft:gilded_blackstone,59,1,31,,
 471,Glass,minecraft:glass,61,1,31,,
-472,Glass Pane,minecraft:glass_pane,63,1,31,,
-473,Glow Item Frame,minecraft:glow_frame,65,1,31,,
-474,Glow Lichen,minecraft:glow_lichen,67,1,31,,
+472,Glass Pane,minecraft:glass_pane,63,1,31,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+473,Glow Item Frame,minecraft:glow_frame,65,1,31,"facing_direction=1,item_frame_map_bit=false,item_frame_photo_bit=false",default test state
+474,Glow Lichen,minecraft:glow_lichen,67,1,31,multi_face_direction_bits=1,default test state
 475,Glowingobsidian,minecraft:glowingobsidian,69,1,31,,
 476,Glowstone,minecraft:glowstone,71,1,31,,
 477,Gold Block,minecraft:gold_block,73,1,31,,
 478,Gold Ore,minecraft:gold_ore,75,1,31,,
-479,Golden Dandelion,minecraft:golden_dandelion,77,1,31,,
-480,Powered Rail,minecraft:golden_rail,79,1,31,,
+479,Golden Dandelion,minecraft:golden_dandelion,77,1,31,,on grass_block
+480,Powered Rail,minecraft:golden_rail,79,1,31,"rail_data_bit=false,rail_direction=0",
 481,Granite,minecraft:granite,81,1,31,,
-482,Granite Double Slab,minecraft:granite_double_slab,83,1,31,,
-483,Granite Slab,minecraft:granite_slab,85,1,31,,
-484,Granite Stairs,minecraft:granite_stairs,87,1,31,"weirdo_direction=0,upside_down_bit=0",default test state
-485,Granite Wall,minecraft:granite_wall,1,1,34,,
+482,Granite Double Slab,minecraft:granite_double_slab,83,1,31,minecraft:vertical_half=bottom,
+483,Granite Slab,minecraft:granite_slab,85,1,31,minecraft:vertical_half=bottom,
+484,Granite Stairs,minecraft:granite_stairs,87,1,31,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+485,Granite Wall,minecraft:granite_wall,1,1,34,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 486,Grass,minecraft:grass,3,1,34,,
 487,Dirt Path,minecraft:grass_path,5,1,34,,
 488,Gravel,minecraft:gravel,7,1,34,,
-489,Gray Candle,minecraft:gray_candle,9,1,34,,
-490,Gray Candle Cake,minecraft:gray_candle_cake,11,1,34,,
+489,Gray Candle,minecraft:gray_candle,9,1,34,"candles=0,lit=false",
+490,Gray Candle Cake,minecraft:gray_candle_cake,11,1,34,lit=false,
 491,Gray Carpet,minecraft:gray_carpet,13,1,34,,
 492,Gray Concrete,minecraft:gray_concrete,15,1,34,,
-493,Gray Concrete Double Slab,minecraft:gray_concrete_double_slab,17,1,34,,
+493,Gray Concrete Double Slab,minecraft:gray_concrete_double_slab,17,1,34,minecraft:vertical_half=bottom,
 494,Gray Concrete Powder,minecraft:gray_concrete_powder,19,1,34,,
-495,Gray Concrete Slab,minecraft:gray_concrete_slab,21,1,34,,
-496,Gray Concrete Stairs,minecraft:gray_concrete_stairs,23,1,34,"weirdo_direction=0,upside_down_bit=0",default test state
-497,Gray Glazed Terracotta,minecraft:gray_glazed_terracotta,25,1,34,,
+495,Gray Concrete Slab,minecraft:gray_concrete_slab,21,1,34,minecraft:vertical_half=bottom,
+496,Gray Concrete Stairs,minecraft:gray_concrete_stairs,23,1,34,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+497,Gray Glazed Terracotta,minecraft:gray_glazed_terracotta,25,1,34,facing_direction=0,
 498,Gray Shulker Box,minecraft:gray_shulker_box,27,1,34,,
 499,Gray Stained Glass,minecraft:gray_stained_glass,29,1,34,,
-500,Gray Stained Glass Pane,minecraft:gray_stained_glass_pane,31,1,34,,
+500,Gray Stained Glass Pane,minecraft:gray_stained_glass_pane,31,1,34,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 501,Gray Terracotta,minecraft:gray_terracotta,33,1,34,,
 502,Gray Wool,minecraft:gray_wool,35,1,34,,
-503,Gray Wool Double Slab,minecraft:gray_wool_double_slab,37,1,34,,
-504,Gray Wool Slab,minecraft:gray_wool_slab,39,1,34,,
-505,Gray Wool Stairs,minecraft:gray_wool_stairs,41,1,34,"weirdo_direction=0,upside_down_bit=0",default test state
-506,Green Candle,minecraft:green_candle,43,1,34,,
-507,Green Candle Cake,minecraft:green_candle_cake,45,1,34,,
+503,Gray Wool Double Slab,minecraft:gray_wool_double_slab,37,1,34,minecraft:vertical_half=bottom,
+504,Gray Wool Slab,minecraft:gray_wool_slab,39,1,34,minecraft:vertical_half=bottom,
+505,Gray Wool Stairs,minecraft:gray_wool_stairs,41,1,34,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+506,Green Candle,minecraft:green_candle,43,1,34,"candles=0,lit=false",
+507,Green Candle Cake,minecraft:green_candle_cake,45,1,34,lit=false,
 508,Green Carpet,minecraft:green_carpet,47,1,34,,
 509,Green Concrete,minecraft:green_concrete,49,1,34,,
-510,Green Concrete Double Slab,minecraft:green_concrete_double_slab,51,1,34,,
+510,Green Concrete Double Slab,minecraft:green_concrete_double_slab,51,1,34,minecraft:vertical_half=bottom,
 511,Green Concrete Powder,minecraft:green_concrete_powder,53,1,34,,
-512,Green Concrete Slab,minecraft:green_concrete_slab,55,1,34,,
-513,Green Concrete Stairs,minecraft:green_concrete_stairs,57,1,34,"weirdo_direction=0,upside_down_bit=0",default test state
-514,Green Glazed Terracotta,minecraft:green_glazed_terracotta,59,1,34,,
+512,Green Concrete Slab,minecraft:green_concrete_slab,55,1,34,minecraft:vertical_half=bottom,
+513,Green Concrete Stairs,minecraft:green_concrete_stairs,57,1,34,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+514,Green Glazed Terracotta,minecraft:green_glazed_terracotta,59,1,34,facing_direction=0,
 515,Green Shulker Box,minecraft:green_shulker_box,61,1,34,,
 516,Green Stained Glass,minecraft:green_stained_glass,63,1,34,,
-517,Green Stained Glass Pane,minecraft:green_stained_glass_pane,65,1,34,,
+517,Green Stained Glass Pane,minecraft:green_stained_glass_pane,65,1,34,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 518,Green Terracotta,minecraft:green_terracotta,67,1,34,,
 519,Green Wool,minecraft:green_wool,69,1,34,,
-520,Green Wool Double Slab,minecraft:green_wool_double_slab,71,1,34,,
-521,Green Wool Slab,minecraft:green_wool_slab,73,1,34,,
-522,Green Wool Stairs,minecraft:green_wool_stairs,75,1,34,"weirdo_direction=0,upside_down_bit=0",default test state
-523,Grindstone,minecraft:grindstone,77,1,34,,
-524,Hanging Roots,minecraft:hanging_roots,79,1,34,,
+520,Green Wool Double Slab,minecraft:green_wool_double_slab,71,1,34,minecraft:vertical_half=bottom,
+521,Green Wool Slab,minecraft:green_wool_slab,73,1,34,minecraft:vertical_half=bottom,
+522,Green Wool Stairs,minecraft:green_wool_stairs,75,1,34,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+523,Grindstone,minecraft:grindstone,77,1,34,"attachment=standing,direction=0",
+524,Hanging Roots,minecraft:hanging_roots,79,2,34,,hanging from the block above
 525,Terracotta,minecraft:hardened_clay,81,1,34,,
-526,Hay Block,minecraft:hay_block,83,1,34,,
+526,Hay Block,minecraft:hay_block,83,1,34,"deprecated=0,pillar_axis=y",
 527,Heavy Core,minecraft:heavy_core,85,1,34,,
-528,Heavy Weighted Pressure Plate,minecraft:heavy_weighted_pressure_plate,87,1,34,,
+528,Heavy Weighted Pressure Plate,minecraft:heavy_weighted_pressure_plate,87,1,34,redstone_signal=0,
 529,Honey Block,minecraft:honey_block,1,1,37,,
 530,Honeycomb Block,minecraft:honeycomb_block,3,1,37,,
-531,Hopper,minecraft:hopper,5,1,37,,
-532,Horn Coral,minecraft:horn_coral,7,1,37,,
-533,Horn Coral Block,minecraft:horn_coral_block,9,1,37,,
-534,Horn Coral Fan,minecraft:horn_coral_fan,11,1,37,,
-535,Horn Coral Wall Fan,minecraft:horn_coral_wall_fan,13,1,37,,
+531,Hopper,minecraft:hopper,5,1,37,"facing_direction=0,toggle_bit=false",
+532,Horn Coral,minecraft:horn_coral,7,1,37,,"in water, stone around it"
+533,Horn Coral Block,minecraft:horn_coral_block,9,1,37,,"water on top, stone around the water"
+534,Horn Coral Fan,minecraft:horn_coral_fan,11,1,37,coral_fan_direction=0,"in water, stone around it"
+535,Horn Coral Wall Fan,minecraft:horn_coral_wall_fan,13,1,37,coral_direction=0,"in water, stone around it"
 536,Ice,minecraft:ice,15,1,37,,
 537,Infested Chiseled Stone Bricks,minecraft:infested_chiseled_stone_bricks,17,1,37,,
 538,Infested Cobblestone,minecraft:infested_cobblestone,19,1,37,,
 539,Infested Cracked Stone Bricks,minecraft:infested_cracked_stone_bricks,21,1,37,,
-540,Infested Deepslate,minecraft:infested_deepslate,23,1,37,,
+540,Infested Deepslate,minecraft:infested_deepslate,23,1,37,pillar_axis=y,
 541,Infested Mossy Stone Bricks,minecraft:infested_mossy_stone_bricks,25,1,37,,
 542,Infested Stone,minecraft:infested_stone,27,1,37,,
 543,Infested Stone Bricks,minecraft:infested_stone_bricks,29,1,37,,
 544,Info Update,minecraft:info_update,31,1,37,,
 545,Info Update2,minecraft:info_update2,33,1,37,,
 546,InvisibleBedrock,minecraft:invisibleBedrock,35,1,37,,
-547,Iron Bars,minecraft:iron_bars,37,1,37,,
+547,Iron Bars,minecraft:iron_bars,37,1,37,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 548,Iron Block,minecraft:iron_block,39,1,37,,
-549,Iron Door,minecraft:iron_door,41,1,37,,upper half at y=2
+549,Iron Door,minecraft:iron_door,41,1,37,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
 550,Iron Ore,minecraft:iron_ore,43,1,37,,
-551,Iron Trapdoor,minecraft:iron_trapdoor,45,1,37,,
-552,Jigsaw,minecraft:jigsaw,47,1,37,,
+551,Iron Trapdoor,minecraft:iron_trapdoor,45,1,37,"direction=0,open_bit=false,upside_down_bit=false",
+552,Jigsaw,minecraft:jigsaw,47,1,37,"facing_direction=0,rotation=0",
 553,Jukebox,minecraft:jukebox,49,1,37,,
-554,Jungle Button,minecraft:jungle_button,51,1,37,,
-555,Jungle Door,minecraft:jungle_door,53,1,37,,upper half at y=2
-556,Jungle Double Slab,minecraft:jungle_double_slab,55,1,37,,
-557,Jungle Fence,minecraft:jungle_fence,57,1,37,,
-558,Jungle Fence Gate,minecraft:jungle_fence_gate,59,1,37,,
-559,Jungle Hanging Sign,minecraft:jungle_hanging_sign,61,1,37,,
-560,Jungle Leaves,minecraft:jungle_leaves,63,1,37,,
-561,Jungle Log,minecraft:jungle_log,65,1,37,,
+554,Jungle Button,minecraft:jungle_button,51,1,37,"button_pressed_bit=false,facing_direction=1",default test state
+555,Jungle Door,minecraft:jungle_door,53,1,37,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+556,Jungle Double Slab,minecraft:jungle_double_slab,55,1,37,minecraft:vertical_half=bottom,
+557,Jungle Fence,minecraft:jungle_fence,57,1,37,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+558,Jungle Fence Gate,minecraft:jungle_fence_gate,59,1,37,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+559,Jungle Hanging Sign,minecraft:jungle_hanging_sign,61,1,37,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
+560,Jungle Leaves,minecraft:jungle_leaves,63,1,37,"persistent_bit=true,update_bit=false",default test state
+561,Jungle Log,minecraft:jungle_log,65,1,37,pillar_axis=y,
 562,Jungle Planks,minecraft:jungle_planks,67,1,37,,
-563,Jungle Pressure Plate,minecraft:jungle_pressure_plate,69,1,37,,
-564,Jungle Sapling,minecraft:jungle_sapling,71,1,37,,
-565,Jungle Shelf,minecraft:jungle_shelf,73,1,37,,
-566,Jungle Slab,minecraft:jungle_slab,75,1,37,,
-567,Jungle Stairs,minecraft:jungle_stairs,77,1,37,"weirdo_direction=0,upside_down_bit=0",default test state
-568,Jungle Standing Sign,minecraft:jungle_standing_sign,79,1,37,,
-569,Jungle Trapdoor,minecraft:jungle_trapdoor,81,1,37,,
-570,Jungle Wall Sign,minecraft:jungle_wall_sign,83,1,37,,
-571,Jungle Wood,minecraft:jungle_wood,85,1,37,,
-572,Kelp,minecraft:kelp,87,1,37,,
-573,Ladder,minecraft:ladder,1,1,40,,
-574,Lantern,minecraft:lantern,3,1,40,,
+563,Jungle Pressure Plate,minecraft:jungle_pressure_plate,69,1,37,redstone_signal=0,
+564,Jungle Sapling,minecraft:jungle_sapling,71,1,37,age_bit=false,on grass_block
+565,Jungle Shelf,minecraft:jungle_shelf,73,1,37,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+566,Jungle Slab,minecraft:jungle_slab,75,1,37,minecraft:vertical_half=bottom,
+567,Jungle Stairs,minecraft:jungle_stairs,77,1,37,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+568,Jungle Standing Sign,minecraft:jungle_standing_sign,79,1,37,ground_sign_direction=0,
+569,Jungle Trapdoor,minecraft:jungle_trapdoor,81,1,37,"direction=0,open_bit=false,upside_down_bit=false",
+570,Jungle Wall Sign,minecraft:jungle_wall_sign,83,1,37,facing_direction=2,"facing north, on the block to the south"
+571,Jungle Wood,minecraft:jungle_wood,85,1,37,pillar_axis=y,
+572,Kelp,minecraft:kelp,87,1,37,kelp_age=0,"in water, stone around it"
+573,Ladder,minecraft:ladder,1,1,40,facing_direction=2,"facing north, on the block to the south"
+574,Lantern,minecraft:lantern,3,1,40,hanging=false,
 575,Lapis Block,minecraft:lapis_block,5,1,40,,
 576,Lapis Ore,minecraft:lapis_ore,7,1,40,,
-577,Large Amethyst Bud,minecraft:large_amethyst_bud,9,1,40,,
-578,Large Fern,minecraft:large_fern,11,1,40,,upper half at y=2
-579,Lava,minecraft:lava,13,1,40,liquid_depth=0,default test state
+577,Large Amethyst Bud,minecraft:large_amethyst_bud,9,1,40,minecraft:block_face=down,
+578,Large Fern,minecraft:large_fern,11,1,40,upper_block_bit=false,upper half at y=2; on grass_block
+579,Lava,minecraft:lava,13,1,40,liquid_depth=0,"stone around it, so it does not flow (frosted ice melts into water)"
 580,Lava Cauldron,minecraft:lava_cauldron,15,1,40,,
-581,Leaf Litter,minecraft:leaf_litter,17,1,40,,
+581,Leaf Litter,minecraft:leaf_litter,17,1,40,"growth=0,minecraft:cardinal_direction=south",
 582,Oak Leaves,minecraft:leaves,19,1,40,,
 583,Leaves2,minecraft:leaves2,21,1,40,,
-584,Lectern,minecraft:lectern,23,1,40,,
-585,Lever,minecraft:lever,25,1,40,,
+584,Lectern,minecraft:lectern,23,1,40,"minecraft:cardinal_direction=south,powered_bit=false",
+585,Lever,minecraft:lever,25,1,40,"lever_direction=down_east_west,open_bit=false",
 586,Light,minecraft:light_block,27,1,40,,
-587,Light Blue Candle,minecraft:light_blue_candle,29,1,40,,
-588,Light Blue Candle Cake,minecraft:light_blue_candle_cake,31,1,40,,
+587,Light Blue Candle,minecraft:light_blue_candle,29,1,40,"candles=0,lit=false",
+588,Light Blue Candle Cake,minecraft:light_blue_candle_cake,31,1,40,lit=false,
 589,Light Blue Carpet,minecraft:light_blue_carpet,33,1,40,,
 590,Light Blue Concrete,minecraft:light_blue_concrete,35,1,40,,
-591,Light Blue Concrete Double Slab,minecraft:light_blue_concrete_double_slab,37,1,40,,
+591,Light Blue Concrete Double Slab,minecraft:light_blue_concrete_double_slab,37,1,40,minecraft:vertical_half=bottom,
 592,Light Blue Concrete Powder,minecraft:light_blue_concrete_powder,39,1,40,,
-593,Light Blue Concrete Slab,minecraft:light_blue_concrete_slab,41,1,40,,
-594,Light Blue Concrete Stairs,minecraft:light_blue_concrete_stairs,43,1,40,"weirdo_direction=0,upside_down_bit=0",default test state
-595,Light Blue Glazed Terracotta,minecraft:light_blue_glazed_terracotta,45,1,40,,
+593,Light Blue Concrete Slab,minecraft:light_blue_concrete_slab,41,1,40,minecraft:vertical_half=bottom,
+594,Light Blue Concrete Stairs,minecraft:light_blue_concrete_stairs,43,1,40,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+595,Light Blue Glazed Terracotta,minecraft:light_blue_glazed_terracotta,45,1,40,facing_direction=0,
 596,Light Blue Shulker Box,minecraft:light_blue_shulker_box,47,1,40,,
 597,Light Blue Stained Glass,minecraft:light_blue_stained_glass,49,1,40,,
-598,Light Blue Stained Glass Pane,minecraft:light_blue_stained_glass_pane,51,1,40,,
+598,Light Blue Stained Glass Pane,minecraft:light_blue_stained_glass_pane,51,1,40,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 599,Light Blue Terracotta,minecraft:light_blue_terracotta,53,1,40,,
 600,Light Blue Wool,minecraft:light_blue_wool,55,1,40,,
-601,Light Blue Wool Double Slab,minecraft:light_blue_wool_double_slab,57,1,40,,
-602,Light Blue Wool Slab,minecraft:light_blue_wool_slab,59,1,40,,
-603,Light Blue Wool Stairs,minecraft:light_blue_wool_stairs,61,1,40,"weirdo_direction=0,upside_down_bit=0",default test state
-604,Light Gray Candle,minecraft:light_gray_candle,63,1,40,,
-605,Light Gray Candle Cake,minecraft:light_gray_candle_cake,65,1,40,,
+601,Light Blue Wool Double Slab,minecraft:light_blue_wool_double_slab,57,1,40,minecraft:vertical_half=bottom,
+602,Light Blue Wool Slab,minecraft:light_blue_wool_slab,59,1,40,minecraft:vertical_half=bottom,
+603,Light Blue Wool Stairs,minecraft:light_blue_wool_stairs,61,1,40,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+604,Light Gray Candle,minecraft:light_gray_candle,63,1,40,"candles=0,lit=false",
+605,Light Gray Candle Cake,minecraft:light_gray_candle_cake,65,1,40,lit=false,
 606,Light Gray Carpet,minecraft:light_gray_carpet,67,1,40,,
 607,Light Gray Concrete,minecraft:light_gray_concrete,69,1,40,,
-608,Light Gray Concrete Double Slab,minecraft:light_gray_concrete_double_slab,71,1,40,,
+608,Light Gray Concrete Double Slab,minecraft:light_gray_concrete_double_slab,71,1,40,minecraft:vertical_half=bottom,
 609,Light Gray Concrete Powder,minecraft:light_gray_concrete_powder,73,1,40,,
-610,Light Gray Concrete Slab,minecraft:light_gray_concrete_slab,75,1,40,,
-611,Light Gray Concrete Stairs,minecraft:light_gray_concrete_stairs,77,1,40,"weirdo_direction=0,upside_down_bit=0",default test state
+610,Light Gray Concrete Slab,minecraft:light_gray_concrete_slab,75,1,40,minecraft:vertical_half=bottom,
+611,Light Gray Concrete Stairs,minecraft:light_gray_concrete_stairs,77,1,40,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 612,Light Gray Shulker Box,minecraft:light_gray_shulker_box,79,1,40,,
 613,Light Gray Stained Glass,minecraft:light_gray_stained_glass,81,1,40,,
-614,Light Gray Stained Glass Pane,minecraft:light_gray_stained_glass_pane,83,1,40,,
+614,Light Gray Stained Glass Pane,minecraft:light_gray_stained_glass_pane,83,1,40,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 615,Light Gray Terracotta,minecraft:light_gray_terracotta,85,1,40,,
 616,Light Gray Wool,minecraft:light_gray_wool,87,1,40,,
-617,Light Gray Wool Double Slab,minecraft:light_gray_wool_double_slab,1,1,43,,
-618,Light Gray Wool Slab,minecraft:light_gray_wool_slab,3,1,43,,
-619,Light Gray Wool Stairs,minecraft:light_gray_wool_stairs,5,1,43,"weirdo_direction=0,upside_down_bit=0",default test state
-620,Light Weighted Pressure Plate,minecraft:light_weighted_pressure_plate,7,1,43,,
-621,Lightning Rod,minecraft:lightning_rod,9,1,43,,
-622,Lilac,minecraft:lilac,11,1,43,,upper half at y=2
-623,Lily Of The Valley,minecraft:lily_of_the_valley,13,1,43,,
-624,Lime Candle,minecraft:lime_candle,15,1,43,,
-625,Lime Candle Cake,minecraft:lime_candle_cake,17,1,43,,
+617,Light Gray Wool Double Slab,minecraft:light_gray_wool_double_slab,1,1,43,minecraft:vertical_half=bottom,
+618,Light Gray Wool Slab,minecraft:light_gray_wool_slab,3,1,43,minecraft:vertical_half=bottom,
+619,Light Gray Wool Stairs,minecraft:light_gray_wool_stairs,5,1,43,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+620,Light Weighted Pressure Plate,minecraft:light_weighted_pressure_plate,7,1,43,redstone_signal=0,
+621,Lightning Rod,minecraft:lightning_rod,9,1,43,"facing_direction=0,powered_bit=false",
+622,Lilac,minecraft:lilac,11,1,43,upper_block_bit=false,upper half at y=2; on grass_block
+623,Lily Of The Valley,minecraft:lily_of_the_valley,13,1,43,,on grass_block
+624,Lime Candle,minecraft:lime_candle,15,1,43,"candles=0,lit=false",
+625,Lime Candle Cake,minecraft:lime_candle_cake,17,1,43,lit=false,
 626,Lime Carpet,minecraft:lime_carpet,19,1,43,,
 627,Lime Concrete,minecraft:lime_concrete,21,1,43,,
-628,Lime Concrete Double Slab,minecraft:lime_concrete_double_slab,23,1,43,,
+628,Lime Concrete Double Slab,minecraft:lime_concrete_double_slab,23,1,43,minecraft:vertical_half=bottom,
 629,Lime Concrete Powder,minecraft:lime_concrete_powder,25,1,43,,
-630,Lime Concrete Slab,minecraft:lime_concrete_slab,27,1,43,,
-631,Lime Concrete Stairs,minecraft:lime_concrete_stairs,29,1,43,"weirdo_direction=0,upside_down_bit=0",default test state
-632,Lime Glazed Terracotta,minecraft:lime_glazed_terracotta,31,1,43,,
+630,Lime Concrete Slab,minecraft:lime_concrete_slab,27,1,43,minecraft:vertical_half=bottom,
+631,Lime Concrete Stairs,minecraft:lime_concrete_stairs,29,1,43,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+632,Lime Glazed Terracotta,minecraft:lime_glazed_terracotta,31,1,43,facing_direction=0,
 633,Lime Shulker Box,minecraft:lime_shulker_box,33,1,43,,
 634,Lime Stained Glass,minecraft:lime_stained_glass,35,1,43,,
-635,Lime Stained Glass Pane,minecraft:lime_stained_glass_pane,37,1,43,,
+635,Lime Stained Glass Pane,minecraft:lime_stained_glass_pane,37,1,43,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 636,Lime Terracotta,minecraft:lime_terracotta,39,1,43,,
 637,Lime Wool,minecraft:lime_wool,41,1,43,,
-638,Lime Wool Double Slab,minecraft:lime_wool_double_slab,43,1,43,,
-639,Lime Wool Slab,minecraft:lime_wool_slab,45,1,43,,
-640,Lime Wool Stairs,minecraft:lime_wool_stairs,47,1,43,"weirdo_direction=0,upside_down_bit=0",default test state
-641,Blast Furnace,minecraft:lit_blast_furnace,49,1,43,,
+638,Lime Wool Double Slab,minecraft:lime_wool_double_slab,43,1,43,minecraft:vertical_half=bottom,
+639,Lime Wool Slab,minecraft:lime_wool_slab,45,1,43,minecraft:vertical_half=bottom,
+640,Lime Wool Stairs,minecraft:lime_wool_stairs,47,1,43,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+641,Blast Furnace,minecraft:lit_blast_furnace,49,1,43,minecraft:cardinal_direction=south,burning (about 25 minutes of fuel time)
 642,Deepslate Redstone Ore,minecraft:lit_deepslate_redstone_ore,51,1,43,,
-643,Furnace,minecraft:lit_furnace,53,1,43,,
-644,Jack O Lantern,minecraft:lit_pumpkin,55,1,43,,
-645,Redstone Lamp,minecraft:lit_redstone_lamp,57,1,43,,
+643,Furnace,minecraft:lit_furnace,53,1,43,minecraft:cardinal_direction=south,burning (about 25 minutes of fuel time)
+644,Jack O Lantern,minecraft:lit_pumpkin,55,1,43,minecraft:cardinal_direction=south,
+645,Redstone Lamp,minecraft:lit_redstone_lamp,57,1,43,,on a redstone block
 646,Redstone Ore,minecraft:lit_redstone_ore,59,1,43,,
-647,Smoker,minecraft:lit_smoker,61,1,43,,
+647,Smoker,minecraft:lit_smoker,61,1,43,minecraft:cardinal_direction=south,burning (about 25 minutes of fuel time)
 648,Lodestone,minecraft:lodestone,63,1,43,,
 649,Oak Log,minecraft:log,65,1,43,,
 650,Log2,minecraft:log2,67,1,43,,
-651,Loom,minecraft:loom,69,1,43,,
-652,Magenta Candle,minecraft:magenta_candle,71,1,43,,
-653,Magenta Candle Cake,minecraft:magenta_candle_cake,73,1,43,,
+651,Loom,minecraft:loom,69,1,43,direction=0,
+652,Magenta Candle,minecraft:magenta_candle,71,1,43,"candles=0,lit=false",
+653,Magenta Candle Cake,minecraft:magenta_candle_cake,73,1,43,lit=false,
 654,Magenta Carpet,minecraft:magenta_carpet,75,1,43,,
 655,Magenta Concrete,minecraft:magenta_concrete,77,1,43,,
-656,Magenta Concrete Double Slab,minecraft:magenta_concrete_double_slab,79,1,43,,
+656,Magenta Concrete Double Slab,minecraft:magenta_concrete_double_slab,79,1,43,minecraft:vertical_half=bottom,
 657,Magenta Concrete Powder,minecraft:magenta_concrete_powder,81,1,43,,
-658,Magenta Concrete Slab,minecraft:magenta_concrete_slab,83,1,43,,
-659,Magenta Concrete Stairs,minecraft:magenta_concrete_stairs,85,1,43,"weirdo_direction=0,upside_down_bit=0",default test state
-660,Magenta Glazed Terracotta,minecraft:magenta_glazed_terracotta,87,1,43,,
+658,Magenta Concrete Slab,minecraft:magenta_concrete_slab,83,1,43,minecraft:vertical_half=bottom,
+659,Magenta Concrete Stairs,minecraft:magenta_concrete_stairs,85,1,43,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+660,Magenta Glazed Terracotta,minecraft:magenta_glazed_terracotta,87,1,43,facing_direction=0,
 661,Magenta Shulker Box,minecraft:magenta_shulker_box,1,1,46,,
 662,Magenta Stained Glass,minecraft:magenta_stained_glass,3,1,46,,
-663,Magenta Stained Glass Pane,minecraft:magenta_stained_glass_pane,5,1,46,,
+663,Magenta Stained Glass Pane,minecraft:magenta_stained_glass_pane,5,1,46,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 664,Magenta Terracotta,minecraft:magenta_terracotta,7,1,46,,
 665,Magenta Wool,minecraft:magenta_wool,9,1,46,,
-666,Magenta Wool Double Slab,minecraft:magenta_wool_double_slab,11,1,46,,
-667,Magenta Wool Slab,minecraft:magenta_wool_slab,13,1,46,,
-668,Magenta Wool Stairs,minecraft:magenta_wool_stairs,15,1,46,"weirdo_direction=0,upside_down_bit=0",default test state
+666,Magenta Wool Double Slab,minecraft:magenta_wool_double_slab,11,1,46,minecraft:vertical_half=bottom,
+667,Magenta Wool Slab,minecraft:magenta_wool_slab,13,1,46,minecraft:vertical_half=bottom,
+668,Magenta Wool Stairs,minecraft:magenta_wool_stairs,15,1,46,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 669,Magma Block,minecraft:magma,17,1,46,,
-670,Mangrove Button,minecraft:mangrove_button,19,1,46,,
-671,Mangrove Door,minecraft:mangrove_door,21,1,46,,upper half at y=2
-672,Mangrove Double Slab,minecraft:mangrove_double_slab,23,1,46,,
-673,Mangrove Fence,minecraft:mangrove_fence,25,1,46,,
-674,Mangrove Fence Gate,minecraft:mangrove_fence_gate,27,1,46,,
-675,Mangrove Hanging Sign,minecraft:mangrove_hanging_sign,29,1,46,,
-676,Mangrove Leaves,minecraft:mangrove_leaves,31,1,46,,
-677,Mangrove Log,minecraft:mangrove_log,33,1,46,,
+670,Mangrove Button,minecraft:mangrove_button,19,1,46,"button_pressed_bit=false,facing_direction=1",default test state
+671,Mangrove Door,minecraft:mangrove_door,21,1,46,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+672,Mangrove Double Slab,minecraft:mangrove_double_slab,23,1,46,minecraft:vertical_half=bottom,
+673,Mangrove Fence,minecraft:mangrove_fence,25,1,46,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+674,Mangrove Fence Gate,minecraft:mangrove_fence_gate,27,1,46,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+675,Mangrove Hanging Sign,minecraft:mangrove_hanging_sign,29,1,46,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
+676,Mangrove Leaves,minecraft:mangrove_leaves,31,1,46,"persistent_bit=true,update_bit=false",default test state
+677,Mangrove Log,minecraft:mangrove_log,33,1,46,pillar_axis=y,
 678,Mangrove Planks,minecraft:mangrove_planks,35,1,46,,
-679,Mangrove Pressure Plate,minecraft:mangrove_pressure_plate,37,1,46,,
-680,Mangrove Propagule,minecraft:mangrove_propagule,39,1,46,,
+679,Mangrove Pressure Plate,minecraft:mangrove_pressure_plate,37,1,46,redstone_signal=0,
+680,Mangrove Propagule,minecraft:mangrove_propagule,39,1,46,"hanging=false,propagule_stage=0",on grass_block
 681,Mangrove Roots,minecraft:mangrove_roots,41,1,46,,
-682,Mangrove Shelf,minecraft:mangrove_shelf,43,1,46,,
-683,Mangrove Slab,minecraft:mangrove_slab,45,1,46,,
-684,Mangrove Stairs,minecraft:mangrove_stairs,47,1,46,"weirdo_direction=0,upside_down_bit=0",default test state
-685,Mangrove Standing Sign,minecraft:mangrove_standing_sign,49,1,46,,
-686,Mangrove Trapdoor,minecraft:mangrove_trapdoor,51,1,46,,
-687,Mangrove Wall Sign,minecraft:mangrove_wall_sign,53,1,46,,
-688,Mangrove Wood,minecraft:mangrove_wood,55,1,46,,
-689,Medium Amethyst Bud,minecraft:medium_amethyst_bud,57,1,46,,
+682,Mangrove Shelf,minecraft:mangrove_shelf,43,1,46,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+683,Mangrove Slab,minecraft:mangrove_slab,45,1,46,minecraft:vertical_half=bottom,
+684,Mangrove Stairs,minecraft:mangrove_stairs,47,1,46,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+685,Mangrove Standing Sign,minecraft:mangrove_standing_sign,49,1,46,ground_sign_direction=0,
+686,Mangrove Trapdoor,minecraft:mangrove_trapdoor,51,1,46,"direction=0,open_bit=false,upside_down_bit=false",
+687,Mangrove Wall Sign,minecraft:mangrove_wall_sign,53,1,46,facing_direction=2,"facing north, on the block to the south"
+688,Mangrove Wood,minecraft:mangrove_wood,55,1,46,pillar_axis=y,
+689,Medium Amethyst Bud,minecraft:medium_amethyst_bud,57,1,46,minecraft:block_face=down,
 690,Melon,minecraft:melon_block,59,1,46,,
-691,Melon Stem,minecraft:melon_stem,61,1,46,,
+691,Melon Stem,minecraft:melon_stem,61,1,46,"facing_direction=0,growth=0",on farmland
 692,Spawner,minecraft:mob_spawner,63,1,46,,
 693,Monster Egg,minecraft:monster_egg,65,1,46,,
 694,Moss Block,minecraft:moss_block,67,1,46,,
 695,Moss Carpet,minecraft:moss_carpet,69,1,46,,
 696,Mossy Cobblestone,minecraft:mossy_cobblestone,71,1,46,,
-697,Mossy Cobblestone Double Slab,minecraft:mossy_cobblestone_double_slab,73,1,46,,
-698,Mossy Cobblestone Slab,minecraft:mossy_cobblestone_slab,75,1,46,,
-699,Mossy Cobblestone Stairs,minecraft:mossy_cobblestone_stairs,77,1,46,"weirdo_direction=0,upside_down_bit=0",default test state
-700,Mossy Cobblestone Wall,minecraft:mossy_cobblestone_wall,79,1,46,,
-701,Mossy Stone Brick Double Slab,minecraft:mossy_stone_brick_double_slab,81,1,46,,
-702,Mossy Stone Brick Slab,minecraft:mossy_stone_brick_slab,83,1,46,,
-703,Mossy Stone Brick Stairs,minecraft:mossy_stone_brick_stairs,85,1,46,"weirdo_direction=0,upside_down_bit=0",default test state
-704,Mossy Stone Brick Wall,minecraft:mossy_stone_brick_wall,87,1,46,,
+697,Mossy Cobblestone Double Slab,minecraft:mossy_cobblestone_double_slab,73,1,46,minecraft:vertical_half=bottom,
+698,Mossy Cobblestone Slab,minecraft:mossy_cobblestone_slab,75,1,46,minecraft:vertical_half=bottom,
+699,Mossy Cobblestone Stairs,minecraft:mossy_cobblestone_stairs,77,1,46,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+700,Mossy Cobblestone Wall,minecraft:mossy_cobblestone_wall,79,1,46,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+701,Mossy Stone Brick Double Slab,minecraft:mossy_stone_brick_double_slab,81,1,46,minecraft:vertical_half=bottom,
+702,Mossy Stone Brick Slab,minecraft:mossy_stone_brick_slab,83,1,46,minecraft:vertical_half=bottom,
+703,Mossy Stone Brick Stairs,minecraft:mossy_stone_brick_stairs,85,1,46,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+704,Mossy Stone Brick Wall,minecraft:mossy_stone_brick_wall,87,1,46,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 705,Mossy Stone Bricks,minecraft:mossy_stone_bricks,1,1,49,,
 706,MovingBlock,minecraft:movingBlock,3,1,49,,
 707,Mud,minecraft:mud,5,1,49,,
-708,Mud Brick Double Slab,minecraft:mud_brick_double_slab,7,1,49,,
-709,Mud Brick Slab,minecraft:mud_brick_slab,9,1,49,,
-710,Mud Brick Stairs,minecraft:mud_brick_stairs,11,1,49,"weirdo_direction=0,upside_down_bit=0",default test state
-711,Mud Brick Wall,minecraft:mud_brick_wall,13,1,49,,
+708,Mud Brick Double Slab,minecraft:mud_brick_double_slab,7,1,49,minecraft:vertical_half=bottom,
+709,Mud Brick Slab,minecraft:mud_brick_slab,9,1,49,minecraft:vertical_half=bottom,
+710,Mud Brick Stairs,minecraft:mud_brick_stairs,11,1,49,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+711,Mud Brick Wall,minecraft:mud_brick_wall,13,1,49,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 712,Mud Bricks,minecraft:mud_bricks,15,1,49,,
-713,Muddy Mangrove Roots,minecraft:muddy_mangrove_roots,17,1,49,,
-714,Mushroom Stem,minecraft:mushroom_stem,19,1,49,,
+713,Muddy Mangrove Roots,minecraft:muddy_mangrove_roots,17,1,49,pillar_axis=y,
+714,Mushroom Stem,minecraft:mushroom_stem,19,1,49,huge_mushroom_bits=0,
 715,Mycelium,minecraft:mycelium,21,1,49,,
 716,Nether Bricks,minecraft:nether_brick,23,1,49,,
-717,Nether Brick Double Slab,minecraft:nether_brick_double_slab,25,1,49,,
-718,Nether Brick Fence,minecraft:nether_brick_fence,27,1,49,,
-719,Nether Brick Slab,minecraft:nether_brick_slab,29,1,49,,
-720,Nether Brick Stairs,minecraft:nether_brick_stairs,31,1,49,"weirdo_direction=0,upside_down_bit=0",default test state
-721,Nether Brick Wall,minecraft:nether_brick_wall,33,1,49,,
+717,Nether Brick Double Slab,minecraft:nether_brick_double_slab,25,1,49,minecraft:vertical_half=bottom,
+718,Nether Brick Fence,minecraft:nether_brick_fence,27,1,49,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+719,Nether Brick Slab,minecraft:nether_brick_slab,29,1,49,minecraft:vertical_half=bottom,
+720,Nether Brick Stairs,minecraft:nether_brick_stairs,31,1,49,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+721,Nether Brick Wall,minecraft:nether_brick_wall,33,1,49,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 722,Nether Gold Ore,minecraft:nether_gold_ore,35,1,49,,
-723,Nether Sprouts,minecraft:nether_sprouts,37,1,49,,
-724,Nether Wart,minecraft:nether_wart,39,1,49,,
+723,Nether Sprouts,minecraft:nether_sprouts,37,1,49,,on warped_nylium
+724,Nether Wart,minecraft:nether_wart,39,1,49,age=0,on soul_sand
 725,Nether Wart Block,minecraft:nether_wart_block,41,1,49,,
 726,Netherite Block,minecraft:netherite_block,43,1,49,,
 727,Netherrack,minecraft:netherrack,45,1,49,,
 728,Netherreactor,minecraft:netherreactor,47,1,49,,
-729,Normal Stone Double Slab,minecraft:normal_stone_double_slab,49,1,49,,
-730,Normal Stone Slab,minecraft:normal_stone_slab,51,1,49,,
-731,Normal Stone Stairs,minecraft:normal_stone_stairs,53,1,49,"weirdo_direction=0,upside_down_bit=0",default test state
+729,Normal Stone Double Slab,minecraft:normal_stone_double_slab,49,1,49,minecraft:vertical_half=bottom,
+730,Normal Stone Slab,minecraft:normal_stone_slab,51,1,49,minecraft:vertical_half=bottom,
+731,Normal Stone Stairs,minecraft:normal_stone_stairs,53,1,49,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 732,Note Block,minecraft:noteblock,55,1,49,,
-733,Oak Double Slab,minecraft:oak_double_slab,57,1,49,,
-734,Oak Fence,minecraft:oak_fence,59,1,49,,
-735,Oak Hanging Sign,minecraft:oak_hanging_sign,61,1,49,,
-736,Oak Leaves,minecraft:oak_leaves,63,1,49,,
-737,Oak Log,minecraft:oak_log,65,1,49,,
+733,Oak Double Slab,minecraft:oak_double_slab,57,1,49,minecraft:vertical_half=bottom,
+734,Oak Fence,minecraft:oak_fence,59,1,49,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+735,Oak Hanging Sign,minecraft:oak_hanging_sign,61,1,49,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
+736,Oak Leaves,minecraft:oak_leaves,63,1,49,"persistent_bit=true,update_bit=false",default test state
+737,Oak Log,minecraft:oak_log,65,1,49,pillar_axis=y,
 738,Oak Planks,minecraft:oak_planks,67,1,49,,
-739,Oak Sapling,minecraft:oak_sapling,69,1,49,,
-740,Oak Shelf,minecraft:oak_shelf,71,1,49,,
-741,Oak Slab,minecraft:oak_slab,73,1,49,,
-742,Oak Stairs,minecraft:oak_stairs,75,1,49,"weirdo_direction=0,upside_down_bit=0",default test state
-743,Oak Wood,minecraft:oak_wood,77,1,49,,
-744,Observer,minecraft:observer,79,1,49,,
+739,Oak Sapling,minecraft:oak_sapling,69,1,49,age_bit=false,on grass_block
+740,Oak Shelf,minecraft:oak_shelf,71,1,49,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+741,Oak Slab,minecraft:oak_slab,73,1,49,minecraft:vertical_half=bottom,
+742,Oak Stairs,minecraft:oak_stairs,75,1,49,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+743,Oak Wood,minecraft:oak_wood,77,1,49,pillar_axis=y,
+744,Observer,minecraft:observer,79,1,49,"minecraft:facing_direction=down,powered_bit=false",
 745,Obsidian,minecraft:obsidian,81,1,49,,
-746,Ochre Froglight,minecraft:ochre_froglight,83,1,49,,
-747,Open Eyeblossom,minecraft:open_eyeblossom,85,1,49,,
-748,Orange Candle,minecraft:orange_candle,87,1,49,,
-749,Orange Candle Cake,minecraft:orange_candle_cake,1,1,52,,
+746,Ochre Froglight,minecraft:ochre_froglight,83,1,49,pillar_axis=y,
+747,Open Eyeblossom,minecraft:open_eyeblossom,85,1,49,,on grass_block
+748,Orange Candle,minecraft:orange_candle,87,1,49,"candles=0,lit=false",
+749,Orange Candle Cake,minecraft:orange_candle_cake,1,1,52,lit=false,
 750,Orange Carpet,minecraft:orange_carpet,3,1,52,,
 751,Orange Concrete,minecraft:orange_concrete,5,1,52,,
-752,Orange Concrete Double Slab,minecraft:orange_concrete_double_slab,7,1,52,,
+752,Orange Concrete Double Slab,minecraft:orange_concrete_double_slab,7,1,52,minecraft:vertical_half=bottom,
 753,Orange Concrete Powder,minecraft:orange_concrete_powder,9,1,52,,
-754,Orange Concrete Slab,minecraft:orange_concrete_slab,11,1,52,,
-755,Orange Concrete Stairs,minecraft:orange_concrete_stairs,13,1,52,"weirdo_direction=0,upside_down_bit=0",default test state
-756,Orange Glazed Terracotta,minecraft:orange_glazed_terracotta,15,1,52,,
-757,Orange Poplar Leaves,minecraft:orange_poplar_leaves,17,1,52,,
+754,Orange Concrete Slab,minecraft:orange_concrete_slab,11,1,52,minecraft:vertical_half=bottom,
+755,Orange Concrete Stairs,minecraft:orange_concrete_stairs,13,1,52,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+756,Orange Glazed Terracotta,minecraft:orange_glazed_terracotta,15,1,52,facing_direction=0,
+757,Orange Poplar Leaves,minecraft:orange_poplar_leaves,17,1,52,"persistent_bit=true,update_bit=false",default test state
 758,Orange Shulker Box,minecraft:orange_shulker_box,19,1,52,,
 759,Orange Stained Glass,minecraft:orange_stained_glass,21,1,52,,
-760,Orange Stained Glass Pane,minecraft:orange_stained_glass_pane,23,1,52,,
+760,Orange Stained Glass Pane,minecraft:orange_stained_glass_pane,23,1,52,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 761,Orange Terracotta,minecraft:orange_terracotta,25,1,52,,
-762,Orange Tulip,minecraft:orange_tulip,27,1,52,,
+762,Orange Tulip,minecraft:orange_tulip,27,1,52,,on grass_block
 763,Orange Wool,minecraft:orange_wool,29,1,52,,
-764,Orange Wool Double Slab,minecraft:orange_wool_double_slab,31,1,52,,
-765,Orange Wool Slab,minecraft:orange_wool_slab,33,1,52,,
-766,Orange Wool Stairs,minecraft:orange_wool_stairs,35,1,52,"weirdo_direction=0,upside_down_bit=0",default test state
-767,Oxeye Daisy,minecraft:oxeye_daisy,37,1,52,,
+764,Orange Wool Double Slab,minecraft:orange_wool_double_slab,31,1,52,minecraft:vertical_half=bottom,
+765,Orange Wool Slab,minecraft:orange_wool_slab,33,1,52,minecraft:vertical_half=bottom,
+766,Orange Wool Stairs,minecraft:orange_wool_stairs,35,1,52,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+767,Oxeye Daisy,minecraft:oxeye_daisy,37,1,52,,on grass_block
 768,Oxidized Chiseled Copper,minecraft:oxidized_chiseled_copper,39,1,52,,
 769,Oxidized Copper,minecraft:oxidized_copper,41,1,52,,
-770,Oxidized Copper Bars,minecraft:oxidized_copper_bars,43,1,52,,
-771,Oxidized Copper Bulb,minecraft:oxidized_copper_bulb,45,1,52,,
-772,Oxidized Copper Chain,minecraft:oxidized_copper_chain,47,1,52,,
-773,Oxidized Copper Chest,minecraft:oxidized_copper_chest,49,1,52,,
-774,Oxidized Copper Door,minecraft:oxidized_copper_door,51,1,52,,upper half at y=2
-775,Oxidized Copper Golem Statue,minecraft:oxidized_copper_golem_statue,53,1,52,,
+770,Oxidized Copper Bars,minecraft:oxidized_copper_bars,43,1,52,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+771,Oxidized Copper Bulb,minecraft:oxidized_copper_bulb,45,1,52,"lit=false,powered_bit=false",
+772,Oxidized Copper Chain,minecraft:oxidized_copper_chain,47,1,52,pillar_axis=y,
+773,Oxidized Copper Chest,minecraft:oxidized_copper_chest,49,1,52,minecraft:cardinal_direction=south,
+774,Oxidized Copper Door,minecraft:oxidized_copper_door,51,1,52,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+775,Oxidized Copper Golem Statue,minecraft:oxidized_copper_golem_statue,53,1,52,minecraft:cardinal_direction=south,
 776,Oxidized Copper Grate,minecraft:oxidized_copper_grate,55,1,52,,
-777,Oxidized Copper Lantern,minecraft:oxidized_copper_lantern,57,1,52,,
-778,Oxidized Copper Trapdoor,minecraft:oxidized_copper_trapdoor,59,1,52,,
+777,Oxidized Copper Lantern,minecraft:oxidized_copper_lantern,57,1,52,hanging=false,
+778,Oxidized Copper Trapdoor,minecraft:oxidized_copper_trapdoor,59,1,52,"direction=0,open_bit=false,upside_down_bit=false",
 779,Oxidized Cut Copper,minecraft:oxidized_cut_copper,61,1,52,,
-780,Oxidized Cut Copper Slab,minecraft:oxidized_cut_copper_slab,63,1,52,,
-781,Oxidized Cut Copper Stairs,minecraft:oxidized_cut_copper_stairs,65,1,52,"weirdo_direction=0,upside_down_bit=0",default test state
-782,Oxidized Double Cut Copper Slab,minecraft:oxidized_double_cut_copper_slab,67,1,52,,
-783,Oxidized Lightning Rod,minecraft:oxidized_lightning_rod,69,1,52,,
+780,Oxidized Cut Copper Slab,minecraft:oxidized_cut_copper_slab,63,1,52,minecraft:vertical_half=bottom,
+781,Oxidized Cut Copper Stairs,minecraft:oxidized_cut_copper_stairs,65,1,52,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+782,Oxidized Double Cut Copper Slab,minecraft:oxidized_double_cut_copper_slab,67,1,52,minecraft:vertical_half=bottom,
+783,Oxidized Lightning Rod,minecraft:oxidized_lightning_rod,69,1,52,"facing_direction=0,powered_bit=false",
 784,Packed Ice,minecraft:packed_ice,71,1,52,,
 785,Packed Mud,minecraft:packed_mud,73,1,52,,
-786,Pale Hanging Moss,minecraft:pale_hanging_moss,75,1,52,,
+786,Pale Hanging Moss,minecraft:pale_hanging_moss,75,2,52,tip=false,hanging from the block above
 787,Pale Moss Block,minecraft:pale_moss_block,77,1,52,,
-788,Pale Moss Carpet,minecraft:pale_moss_carpet,79,1,52,,
-789,Pale Oak Button,minecraft:pale_oak_button,81,1,52,,
-790,Pale Oak Door,minecraft:pale_oak_door,83,1,52,,upper half at y=2
-791,Pale Oak Double Slab,minecraft:pale_oak_double_slab,85,1,52,,
-792,Pale Oak Fence,minecraft:pale_oak_fence,87,1,52,,
-793,Pale Oak Fence Gate,minecraft:pale_oak_fence_gate,1,1,55,,
-794,Pale Oak Hanging Sign,minecraft:pale_oak_hanging_sign,3,1,55,,
-795,Pale Oak Leaves,minecraft:pale_oak_leaves,5,1,55,,
-796,Pale Oak Log,minecraft:pale_oak_log,7,1,55,,
+788,Pale Moss Carpet,minecraft:pale_moss_carpet,79,1,52,"pale_moss_carpet_side_east=none,pale_moss_carpet_side_north=none,pale_moss_carpet_side_south=none,pale_moss_carpet_side_west=none,upper_block_bit=false",
+789,Pale Oak Button,minecraft:pale_oak_button,81,1,52,"button_pressed_bit=false,facing_direction=1",default test state
+790,Pale Oak Door,minecraft:pale_oak_door,83,1,52,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+791,Pale Oak Double Slab,minecraft:pale_oak_double_slab,85,1,52,minecraft:vertical_half=bottom,
+792,Pale Oak Fence,minecraft:pale_oak_fence,87,1,52,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+793,Pale Oak Fence Gate,minecraft:pale_oak_fence_gate,1,1,55,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+794,Pale Oak Hanging Sign,minecraft:pale_oak_hanging_sign,3,1,55,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
+795,Pale Oak Leaves,minecraft:pale_oak_leaves,5,1,55,"persistent_bit=true,update_bit=false",default test state
+796,Pale Oak Log,minecraft:pale_oak_log,7,1,55,pillar_axis=y,
 797,Pale Oak Planks,minecraft:pale_oak_planks,9,1,55,,
-798,Pale Oak Pressure Plate,minecraft:pale_oak_pressure_plate,11,1,55,,
-799,Pale Oak Sapling,minecraft:pale_oak_sapling,13,1,55,,
-800,Pale Oak Shelf,minecraft:pale_oak_shelf,15,1,55,,
-801,Pale Oak Slab,minecraft:pale_oak_slab,17,1,55,,
-802,Pale Oak Stairs,minecraft:pale_oak_stairs,19,1,55,"weirdo_direction=0,upside_down_bit=0",default test state
-803,Pale Oak Standing Sign,minecraft:pale_oak_standing_sign,21,1,55,,
-804,Pale Oak Trapdoor,minecraft:pale_oak_trapdoor,23,1,55,,
-805,Pale Oak Wall Sign,minecraft:pale_oak_wall_sign,25,1,55,,
-806,Pale Oak Wood,minecraft:pale_oak_wood,27,1,55,,
-807,Pearlescent Froglight,minecraft:pearlescent_froglight,29,1,55,,
-808,Peony,minecraft:peony,31,1,55,,upper half at y=2
-809,Petrified Oak Double Slab,minecraft:petrified_oak_double_slab,33,1,55,,
-810,Petrified Oak Slab,minecraft:petrified_oak_slab,35,1,55,,
-811,Piglin Head,minecraft:piglin_head,37,1,55,,
-812,Pink Candle,minecraft:pink_candle,39,1,55,,
-813,Pink Candle Cake,minecraft:pink_candle_cake,41,1,55,,
+798,Pale Oak Pressure Plate,minecraft:pale_oak_pressure_plate,11,1,55,redstone_signal=0,
+799,Pale Oak Sapling,minecraft:pale_oak_sapling,13,1,55,age_bit=false,on grass_block
+800,Pale Oak Shelf,minecraft:pale_oak_shelf,15,1,55,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+801,Pale Oak Slab,minecraft:pale_oak_slab,17,1,55,minecraft:vertical_half=bottom,
+802,Pale Oak Stairs,minecraft:pale_oak_stairs,19,1,55,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+803,Pale Oak Standing Sign,minecraft:pale_oak_standing_sign,21,1,55,ground_sign_direction=0,
+804,Pale Oak Trapdoor,minecraft:pale_oak_trapdoor,23,1,55,"direction=0,open_bit=false,upside_down_bit=false",
+805,Pale Oak Wall Sign,minecraft:pale_oak_wall_sign,25,1,55,facing_direction=2,"facing north, on the block to the south"
+806,Pale Oak Wood,minecraft:pale_oak_wood,27,1,55,pillar_axis=y,
+807,Pearlescent Froglight,minecraft:pearlescent_froglight,29,1,55,pillar_axis=y,
+808,Peony,minecraft:peony,31,1,55,upper_block_bit=false,upper half at y=2; on grass_block
+809,Petrified Oak Double Slab,minecraft:petrified_oak_double_slab,33,1,55,minecraft:vertical_half=bottom,
+810,Petrified Oak Slab,minecraft:petrified_oak_slab,35,1,55,minecraft:vertical_half=bottom,
+811,Piglin Head,minecraft:piglin_head,37,1,55,facing_direction=1,default test state
+812,Pink Candle,minecraft:pink_candle,39,1,55,"candles=0,lit=false",
+813,Pink Candle Cake,minecraft:pink_candle_cake,41,1,55,lit=false,
 814,Pink Carpet,minecraft:pink_carpet,43,1,55,,
 815,Pink Concrete,minecraft:pink_concrete,45,1,55,,
-816,Pink Concrete Double Slab,minecraft:pink_concrete_double_slab,47,1,55,,
+816,Pink Concrete Double Slab,minecraft:pink_concrete_double_slab,47,1,55,minecraft:vertical_half=bottom,
 817,Pink Concrete Powder,minecraft:pink_concrete_powder,49,1,55,,
-818,Pink Concrete Slab,minecraft:pink_concrete_slab,51,1,55,,
-819,Pink Concrete Stairs,minecraft:pink_concrete_stairs,53,1,55,"weirdo_direction=0,upside_down_bit=0",default test state
-820,Pink Glazed Terracotta,minecraft:pink_glazed_terracotta,55,1,55,,
-821,Pink Petals,minecraft:pink_petals,57,1,55,,
+818,Pink Concrete Slab,minecraft:pink_concrete_slab,51,1,55,minecraft:vertical_half=bottom,
+819,Pink Concrete Stairs,minecraft:pink_concrete_stairs,53,1,55,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+820,Pink Glazed Terracotta,minecraft:pink_glazed_terracotta,55,1,55,facing_direction=0,
+821,Pink Petals,minecraft:pink_petals,57,1,55,"growth=0,minecraft:cardinal_direction=south",on grass_block
 822,Pink Shulker Box,minecraft:pink_shulker_box,59,1,55,,
 823,Pink Stained Glass,minecraft:pink_stained_glass,61,1,55,,
-824,Pink Stained Glass Pane,minecraft:pink_stained_glass_pane,63,1,55,,
+824,Pink Stained Glass Pane,minecraft:pink_stained_glass_pane,63,1,55,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 825,Pink Terracotta,minecraft:pink_terracotta,65,1,55,,
-826,Pink Tulip,minecraft:pink_tulip,67,1,55,,
+826,Pink Tulip,minecraft:pink_tulip,67,1,55,,on grass_block
 827,Pink Wool,minecraft:pink_wool,69,1,55,,
-828,Pink Wool Double Slab,minecraft:pink_wool_double_slab,71,1,55,,
-829,Pink Wool Slab,minecraft:pink_wool_slab,73,1,55,,
-830,Pink Wool Stairs,minecraft:pink_wool_stairs,75,1,55,"weirdo_direction=0,upside_down_bit=0",default test state
-831,Piston,minecraft:piston,77,1,55,,
+828,Pink Wool Double Slab,minecraft:pink_wool_double_slab,71,1,55,minecraft:vertical_half=bottom,
+829,Pink Wool Slab,minecraft:pink_wool_slab,73,1,55,minecraft:vertical_half=bottom,
+830,Pink Wool Stairs,minecraft:pink_wool_stairs,75,1,55,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+831,Piston,minecraft:piston,77,1,55,facing_direction=0,
 832,PistonArmCollision,minecraft:pistonArmCollision,79,1,55,,
-833,Pitcher Crop,minecraft:pitcher_crop,81,1,55,,
-834,Pitcher Plant,minecraft:pitcher_plant,83,1,55,,upper half at y=2
+833,Pitcher Crop,minecraft:pitcher_crop,81,1,55,"growth=0,upper_block_bit=false",on farmland
+834,Pitcher Plant,minecraft:pitcher_plant,83,1,55,upper_block_bit=false,upper half at y=2; on grass_block
 835,Oak Planks,minecraft:planks,85,1,55,,
-836,Player Head,minecraft:player_head,87,1,55,,
+836,Player Head,minecraft:player_head,87,1,55,facing_direction=1,default test state
 837,Podzol,minecraft:podzol,1,1,58,,
-838,Pointed Dripstone,minecraft:pointed_dripstone,3,1,58,,
+838,Pointed Dripstone,minecraft:pointed_dripstone,3,1,58,"dripstone_thickness=tip,hanging=false",
 839,Polished Andesite,minecraft:polished_andesite,5,1,58,,
-840,Polished Andesite Double Slab,minecraft:polished_andesite_double_slab,7,1,58,,
-841,Polished Andesite Slab,minecraft:polished_andesite_slab,9,1,58,,
-842,Polished Andesite Stairs,minecraft:polished_andesite_stairs,11,1,58,"weirdo_direction=0,upside_down_bit=0",default test state
-843,Polished Basalt,minecraft:polished_basalt,13,1,58,,
+840,Polished Andesite Double Slab,minecraft:polished_andesite_double_slab,7,1,58,minecraft:vertical_half=bottom,
+841,Polished Andesite Slab,minecraft:polished_andesite_slab,9,1,58,minecraft:vertical_half=bottom,
+842,Polished Andesite Stairs,minecraft:polished_andesite_stairs,11,1,58,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+843,Polished Basalt,minecraft:polished_basalt,13,1,58,pillar_axis=y,
 844,Polished Blackstone,minecraft:polished_blackstone,15,1,58,,
-845,Polished Blackstone Brick Double Slab,minecraft:polished_blackstone_brick_double_slab,17,1,58,,
-846,Polished Blackstone Brick Slab,minecraft:polished_blackstone_brick_slab,19,1,58,,
-847,Polished Blackstone Brick Stairs,minecraft:polished_blackstone_brick_stairs,21,1,58,"weirdo_direction=0,upside_down_bit=0",default test state
-848,Polished Blackstone Brick Wall,minecraft:polished_blackstone_brick_wall,23,1,58,,
+845,Polished Blackstone Brick Double Slab,minecraft:polished_blackstone_brick_double_slab,17,1,58,minecraft:vertical_half=bottom,
+846,Polished Blackstone Brick Slab,minecraft:polished_blackstone_brick_slab,19,1,58,minecraft:vertical_half=bottom,
+847,Polished Blackstone Brick Stairs,minecraft:polished_blackstone_brick_stairs,21,1,58,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+848,Polished Blackstone Brick Wall,minecraft:polished_blackstone_brick_wall,23,1,58,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 849,Polished Blackstone Bricks,minecraft:polished_blackstone_bricks,25,1,58,,
-850,Polished Blackstone Button,minecraft:polished_blackstone_button,27,1,58,,
-851,Polished Blackstone Double Slab,minecraft:polished_blackstone_double_slab,29,1,58,,
-852,Polished Blackstone Pressure Plate,minecraft:polished_blackstone_pressure_plate,31,1,58,,
-853,Polished Blackstone Slab,minecraft:polished_blackstone_slab,33,1,58,,
-854,Polished Blackstone Stairs,minecraft:polished_blackstone_stairs,35,1,58,"weirdo_direction=0,upside_down_bit=0",default test state
-855,Polished Blackstone Wall,minecraft:polished_blackstone_wall,37,1,58,,
+850,Polished Blackstone Button,minecraft:polished_blackstone_button,27,1,58,"button_pressed_bit=false,facing_direction=1",default test state
+851,Polished Blackstone Double Slab,minecraft:polished_blackstone_double_slab,29,1,58,minecraft:vertical_half=bottom,
+852,Polished Blackstone Pressure Plate,minecraft:polished_blackstone_pressure_plate,31,1,58,redstone_signal=0,
+853,Polished Blackstone Slab,minecraft:polished_blackstone_slab,33,1,58,minecraft:vertical_half=bottom,
+854,Polished Blackstone Stairs,minecraft:polished_blackstone_stairs,35,1,58,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+855,Polished Blackstone Wall,minecraft:polished_blackstone_wall,37,1,58,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 856,Polished Cinnabar,minecraft:polished_cinnabar,39,1,58,,
-857,Polished Cinnabar Double Slab,minecraft:polished_cinnabar_double_slab,41,1,58,,
-858,Polished Cinnabar Slab,minecraft:polished_cinnabar_slab,43,1,58,,
-859,Polished Cinnabar Stairs,minecraft:polished_cinnabar_stairs,45,1,58,"weirdo_direction=0,upside_down_bit=0",default test state
-860,Polished Cinnabar Wall,minecraft:polished_cinnabar_wall,47,1,58,,
+857,Polished Cinnabar Double Slab,minecraft:polished_cinnabar_double_slab,41,1,58,minecraft:vertical_half=bottom,
+858,Polished Cinnabar Slab,minecraft:polished_cinnabar_slab,43,1,58,minecraft:vertical_half=bottom,
+859,Polished Cinnabar Stairs,minecraft:polished_cinnabar_stairs,45,1,58,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+860,Polished Cinnabar Wall,minecraft:polished_cinnabar_wall,47,1,58,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 861,Polished Deepslate,minecraft:polished_deepslate,49,1,58,,
-862,Polished Deepslate Double Slab,minecraft:polished_deepslate_double_slab,51,1,58,,
-863,Polished Deepslate Slab,minecraft:polished_deepslate_slab,53,1,58,,
-864,Polished Deepslate Stairs,minecraft:polished_deepslate_stairs,55,1,58,"weirdo_direction=0,upside_down_bit=0",default test state
-865,Polished Deepslate Wall,minecraft:polished_deepslate_wall,57,1,58,,
+862,Polished Deepslate Double Slab,minecraft:polished_deepslate_double_slab,51,1,58,minecraft:vertical_half=bottom,
+863,Polished Deepslate Slab,minecraft:polished_deepslate_slab,53,1,58,minecraft:vertical_half=bottom,
+864,Polished Deepslate Stairs,minecraft:polished_deepslate_stairs,55,1,58,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+865,Polished Deepslate Wall,minecraft:polished_deepslate_wall,57,1,58,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 866,Polished Diorite,minecraft:polished_diorite,59,1,58,,
-867,Polished Diorite Double Slab,minecraft:polished_diorite_double_slab,61,1,58,,
-868,Polished Diorite Slab,minecraft:polished_diorite_slab,63,1,58,,
-869,Polished Diorite Stairs,minecraft:polished_diorite_stairs,65,1,58,"weirdo_direction=0,upside_down_bit=0",default test state
+867,Polished Diorite Double Slab,minecraft:polished_diorite_double_slab,61,1,58,minecraft:vertical_half=bottom,
+868,Polished Diorite Slab,minecraft:polished_diorite_slab,63,1,58,minecraft:vertical_half=bottom,
+869,Polished Diorite Stairs,minecraft:polished_diorite_stairs,65,1,58,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 870,Polished Granite,minecraft:polished_granite,67,1,58,,
-871,Polished Granite Double Slab,minecraft:polished_granite_double_slab,69,1,58,,
-872,Polished Granite Slab,minecraft:polished_granite_slab,71,1,58,,
-873,Polished Granite Stairs,minecraft:polished_granite_stairs,73,1,58,"weirdo_direction=0,upside_down_bit=0",default test state
+871,Polished Granite Double Slab,minecraft:polished_granite_double_slab,69,1,58,minecraft:vertical_half=bottom,
+872,Polished Granite Slab,minecraft:polished_granite_slab,71,1,58,minecraft:vertical_half=bottom,
+873,Polished Granite Stairs,minecraft:polished_granite_stairs,73,1,58,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 874,Polished Sulfur,minecraft:polished_sulfur,75,1,58,,
-875,Polished Sulfur Double Slab,minecraft:polished_sulfur_double_slab,77,1,58,,
-876,Polished Sulfur Slab,minecraft:polished_sulfur_slab,79,1,58,,
-877,Polished Sulfur Stairs,minecraft:polished_sulfur_stairs,81,1,58,"weirdo_direction=0,upside_down_bit=0",default test state
-878,Polished Sulfur Wall,minecraft:polished_sulfur_wall,83,1,58,,
+875,Polished Sulfur Double Slab,minecraft:polished_sulfur_double_slab,77,1,58,minecraft:vertical_half=bottom,
+876,Polished Sulfur Slab,minecraft:polished_sulfur_slab,79,1,58,minecraft:vertical_half=bottom,
+877,Polished Sulfur Stairs,minecraft:polished_sulfur_stairs,81,1,58,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+878,Polished Sulfur Wall,minecraft:polished_sulfur_wall,83,1,58,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 879,Polished Tuff,minecraft:polished_tuff,85,1,58,,
-880,Polished Tuff Double Slab,minecraft:polished_tuff_double_slab,87,1,58,,
-881,Polished Tuff Slab,minecraft:polished_tuff_slab,1,1,61,,
-882,Polished Tuff Stairs,minecraft:polished_tuff_stairs,3,1,61,"weirdo_direction=0,upside_down_bit=0",default test state
-883,Polished Tuff Wall,minecraft:polished_tuff_wall,5,1,61,,
-884,Poplar Button,minecraft:poplar_button,7,1,61,,
-885,Poplar Door,minecraft:poplar_door,9,1,61,,upper half at y=2
-886,Poplar Double Slab,minecraft:poplar_double_slab,11,1,61,,
-887,Poplar Fence,minecraft:poplar_fence,13,1,61,,
-888,Poplar Fence Gate,minecraft:poplar_fence_gate,15,1,61,,
-889,Poplar Hanging Sign,minecraft:poplar_hanging_sign,17,1,61,,
-890,Poplar Log,minecraft:poplar_log,19,1,61,,
+880,Polished Tuff Double Slab,minecraft:polished_tuff_double_slab,87,1,58,minecraft:vertical_half=bottom,
+881,Polished Tuff Slab,minecraft:polished_tuff_slab,1,1,61,minecraft:vertical_half=bottom,
+882,Polished Tuff Stairs,minecraft:polished_tuff_stairs,3,1,61,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+883,Polished Tuff Wall,minecraft:polished_tuff_wall,5,1,61,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+884,Poplar Button,minecraft:poplar_button,7,1,61,"button_pressed_bit=false,facing_direction=1",default test state
+885,Poplar Door,minecraft:poplar_door,9,1,61,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+886,Poplar Double Slab,minecraft:poplar_double_slab,11,1,61,minecraft:vertical_half=bottom,
+887,Poplar Fence,minecraft:poplar_fence,13,1,61,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+888,Poplar Fence Gate,minecraft:poplar_fence_gate,15,1,61,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+889,Poplar Hanging Sign,minecraft:poplar_hanging_sign,17,1,61,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
+890,Poplar Log,minecraft:poplar_log,19,1,61,pillar_axis=y,
 891,Poplar Planks,minecraft:poplar_planks,21,1,61,,
-892,Poplar Pressure Plate,minecraft:poplar_pressure_plate,23,1,61,,
-893,Poplar Sapling,minecraft:poplar_sapling,25,1,61,,
-894,Poplar Shelf,minecraft:poplar_shelf,27,1,61,,
-895,Poplar Slab,minecraft:poplar_slab,29,1,61,,
-896,Poplar Stairs,minecraft:poplar_stairs,31,1,61,"weirdo_direction=0,upside_down_bit=0",default test state
-897,Poplar Standing Sign,minecraft:poplar_standing_sign,33,1,61,,
-898,Poplar Trapdoor,minecraft:poplar_trapdoor,35,1,61,,
-899,Poplar Wall Sign,minecraft:poplar_wall_sign,37,1,61,,
-900,Poplar Wood,minecraft:poplar_wood,39,1,61,,
-901,Poppy,minecraft:poppy,41,1,61,,
-902,Nether Portal,minecraft:portal,43,1,61,,
-903,Potatoes,minecraft:potatoes,45,1,61,,
-904,Potent Sulfur,minecraft:potent_sulfur,47,1,61,,
+892,Poplar Pressure Plate,minecraft:poplar_pressure_plate,23,1,61,redstone_signal=0,
+893,Poplar Sapling,minecraft:poplar_sapling,25,1,61,age_bit=false,on grass_block
+894,Poplar Shelf,minecraft:poplar_shelf,27,1,61,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+895,Poplar Slab,minecraft:poplar_slab,29,1,61,minecraft:vertical_half=bottom,
+896,Poplar Stairs,minecraft:poplar_stairs,31,1,61,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+897,Poplar Standing Sign,minecraft:poplar_standing_sign,33,1,61,ground_sign_direction=0,
+898,Poplar Trapdoor,minecraft:poplar_trapdoor,35,1,61,"direction=0,open_bit=false,upside_down_bit=false",
+899,Poplar Wall Sign,minecraft:poplar_wall_sign,37,1,61,facing_direction=2,"facing north, on the block to the south"
+900,Poplar Wood,minecraft:poplar_wood,39,1,61,pillar_axis=y,
+901,Poppy,minecraft:poppy,41,1,61,,on grass_block
+902,Nether Portal,minecraft:portal,43,1,61,portal_axis=z,a whole portal (2 × 3) in an obsidian frame
+903,Potatoes,minecraft:potatoes,45,1,61,growth=0,on farmland
+904,Potent Sulfur,minecraft:potent_sulfur,47,1,61,potent_sulfur_state=dry,
 905,Powder Snow,minecraft:powder_snow,49,1,61,,
-906,Comparator,minecraft:powered_comparator,51,1,61,,
-907,Repeater,minecraft:powered_repeater,53,1,61,,
+906,Comparator,minecraft:powered_comparator,51,1,61,"minecraft:cardinal_direction=south,output_lit_bit=true,output_subtract_bit=false",powered by redstone blocks at both ends
+907,Repeater,minecraft:powered_repeater,53,1,61,"minecraft:cardinal_direction=south,repeater_delay=0",powered by redstone blocks at both ends
 908,Prismarine,minecraft:prismarine,55,1,61,,
-909,Prismarine Brick Double Slab,minecraft:prismarine_brick_double_slab,57,1,61,,
-910,Prismarine Brick Slab,minecraft:prismarine_brick_slab,59,1,61,,
+909,Prismarine Brick Double Slab,minecraft:prismarine_brick_double_slab,57,1,61,minecraft:vertical_half=bottom,
+910,Prismarine Brick Slab,minecraft:prismarine_brick_slab,59,1,61,minecraft:vertical_half=bottom,
 911,Prismarine Bricks,minecraft:prismarine_bricks,61,1,61,,
-912,Prismarine Bricks Stairs,minecraft:prismarine_bricks_stairs,63,1,61,"weirdo_direction=0,upside_down_bit=0",default test state
-913,Prismarine Double Slab,minecraft:prismarine_double_slab,65,1,61,,
-914,Prismarine Slab,minecraft:prismarine_slab,67,1,61,,
-915,Prismarine Stairs,minecraft:prismarine_stairs,69,1,61,"weirdo_direction=0,upside_down_bit=0",default test state
-916,Prismarine Wall,minecraft:prismarine_wall,71,1,61,,
-917,Pumpkin,minecraft:pumpkin,73,1,61,,
-918,Pumpkin Stem,minecraft:pumpkin_stem,75,1,61,,
-919,Purple Candle,minecraft:purple_candle,77,1,61,,
-920,Purple Candle Cake,minecraft:purple_candle_cake,79,1,61,,
+912,Prismarine Bricks Stairs,minecraft:prismarine_bricks_stairs,63,1,61,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+913,Prismarine Double Slab,minecraft:prismarine_double_slab,65,1,61,minecraft:vertical_half=bottom,
+914,Prismarine Slab,minecraft:prismarine_slab,67,1,61,minecraft:vertical_half=bottom,
+915,Prismarine Stairs,minecraft:prismarine_stairs,69,1,61,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+916,Prismarine Wall,minecraft:prismarine_wall,71,1,61,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+917,Pumpkin,minecraft:pumpkin,73,1,61,minecraft:cardinal_direction=south,
+918,Pumpkin Stem,minecraft:pumpkin_stem,75,1,61,"facing_direction=0,growth=0",on farmland
+919,Purple Candle,minecraft:purple_candle,77,1,61,"candles=0,lit=false",
+920,Purple Candle Cake,minecraft:purple_candle_cake,79,1,61,lit=false,
 921,Purple Carpet,minecraft:purple_carpet,81,1,61,,
 922,Purple Concrete,minecraft:purple_concrete,83,1,61,,
-923,Purple Concrete Double Slab,minecraft:purple_concrete_double_slab,85,1,61,,
+923,Purple Concrete Double Slab,minecraft:purple_concrete_double_slab,85,1,61,minecraft:vertical_half=bottom,
 924,Purple Concrete Powder,minecraft:purple_concrete_powder,87,1,61,,
-925,Purple Concrete Slab,minecraft:purple_concrete_slab,1,1,64,,
-926,Purple Concrete Stairs,minecraft:purple_concrete_stairs,3,1,64,"weirdo_direction=0,upside_down_bit=0",default test state
-927,Purple Glazed Terracotta,minecraft:purple_glazed_terracotta,5,1,64,,
+925,Purple Concrete Slab,minecraft:purple_concrete_slab,1,1,64,minecraft:vertical_half=bottom,
+926,Purple Concrete Stairs,minecraft:purple_concrete_stairs,3,1,64,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+927,Purple Glazed Terracotta,minecraft:purple_glazed_terracotta,5,1,64,facing_direction=0,
 928,Purple Shulker Box,minecraft:purple_shulker_box,7,1,64,,
 929,Purple Stained Glass,minecraft:purple_stained_glass,9,1,64,,
-930,Purple Stained Glass Pane,minecraft:purple_stained_glass_pane,11,1,64,,
+930,Purple Stained Glass Pane,minecraft:purple_stained_glass_pane,11,1,64,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 931,Purple Terracotta,minecraft:purple_terracotta,13,1,64,,
 932,Purple Wool,minecraft:purple_wool,15,1,64,,
-933,Purple Wool Double Slab,minecraft:purple_wool_double_slab,17,1,64,,
-934,Purple Wool Slab,minecraft:purple_wool_slab,19,1,64,,
-935,Purple Wool Stairs,minecraft:purple_wool_stairs,21,1,64,"weirdo_direction=0,upside_down_bit=0",default test state
-936,Purpur Block,minecraft:purpur_block,23,1,64,,
-937,Purpur Double Slab,minecraft:purpur_double_slab,25,1,64,,
-938,Purpur Pillar,minecraft:purpur_pillar,27,1,64,,
-939,Purpur Slab,minecraft:purpur_slab,29,1,64,,
-940,Purpur Stairs,minecraft:purpur_stairs,31,1,64,"weirdo_direction=0,upside_down_bit=0",default test state
-941,Quartz Block,minecraft:quartz_block,33,1,64,,
+933,Purple Wool Double Slab,minecraft:purple_wool_double_slab,17,1,64,minecraft:vertical_half=bottom,
+934,Purple Wool Slab,minecraft:purple_wool_slab,19,1,64,minecraft:vertical_half=bottom,
+935,Purple Wool Stairs,minecraft:purple_wool_stairs,21,1,64,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+936,Purpur Block,minecraft:purpur_block,23,1,64,pillar_axis=y,
+937,Purpur Double Slab,minecraft:purpur_double_slab,25,1,64,minecraft:vertical_half=bottom,
+938,Purpur Pillar,minecraft:purpur_pillar,27,1,64,pillar_axis=y,
+939,Purpur Slab,minecraft:purpur_slab,29,1,64,minecraft:vertical_half=bottom,
+940,Purpur Stairs,minecraft:purpur_stairs,31,1,64,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+941,Quartz Block,minecraft:quartz_block,33,1,64,pillar_axis=y,
 942,Quartz Bricks,minecraft:quartz_bricks,35,1,64,,
-943,Quartz Double Slab,minecraft:quartz_double_slab,37,1,64,,
+943,Quartz Double Slab,minecraft:quartz_double_slab,37,1,64,minecraft:vertical_half=bottom,
 944,Nether Quartz Ore,minecraft:quartz_ore,39,1,64,,
-945,Quartz Pillar,minecraft:quartz_pillar,41,1,64,,
-946,Quartz Slab,minecraft:quartz_slab,43,1,64,,
-947,Quartz Stairs,minecraft:quartz_stairs,45,1,64,"weirdo_direction=0,upside_down_bit=0",default test state
-948,Rail,minecraft:rail,47,1,64,,
+945,Quartz Pillar,minecraft:quartz_pillar,41,1,64,pillar_axis=y,
+946,Quartz Slab,minecraft:quartz_slab,43,1,64,minecraft:vertical_half=bottom,
+947,Quartz Stairs,minecraft:quartz_stairs,45,1,64,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+948,Rail,minecraft:rail,47,1,64,rail_direction=0,
 949,Raw Copper Block,minecraft:raw_copper_block,49,1,64,,
 950,Raw Gold Block,minecraft:raw_gold_block,51,1,64,,
 951,Raw Iron Block,minecraft:raw_iron_block,53,1,64,,
-952,Red Candle,minecraft:red_candle,55,1,64,,
-953,Red Candle Cake,minecraft:red_candle_cake,57,1,64,,
+952,Red Candle,minecraft:red_candle,55,1,64,"candles=0,lit=false",
+953,Red Candle Cake,minecraft:red_candle_cake,57,1,64,lit=false,
 954,Red Carpet,minecraft:red_carpet,59,1,64,,
 955,Red Concrete,minecraft:red_concrete,61,1,64,,
-956,Red Concrete Double Slab,minecraft:red_concrete_double_slab,63,1,64,,
+956,Red Concrete Double Slab,minecraft:red_concrete_double_slab,63,1,64,minecraft:vertical_half=bottom,
 957,Red Concrete Powder,minecraft:red_concrete_powder,65,1,64,,
-958,Red Concrete Slab,minecraft:red_concrete_slab,67,1,64,,
-959,Red Concrete Stairs,minecraft:red_concrete_stairs,69,1,64,"weirdo_direction=0,upside_down_bit=0",default test state
-960,Poppy,minecraft:red_flower,71,1,64,,
-961,Red Glazed Terracotta,minecraft:red_glazed_terracotta,73,1,64,,
-962,Red Mushroom,minecraft:red_mushroom,75,1,64,,
-963,Red Mushroom Block,minecraft:red_mushroom_block,77,1,64,,
+958,Red Concrete Slab,minecraft:red_concrete_slab,67,1,64,minecraft:vertical_half=bottom,
+959,Red Concrete Stairs,minecraft:red_concrete_stairs,69,1,64,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+960,Poppy,minecraft:red_flower,71,1,64,,on grass_block
+961,Red Glazed Terracotta,minecraft:red_glazed_terracotta,73,1,64,facing_direction=0,
+962,Red Mushroom,minecraft:red_mushroom,75,1,64,,on mycelium
+963,Red Mushroom Block,minecraft:red_mushroom_block,77,1,64,huge_mushroom_bits=0,
 964,Red Nether Bricks,minecraft:red_nether_brick,79,1,64,,
-965,Red Nether Brick Double Slab,minecraft:red_nether_brick_double_slab,81,1,64,,
-966,Red Nether Brick Slab,minecraft:red_nether_brick_slab,83,1,64,,
-967,Red Nether Brick Stairs,minecraft:red_nether_brick_stairs,85,1,64,"weirdo_direction=0,upside_down_bit=0",default test state
-968,Red Nether Brick Wall,minecraft:red_nether_brick_wall,87,1,64,,
-969,Red Poplar Leaves,minecraft:red_poplar_leaves,1,1,67,,
+965,Red Nether Brick Double Slab,minecraft:red_nether_brick_double_slab,81,1,64,minecraft:vertical_half=bottom,
+966,Red Nether Brick Slab,minecraft:red_nether_brick_slab,83,1,64,minecraft:vertical_half=bottom,
+967,Red Nether Brick Stairs,minecraft:red_nether_brick_stairs,85,1,64,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+968,Red Nether Brick Wall,minecraft:red_nether_brick_wall,87,1,64,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+969,Red Poplar Leaves,minecraft:red_poplar_leaves,1,1,67,"persistent_bit=true,update_bit=false",default test state
 970,Red Sand,minecraft:red_sand,3,1,67,,
 971,Red Sandstone,minecraft:red_sandstone,5,1,67,,
-972,Red Sandstone Double Slab,minecraft:red_sandstone_double_slab,7,1,67,,
-973,Red Sandstone Slab,minecraft:red_sandstone_slab,9,1,67,,
-974,Red Sandstone Stairs,minecraft:red_sandstone_stairs,11,1,67,"weirdo_direction=0,upside_down_bit=0",default test state
-975,Red Sandstone Wall,minecraft:red_sandstone_wall,13,1,67,,
+972,Red Sandstone Double Slab,minecraft:red_sandstone_double_slab,7,1,67,minecraft:vertical_half=bottom,
+973,Red Sandstone Slab,minecraft:red_sandstone_slab,9,1,67,minecraft:vertical_half=bottom,
+974,Red Sandstone Stairs,minecraft:red_sandstone_stairs,11,1,67,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+975,Red Sandstone Wall,minecraft:red_sandstone_wall,13,1,67,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 976,Red Shrub,minecraft:red_shrub,15,1,67,,
 977,Red Shulker Box,minecraft:red_shulker_box,17,1,67,,
 978,Red Stained Glass,minecraft:red_stained_glass,19,1,67,,
-979,Red Stained Glass Pane,minecraft:red_stained_glass_pane,21,1,67,,
+979,Red Stained Glass Pane,minecraft:red_stained_glass_pane,21,1,67,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 980,Red Terracotta,minecraft:red_terracotta,23,1,67,,
-981,Red Tulip,minecraft:red_tulip,25,1,67,,
+981,Red Tulip,minecraft:red_tulip,25,1,67,,on grass_block
 982,Red Wool,minecraft:red_wool,27,1,67,,
-983,Red Wool Double Slab,minecraft:red_wool_double_slab,29,1,67,,
-984,Red Wool Slab,minecraft:red_wool_slab,31,1,67,,
-985,Red Wool Stairs,minecraft:red_wool_stairs,33,1,67,"weirdo_direction=0,upside_down_bit=0",default test state
+983,Red Wool Double Slab,minecraft:red_wool_double_slab,29,1,67,minecraft:vertical_half=bottom,
+984,Red Wool Slab,minecraft:red_wool_slab,31,1,67,minecraft:vertical_half=bottom,
+985,Red Wool Stairs,minecraft:red_wool_stairs,33,1,67,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 986,Redstone Block,minecraft:redstone_block,35,1,67,,
 987,Redstone Lamp,minecraft:redstone_lamp,37,1,67,,
 988,Redstone Ore,minecraft:redstone_ore,39,1,67,,
-989,Redstone Torch,minecraft:redstone_torch,41,1,67,,
-990,Redstone Wire,minecraft:redstone_wire,43,1,67,redstone_signal=15,default test state
-991,Sugar Cane,minecraft:reeds,45,1,67,,
+989,Redstone Torch,minecraft:redstone_torch,41,1,67,torch_facing_direction=top,default test state
+990,Redstone Wire,minecraft:redstone_wire,43,1,67,"redstone_east=none,redstone_north=none,redstone_signal=15,redstone_south=none,redstone_west=none",on a redstone block
+991,Sugar Cane,minecraft:reeds,45,2,67,age=0,on sand next to water
 992,Reinforced Deepslate,minecraft:reinforced_deepslate,47,1,67,,
-993,Repeating Command Block,minecraft:repeating_command_block,49,1,67,,
+993,Repeating Command Block,minecraft:repeating_command_block,49,1,67,"conditional_bit=false,facing_direction=0",
 994,Reserved6,minecraft:reserved6,51,1,67,,
 995,Resin Block,minecraft:resin_block,53,1,67,,
-996,Resin Brick Double Slab,minecraft:resin_brick_double_slab,55,1,67,,
-997,Resin Brick Slab,minecraft:resin_brick_slab,57,1,67,,
-998,Resin Brick Stairs,minecraft:resin_brick_stairs,59,1,67,"weirdo_direction=0,upside_down_bit=0",default test state
-999,Resin Brick Wall,minecraft:resin_brick_wall,61,1,67,,
+996,Resin Brick Double Slab,minecraft:resin_brick_double_slab,55,1,67,minecraft:vertical_half=bottom,
+997,Resin Brick Slab,minecraft:resin_brick_slab,57,1,67,minecraft:vertical_half=bottom,
+998,Resin Brick Stairs,minecraft:resin_brick_stairs,59,1,67,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+999,Resin Brick Wall,minecraft:resin_brick_wall,61,1,67,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 1000,Resin Bricks,minecraft:resin_bricks,63,1,67,,
-1001,Resin Clump,minecraft:resin_clump,65,1,67,,
-1002,Respawn Anchor,minecraft:respawn_anchor,67,1,67,,
-1003,Rose Bush,minecraft:rose_bush,69,1,67,,upper half at y=2
+1001,Resin Clump,minecraft:resin_clump,65,1,67,multi_face_direction_bits=1,default test state
+1002,Respawn Anchor,minecraft:respawn_anchor,67,1,67,respawn_anchor_charge=0,
+1003,Rose Bush,minecraft:rose_bush,69,1,67,upper_block_bit=false,upper half at y=2; on grass_block
 1004,Sand,minecraft:sand,71,1,67,,
 1005,Sandstone,minecraft:sandstone,73,1,67,,
-1006,Sandstone Double Slab,minecraft:sandstone_double_slab,75,1,67,,
-1007,Sandstone Slab,minecraft:sandstone_slab,77,1,67,,
-1008,Sandstone Stairs,minecraft:sandstone_stairs,79,1,67,"weirdo_direction=0,upside_down_bit=0",default test state
-1009,Sandstone Wall,minecraft:sandstone_wall,81,1,67,,
-1010,Oak Sapling,minecraft:sapling,83,1,67,,
-1011,Scaffolding,minecraft:scaffolding,85,1,67,,
+1006,Sandstone Double Slab,minecraft:sandstone_double_slab,75,1,67,minecraft:vertical_half=bottom,
+1007,Sandstone Slab,minecraft:sandstone_slab,77,1,67,minecraft:vertical_half=bottom,
+1008,Sandstone Stairs,minecraft:sandstone_stairs,79,1,67,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1009,Sandstone Wall,minecraft:sandstone_wall,81,1,67,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+1010,Oak Sapling,minecraft:sapling,83,1,67,,on grass_block
+1011,Scaffolding,minecraft:scaffolding,85,1,67,"stability=0,stability_check=false",
 1012,Sculk,minecraft:sculk,87,1,67,,
-1013,Sculk Catalyst,minecraft:sculk_catalyst,1,1,70,,
-1014,Sculk Sensor,minecraft:sculk_sensor,3,1,70,,
-1015,Sculk Shrieker,minecraft:sculk_shrieker,5,1,70,,
-1016,Sculk Vein,minecraft:sculk_vein,7,1,70,,
+1013,Sculk Catalyst,minecraft:sculk_catalyst,1,1,70,bloom=false,
+1014,Sculk Sensor,minecraft:sculk_sensor,3,1,70,sculk_sensor_phase=0,
+1015,Sculk Shrieker,minecraft:sculk_shrieker,5,1,70,"active=false,can_summon=false",
+1016,Sculk Vein,minecraft:sculk_vein,7,1,70,multi_face_direction_bits=1,default test state
 1017,SeaLantern,minecraft:seaLantern,9,1,70,,
-1018,Sea Pickle,minecraft:sea_pickle,11,1,70,,
-1019,Seagrass,minecraft:seagrass,13,1,70,,
-1020,Shelf Mushroom,minecraft:shelf_mushroom,15,1,70,,
-1021,Short Dry Grass,minecraft:short_dry_grass,17,1,70,,
-1022,Short Grass,minecraft:short_grass,19,1,70,,
+1018,Sea Pickle,minecraft:sea_pickle,11,1,70,"cluster_count=0,dead_bit=false","in water, stone around it"
+1019,Seagrass,minecraft:seagrass,13,1,70,sea_grass_type=default,"in water, stone around it"
+1020,Shelf Mushroom,minecraft:shelf_mushroom,15,1,70,"growth=0,minecraft:cardinal_direction=south",
+1021,Short Dry Grass,minecraft:short_dry_grass,17,1,70,,on sand
+1022,Short Grass,minecraft:short_grass,19,1,70,,on grass_block
 1023,Shroomlight,minecraft:shroomlight,21,1,70,,
 1024,Shulker Box,minecraft:shulker_box,23,1,70,,
-1025,Light Gray Glazed Terracotta,minecraft:silver_glazed_terracotta,25,1,70,,
-1026,Skeleton Skull,minecraft:skeleton_skull,27,1,70,,
+1025,Light Gray Glazed Terracotta,minecraft:silver_glazed_terracotta,25,1,70,facing_direction=0,
+1026,Skeleton Skull,minecraft:skeleton_skull,27,1,70,facing_direction=1,default test state
 1027,Skeleton Skull,minecraft:skull,29,1,70,,
 1028,Slime,minecraft:slime,31,1,70,,
-1029,Small Amethyst Bud,minecraft:small_amethyst_bud,33,1,70,,
-1030,Small Dripleaf Block,minecraft:small_dripleaf_block,35,1,70,,
+1029,Small Amethyst Bud,minecraft:small_amethyst_bud,33,1,70,minecraft:block_face=down,
+1030,Small Dripleaf Block,minecraft:small_dripleaf_block,35,1,70,"minecraft:cardinal_direction=south,upper_block_bit=false","on moss, upper half at y=2"
 1031,Smithing Table,minecraft:smithing_table,37,1,70,,
-1032,Smoker,minecraft:smoker,39,1,70,,
+1032,Smoker,minecraft:smoker,39,1,70,minecraft:cardinal_direction=south,
 1033,Smooth Basalt,minecraft:smooth_basalt,41,1,70,,
-1034,Smooth Quartz,minecraft:smooth_quartz,43,1,70,,
-1035,Smooth Quartz Double Slab,minecraft:smooth_quartz_double_slab,45,1,70,,
-1036,Smooth Quartz Slab,minecraft:smooth_quartz_slab,47,1,70,,
-1037,Smooth Quartz Stairs,minecraft:smooth_quartz_stairs,49,1,70,"weirdo_direction=0,upside_down_bit=0",default test state
+1034,Smooth Quartz,minecraft:smooth_quartz,43,1,70,pillar_axis=y,
+1035,Smooth Quartz Double Slab,minecraft:smooth_quartz_double_slab,45,1,70,minecraft:vertical_half=bottom,
+1036,Smooth Quartz Slab,minecraft:smooth_quartz_slab,47,1,70,minecraft:vertical_half=bottom,
+1037,Smooth Quartz Stairs,minecraft:smooth_quartz_stairs,49,1,70,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 1038,Smooth Red Sandstone,minecraft:smooth_red_sandstone,51,1,70,,
-1039,Smooth Red Sandstone Double Slab,minecraft:smooth_red_sandstone_double_slab,53,1,70,,
-1040,Smooth Red Sandstone Slab,minecraft:smooth_red_sandstone_slab,55,1,70,,
-1041,Smooth Red Sandstone Stairs,minecraft:smooth_red_sandstone_stairs,57,1,70,"weirdo_direction=0,upside_down_bit=0",default test state
+1039,Smooth Red Sandstone Double Slab,minecraft:smooth_red_sandstone_double_slab,53,1,70,minecraft:vertical_half=bottom,
+1040,Smooth Red Sandstone Slab,minecraft:smooth_red_sandstone_slab,55,1,70,minecraft:vertical_half=bottom,
+1041,Smooth Red Sandstone Stairs,minecraft:smooth_red_sandstone_stairs,57,1,70,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 1042,Smooth Sandstone,minecraft:smooth_sandstone,59,1,70,,
-1043,Smooth Sandstone Double Slab,minecraft:smooth_sandstone_double_slab,61,1,70,,
-1044,Smooth Sandstone Slab,minecraft:smooth_sandstone_slab,63,1,70,,
-1045,Smooth Sandstone Stairs,minecraft:smooth_sandstone_stairs,65,1,70,"weirdo_direction=0,upside_down_bit=0",default test state
+1043,Smooth Sandstone Double Slab,minecraft:smooth_sandstone_double_slab,61,1,70,minecraft:vertical_half=bottom,
+1044,Smooth Sandstone Slab,minecraft:smooth_sandstone_slab,63,1,70,minecraft:vertical_half=bottom,
+1045,Smooth Sandstone Stairs,minecraft:smooth_sandstone_stairs,65,1,70,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 1046,Smooth Stone,minecraft:smooth_stone,67,1,70,,
-1047,Smooth Stone Double Slab,minecraft:smooth_stone_double_slab,69,1,70,,
-1048,Smooth Stone Slab,minecraft:smooth_stone_slab,71,1,70,,
-1049,Sniffer Egg,minecraft:sniffer_egg,73,1,70,,
+1047,Smooth Stone Double Slab,minecraft:smooth_stone_double_slab,69,1,70,minecraft:vertical_half=bottom,
+1048,Smooth Stone Slab,minecraft:smooth_stone_slab,71,1,70,minecraft:vertical_half=bottom,
+1049,Sniffer Egg,minecraft:sniffer_egg,73,1,70,cracked_state=no_cracks,
 1050,Snow Block,minecraft:snow,75,1,70,,
-1051,Snow,minecraft:snow_layer,77,1,70,,
-1052,Soul Campfire,minecraft:soul_campfire,79,1,70,,
-1053,Soul Fire,minecraft:soul_fire,81,1,70,,
-1054,Soul Lantern,minecraft:soul_lantern,83,1,70,,
+1051,Snow,minecraft:snow_layer,77,1,70,"covered_bit=false,height=0",
+1052,Soul Campfire,minecraft:soul_campfire,79,1,70,"extinguished=false,minecraft:cardinal_direction=south",
+1053,Soul Fire,minecraft:soul_fire,81,1,70,age=0,"on soul_soil, stone around it"
+1054,Soul Lantern,minecraft:soul_lantern,83,1,70,hanging=false,
 1055,Soul Sand,minecraft:soul_sand,85,1,70,,
 1056,Soul Soil,minecraft:soul_soil,87,1,70,,
-1057,Soul Torch,minecraft:soul_torch,1,1,73,,
+1057,Soul Torch,minecraft:soul_torch,1,1,73,torch_facing_direction=top,default test state
 1058,Sponge,minecraft:sponge,3,1,73,,
-1059,Spore Blossom,minecraft:spore_blossom,5,1,73,,
-1060,Spruce Button,minecraft:spruce_button,7,1,73,,
-1061,Spruce Door,minecraft:spruce_door,9,1,73,,upper half at y=2
-1062,Spruce Double Slab,minecraft:spruce_double_slab,11,1,73,,
-1063,Spruce Fence,minecraft:spruce_fence,13,1,73,,
-1064,Spruce Fence Gate,minecraft:spruce_fence_gate,15,1,73,,
-1065,Spruce Hanging Sign,minecraft:spruce_hanging_sign,17,1,73,,
-1066,Spruce Leaves,minecraft:spruce_leaves,19,1,73,,
-1067,Spruce Log,minecraft:spruce_log,21,1,73,,
+1059,Spore Blossom,minecraft:spore_blossom,5,2,73,,hanging from the block above
+1060,Spruce Button,minecraft:spruce_button,7,1,73,"button_pressed_bit=false,facing_direction=1",default test state
+1061,Spruce Door,minecraft:spruce_door,9,1,73,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+1062,Spruce Double Slab,minecraft:spruce_double_slab,11,1,73,minecraft:vertical_half=bottom,
+1063,Spruce Fence,minecraft:spruce_fence,13,1,73,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+1064,Spruce Fence Gate,minecraft:spruce_fence_gate,15,1,73,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+1065,Spruce Hanging Sign,minecraft:spruce_hanging_sign,17,1,73,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
+1066,Spruce Leaves,minecraft:spruce_leaves,19,1,73,"persistent_bit=true,update_bit=false",default test state
+1067,Spruce Log,minecraft:spruce_log,21,1,73,pillar_axis=y,
 1068,Spruce Planks,minecraft:spruce_planks,23,1,73,,
-1069,Spruce Pressure Plate,minecraft:spruce_pressure_plate,25,1,73,,
-1070,Spruce Sapling,minecraft:spruce_sapling,27,1,73,,
-1071,Spruce Shelf,minecraft:spruce_shelf,29,1,73,,
-1072,Spruce Slab,minecraft:spruce_slab,31,1,73,,
-1073,Spruce Stairs,minecraft:spruce_stairs,33,1,73,"weirdo_direction=0,upside_down_bit=0",default test state
-1074,Spruce Standing Sign,minecraft:spruce_standing_sign,35,1,73,,
-1075,Spruce Trapdoor,minecraft:spruce_trapdoor,37,1,73,,
-1076,Spruce Wall Sign,minecraft:spruce_wall_sign,39,1,73,,
-1077,Spruce Wood,minecraft:spruce_wood,41,1,73,,
+1069,Spruce Pressure Plate,minecraft:spruce_pressure_plate,25,1,73,redstone_signal=0,
+1070,Spruce Sapling,minecraft:spruce_sapling,27,1,73,age_bit=false,on grass_block
+1071,Spruce Shelf,minecraft:spruce_shelf,29,1,73,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+1072,Spruce Slab,minecraft:spruce_slab,31,1,73,minecraft:vertical_half=bottom,
+1073,Spruce Stairs,minecraft:spruce_stairs,33,1,73,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1074,Spruce Standing Sign,minecraft:spruce_standing_sign,35,1,73,ground_sign_direction=0,
+1075,Spruce Trapdoor,minecraft:spruce_trapdoor,37,1,73,"direction=0,open_bit=false,upside_down_bit=false",
+1076,Spruce Wall Sign,minecraft:spruce_wall_sign,39,1,73,facing_direction=2,"facing north, on the block to the south"
+1077,Spruce Wood,minecraft:spruce_wood,41,1,73,pillar_axis=y,
 1078,White Stained Glass,minecraft:stained_glass,43,1,73,,
 1079,Stained Glass Pane,minecraft:stained_glass_pane,45,1,73,,
 1080,Stained Hardened Clay,minecraft:stained_hardened_clay,47,1,73,,
-1081,Banner,minecraft:standing_banner,49,1,73,,
-1082,Oak Sign,minecraft:standing_sign,51,1,73,,
+1081,Banner,minecraft:standing_banner,49,1,73,ground_sign_direction=0,
+1082,Oak Sign,minecraft:standing_sign,51,1,73,ground_sign_direction=0,
 1083,StickyPistonArmCollision,minecraft:stickyPistonArmCollision,53,1,73,,
-1084,Sticky Piston,minecraft:sticky_piston,55,1,73,,
+1084,Sticky Piston,minecraft:sticky_piston,55,1,73,facing_direction=0,
 1085,Stone,minecraft:stone,57,1,73,,
-1086,Stone Brick Double Slab,minecraft:stone_brick_double_slab,59,1,73,,
-1087,Stone Brick Slab,minecraft:stone_brick_slab,61,1,73,,
-1088,Stone Brick Stairs,minecraft:stone_brick_stairs,63,1,73,"weirdo_direction=0,upside_down_bit=0",default test state
-1089,Stone Brick Wall,minecraft:stone_brick_wall,65,1,73,,
+1086,Stone Brick Double Slab,minecraft:stone_brick_double_slab,59,1,73,minecraft:vertical_half=bottom,
+1087,Stone Brick Slab,minecraft:stone_brick_slab,61,1,73,minecraft:vertical_half=bottom,
+1088,Stone Brick Stairs,minecraft:stone_brick_stairs,63,1,73,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1089,Stone Brick Wall,minecraft:stone_brick_wall,65,1,73,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 1090,Stone Bricks,minecraft:stone_bricks,67,1,73,,
-1091,Stone Button,minecraft:stone_button,69,1,73,,
-1092,Stone Pressure Plate,minecraft:stone_pressure_plate,71,1,73,,
+1091,Stone Button,minecraft:stone_button,69,1,73,"button_pressed_bit=false,facing_direction=1",default test state
+1092,Stone Pressure Plate,minecraft:stone_pressure_plate,71,1,73,redstone_signal=0,
 1093,Stone Slab,minecraft:stone_slab,73,1,73,,
 1094,Stone Slab2,minecraft:stone_slab2,75,1,73,,
 1095,Stone Slab3,minecraft:stone_slab3,77,1,73,,
 1096,Stone Slab4,minecraft:stone_slab4,79,1,73,,
-1097,Stone Stairs,minecraft:stone_stairs,81,1,73,"weirdo_direction=0,upside_down_bit=0",default test state
+1097,Stone Stairs,minecraft:stone_stairs,81,1,73,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
 1098,Stone Bricks,minecraft:stonebrick,83,1,73,,
 1099,Stonecutter,minecraft:stonecutter,85,1,73,,
-1100,Stonecutter,minecraft:stonecutter_block,87,1,73,,
-1101,Straw Bed,minecraft:straw_bed,1,1,76,,head at z+1 (drawn as an entity)
-1102,Stripped Acacia Log,minecraft:stripped_acacia_log,3,1,76,,
-1103,Stripped Acacia Wood,minecraft:stripped_acacia_wood,5,1,76,,
-1104,Stripped Bamboo Block,minecraft:stripped_bamboo_block,7,1,76,,
-1105,Stripped Birch Log,minecraft:stripped_birch_log,9,1,76,,
-1106,Stripped Birch Wood,minecraft:stripped_birch_wood,11,1,76,,
-1107,Stripped Cherry Log,minecraft:stripped_cherry_log,13,1,76,,
-1108,Stripped Cherry Wood,minecraft:stripped_cherry_wood,15,1,76,,
-1109,Stripped Crimson Hyphae,minecraft:stripped_crimson_hyphae,17,1,76,,
-1110,Stripped Crimson Stem,minecraft:stripped_crimson_stem,19,1,76,,
-1111,Stripped Dark Oak Log,minecraft:stripped_dark_oak_log,21,1,76,,
-1112,Stripped Dark Oak Wood,minecraft:stripped_dark_oak_wood,23,1,76,,
-1113,Stripped Jungle Log,minecraft:stripped_jungle_log,25,1,76,,
-1114,Stripped Jungle Wood,minecraft:stripped_jungle_wood,27,1,76,,
-1115,Stripped Mangrove Log,minecraft:stripped_mangrove_log,29,1,76,,
-1116,Stripped Mangrove Wood,minecraft:stripped_mangrove_wood,31,1,76,,
-1117,Stripped Oak Log,minecraft:stripped_oak_log,33,1,76,,
-1118,Stripped Oak Wood,minecraft:stripped_oak_wood,35,1,76,,
-1119,Stripped Pale Oak Log,minecraft:stripped_pale_oak_log,37,1,76,,
-1120,Stripped Pale Oak Wood,minecraft:stripped_pale_oak_wood,39,1,76,,
-1121,Stripped Poplar Log,minecraft:stripped_poplar_log,41,1,76,,
-1122,Stripped Poplar Wood,minecraft:stripped_poplar_wood,43,1,76,,
-1123,Stripped Spruce Log,minecraft:stripped_spruce_log,45,1,76,,
-1124,Stripped Spruce Wood,minecraft:stripped_spruce_wood,47,1,76,,
-1125,Stripped Warped Hyphae,minecraft:stripped_warped_hyphae,49,1,76,,
-1126,Stripped Warped Stem,minecraft:stripped_warped_stem,51,1,76,,
-1127,Structure Block,minecraft:structure_block,53,1,76,,
+1100,Stonecutter,minecraft:stonecutter_block,87,1,73,minecraft:cardinal_direction=south,
+1101,Straw Bed,minecraft:straw_bed,1,1,76,"head_piece_bit=false,minecraft:cardinal_direction=south,occupied_bit=false",head at z+1 (drawn as an entity)
+1102,Stripped Acacia Log,minecraft:stripped_acacia_log,3,1,76,pillar_axis=y,
+1103,Stripped Acacia Wood,minecraft:stripped_acacia_wood,5,1,76,pillar_axis=y,
+1104,Stripped Bamboo Block,minecraft:stripped_bamboo_block,7,1,76,pillar_axis=y,
+1105,Stripped Birch Log,minecraft:stripped_birch_log,9,1,76,pillar_axis=y,
+1106,Stripped Birch Wood,minecraft:stripped_birch_wood,11,1,76,pillar_axis=y,
+1107,Stripped Cherry Log,minecraft:stripped_cherry_log,13,1,76,pillar_axis=y,
+1108,Stripped Cherry Wood,minecraft:stripped_cherry_wood,15,1,76,pillar_axis=y,
+1109,Stripped Crimson Hyphae,minecraft:stripped_crimson_hyphae,17,1,76,pillar_axis=y,
+1110,Stripped Crimson Stem,minecraft:stripped_crimson_stem,19,1,76,pillar_axis=y,
+1111,Stripped Dark Oak Log,minecraft:stripped_dark_oak_log,21,1,76,pillar_axis=y,
+1112,Stripped Dark Oak Wood,minecraft:stripped_dark_oak_wood,23,1,76,pillar_axis=y,
+1113,Stripped Jungle Log,minecraft:stripped_jungle_log,25,1,76,pillar_axis=y,
+1114,Stripped Jungle Wood,minecraft:stripped_jungle_wood,27,1,76,pillar_axis=y,
+1115,Stripped Mangrove Log,minecraft:stripped_mangrove_log,29,1,76,pillar_axis=y,
+1116,Stripped Mangrove Wood,minecraft:stripped_mangrove_wood,31,1,76,pillar_axis=y,
+1117,Stripped Oak Log,minecraft:stripped_oak_log,33,1,76,pillar_axis=y,
+1118,Stripped Oak Wood,minecraft:stripped_oak_wood,35,1,76,pillar_axis=y,
+1119,Stripped Pale Oak Log,minecraft:stripped_pale_oak_log,37,1,76,pillar_axis=y,
+1120,Stripped Pale Oak Wood,minecraft:stripped_pale_oak_wood,39,1,76,pillar_axis=y,
+1121,Stripped Poplar Log,minecraft:stripped_poplar_log,41,1,76,pillar_axis=y,
+1122,Stripped Poplar Wood,minecraft:stripped_poplar_wood,43,1,76,pillar_axis=y,
+1123,Stripped Spruce Log,minecraft:stripped_spruce_log,45,1,76,pillar_axis=y,
+1124,Stripped Spruce Wood,minecraft:stripped_spruce_wood,47,1,76,pillar_axis=y,
+1125,Stripped Warped Hyphae,minecraft:stripped_warped_hyphae,49,1,76,pillar_axis=y,
+1126,Stripped Warped Stem,minecraft:stripped_warped_stem,51,1,76,pillar_axis=y,
+1127,Structure Block,minecraft:structure_block,53,1,76,structure_block_type=data,
 1128,Structure Void,minecraft:structure_void,55,1,76,,
 1129,Sulfur,minecraft:sulfur,57,1,76,,
-1130,Sulfur Brick Double Slab,minecraft:sulfur_brick_double_slab,59,1,76,,
-1131,Sulfur Brick Slab,minecraft:sulfur_brick_slab,61,1,76,,
-1132,Sulfur Brick Stairs,minecraft:sulfur_brick_stairs,63,1,76,"weirdo_direction=0,upside_down_bit=0",default test state
-1133,Sulfur Brick Wall,minecraft:sulfur_brick_wall,65,1,76,,
+1130,Sulfur Brick Double Slab,minecraft:sulfur_brick_double_slab,59,1,76,minecraft:vertical_half=bottom,
+1131,Sulfur Brick Slab,minecraft:sulfur_brick_slab,61,1,76,minecraft:vertical_half=bottom,
+1132,Sulfur Brick Stairs,minecraft:sulfur_brick_stairs,63,1,76,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1133,Sulfur Brick Wall,minecraft:sulfur_brick_wall,65,1,76,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 1134,Sulfur Bricks,minecraft:sulfur_bricks,67,1,76,,
-1135,Sulfur Double Slab,minecraft:sulfur_double_slab,69,1,76,,
-1136,Sulfur Slab,minecraft:sulfur_slab,71,1,76,,
-1137,Sulfur Spike,minecraft:sulfur_spike,73,1,76,,
-1138,Sulfur Stairs,minecraft:sulfur_stairs,75,1,76,"weirdo_direction=0,upside_down_bit=0",default test state
-1139,Sulfur Wall,minecraft:sulfur_wall,77,1,76,,
-1140,Sunflower,minecraft:sunflower,79,1,76,,upper half at y=2
-1141,Suspicious Gravel,minecraft:suspicious_gravel,81,1,76,,
-1142,Suspicious Sand,minecraft:suspicious_sand,83,1,76,,
-1143,Sweet Berry Bush,minecraft:sweet_berry_bush,85,1,76,,
-1144,Tall Dry Grass,minecraft:tall_dry_grass,87,1,76,,upper half at y=2
-1145,Tall Grass,minecraft:tall_grass,1,1,79,,upper half at y=2
-1146,Short Grass,minecraft:tallgrass,3,1,79,,
+1135,Sulfur Double Slab,minecraft:sulfur_double_slab,69,1,76,minecraft:vertical_half=bottom,
+1136,Sulfur Slab,minecraft:sulfur_slab,71,1,76,minecraft:vertical_half=bottom,
+1137,Sulfur Spike,minecraft:sulfur_spike,73,1,76,"dripstone_thickness=tip,hanging=false",
+1138,Sulfur Stairs,minecraft:sulfur_stairs,75,1,76,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1139,Sulfur Wall,minecraft:sulfur_wall,77,1,76,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+1140,Sunflower,minecraft:sunflower,79,1,76,upper_block_bit=false,upper half at y=2; on grass_block
+1141,Suspicious Gravel,minecraft:suspicious_gravel,81,1,76,"brushed_progress=0,hanging=false",
+1142,Suspicious Sand,minecraft:suspicious_sand,83,1,76,"brushed_progress=0,hanging=false",
+1143,Sweet Berry Bush,minecraft:sweet_berry_bush,85,1,76,growth=0,on grass_block
+1144,Tall Dry Grass,minecraft:tall_dry_grass,87,1,76,,on sand
+1145,Tall Grass,minecraft:tall_grass,1,1,79,upper_block_bit=false,upper half at y=2; on grass_block
+1146,Short Grass,minecraft:tallgrass,3,1,79,,on grass_block
 1147,Target,minecraft:target,5,1,79,,
 1148,Tinted Glass,minecraft:tinted_glass,7,1,79,,
-1149,Tnt,minecraft:tnt,9,1,79,,
-1150,Torch,minecraft:torch,11,1,79,,
-1151,Torchflower,minecraft:torchflower,13,1,79,,
-1152,Torchflower Crop,minecraft:torchflower_crop,15,1,79,,
-1153,Oak Trapdoor,minecraft:trapdoor,17,1,79,,
-1154,Trapped Chest,minecraft:trapped_chest,19,1,79,,
-1155,Trial Spawner,minecraft:trial_spawner,21,1,79,,
+1149,Tnt,minecraft:tnt,9,1,79,explode_bit=false,
+1150,Torch,minecraft:torch,11,1,79,torch_facing_direction=top,default test state
+1151,Torchflower,minecraft:torchflower,13,1,79,,on grass_block
+1152,Torchflower Crop,minecraft:torchflower_crop,15,1,79,growth=0,on farmland
+1153,Oak Trapdoor,minecraft:trapdoor,17,1,79,"direction=0,open_bit=false,upside_down_bit=false",
+1154,Trapped Chest,minecraft:trapped_chest,19,1,79,minecraft:cardinal_direction=south,
+1155,Trial Spawner,minecraft:trial_spawner,21,1,79,"ominous=false,trial_spawner_state=0",
 1156,TripWire,minecraft:tripWire,23,1,79,,
-1157,Tripwire Hook,minecraft:tripwire_hook,25,1,79,,
-1158,Tube Coral,minecraft:tube_coral,27,1,79,,
-1159,Tube Coral Block,minecraft:tube_coral_block,29,1,79,,
-1160,Tube Coral Fan,minecraft:tube_coral_fan,31,1,79,,
-1161,Tube Coral Wall Fan,minecraft:tube_coral_wall_fan,33,1,79,,
+1157,Tripwire Hook,minecraft:tripwire_hook,25,1,79,"attached_bit=false,direction=2,powered_bit=false",a block on either side to hang on
+1158,Tube Coral,minecraft:tube_coral,27,1,79,,"in water, stone around it"
+1159,Tube Coral Block,minecraft:tube_coral_block,29,1,79,,"water on top, stone around the water"
+1160,Tube Coral Fan,minecraft:tube_coral_fan,31,1,79,coral_fan_direction=0,"in water, stone around it"
+1161,Tube Coral Wall Fan,minecraft:tube_coral_wall_fan,33,1,79,coral_direction=0,"in water, stone around it"
 1162,Tuff,minecraft:tuff,35,1,79,,
-1163,Tuff Brick Double Slab,minecraft:tuff_brick_double_slab,37,1,79,,
-1164,Tuff Brick Slab,minecraft:tuff_brick_slab,39,1,79,,
-1165,Tuff Brick Stairs,minecraft:tuff_brick_stairs,41,1,79,"weirdo_direction=0,upside_down_bit=0",default test state
-1166,Tuff Brick Wall,minecraft:tuff_brick_wall,43,1,79,,
+1163,Tuff Brick Double Slab,minecraft:tuff_brick_double_slab,37,1,79,minecraft:vertical_half=bottom,
+1164,Tuff Brick Slab,minecraft:tuff_brick_slab,39,1,79,minecraft:vertical_half=bottom,
+1165,Tuff Brick Stairs,minecraft:tuff_brick_stairs,41,1,79,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1166,Tuff Brick Wall,minecraft:tuff_brick_wall,43,1,79,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
 1167,Tuff Bricks,minecraft:tuff_bricks,45,1,79,,
-1168,Tuff Double Slab,minecraft:tuff_double_slab,47,1,79,,
-1169,Tuff Slab,minecraft:tuff_slab,49,1,79,,
-1170,Tuff Stairs,minecraft:tuff_stairs,51,1,79,"weirdo_direction=0,upside_down_bit=0",default test state
-1171,Tuff Wall,minecraft:tuff_wall,53,1,79,,
-1172,Turtle Egg,minecraft:turtle_egg,55,1,79,,
-1173,Twisting Vines,minecraft:twisting_vines,57,1,79,,
+1168,Tuff Double Slab,minecraft:tuff_double_slab,47,1,79,minecraft:vertical_half=bottom,
+1169,Tuff Slab,minecraft:tuff_slab,49,1,79,minecraft:vertical_half=bottom,
+1170,Tuff Stairs,minecraft:tuff_stairs,51,1,79,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1171,Tuff Wall,minecraft:tuff_wall,53,1,79,"wall_connection_type_east=none,wall_connection_type_north=none,wall_connection_type_south=none,wall_connection_type_west=none,wall_post_bit=false",
+1172,Turtle Egg,minecraft:turtle_egg,55,1,79,"cracked_state=no_cracks,turtle_egg_count=one_egg",
+1173,Twisting Vines,minecraft:twisting_vines,57,1,79,twisting_vines_age=0,
 1174,Shulker Box,minecraft:undyed_shulker_box,59,1,79,,
-1175,Redstone Torch,minecraft:unlit_redstone_torch,61,1,79,,
-1176,Comparator,minecraft:unpowered_comparator,63,1,79,,
-1177,Repeater,minecraft:unpowered_repeater,65,1,79,,
-1178,Vault,minecraft:vault,67,1,79,,
-1179,Verdant Froglight,minecraft:verdant_froglight,69,1,79,,
-1180,Vine,minecraft:vine,71,1,79,,
-1181,Wall Banner,minecraft:wall_banner,73,1,79,,
-1182,Oak Wall Sign,minecraft:wall_sign,75,1,79,,
-1183,Warped Button,minecraft:warped_button,77,1,79,,
-1184,Warped Door,minecraft:warped_door,79,1,79,,upper half at y=2
-1185,Warped Double Slab,minecraft:warped_double_slab,81,1,79,,
-1186,Warped Fence,minecraft:warped_fence,83,1,79,,
-1187,Warped Fence Gate,minecraft:warped_fence_gate,85,1,79,,
-1188,Warped Fungus,minecraft:warped_fungus,87,1,79,,
-1189,Warped Hanging Sign,minecraft:warped_hanging_sign,1,1,82,,
-1190,Warped Hyphae,minecraft:warped_hyphae,3,1,82,,
+1175,Redstone Torch,minecraft:unlit_redstone_torch,61,1,79,torch_facing_direction=top,on a redstone block
+1176,Comparator,minecraft:unpowered_comparator,63,1,79,"minecraft:cardinal_direction=south,output_lit_bit=false,output_subtract_bit=false",
+1177,Repeater,minecraft:unpowered_repeater,65,1,79,"minecraft:cardinal_direction=south,repeater_delay=0",
+1178,Vault,minecraft:vault,67,1,79,"minecraft:cardinal_direction=south,ominous=false,vault_state=inactive",
+1179,Verdant Froglight,minecraft:verdant_froglight,69,1,79,pillar_axis=y,
+1180,Vine,minecraft:vine,71,1,79,vine_direction_bits=15,stone around it to hang on
+1181,Wall Banner,minecraft:wall_banner,73,1,79,facing_direction=2,"facing north, on the block to the south"
+1182,Oak Wall Sign,minecraft:wall_sign,75,1,79,facing_direction=2,"facing north, on the block to the south"
+1183,Warped Button,minecraft:warped_button,77,1,79,"button_pressed_bit=false,facing_direction=1",default test state
+1184,Warped Door,minecraft:warped_door,79,1,79,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+1185,Warped Double Slab,minecraft:warped_double_slab,81,1,79,minecraft:vertical_half=bottom,
+1186,Warped Fence,minecraft:warped_fence,83,1,79,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+1187,Warped Fence Gate,minecraft:warped_fence_gate,85,1,79,"in_wall_bit=false,minecraft:cardinal_direction=south,open_bit=false",
+1188,Warped Fungus,minecraft:warped_fungus,87,1,79,,on warped_nylium
+1189,Warped Hanging Sign,minecraft:warped_hanging_sign,1,1,82,"attached_bit=false,facing_direction=2,ground_sign_direction=0,hanging=true",hanging from the block above
+1190,Warped Hyphae,minecraft:warped_hyphae,3,1,82,pillar_axis=y,
 1191,Warped Nylium,minecraft:warped_nylium,5,1,82,,
 1192,Warped Planks,minecraft:warped_planks,7,1,82,,
-1193,Warped Pressure Plate,minecraft:warped_pressure_plate,9,1,82,,
-1194,Warped Roots,minecraft:warped_roots,11,1,82,,
-1195,Warped Shelf,minecraft:warped_shelf,13,1,82,,
-1196,Warped Slab,minecraft:warped_slab,15,1,82,,
-1197,Warped Stairs,minecraft:warped_stairs,17,1,82,"weirdo_direction=0,upside_down_bit=0",default test state
-1198,Warped Standing Sign,minecraft:warped_standing_sign,19,1,82,,
-1199,Warped Stem,minecraft:warped_stem,21,1,82,,
-1200,Warped Trapdoor,minecraft:warped_trapdoor,23,1,82,,
-1201,Warped Wall Sign,minecraft:warped_wall_sign,25,1,82,,
+1193,Warped Pressure Plate,minecraft:warped_pressure_plate,9,1,82,redstone_signal=0,
+1194,Warped Roots,minecraft:warped_roots,11,1,82,,on warped_nylium
+1195,Warped Shelf,minecraft:warped_shelf,13,1,82,"minecraft:cardinal_direction=south,powered_bit=false,powered_shelf_type=0",
+1196,Warped Slab,minecraft:warped_slab,15,1,82,minecraft:vertical_half=bottom,
+1197,Warped Stairs,minecraft:warped_stairs,17,1,82,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1198,Warped Standing Sign,minecraft:warped_standing_sign,19,1,82,ground_sign_direction=0,
+1199,Warped Stem,minecraft:warped_stem,21,1,82,pillar_axis=y,
+1200,Warped Trapdoor,minecraft:warped_trapdoor,23,1,82,"direction=0,open_bit=false,upside_down_bit=false",
+1201,Warped Wall Sign,minecraft:warped_wall_sign,25,1,82,facing_direction=2,"facing north, on the block to the south"
 1202,Warped Wart Block,minecraft:warped_wart_block,27,1,82,,
-1203,Water,minecraft:water,29,1,82,liquid_depth=0,default test state
-1204,Lily Pad,minecraft:waterlily,31,1,82,,
+1203,Water,minecraft:water,29,1,82,liquid_depth=0,"stone around it, so it does not flow (frosted ice melts into water)"
+1204,Lily Pad,minecraft:waterlily,31,2,82,,"on water, stone around the water"
 1205,Waxed Chiseled Copper,minecraft:waxed_chiseled_copper,33,1,82,,
 1206,Waxed Copper,minecraft:waxed_copper,35,1,82,,
-1207,Waxed Copper Bars,minecraft:waxed_copper_bars,37,1,82,,
-1208,Waxed Copper Bulb,minecraft:waxed_copper_bulb,39,1,82,,
-1209,Waxed Copper Chain,minecraft:waxed_copper_chain,41,1,82,,
-1210,Waxed Copper Chest,minecraft:waxed_copper_chest,43,1,82,,
-1211,Waxed Copper Door,minecraft:waxed_copper_door,45,1,82,,upper half at y=2
-1212,Waxed Copper Golem Statue,minecraft:waxed_copper_golem_statue,47,1,82,,
+1207,Waxed Copper Bars,minecraft:waxed_copper_bars,37,1,82,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+1208,Waxed Copper Bulb,minecraft:waxed_copper_bulb,39,1,82,"lit=false,powered_bit=false",
+1209,Waxed Copper Chain,minecraft:waxed_copper_chain,41,1,82,pillar_axis=y,
+1210,Waxed Copper Chest,minecraft:waxed_copper_chest,43,1,82,minecraft:cardinal_direction=south,
+1211,Waxed Copper Door,minecraft:waxed_copper_door,45,1,82,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+1212,Waxed Copper Golem Statue,minecraft:waxed_copper_golem_statue,47,1,82,minecraft:cardinal_direction=south,
 1213,Waxed Copper Grate,minecraft:waxed_copper_grate,49,1,82,,
-1214,Waxed Copper Lantern,minecraft:waxed_copper_lantern,51,1,82,,
-1215,Waxed Copper Trapdoor,minecraft:waxed_copper_trapdoor,53,1,82,,
+1214,Waxed Copper Lantern,minecraft:waxed_copper_lantern,51,1,82,hanging=false,
+1215,Waxed Copper Trapdoor,minecraft:waxed_copper_trapdoor,53,1,82,"direction=0,open_bit=false,upside_down_bit=false",
 1216,Waxed Cut Copper,minecraft:waxed_cut_copper,55,1,82,,
-1217,Waxed Cut Copper Slab,minecraft:waxed_cut_copper_slab,57,1,82,,
-1218,Waxed Cut Copper Stairs,minecraft:waxed_cut_copper_stairs,59,1,82,"weirdo_direction=0,upside_down_bit=0",default test state
-1219,Waxed Double Cut Copper Slab,minecraft:waxed_double_cut_copper_slab,61,1,82,,
+1217,Waxed Cut Copper Slab,minecraft:waxed_cut_copper_slab,57,1,82,minecraft:vertical_half=bottom,
+1218,Waxed Cut Copper Stairs,minecraft:waxed_cut_copper_stairs,59,1,82,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1219,Waxed Double Cut Copper Slab,minecraft:waxed_double_cut_copper_slab,61,1,82,minecraft:vertical_half=bottom,
 1220,Waxed Exposed Chiseled Copper,minecraft:waxed_exposed_chiseled_copper,63,1,82,,
 1221,Waxed Exposed Copper,minecraft:waxed_exposed_copper,65,1,82,,
-1222,Waxed Exposed Copper Bars,minecraft:waxed_exposed_copper_bars,67,1,82,,
-1223,Waxed Exposed Copper Bulb,minecraft:waxed_exposed_copper_bulb,69,1,82,,
-1224,Waxed Exposed Copper Chain,minecraft:waxed_exposed_copper_chain,71,1,82,,
-1225,Waxed Exposed Copper Chest,minecraft:waxed_exposed_copper_chest,73,1,82,,
-1226,Waxed Exposed Copper Door,minecraft:waxed_exposed_copper_door,75,1,82,,upper half at y=2
-1227,Waxed Exposed Copper Golem Statue,minecraft:waxed_exposed_copper_golem_statue,77,1,82,,
+1222,Waxed Exposed Copper Bars,minecraft:waxed_exposed_copper_bars,67,1,82,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+1223,Waxed Exposed Copper Bulb,minecraft:waxed_exposed_copper_bulb,69,1,82,"lit=false,powered_bit=false",
+1224,Waxed Exposed Copper Chain,minecraft:waxed_exposed_copper_chain,71,1,82,pillar_axis=y,
+1225,Waxed Exposed Copper Chest,minecraft:waxed_exposed_copper_chest,73,1,82,minecraft:cardinal_direction=south,
+1226,Waxed Exposed Copper Door,minecraft:waxed_exposed_copper_door,75,1,82,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+1227,Waxed Exposed Copper Golem Statue,minecraft:waxed_exposed_copper_golem_statue,77,1,82,minecraft:cardinal_direction=south,
 1228,Waxed Exposed Copper Grate,minecraft:waxed_exposed_copper_grate,79,1,82,,
-1229,Waxed Exposed Copper Lantern,minecraft:waxed_exposed_copper_lantern,81,1,82,,
-1230,Waxed Exposed Copper Trapdoor,minecraft:waxed_exposed_copper_trapdoor,83,1,82,,
+1229,Waxed Exposed Copper Lantern,minecraft:waxed_exposed_copper_lantern,81,1,82,hanging=false,
+1230,Waxed Exposed Copper Trapdoor,minecraft:waxed_exposed_copper_trapdoor,83,1,82,"direction=0,open_bit=false,upside_down_bit=false",
 1231,Waxed Exposed Cut Copper,minecraft:waxed_exposed_cut_copper,85,1,82,,
-1232,Waxed Exposed Cut Copper Slab,minecraft:waxed_exposed_cut_copper_slab,87,1,82,,
-1233,Waxed Exposed Cut Copper Stairs,minecraft:waxed_exposed_cut_copper_stairs,1,1,85,"weirdo_direction=0,upside_down_bit=0",default test state
-1234,Waxed Exposed Double Cut Copper Slab,minecraft:waxed_exposed_double_cut_copper_slab,3,1,85,,
-1235,Waxed Exposed Lightning Rod,minecraft:waxed_exposed_lightning_rod,5,1,85,,
-1236,Waxed Lightning Rod,minecraft:waxed_lightning_rod,7,1,85,,
+1232,Waxed Exposed Cut Copper Slab,minecraft:waxed_exposed_cut_copper_slab,87,1,82,minecraft:vertical_half=bottom,
+1233,Waxed Exposed Cut Copper Stairs,minecraft:waxed_exposed_cut_copper_stairs,1,1,85,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1234,Waxed Exposed Double Cut Copper Slab,minecraft:waxed_exposed_double_cut_copper_slab,3,1,85,minecraft:vertical_half=bottom,
+1235,Waxed Exposed Lightning Rod,minecraft:waxed_exposed_lightning_rod,5,1,85,"facing_direction=0,powered_bit=false",
+1236,Waxed Lightning Rod,minecraft:waxed_lightning_rod,7,1,85,"facing_direction=0,powered_bit=false",
 1237,Waxed Oxidized Chiseled Copper,minecraft:waxed_oxidized_chiseled_copper,9,1,85,,
 1238,Waxed Oxidized Copper,minecraft:waxed_oxidized_copper,11,1,85,,
-1239,Waxed Oxidized Copper Bars,minecraft:waxed_oxidized_copper_bars,13,1,85,,
-1240,Waxed Oxidized Copper Bulb,minecraft:waxed_oxidized_copper_bulb,15,1,85,,
-1241,Waxed Oxidized Copper Chain,minecraft:waxed_oxidized_copper_chain,17,1,85,,
-1242,Waxed Oxidized Copper Chest,minecraft:waxed_oxidized_copper_chest,19,1,85,,
-1243,Waxed Oxidized Copper Door,minecraft:waxed_oxidized_copper_door,21,1,85,,upper half at y=2
-1244,Waxed Oxidized Copper Golem Statue,minecraft:waxed_oxidized_copper_golem_statue,23,1,85,,
+1239,Waxed Oxidized Copper Bars,minecraft:waxed_oxidized_copper_bars,13,1,85,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+1240,Waxed Oxidized Copper Bulb,minecraft:waxed_oxidized_copper_bulb,15,1,85,"lit=false,powered_bit=false",
+1241,Waxed Oxidized Copper Chain,minecraft:waxed_oxidized_copper_chain,17,1,85,pillar_axis=y,
+1242,Waxed Oxidized Copper Chest,minecraft:waxed_oxidized_copper_chest,19,1,85,minecraft:cardinal_direction=south,
+1243,Waxed Oxidized Copper Door,minecraft:waxed_oxidized_copper_door,21,1,85,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+1244,Waxed Oxidized Copper Golem Statue,minecraft:waxed_oxidized_copper_golem_statue,23,1,85,minecraft:cardinal_direction=south,
 1245,Waxed Oxidized Copper Grate,minecraft:waxed_oxidized_copper_grate,25,1,85,,
-1246,Waxed Oxidized Copper Lantern,minecraft:waxed_oxidized_copper_lantern,27,1,85,,
-1247,Waxed Oxidized Copper Trapdoor,minecraft:waxed_oxidized_copper_trapdoor,29,1,85,,
+1246,Waxed Oxidized Copper Lantern,minecraft:waxed_oxidized_copper_lantern,27,1,85,hanging=false,
+1247,Waxed Oxidized Copper Trapdoor,minecraft:waxed_oxidized_copper_trapdoor,29,1,85,"direction=0,open_bit=false,upside_down_bit=false",
 1248,Waxed Oxidized Cut Copper,minecraft:waxed_oxidized_cut_copper,31,1,85,,
-1249,Waxed Oxidized Cut Copper Slab,minecraft:waxed_oxidized_cut_copper_slab,33,1,85,,
-1250,Waxed Oxidized Cut Copper Stairs,minecraft:waxed_oxidized_cut_copper_stairs,35,1,85,"weirdo_direction=0,upside_down_bit=0",default test state
-1251,Waxed Oxidized Double Cut Copper Slab,minecraft:waxed_oxidized_double_cut_copper_slab,37,1,85,,
-1252,Waxed Oxidized Lightning Rod,minecraft:waxed_oxidized_lightning_rod,39,1,85,,
+1249,Waxed Oxidized Cut Copper Slab,minecraft:waxed_oxidized_cut_copper_slab,33,1,85,minecraft:vertical_half=bottom,
+1250,Waxed Oxidized Cut Copper Stairs,minecraft:waxed_oxidized_cut_copper_stairs,35,1,85,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1251,Waxed Oxidized Double Cut Copper Slab,minecraft:waxed_oxidized_double_cut_copper_slab,37,1,85,minecraft:vertical_half=bottom,
+1252,Waxed Oxidized Lightning Rod,minecraft:waxed_oxidized_lightning_rod,39,1,85,"facing_direction=0,powered_bit=false",
 1253,Waxed Weathered Chiseled Copper,minecraft:waxed_weathered_chiseled_copper,41,1,85,,
 1254,Waxed Weathered Copper,minecraft:waxed_weathered_copper,43,1,85,,
-1255,Waxed Weathered Copper Bars,minecraft:waxed_weathered_copper_bars,45,1,85,,
-1256,Waxed Weathered Copper Bulb,minecraft:waxed_weathered_copper_bulb,47,1,85,,
-1257,Waxed Weathered Copper Chain,minecraft:waxed_weathered_copper_chain,49,1,85,,
-1258,Waxed Weathered Copper Chest,minecraft:waxed_weathered_copper_chest,51,1,85,,
-1259,Waxed Weathered Copper Door,minecraft:waxed_weathered_copper_door,53,1,85,,upper half at y=2
-1260,Waxed Weathered Copper Golem Statue,minecraft:waxed_weathered_copper_golem_statue,55,1,85,,
+1255,Waxed Weathered Copper Bars,minecraft:waxed_weathered_copper_bars,45,1,85,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+1256,Waxed Weathered Copper Bulb,minecraft:waxed_weathered_copper_bulb,47,1,85,"lit=false,powered_bit=false",
+1257,Waxed Weathered Copper Chain,minecraft:waxed_weathered_copper_chain,49,1,85,pillar_axis=y,
+1258,Waxed Weathered Copper Chest,minecraft:waxed_weathered_copper_chest,51,1,85,minecraft:cardinal_direction=south,
+1259,Waxed Weathered Copper Door,minecraft:waxed_weathered_copper_door,53,1,85,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+1260,Waxed Weathered Copper Golem Statue,minecraft:waxed_weathered_copper_golem_statue,55,1,85,minecraft:cardinal_direction=south,
 1261,Waxed Weathered Copper Grate,minecraft:waxed_weathered_copper_grate,57,1,85,,
-1262,Waxed Weathered Copper Lantern,minecraft:waxed_weathered_copper_lantern,59,1,85,,
-1263,Waxed Weathered Copper Trapdoor,minecraft:waxed_weathered_copper_trapdoor,61,1,85,,
+1262,Waxed Weathered Copper Lantern,minecraft:waxed_weathered_copper_lantern,59,1,85,hanging=false,
+1263,Waxed Weathered Copper Trapdoor,minecraft:waxed_weathered_copper_trapdoor,61,1,85,"direction=0,open_bit=false,upside_down_bit=false",
 1264,Waxed Weathered Cut Copper,minecraft:waxed_weathered_cut_copper,63,1,85,,
-1265,Waxed Weathered Cut Copper Slab,minecraft:waxed_weathered_cut_copper_slab,65,1,85,,
-1266,Waxed Weathered Cut Copper Stairs,minecraft:waxed_weathered_cut_copper_stairs,67,1,85,"weirdo_direction=0,upside_down_bit=0",default test state
-1267,Waxed Weathered Double Cut Copper Slab,minecraft:waxed_weathered_double_cut_copper_slab,69,1,85,,
-1268,Waxed Weathered Lightning Rod,minecraft:waxed_weathered_lightning_rod,71,1,85,,
+1265,Waxed Weathered Cut Copper Slab,minecraft:waxed_weathered_cut_copper_slab,65,1,85,minecraft:vertical_half=bottom,
+1266,Waxed Weathered Cut Copper Stairs,minecraft:waxed_weathered_cut_copper_stairs,67,1,85,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1267,Waxed Weathered Double Cut Copper Slab,minecraft:waxed_weathered_double_cut_copper_slab,69,1,85,minecraft:vertical_half=bottom,
+1268,Waxed Weathered Lightning Rod,minecraft:waxed_weathered_lightning_rod,71,1,85,"facing_direction=0,powered_bit=false",
 1269,Weathered Chiseled Copper,minecraft:weathered_chiseled_copper,73,1,85,,
 1270,Weathered Copper,minecraft:weathered_copper,75,1,85,,
-1271,Weathered Copper Bars,minecraft:weathered_copper_bars,77,1,85,,
-1272,Weathered Copper Bulb,minecraft:weathered_copper_bulb,79,1,85,,
-1273,Weathered Copper Chain,minecraft:weathered_copper_chain,81,1,85,,
-1274,Weathered Copper Chest,minecraft:weathered_copper_chest,83,1,85,,
-1275,Weathered Copper Door,minecraft:weathered_copper_door,85,1,85,,upper half at y=2
-1276,Weathered Copper Golem Statue,minecraft:weathered_copper_golem_statue,87,1,85,,
+1271,Weathered Copper Bars,minecraft:weathered_copper_bars,77,1,85,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
+1272,Weathered Copper Bulb,minecraft:weathered_copper_bulb,79,1,85,"lit=false,powered_bit=false",
+1273,Weathered Copper Chain,minecraft:weathered_copper_chain,81,1,85,pillar_axis=y,
+1274,Weathered Copper Chest,minecraft:weathered_copper_chest,83,1,85,minecraft:cardinal_direction=south,
+1275,Weathered Copper Door,minecraft:weathered_copper_door,85,1,85,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+1276,Weathered Copper Golem Statue,minecraft:weathered_copper_golem_statue,87,1,85,minecraft:cardinal_direction=south,
 1277,Weathered Copper Grate,minecraft:weathered_copper_grate,1,1,88,,
-1278,Weathered Copper Lantern,minecraft:weathered_copper_lantern,3,1,88,,
-1279,Weathered Copper Trapdoor,minecraft:weathered_copper_trapdoor,5,1,88,,
+1278,Weathered Copper Lantern,minecraft:weathered_copper_lantern,3,1,88,hanging=false,
+1279,Weathered Copper Trapdoor,minecraft:weathered_copper_trapdoor,5,1,88,"direction=0,open_bit=false,upside_down_bit=false",
 1280,Weathered Cut Copper,minecraft:weathered_cut_copper,7,1,88,,
-1281,Weathered Cut Copper Slab,minecraft:weathered_cut_copper_slab,9,1,88,,
-1282,Weathered Cut Copper Stairs,minecraft:weathered_cut_copper_stairs,11,1,88,"weirdo_direction=0,upside_down_bit=0",default test state
-1283,Weathered Double Cut Copper Slab,minecraft:weathered_double_cut_copper_slab,13,1,88,,
-1284,Weathered Lightning Rod,minecraft:weathered_lightning_rod,15,1,88,,
+1281,Weathered Cut Copper Slab,minecraft:weathered_cut_copper_slab,9,1,88,minecraft:vertical_half=bottom,
+1282,Weathered Cut Copper Stairs,minecraft:weathered_cut_copper_stairs,11,1,88,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1283,Weathered Double Cut Copper Slab,minecraft:weathered_double_cut_copper_slab,13,1,88,minecraft:vertical_half=bottom,
+1284,Weathered Lightning Rod,minecraft:weathered_lightning_rod,15,1,88,"facing_direction=0,powered_bit=false",
 1285,Cobweb,minecraft:web,17,1,88,,
-1286,Weeping Vines,minecraft:weeping_vines,19,1,88,,
+1286,Weeping Vines,minecraft:weeping_vines,19,2,88,weeping_vines_age=0,hanging from the block above
 1287,Wet Sponge,minecraft:wet_sponge,21,1,88,,
-1288,Wheat,minecraft:wheat,23,1,88,,
-1289,White Candle,minecraft:white_candle,25,1,88,,
-1290,White Candle Cake,minecraft:white_candle_cake,27,1,88,,
+1288,Wheat,minecraft:wheat,23,1,88,growth=0,on farmland
+1289,White Candle,minecraft:white_candle,25,1,88,"candles=0,lit=false",
+1290,White Candle Cake,minecraft:white_candle_cake,27,1,88,lit=false,
 1291,White Carpet,minecraft:white_carpet,29,1,88,,
 1292,White Concrete,minecraft:white_concrete,31,1,88,,
-1293,White Concrete Double Slab,minecraft:white_concrete_double_slab,33,1,88,,
+1293,White Concrete Double Slab,minecraft:white_concrete_double_slab,33,1,88,minecraft:vertical_half=bottom,
 1294,White Concrete Powder,minecraft:white_concrete_powder,35,1,88,,
-1295,White Concrete Slab,minecraft:white_concrete_slab,37,1,88,,
-1296,White Concrete Stairs,minecraft:white_concrete_stairs,39,1,88,"weirdo_direction=0,upside_down_bit=0",default test state
-1297,White Glazed Terracotta,minecraft:white_glazed_terracotta,41,1,88,,
+1295,White Concrete Slab,minecraft:white_concrete_slab,37,1,88,minecraft:vertical_half=bottom,
+1296,White Concrete Stairs,minecraft:white_concrete_stairs,39,1,88,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1297,White Glazed Terracotta,minecraft:white_glazed_terracotta,41,1,88,facing_direction=0,
 1298,White Shulker Box,minecraft:white_shulker_box,43,1,88,,
 1299,White Stained Glass,minecraft:white_stained_glass,45,1,88,,
-1300,White Stained Glass Pane,minecraft:white_stained_glass_pane,47,1,88,,
+1300,White Stained Glass Pane,minecraft:white_stained_glass_pane,47,1,88,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 1301,White Terracotta,minecraft:white_terracotta,49,1,88,,
-1302,White Tulip,minecraft:white_tulip,51,1,88,,
+1302,White Tulip,minecraft:white_tulip,51,1,88,,on grass_block
 1303,White Wool,minecraft:white_wool,53,1,88,,
-1304,White Wool Double Slab,minecraft:white_wool_double_slab,55,1,88,,
-1305,White Wool Slab,minecraft:white_wool_slab,57,1,88,,
-1306,White Wool Stairs,minecraft:white_wool_stairs,59,1,88,"weirdo_direction=0,upside_down_bit=0",default test state
-1307,Wildflowers,minecraft:wildflowers,61,1,88,,
-1308,Wither Rose,minecraft:wither_rose,63,1,88,,
-1309,Wither Skeleton Skull,minecraft:wither_skeleton_skull,65,1,88,,
+1304,White Wool Double Slab,minecraft:white_wool_double_slab,55,1,88,minecraft:vertical_half=bottom,
+1305,White Wool Slab,minecraft:white_wool_slab,57,1,88,minecraft:vertical_half=bottom,
+1306,White Wool Stairs,minecraft:white_wool_stairs,59,1,88,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1307,Wildflowers,minecraft:wildflowers,61,1,88,"growth=0,minecraft:cardinal_direction=south",on grass_block
+1308,Wither Rose,minecraft:wither_rose,63,1,88,,on grass_block
+1309,Wither Skeleton Skull,minecraft:wither_skeleton_skull,65,1,88,facing_direction=1,default test state
 1310,Wood,minecraft:wood,67,1,88,,
-1311,Oak Button,minecraft:wooden_button,69,1,88,,
-1312,Oak Door,minecraft:wooden_door,71,1,88,,upper half at y=2
-1313,Oak Pressure Plate,minecraft:wooden_pressure_plate,73,1,88,,
+1311,Oak Button,minecraft:wooden_button,69,1,88,"button_pressed_bit=false,facing_direction=1",default test state
+1312,Oak Door,minecraft:wooden_door,71,1,88,"door_hinge_bit=false,minecraft:cardinal_direction=north,open_bit=false,upper_block_bit=false",upper half at y=2
+1313,Oak Pressure Plate,minecraft:wooden_pressure_plate,73,1,88,redstone_signal=0,
 1314,Wooden Slab,minecraft:wooden_slab,75,1,88,,
 1315,White Wool,minecraft:wool,77,1,88,,
-1316,Yellow Candle,minecraft:yellow_candle,79,1,88,,
-1317,Yellow Candle Cake,minecraft:yellow_candle_cake,81,1,88,,
+1316,Yellow Candle,minecraft:yellow_candle,79,1,88,"candles=0,lit=false",
+1317,Yellow Candle Cake,minecraft:yellow_candle_cake,81,1,88,lit=false,
 1318,Yellow Carpet,minecraft:yellow_carpet,83,1,88,,
 1319,Yellow Concrete,minecraft:yellow_concrete,85,1,88,,
-1320,Yellow Concrete Double Slab,minecraft:yellow_concrete_double_slab,87,1,88,,
+1320,Yellow Concrete Double Slab,minecraft:yellow_concrete_double_slab,87,1,88,minecraft:vertical_half=bottom,
 1321,Yellow Concrete Powder,minecraft:yellow_concrete_powder,1,1,91,,
-1322,Yellow Concrete Slab,minecraft:yellow_concrete_slab,3,1,91,,
-1323,Yellow Concrete Stairs,minecraft:yellow_concrete_stairs,5,1,91,"weirdo_direction=0,upside_down_bit=0",default test state
-1324,Dandelion,minecraft:yellow_flower,7,1,91,,
-1325,Yellow Glazed Terracotta,minecraft:yellow_glazed_terracotta,9,1,91,,
-1326,Yellow Poplar Leaves,minecraft:yellow_poplar_leaves,11,1,91,,
+1322,Yellow Concrete Slab,minecraft:yellow_concrete_slab,3,1,91,minecraft:vertical_half=bottom,
+1323,Yellow Concrete Stairs,minecraft:yellow_concrete_stairs,5,1,91,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1324,Dandelion,minecraft:yellow_flower,7,1,91,,on grass_block
+1325,Yellow Glazed Terracotta,minecraft:yellow_glazed_terracotta,9,1,91,facing_direction=0,
+1326,Yellow Poplar Leaves,minecraft:yellow_poplar_leaves,11,1,91,"persistent_bit=true,update_bit=false",default test state
 1327,Yellow Shulker Box,minecraft:yellow_shulker_box,13,1,91,,
 1328,Yellow Stained Glass,minecraft:yellow_stained_glass,15,1,91,,
-1329,Yellow Stained Glass Pane,minecraft:yellow_stained_glass_pane,17,1,91,,
+1329,Yellow Stained Glass Pane,minecraft:yellow_stained_glass_pane,17,1,91,"minecraft:connection_east=false,minecraft:connection_north=false,minecraft:connection_south=false,minecraft:connection_west=false",
 1330,Yellow Terracotta,minecraft:yellow_terracotta,19,1,91,,
 1331,Yellow Wool,minecraft:yellow_wool,21,1,91,,
-1332,Yellow Wool Double Slab,minecraft:yellow_wool_double_slab,23,1,91,,
-1333,Yellow Wool Slab,minecraft:yellow_wool_slab,25,1,91,,
-1334,Yellow Wool Stairs,minecraft:yellow_wool_stairs,27,1,91,"weirdo_direction=0,upside_down_bit=0",default test state
-1335,Zombie Head,minecraft:zombie_head,29,1,91,,
+1332,Yellow Wool Double Slab,minecraft:yellow_wool_double_slab,23,1,91,minecraft:vertical_half=bottom,
+1333,Yellow Wool Slab,minecraft:yellow_wool_slab,25,1,91,minecraft:vertical_half=bottom,
+1334,Yellow Wool Stairs,minecraft:yellow_wool_stairs,27,1,91,"minecraft:corner=none,upside_down_bit=false,weirdo_direction=0",default test state
+1335,Zombie Head,minecraft:zombie_head,29,1,91,facing_direction=1,default test state

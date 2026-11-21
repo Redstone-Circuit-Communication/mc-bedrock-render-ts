@@ -5,3 +5,4 @@ tests/e2e/out/*
 sdk/
 dist/
 .cache/
+entity-test/
